@@ -1,4 +1,7 @@
 @extends('main')
+@section('title', $post->seo_title)
+@section('meta_keywords', $post->meta_keywords)
+@section('meta_description', $post->meta_description)
 @section('content')
 <div class="container mx-auto flex flex-wrap py-3 mt-12 dark:bg-gray-800">
     <div class="w-full md:w-2/3 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal " style="font-family:Georgia,serif;">

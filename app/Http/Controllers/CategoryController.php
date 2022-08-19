@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index($id) {
+    public function index($slug) {
 
-        $posts = Post::latest()->get()->where('category_id', $id);
-        $category = Category::where('id', $id)->first();
-        return view("category", compact("posts", "category"));
+        
+        $m_category = Category::where('slug', $slug)->first();
+        $posts = Post::latest()->get()->where('category_id', $m_category->id);
+        $categories = Category::all();
+        return view("category", compact("posts", "m_category", "categories"));
     }
 }

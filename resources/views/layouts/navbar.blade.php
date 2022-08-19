@@ -27,15 +27,11 @@
                 <li>
                     <a href="{{ route('home') }}" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500" aria-current="page">HOME</a>
                 </li>
+                @foreach ($categories as $category)
                 <li>
-                    <a href="/category/1" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500">LARAVEL</a>
+                    <a href="/category/{{ $category->slug }}" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500 uppercase">{{ $category->name }}</a>
                 </li>
-                <li>
-                   <a href="/category/2" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500">TailwindCSS</a>
-                </li>
-                <li>
-                    <a href="/category/3" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500">VueJS</a>
-                </li>
+                @endforeach
                 <li>
                     <a href="{{ route('portfolio') }}" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500">PORTFOLIO</a>
                 </li>

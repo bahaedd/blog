@@ -76,3 +76,4 @@ if (localStorage.getItem('color-theme')) {
 });
 </script>
 <livewire:scripts />
+

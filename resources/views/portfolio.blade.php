@@ -1,4 +1,5 @@
 @extends('main')
+@section('title', 'Portfolio')
 @section('content')
 <div class="w-full bg-cover bg-center" style="height:40rem; background-image: url({{URL('/images/bg.jpg')}});">
     <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50">
@@ -155,17 +156,32 @@
       fermentum accumsan. Viverra habitasse urna ante
       lobortis fermentum accumsan.</p>
     </div> --}}
-    <form class="mx-auto w-full pt-10 sm:w-3/4">
+        @if(Session::has('success'))
+            <div class="p-4 mb-4 mt-4 text-sm text-center text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                <span class="font-medium text-center justify-center mx-auto">{{Session::get('success')}}</span>
+            </div>
+        @endif
+    <form class="mx-auto w-full pt-10 sm:w-3/4" action="{{url('portfolio/store')}}" method="post">
+        @csrf
       <div class="flex flex-col md:flex-row">
-        <input class="mr-3 w-full bg-gray-50 rounded border-grey-50 px-4 py-3 font-body  md:w-1/2 lg:mr-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  py-4 px-12  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Name" type="text" id="name">
-        <input class="mt-6 w-full bg-gray-50 rounded border-grey-50 px-4 py-3 font-body text-black md:mt-0 md:ml-3 md:w-1/2 lg:ml-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  py-4 px-12  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Email" type="text" id="email">
+        <input class="mr-3 w-full bg-gray-50 rounded border-grey-50 px-4 py-3 font-body  md:w-1/2 lg:mr-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  py-4 px-12  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 {{ $errors->has('name') ? 'error' : '' }}"
+        placeholder="Name" type="text" name="name" id="name">
+        <!-- Error -->
+        @if ($errors->has('name'))
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Please enter your name.</p>
+        @endif
+        <input class="mt-6 w-full bg-gray-50 rounded border-grey-50 px-4 py-3 font-body text-black md:mt-0 md:ml-3 md:w-1/2 lg:ml-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  py-4 px-12  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 {{ $errors->has('email') ? 'error' : '' }}"
+        placeholder="Email" type="text" name="email" id="email">
+        @if ($errors->has('email'))
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Please enter your email.</p>
+        @endif
       </div>
-      <textarea class="mt-6 w-full bg-gray-50 rounded border-grey-50 px-4 py-3 font-body text-black md:mt-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  py-4 px-12  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      placeholder="Message" id="message" cols="30" rows="10"></textarea>
-      <button class="mt-6 flex items-center justify-center rounded bg-green-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
-      Send </button>
+      <textarea class="mt-6 w-full bg-gray-50 rounded border-grey-50 px-4 py-3 font-body text-black md:mt-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  py-4 px-12  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 {{ $errors->has('message') ? 'error' : '' }}"
+      placeholder="Message" id="message" cols="30" rows="10" name="message"></textarea>
+      @if ($errors->has('message'))
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Please enter your message.</p>
+        @endif
+      <input type="submit" name="send" value="Submit" class="mt-6 flex items-center justify-center rounded bg-green-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
     </form>
 </div>
 @endsection

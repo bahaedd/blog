@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\tagController;
+use App\Http\Controllers\ContactUsFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,18 @@ use App\Http\Controllers\tagController;
 |
 */
 
-Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('post/{slug}', [PostController::class, 'show']);
-Route::get('category/{id}', [CategoryController::class, 'index']);
-// Route::get('tag/{id}', [TagController::class, 'index']);
+Route::group(['middleware'=>'HtmlMinifier'], function(){ 
+  
+    Route::get('/', [PostController::class, 'index'])->name('home');
+    Route::get('post/{slug}', [PostController::class, 'show']);
+    Route::get('category/{slug}', [CategoryController::class, 'index']);
+    // Route::get('tag/{id}', [TagController::class, 'index']);
 
-Route::get('/portfolio', function () {
-    return view('protfolio');
-})->name('portfolio');
+    Route::get('/portfolio', [ContactUsFormController::class, 'Portfolio'])->name('portfolio');
+    Route::post('/portfolio/store', [ContactUsFormController::class, 'Contact'])->name('contact.store');
 
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
+    Route::group(['prefix' => 'admin'], function () {
+        Voyager::routes();
+    });
+  
+  });

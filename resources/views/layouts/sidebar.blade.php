@@ -17,7 +17,7 @@
                     <a href="/post/{{ $post->slug }}" class="text-white font-bold hidden sm:inline-block">{{ $post->title}}</a>
                     <div class="pt-2">
                         <div class="text-gray-100">
-                            <a href="category/{{$post->category->id}}" class="inline-block h-3 border-l-2 border-green-600 mr-2">{{ $post->category->name }}</a>
+                            <a href="category/{{$post->category->slug}}" class="inline-block h-3 border-l-2 border-green-600 mr-2">{{ $post->category->name }}</a>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
             @foreach ($categories as $category)
             <div class="flex items-center justify-between mt-4">
                 <div class="flex items-center">
-                    <a href="category/{{$category->id}}"class="mx-3 text-sm font-semibold text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400 hover:underline ml-3">{{ $category->name }}</a>
+                    <a href="category/{{$category->slug}}"class="mx-3 text-sm font-semibold text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400 hover:underline ml-3">{{ $category->name }}</a>
                 </div>
             </div>
             @endforeach

@@ -6,9 +6,26 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
+
+    public static function boot()
+	{
+	    parent::boot();
+
+	    static::updating(function ($instance) {
+	        // update cache content
+	        Cache::put('posts.'.$instance->slug,$instance);
+	    });
+
+	    static::deleting(function ($instance) {
+	        // delete post cache
+	        Cache::forget('posts.'.$instance->slug);
+	    });
+	}
+    
     public function index() {
 
         $latest_posts = Post::latest()->get();
@@ -21,8 +38,11 @@ class PostController extends Controller
     }
 
     public function show($slug) {
+        $post = Cache::remember('posts', $slug, function () use ($slug) {
+            return Post::where('slug', '=', $slug)->firstOrFail();
+        });
 
-        $post = Post::where('slug', '=', $slug)->firstOrFail();
+        //$post = Post::where('slug', '=', $slug)->firstOrFail();
         $recent_posts = Post::latest()->get();
         $tags = Tag::all();
         $categories = Category::all();

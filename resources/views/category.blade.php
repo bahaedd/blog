@@ -1,8 +1,9 @@
 @extends('main')
+@section('title', $m_category->name)
 @section('content')
  <!-- container -->
         <div class="container mx-auto py-3 mt-12 mb-12 dark:bg-gray-800">
-            <h2 class="my-4 text-xl text-center font-bold text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400 uppercase">{{ $category?->name }} POSTS</h2>
+            <h2 class="my-4 text-xl text-center font-bold text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400 uppercase">{{ $m_category?->name }} POSTS</h2>
             <div class="w-full mb-6">
                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t bg-green-700"></div>
             </div>
