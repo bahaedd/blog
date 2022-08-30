@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\tagController;
 use App\Http\Controllers\ContactUsFormController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
 
     Route::get('/portfolio', [ContactUsFormController::class, 'Portfolio'])->name('portfolio');
     Route::post('/portfolio/store', [ContactUsFormController::class, 'Contact'])->name('contact.store');
+
+    Route::get('sitemap.xml',[SitemapController::class, 'index']);
 
     Route::group(['prefix' => 'admin'], function () {
         Voyager::routes();

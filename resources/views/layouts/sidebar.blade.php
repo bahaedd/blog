@@ -6,7 +6,7 @@
     <div class="grid grid-cols-2 gap-4">
         @foreach ($recent_posts as $post)
         <div>
-            <div class="relative max-h-98 overflow-hidden rounded">
+            <div class="relative max-h-100 overflow-hidden rounded">
                 <a href="/post/{{ $post->slug }}" class="hover:opacity-75">
                     <img class="max-w-full w-full mx-auto h-auto" src="{{Voyager::image( $post->image )}}" alt="Image description">
                 </a>
@@ -14,12 +14,12 @@
                     {{-- <a href="/post/{{ $post->slug }}">
                         <h2 class="text-3xl font-bold capitalize text-gary-700 mb-3">{{ $post->title }}</h2>
                     </a> --}}
-                    <a href="/post/{{ $post->slug }}" class="text-white font-bold hidden sm:inline-block">{{ $post->title}}</a>
+                    {{-- <a href="/post/{{ $post->slug }}" class="text-white font-bold hidden sm:inline-block">{{ $post->title}}</a>
                     <div class="pt-2">
                         <div class="text-gray-100">
                             <a href="category/{{$post->category->slug}}" class="inline-block h-3 border-l-2 border-green-600 mr-2">{{ $post->category->name }}</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

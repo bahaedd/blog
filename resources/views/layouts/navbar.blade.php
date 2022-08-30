@@ -1,8 +1,8 @@
 <nav class="flex sticky top-0 z-40 flex-none py-3 mx-auto w-full bg-white border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
         <a href="{{ route('home') }}" class="flex items-center">
-                <img src="{{URL('/images/alien.png')}}" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">AlienDev</span>
+                <img src="{{URL('/images/logoo.png')}}" class="m-l-6 h-12 sm:h-9" alt="Flowbite Logo" />
+                {{-- <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">AlienDev</span> --}}
         </a>
         <div class="flex md:order-2">
                 <livewire:search-drop-down/>

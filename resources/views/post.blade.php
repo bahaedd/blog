@@ -11,14 +11,18 @@
         </a>
         <!--Title-->
         <div class="font-sans">
-            <h1 class="font-bold font-sans break-normal text-gray-400 pt-6 pb-2 text-3xl md:text-4xl">{{ $post->title }}</h1>
-            <p class="text-sm pb-3">
+            <h1 class="font-bold font-sans break-normal text-green-400 pt-6 pb-2 text-3xl md:text-4xl">{{ $post->title }}</h1>
+            <p class="text-sm pb-3 text-gray-500 dark:text-gray-400">
                 By <a href="#" class="font-semibold text-gray-400 hover:text-gray-200">bahaeddine</a>, Published on {{ $post->created_at }}
             </p>
         </div>
         <!--Post Content-->
         {!! $post->body !!}
         <!--/ Post Content-->
+        <hr class="mt-6 mb-6 divide-y-4 divide-green-400/25 ...">
+        <div class="w-full">
+            @comments(['model' => $post])
+        </div>
     </div>
     <!-- sidebar -->
     @include('layouts.sidebar')
