@@ -7,7 +7,7 @@
         <ul>
             @foreach ($searchResults as $result)
                 <li class="border-b border-gray-700">
-                    <a href="/post/{{ $result->slug }}" class="block hover:bg-gray-700 px-3 py-3">{{ $result->title }}</a>
+                    <a href="/post/{{ $result->slug }}" class="block hover:bg-gray-700 px-3 py-3 text-white">{{ $result->title }}</a>
                 </li>
             @endforeach
         </ul>

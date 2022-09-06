@@ -37,9 +37,9 @@
 <div class="bg-grey-50">
     <div class="container mx-auto flex flex-col items-center py-16 md:py-20 lg:flex-row dark:bg-gray-800">
         <div class="w-full text-center sm:w-3/4 lg:w-3/5 lg:text-left">
-            <h2 class="font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">Who am I?</h2>
-            <h4 class="pt-6 font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">I'm Bahaeddine, a Web Developer</h4>
-            <p class="pt-6 font-body leading-relaxed text-grey-20">
+            <h2 class="font-header text-4xl font-semibold uppercase text-green-500 sm:text-5xl lg:text-6xl">Who am I?</h2>
+            <h4 class="pt-6 font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl dark:text-white">My name is Bahaeddine, I'm a Fullstack Web Developer</h4>
+            <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">
                 I am a web developer with a vast array of knowledge in many different front end and back end languages,
                 responsive frameworks, databases, and best code practices. My objective is simply to be the best
                 web developer that I can be and to contribute to the technology industry all that I know and can do.
@@ -68,7 +68,7 @@
         <div class="w-full pl-0 pt-10 sm:w-3/4 lg:w-2/5 lg:pl-12 lg:pt-0">
             <div>
                 <div class="flex items-end justify-between">
-                    <h4 class="font-body font-semibold uppercase text-black">HTML && CSS</h4>
+                    <h4 class="font-body font-semibold uppercase text-black dark:text-white">HTML && CSS</h4>
                     <h3 class="font-body text-3xl font-bold text-primary">85%</h3>
                 </div>
                 <div class="w-full mt-3 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -77,7 +77,7 @@
             </div>
             <div class="pt-6">
                 <div class="flex items-end justify-between">
-                    <h4 class="font-body font-semibold uppercase text-black">Laravel</h4>
+                    <h4 class="font-body font-semibold uppercase text-black dark:text-white">Laravel</h4>
                     <h3 class="font-body text-3xl font-bold text-primary">70%</h3>
                 </div>
                 <div class="w-full mt-3 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -86,7 +86,7 @@
             </div>
             <div class="pt-6">
                 <div class="flex items-end justify-between">
-                    <h4 class="font-body font-semibold uppercase text-black">TailwindCSS</h4>
+                    <h4 class="font-body font-semibold uppercase text-black dark:text-white">TailwindCSS</h4>
                     <h3 class="font-body text-3xl font-bold text-primary">65%</h3>
                 </div>
                 <div class="w-full mt-3 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -95,7 +95,7 @@
             </div>
             <div class="pt-6">
                 <div class="flex items-end justify-between">
-                    <h4 class="font-body font-semibold uppercase text-black">VueJS</h4>
+                    <h4 class="font-body font-semibold uppercase text-black dark:text-white">VueJS</h4>
                     <h3 class="font-body text-3xl font-bold text-primary">60%</h3>
                 </div>
                 <div class="w-full mt-3 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -108,9 +108,9 @@
 <div class="container mx-auto py-16 md:py-20 dark:bg-gray-800" id="services">
     <h2 class="text-center font-header text-4xl font-semibold uppercase text-green-500 sm:text-5xl lg:text-6xl">
     Here's what I'm good at!</h2>
-    <h3 class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">These are the services I offer</h3>
+    <h3 class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl dark:text-white">These are the services I offer</h3>
     <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
-      <div class="group rounded px-8 py-12 shadow hover:bg-green-300">
+      <div class="group rounded px-8 py-12 shadow bg-green-300">
         <div class="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
           <ion-icon name="code-slash-outline" size="large"></ion-icon>
         </div>
@@ -121,7 +121,7 @@
           elit.</p> --}}
         </div>
       </div>
-      <div class="group rounded px-8 py-12 shadow hover:bg-green-300">
+      <div class="group rounded px-8 py-12 shadow bg-green-300">
         <div class="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
             <ion-icon name="pencil-outline" size="large"></ion-icon>
         </div>
@@ -131,7 +131,7 @@
           elit.</p> --}}
         </div>
       </div>
-      <div class="group rounded px-8 py-12 shadow hover:bg-green-300">
+      <div class="group rounded px-8 py-12 shadow bg-green-300">
         <div class="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
             <ion-icon name="brush-outline" size="large"></ion-icon>
         </div>
@@ -147,7 +147,7 @@
 <div class="container mx-auto py-16 md:py-20 dark:bg-gray-800" id="contact">
     <h2 class="text-center font-header text-4xl font-semibold uppercase text-green-500 sm:text-5xl lg:text-6xl">
     Here's a contact form</h2>
-    <h4 class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl">
+    <h4 class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl dark:text-white">
     Have Any Questions?</h4>
     {{-- <div class="mx-auto w-full pt-5 text-center sm:w-2/3 lg:pt-6">
       <p class="font-body text-grey-10">Lorem ipsum dolor sit
