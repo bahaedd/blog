@@ -18,7 +18,7 @@
       </div>
     </div>
   </section> -->
-<footer class="bg-white  w-full mx-auto mt-12 border-t border-gray-200 dark:border-gray-600 dark:bg-gray-800">
+<footer class="bg-white  w-full mx-auto mt-12 border-t border-gray-200 dark:border-gray-600 dark:bg-gray-800" style="margin-top: 120px;">
     <div class="py-6 px-4 w-full md:flex md:items-center md:justify-between dark:bg-gray-800">
         <span class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500 sm:text-center">© 2022 <a href="{{ route('home') }}">AlienDev™</a>. All Rights Reserved.
         </span>

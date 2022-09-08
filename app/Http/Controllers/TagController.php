@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
-    public function index($id) {
+    public function index($slug) {
 
-        $posts = Post::latest()->get()->where('category_id', $id);
+        $tag = Tag::where('slug', $slug)->first();
+        $p = DB::table('post_tag')->where('id', $tag->id)->first();
+        $posts = Post::where('id', $p->post_id)->get();
+        $categories = Category::all();
 
-        return view("tag", compact("posts"));
+        return view("blog.tag", compact("tag", "posts", "categories"));
     }
 }

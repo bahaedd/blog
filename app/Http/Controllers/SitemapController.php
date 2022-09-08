@@ -18,7 +18,7 @@ class SitemapController extends Controller
        
         $posts = Post::orderBy('id','desc')->where('status', 'PUBLISHED')->get();
 
-        return response()->view('sitemap', compact('posts'))
+        return response()->view('blog.sitemap', compact('posts'))
           ->header('Content-Type', 'text/xml');
 
     }

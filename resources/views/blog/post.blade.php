@@ -1,4 +1,4 @@
-@extends('main')
+@extends('/blog/main')
 @section('title', $post->seo_title)
 @section('meta_keywords', $post->meta_keywords)
 @section('meta_description', $post->meta_description)
@@ -25,6 +25,6 @@
         </div>
     </div>
     <!-- sidebar -->
-    @include('layouts.sidebar')
+    @include('/blog/layouts.sidebar')
 </div>
 @endsection

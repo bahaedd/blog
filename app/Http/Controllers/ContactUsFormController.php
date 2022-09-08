@@ -12,7 +12,7 @@ class ContactUsFormController extends Controller
 
     public function Portfolio(Request $request) {
         $categories = Category::all();
-        return view("portfolio", compact("categories"));
+        return view("blog.portfolio", compact("categories"));
     }
 
     public function Contact(Request $request) {

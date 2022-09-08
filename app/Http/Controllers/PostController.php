@@ -34,7 +34,7 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $recent_posts = Post::latest()->get();
-        return view("home", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags"));
+        return view("blog.home", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags"));
     }
 
     public function show($slug) {
@@ -46,6 +46,6 @@ class PostController extends Controller
         $recent_posts = Post::latest()->get();
         $tags = Tag::all();
         $categories = Category::all();
-	    return view('post', compact('post', 'recent_posts', 'categories', 'tags'));
+	    return view('blog.post', compact('post', 'recent_posts', 'categories', 'tags'));
     }
 }

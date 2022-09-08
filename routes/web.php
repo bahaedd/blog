@@ -20,10 +20,11 @@ use App\Http\Controllers\SitemapController;
 
 Route::group(['middleware'=>'HtmlMinifier'], function(){ 
   
+    Route::get('/blog', [PostController::class, 'index']);
     Route::get('/', [PostController::class, 'index'])->name('home');
-    Route::get('post/{slug}', [PostController::class, 'show']);
-    Route::get('category/{slug}', [CategoryController::class, 'index']);
-    // Route::get('tag/{id}', [TagController::class, 'index']);
+    Route::get('blog/post/{slug}', [PostController::class, 'show']);
+    Route::get('blog/category/{slug}', [CategoryController::class, 'index'])->name('category');
+    Route::get('blog/tag/{slug}', [TagController::class, 'index']);
 
     Route::get('/portfolio', [ContactUsFormController::class, 'Portfolio'])->name('portfolio');
     Route::post('/portfolio/store', [ContactUsFormController::class, 'Contact'])->name('contact.store');

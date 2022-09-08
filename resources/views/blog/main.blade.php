@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @include('layouts.head')
+    @include('/blog/layouts.head')
     <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
         <!-- navbar -->
-        @include('layouts.navbar')
+        @include('/blog/layouts.navbar')
 
         <!-- container -->
         @yield('content')
 
         <!-- Footer -->
-        @include('layouts.footer')
+        @include('/blog/layouts.footer')
         <livewire:scripts />
         <script>
             function getCarouselData() {
