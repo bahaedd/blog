@@ -144,43 +144,36 @@
       </div>
     </div>
 </div>
-<div class="container mx-auto py-16 md:py-20 dark:bg-gray-800" id="services">
+<div class="container mx-auto py-16 md:py-20 dark:bg-gray-800" id="projects">
     <h2 class="text-center font-header text-4xl font-semibold uppercase text-green-500 sm:text-5xl lg:text-6xl">
     Here's a list of my projects</h2>
-    <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
-      <div class="group rounded px-8 py-12 shadow bg-green-300">
-        <div class="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-          <ion-icon name="code-slash-outline" size="large"></ion-icon>
-        </div>
-        <div class="text-center">
-          <h3 class="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">WEB DEVELOPMENT</h3>
-          {{-- <p class="text-grey pt-4 text-sm group-hover:text-primary md:text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit.</p> --}}
-        </div>
-      </div>
-      <div class="group rounded px-8 py-12 shadow bg-green-300">
-        <div class="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-            <ion-icon name="pencil-outline" size="large"></ion-icon>
-        </div>
-        <div class="text-center">
-          <h3 class="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">Technical Writing</h3>
-          {{-- <p class="text-grey pt-4 text-sm group-hover:text-primary md:text-base">Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit.</p> --}}
-        </div>
-      </div>
-      <div class="group rounded px-8 py-12 shadow bg-green-300">
-        <div class="mx-auto h-24 w-24 text-center xl:h-28 xl:w-28">
-            <ion-icon name="brush-outline" size="large"></ion-icon>
-        </div>
-        <div class="text-center">
-          <h3 class="pt-8 text-lg font-semibold uppercase text-primary group-hover:text-yellow lg:text-xl">Web Design</h3>
-          {{-- <p class="text-grey pt-4 text-sm group-hover:text-primary md:text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit.</p> --}}
-        </div>
-      </div>
-    </div>
+   <div class="w-full mb-6">
+            <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t bg-green-700"></div>
+            <div class="flex flex-wrap mt-12">
+                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4">
+                    <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
+                        <a href="">
+                            <img class="rounded-t-lg" src="{{Voyager::image( setting('site.logo'))}}" alt="" />
+                        </a>
+                        <div class="p-5">
+                            <a href="">
+                                <h5 class="mb-6 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">Weather App</h5>
+                            </a>
+                            <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center">
+                               <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">Laravel</a>
+                             </div> 
+                             <div class="flex items-center">
+                               <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">VueJS</a>
+                             </div> 
+                             <div class="flex items-center">
+                               <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">TailwindCSS</a>
+                             </div>   
+                             </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
 </div>
 <div class="container mx-auto py-16 md:py-20 dark:bg-gray-800" id="contact">
     <h2 class="text-center font-header text-4xl font-semibold uppercase text-green-500 sm:text-5xl lg:text-6xl">
