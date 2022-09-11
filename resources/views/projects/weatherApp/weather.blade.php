@@ -6,11 +6,15 @@
 
 	<link rel="canonical" href="{{url()->current()}}"/>
     <link rel="icon" href="{{URL('/images/alien.png')}}" type="image/x-icon"/>
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="./css/app.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
-	
+	    weath
+
+	    <script src="../path/to/flowbite/dist/flowbite.js"></script>
+        <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+        <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
 </body>
 </html>
