@@ -17,4 +17,5 @@
         }
     </style>
     <livewire:styles />
+    
 </head>

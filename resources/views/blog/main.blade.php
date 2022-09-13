@@ -35,8 +35,6 @@
                 }
             }
         </script>
-        <script src="../path/to/flowbite/dist/flowbite.js"></script>
-        <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
         <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
         <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
