@@ -10,12 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
+<body class="border-b border-gray-200 dark:border-gray-600 bg-green-900 dark:bg-green-900">
 	    <div id="app">
 	    	<weather></weather>
 	    </div>    
 
-
+<script src="/js/app.js" defer></script>
 <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
 </body>
