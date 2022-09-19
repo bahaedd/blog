@@ -76,9 +76,18 @@ export default {
         mounted() {
             this.fetchData()
         },
+        data() {
+            return {
+                location: {
+                    name: 'Fes, Morocco',
+                    lat: 34.033333,
+                    lon: -5.000000,
+                }
+            }
+        },
         methods: {
             fetchData() {
-                fetch('https://dataservice.accuweather.com/forecasts/v1/daily/1day/7278_poi?apikey=bjxI7LWZaMaqW3r9GC5MtFAmf0A9VO5j')
+                fetch(`/api/weather?lat=${this.location.lat}&lon=${this.location.lon}`)
                     .then(response => response.json())
                     .then(data => {
                         console.log(data)

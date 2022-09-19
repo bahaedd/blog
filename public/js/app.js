@@ -5800,9 +5800,18 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.fetchData();
   },
+  data: function data() {
+    return {
+      location: {
+        name: 'Fes, Morocco',
+        lat: 34.033333,
+        lon: -5.000000
+      }
+    };
+  },
   methods: {
     fetchData: function fetchData() {
-      fetch('https://dataservice.accuweather.com/forecasts/v1/daily/1day/7278_poi?apikey=bjxI7LWZaMaqW3r9GC5MtFAmf0A9VO5j').then(function (response) {
+      fetch("/api/weather?lat=".concat(this.location.lat, "&lon=").concat(this.location.lon)).then(function (response) {
         return response.json();
       }).then(function (data) {
         console.log(data);

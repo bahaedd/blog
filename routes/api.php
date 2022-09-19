@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/weather', function() {
+    $client = new \GuzzleHttp\Client();
+    $apiKey = config('services.weather.key');
+    $lat = request('lat');
+    $lon = request('lon');
+    $response = $client->request('GET', "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&units=metric&appid=".$apiKey);
+
+    return $response->getBody();
+});
