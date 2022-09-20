@@ -9,6 +9,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
 </head>
 <body class="border-b border-gray-200 dark:border-gray-600 bg-green-900 dark:bg-green-900">
 	    <div id="app">

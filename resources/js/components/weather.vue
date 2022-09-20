@@ -20,12 +20,12 @@
                 <div class="current-weather flex items-center justify-between px-6 pb-8 pt-8 w-full">
                     <div class="flex items-center">
                         <div>
-                            <div class="text-6xl font-semibold">8°C</div>
-                            <div>Feels like 2°C</div>
+                            <div class="text-6xl font-semibold">{{ currentTemp.actual }}°C</div>
+                            <div>Feels like {{ currentTemp.feels }}°C</div>
                         </div>
                         <div class="mx-12">
-                            <div class="font-semibold">Cloudy</div>
-                            <div>Fes, Morocco</div>
+                            <div class="font-semibold">{{ currentTemp.summary }}</div>
+                            <div>{{ location.name}}</div>
                         </div>
                     </div>
                     <div class="mx-12">Icon</div>
@@ -78,6 +78,12 @@ export default {
         },
         data() {
             return {
+                currentTemp: {
+                    actual: '',
+                    feels: '',
+                    summary: '',
+                    icon: '',
+                },
                 location: {
                     name: 'Fes, Morocco',
                     lat: 34.033333,
@@ -90,7 +96,12 @@ export default {
                 fetch(`/api/weather?lat=${this.location.lat}&lon=${this.location.lon}`)
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data)
+                        console.log(data);
+                        this.currentTemp.actual = Math.round(data.main['temp']);
+                        this.currentTemp.feels = Math.round(data.main['feels_like']);
+                        this.currentTemp.summary = data.weather[0].main;
+                        this.currentTemp.icon = data.weather[0].icon;
+                        
                     })
             }
         }
