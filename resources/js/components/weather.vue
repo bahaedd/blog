@@ -9,13 +9,13 @@
                             type="search" id="address" 
                             placeholder="Choose your Location" 
                             class="w-full bg-black py-3 px-12 border hover: border-gray-500 rounded shadow text-base font-sans"/>
-                        <p>Selected: <strong id="address-value">none</strong></p>                            
+                        <p class="text-sm">Selected: <strong id="address-value">none</strong></p>                            
                     </div>
                 </div>
             </div>         
         </div>
 
-        <div class="col-span-8 text-white font-sans font-bold bg-green-500 pt-12 pb-12">
+        <div class="col-span-8 text-white font-sans font-bold bg-green-500 pt-12 pb-12 items-center justify-center">
             <div class="font-sans mx-auto w-128 max-w-lg overflow-hidden bg-gray-900 shadow-lg flex items-center justify-items-start bg-gray-900 bg-opacity-50 rounded-t">
                 <div class="current-weather flex items-center justify-between px-6 pb-8 pt-8 w-full">
                     <div class="flex items-center">

@@ -30741,7 +30741,7 @@ var render = function () {
       "div",
       {
         staticClass:
-          "col-span-8 text-white font-sans font-bold bg-green-500 pt-12 pb-12",
+          "col-span-8 text-white font-sans font-bold bg-green-500 pt-12 pb-12 items-center justify-center",
       },
       [
         _c(
@@ -30832,7 +30832,7 @@ var staticRenderFns = [
                   },
                 }),
                 _vm._v(" "),
-                _c("p", [
+                _c("p", { staticClass: "text-sm" }, [
                   _vm._v("Selected: "),
                   _c("strong", { attrs: { id: "address-value" } }, [
                     _vm._v("none"),
