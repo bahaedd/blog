@@ -3,13 +3,13 @@
         <div class="col-span-4 text-gray-300 font-sans bg-gray-900 min-h-screen pl-7 ">
             <div class="grid grid-rows-6 grid-flow-col min-h-screen items-center justify-items-start ">
                 <div class="row-span-4 row-start-1 text-4xl">
-                     <h4 class="text-green-500 text-center">WeatherApp</h4>                   
+                     <h4 class="text-green-500 text-center">WeatherNow</h4>                   
                     <div class="pt-12 pl-10 pr-10">
                         <input 
-                            type="search" id="address" 
+                            type="search" id="address"  v-model="address"
                             placeholder="Choose your Location" 
                             class="w-full bg-black py-3 px-12 border hover: border-gray-500 rounded shadow text-base font-sans"/>
-                        <p class="text-sm">Selected: <strong id="address-value">none</strong></p>                            
+                        <p class="text-sm">Selected: <strong id="address-value">{{ address }}</strong></p>                            
                     </div>
                 </div>
             </div>         
@@ -45,25 +45,8 @@
 <script>
 export default {
         mounted() {
+            this.fetchLocation();
             this.fetchData();
-            var placesAutocomplete = places({
-        appId: 'NFX5HFT9Y6',
-        apiKey: '70dbf3cf705e86df116668c74baf45c4',
-        container: document.querySelector('#address')
-      }).configure({
-        type: 'city',
-        aroundLatLngViaIP: false,
-      });
-    var $address = document.querySelector('#address-value')
-      placesAutocomplete.on('change', (e) => {
-        $address.textContent = e.suggestion.value
-        this.location.name = `${e.suggestion.name}, ${e.suggestion.country}`
-        this.location.lat = e.suggestion.latlng.lat
-        this.location.lng = e.suggestion.latlng.lng
-      });
-      placesAutocomplete.on('clear', function () {
-        $address.textContent = 'none';
-      });
         },
         data() {
             return {
@@ -74,7 +57,7 @@ export default {
                     icon: '',
                 },
                 location: {
-                    name: 'Fes, Morocco',
+                    name: document.querySelector("#address-value"),
                     lat: 34.033333,
                     lon: -5.000000,
                 },
@@ -84,8 +67,7 @@ export default {
         },
         methods: {
             fetchData() {
-                var skycons = new Skycons({'color': 'white'});
-
+                
                 fetch(`/api/weather?lat=${this.location.lat}&lon=${this.location.lon}`)
                     .then(response => response.json())
                     .then(data => {
@@ -97,15 +79,26 @@ export default {
 
                         
                     })
+            },
+            fetchLocation() {
+                var $address = document.querySelector("#address-value");
+                const headers = { 'X-Api-Key': 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d' };
+                fetch(`https://api.api-ninjas.com/v1/city?name=${this.location.name}`, { headers })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+
+                        
+                    })
             }
         },
          watch: {
-    location: {
-      handler(newValue, oldValue) {
-        this.fetchData()
+        location: {
+          handler(newValue, oldValue) {
+            this.fetchData()
+          },
+          deep: true
+        }
       },
-      deep: true
-    }
-  },
     }
 </script>

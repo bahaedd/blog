@@ -41,7 +41,7 @@
 
             <!-- latest posts -->
             <div class="w-full md:w-3/3 flex flex-wrap px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal mt-3">
-                <h2 class="my-4 text-xl font-bold text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400">LATEST POSTS</h2>
+                <h2 class="my-4 text-xl font-bold text-white rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400">LATEST POSTS</h2>
                 <div class="flex flex-wrap">
                     @foreach ($latest_posts as $post)
                     <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800">
@@ -65,7 +65,7 @@
 
             <!-- laravel posts -->
             <div class="container mx-auto py-3 mt-12 dark:bg-gray-800">
-            <h2 class="my-2 ml-6 text-xl font-bold text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400">LARAVEL POSTS</h2>
+            <h2 class="my-2 ml-6 text-xl font-bold text-white rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400">LARAVEL POSTS</h2>
             <div class="flex flex-wrap px-4 m-b-3 md:px-6">
                 @foreach ($laravel_posts as $post)
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4">

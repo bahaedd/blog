@@ -30,3 +30,6 @@ Vue.component('weather', require('./components/weather.vue').default);
 const app = new Vue({
     el: '#app',
 });
+
+const cors = require("cors");
+app.use(cors());

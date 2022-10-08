@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\tagController;
 use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\ToolsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,18 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::post('/portfolio/store', [ContactUsFormController::class, 'Contact'])->name('contact.store');
     Route::get('sitemap.xml',[SitemapController::class, 'index']);
     //projects
-    Route::get('/projects/weatherApp', function () {
-        return view('projects.weatherApp.weather');
-    });
+    Route::get('/projects/mailerpack',[ToolsController::class, 'index'])->name('mailerpack');
+
+    Route::get('/projects/mailerpack/ipextractor',[ToolsController::class, 'extractor'])->name('ip-extractor');
+    Route::post('/projects/ipextractor/extract',[ToolsController::class, 'extract']);
+
+    Route::get('/projects/mailerpack/domainextractor',[ToolsController::class, 'domainExtractor'])->name('domain-extractor');
+    Route::post('/projects/domainextractor/extract',[ToolsController::class, 'extractDomain']);
+
+    Route::get('/projects/mailerpack/dnslookup',[ToolsController::class, 'dnsLookup'])->name('dns-lookup');
+    Route::post('/projects/dnslookup/lookup',[ToolsController::class, 'lookup']);
+
+
 
     Route::group(['prefix' => 'admin'], function () {
         Voyager::routes();

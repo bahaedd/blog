@@ -18,6 +18,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/location', function() {
+    $client = new \GuzzleHttp\Client();
+    $apiKey = config('services.location.key');
+    $city = request('city');
+    $response = $client->request('GET', "https://api.geocode.earth/v1/search?api_key=$api_Key?text=".$city);
+
+    return $response->getBody();
+});
+
 Route::get('/weather', function() {
     $client = new \GuzzleHttp\Client();
     $apiKey = config('services.weather.key');
