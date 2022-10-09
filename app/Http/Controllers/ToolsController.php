@@ -66,4 +66,11 @@ class ToolsController extends Controller
 
         return view("blog.tools.domainextractor", compact("Dmatch", "categories"));
     }
+
+    //DNS lookup
+    public function dnsLookup() {
+
+        
+        return view("blog.tools.dnslookup");
+    }
 }

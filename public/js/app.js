@@ -5804,10 +5804,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     fetchLocation: function fetchLocation() {
-      var $address = document.querySelector("#address-value");
-      var headers = {
-        'X-Api-Key': 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d'
-      };
       fetch("https://api.api-ninjas.com/v1/city?name=".concat(this.location.name), {
         headers: headers
       }).then(function (response) {
@@ -31255,7 +31251,7 @@ var render = function () {
           [
             _c("div", { staticClass: "row-span-4 row-start-1 text-4xl" }, [
               _c("h4", { staticClass: "text-green-500 text-center" }, [
-                _vm._v("WeatherNow"),
+                _vm._v("Domain Name"),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "pt-12 pl-10 pr-10" }, [

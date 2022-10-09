@@ -3,7 +3,7 @@
         <div class="col-span-4 text-gray-300 font-sans bg-gray-900 min-h-screen pl-7 ">
             <div class="grid grid-rows-6 grid-flow-col min-h-screen items-center justify-items-start ">
                 <div class="row-span-4 row-start-1 text-4xl">
-                     <h4 class="text-green-500 text-center">WeatherNow</h4>                   
+                     <h4 class="text-green-500 text-center">Domain Name</h4>                   
                     <div class="pt-12 pl-10 pr-10">
                         <input 
                             type="search" id="address"  v-model="address"
@@ -81,8 +81,7 @@ export default {
                     })
             },
             fetchLocation() {
-                var $address = document.querySelector("#address-value");
-                const headers = { 'X-Api-Key': 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d' };
+                
                 fetch(`https://api.api-ninjas.com/v1/city?name=${this.location.name}`, { headers })
                     .then(response => response.json())
                     .then(data => {

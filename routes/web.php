@@ -40,7 +40,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::post('/projects/domainextractor/extract',[ToolsController::class, 'extractDomain']);
 
     Route::get('/projects/mailerpack/dnslookup',[ToolsController::class, 'dnsLookup'])->name('dns-lookup');
-    Route::post('/projects/dnslookup/lookup',[ToolsController::class, 'lookup']);
+    // Route::post('/projects/dnslookup/lookup',[ToolsController::class, 'lookup']);
 
 
 
