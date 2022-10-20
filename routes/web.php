@@ -32,15 +32,18 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('sitemap.xml',[SitemapController::class, 'index']);
     //projects
     Route::get('/projects/mailerpack',[ToolsController::class, 'index'])->name('mailerpack');
-
+    //IP extractor
     Route::get('/projects/mailerpack/ipextractor',[ToolsController::class, 'extractor'])->name('ip-extractor');
     Route::post('/projects/ipextractor/extract',[ToolsController::class, 'extract']);
-
+    //Domain extractor
     Route::get('/projects/mailerpack/domainextractor',[ToolsController::class, 'domainExtractor'])->name('domain-extractor');
     Route::post('/projects/domainextractor/extract',[ToolsController::class, 'extractDomain']);
-
+    //DNS Lookup
     Route::get('/projects/mailerpack/dnslookup',[ToolsController::class, 'dnsLookup'])->name('dns-lookup');
-    // Route::post('/projects/dnslookup/lookup',[ToolsController::class, 'lookup']);
+    Route::post('/projects/dnslookup/lookup',[ToolsController::class, 'lookup']);
+    //URL Lookup
+    Route::get('/projects/mailerpack/urllookup',[ToolsController::class, 'UrlLookup'])->name('url-lookup');
+    Route::post('/projects/urllookup/lookup',[ToolsController::class, 'Ulookup']);
 
 
 

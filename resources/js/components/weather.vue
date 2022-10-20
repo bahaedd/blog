@@ -81,13 +81,12 @@ export default {
                     })
             },
             fetchLocation() {
-                
-                fetch(`https://api.api-ninjas.com/v1/city?name=${this.location.name}`, { headers })
+                var $address = document.querySelector("#address-value");
+                const headers = { 'X-Api-Key': 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d' };
+                fetch(`https://api.api-ninjas.com/v1/dnslookup?domain=www.dailysmarty.com`, { headers })
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
-
-                        
                     })
             }
         },

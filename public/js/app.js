@@ -5804,7 +5804,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     fetchLocation: function fetchLocation() {
-      fetch("https://api.api-ninjas.com/v1/city?name=".concat(this.location.name), {
+      var $address = document.querySelector("#address-value");
+      var headers = {
+        'X-Api-Key': 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d'
+      };
+      fetch("https://api.api-ninjas.com/v1/dnslookup?domain=www.dailysmarty.com", {
         headers: headers
       }).then(function (response) {
         return response.json();
