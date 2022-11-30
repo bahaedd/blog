@@ -11,12 +11,15 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.5",
         "innocenzi/laravel-vite": "0.2.*",
+        "ipdata/api-client": "^0.1.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravelista/comments": "^4.5",
         "livewire/livewire": "^2.10",
+        "nyholm/psr7": "^1.5",
         "spatie/laravel-newsletter": "^4.11",
+        "symfony/http-client": "^6.1",
         "tcg/voyager": "^1.5"
     },
     "require-dev": {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @section('title', "URL Lookup")
+    @section('title', "IP Lookup")
     @include('/blog/layouts.head')
     <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
         <!-- navbar -->
@@ -8,17 +8,17 @@
 
         <!-- container -->
         <div class="px-16 mx-auto py-16 md:py-20 mb-72">
-            <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">URL Lookup</h2>
-            <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('projects/urllookup/lookup')}}" method="post">
+            <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">IP Lookup</h2>
+            <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('projects/iplookup/lookup')}}" method="post">
                 @csrf
                 <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
-			    <div class="relative mt-12">
-			        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-			            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-			        </div>
-			        <input type="search" id="search" name="search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter any Valid URL">
-			        <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">URL Lookup</button>
-			    </div>
+             <div class="relative mt-12">
+                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                 </div>
+                 <input type="search" id="search" name="search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter any IP Address">
+                 <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">IP Lookup</button>
+             </div>
                 @if ($errors->any())
                     <div class="flex p-4 mt-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
                       <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -35,8 +35,12 @@
                 </div>
                 </section>
                 <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal {{ $hidden }}">
-                    <h4 class="mb-4 text-center text-md font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Results for : {{ session()->get('domain') }}</h4>
-					<div class="overflow-x-auto relative">
+                    <h4 class="mb-4 text-center text-md font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Results for : {{ session()->get('ip') }}</h4>
+                    <div class="container mt-5">
+                       <h2>How to Add Google Map in Laravel? - ItSolutionStuff.com</h2>
+                       <div id="map"></div>
+                   </div>
+               <div class="overflow-x-auto relative">
                         <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700 ml-12">
                            <li class="pb-3 sm:pb-4">
                               <div class="flex items-center space-x-4">
@@ -181,7 +185,7 @@
                            </li>
                            @endif
                         </ul>
-					</div>
+               </div>
                 </section>
             </form>
         </div>
@@ -189,6 +193,26 @@
         <!-- Footer -->
         @include('/blog/layouts.footer')
         <livewire:scripts />
+            <script type="text/javascript">
+        function initMap() {
+          const myLatLng = { lat: 22.2734719, lng: 70.7512559 };
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 5,
+            center: myLatLng,
+          });
+  
+          new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: "Hello Rajkot!",
+          });
+        }
+  
+        window.initMap = initMap;
+    </script>
+  
+    <script type="text/javascript"
+        src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap" ></script>
         <script>
             function getCarouselData() {
                 return {

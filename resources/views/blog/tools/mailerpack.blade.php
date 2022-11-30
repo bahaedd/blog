@@ -13,7 +13,7 @@
             @foreach ($tools as $tool)
                 <a href="{{ route($tool->url) }}">
                       <div class="group rounded px-8 py-12 shadow bg-green-500">
-                        <div class="mx-auto h-48 w-24 text-center xl:h-28 xl:w-28">
+                        <div class="mx-auto h-8 w-8 text-center">
                           {!! $tool->icon !!}
                         </div>
                         <div class="text-center">

@@ -105,7 +105,7 @@
         </div>
     </div>
 </div>
-<div class="container mx-auto py-16 md:py-20 dark:bg-gray-800" id="services">
+<div class="container mx-auto pt-16 md:pt-20 dark:bg-gray-800" id="services">
     <h2 class="text-center font-header text-4xl font-semibold uppercase text-green-500 sm:text-5xl lg:text-6xl">
     Here's what I'm good at!</h2>
     <h3 class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl dark:text-white">These are the services I offer</h3>
@@ -136,38 +136,40 @@
       </div>
     </div>
 </div>
-<div class="container mx-auto py-16 md:py-20 dark:bg-gray-800" id="projects">
+<div class="container mx-auto pt-16 md:pt-20 dark:bg-gray-800" id="projects">
     <h2 class="text-center font-header text-4xl font-semibold uppercase text-green-500 sm:text-5xl lg:text-6xl">
     Here's a list of my projects</h2>
    <div class="w-full mb-6">
             <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t bg-green-700"></div>
-            <div class="flex flex-wrap mt-12">
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4">
-                    <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
-                        <a href="{{ route('mailerpack') }}">
-                            <img class="rounded-t-lg" src="{{Voyager::image( setting('site.logo'))}}" alt="" />
-                        </a>
-                        <div class="p-5">
+                <div class="flex flex-wrap mt-12">
+                    <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4">
+                        <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
                             <a href="{{ route('mailerpack') }}">
-                                <h5 class="mb-6 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">MailerPack</h5>
+                                <img class="rounded-t-lg" src="{{Voyager::image( setting('site.logo'))}}" alt="" />
                             </a>
-                            <div class="flex items-center justify-between mt-4">
-                            <div class="flex items-center">
-                               <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">Laravel</a>
-                             </div> 
-                             <div class="flex items-center">
-                               <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">VueJS</a>
-                             </div> 
-                             <div class="flex items-center">
-                               <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">TailwindCSS</a>
-                             </div>   
-                             </div> 
+                            <div class="p-5">
+                                <a href="{{ route('mailerpack') }}">
+                                    <h5 class="mb-6 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">MailerPack</h5>
+                                </a>
+                                <div class="flex items-center justify-between mt-4">
+                                    <div class="flex items-center">
+                                       <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">Laravel</a>
+                                     </div> 
+                                     <div class="flex items-center">
+                                       <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">VueJS</a>
+                                     </div> 
+                                     <div class="flex items-center">
+                                       <a href="" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">TailwindCSS</a>
+                                     </div>   
+                                </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+    </div>
 </div>
-<div class="container mx-auto py-16 md:py-20 dark:bg-gray-800" id="contact">
+<div class="container mx-auto pt-16 md:pt-20 dark:bg-gray-800 mb-24" id="contact">
     <h2 class="text-center font-header text-4xl font-semibold uppercase text-green-500 sm:text-5xl lg:text-6xl">
     Here's a contact form</h2>
     <h4 class="pt-6 text-center font-header text-xl font-medium text-black sm:text-2xl lg:text-3xl dark:text-white">

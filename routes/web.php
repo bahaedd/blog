@@ -44,7 +44,24 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     //URL Lookup
     Route::get('/projects/mailerpack/urllookup',[ToolsController::class, 'UrlLookup'])->name('url-lookup');
     Route::post('/projects/urllookup/lookup',[ToolsController::class, 'Ulookup']);
-
+    //IP Lookup
+    Route::get('/projects/mailerpack/iplookup',[ToolsController::class, 'IpLookup'])->name('ip-lookup');
+    Route::post('/projects/iplookup/lookup',[ToolsController::class, 'Ilookup']);
+    //Random Generator
+    Route::get('/projects/mailerpack/randomgenerator',[ToolsController::class, 'RandomGenerator'])->name('random-generator');
+    Route::post('/projects/randomgenerator/generate',[ToolsController::class, 'GenerateRandom']);
+    //User Generator
+    Route::get('/projects/mailerpack/usergenerator',[ToolsController::class, 'UserGenerator'])->name('user-generator');
+    Route::post('/projects/randomusergenerator/generate',[ToolsController::class, 'GenerateRandomUser']);
+    //Password Generator
+    Route::get('/projects/mailerpack/passwordgenerator',[ToolsController::class, 'PasswordGenerator'])->name('pass-generator');
+    Route::post('/projects/passwordgenerator/generate',[ToolsController::class, 'GeneratePassword']);
+    //Encode-Decode
+    Route::get('/projects/mailerpack/encodedecode',[ToolsController::class, 'EncodeDecode'])->name('encode-decode');
+    Route::post('/projects/encodedecode/encode',[ToolsController::class, 'Encode']);
+    //Domain reputation
+    Route::get('/projects/mailerpack/domainreputation',[ToolsController::class, 'DomainReputation'])->name('domain-reputation');
+    Route::post('/projects/domainreputation/check',[ToolsController::class, 'CheckDomain']);
 
 
     Route::group(['prefix' => 'admin'], function () {

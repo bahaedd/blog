@@ -8,6 +8,10 @@ use App\Models\Tool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
+use Ipdata\ApiClient\Ipdata;
+use Symfony\Component\HttpClient\Psr18Client;
+use Nyholm\Psr7\Factory\Psr17Factory;
 
 class ToolsController extends Controller
 {
@@ -40,6 +44,9 @@ class ToolsController extends Controller
          preg_match_all($regexIpAddress, $reccord, $ip_match);
          
          $ipmatch = Arr::collapse($ip_match);
+         if(empty($ipmatch)){
+            $ipmatch = ['0' => 'No IP Address Found!'];
+         }
 
         return view("blog.tools.ipextractor", compact("ipmatch", "categories"));
     }
@@ -63,6 +70,10 @@ class ToolsController extends Controller
         $categories = Category::all();
         preg_match_all($regexIpAddress, $reccord, $ip_match);
         $Dmatch = Arr::collapse($ip_match);
+        if(empty($Dmatch)){
+            $Dmatch = ['0' => 'No Domain name Found!'];
+         }
+
         return view("blog.tools.domainextractor", compact("Dmatch", "categories"));
     }
 
@@ -94,9 +105,23 @@ class ToolsController extends Controller
 
     //URL lookup
     public function UrlLookup() {
-        $data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
+        $data = [
+          "is_valid"=> "",
+          "country"=> "",
+          "country_code"=> "",
+          "region_code"=> "",
+          "region"=> "",
+          "city"=> "",
+          "zip"=> "",
+          "lat"=> "",
+          "lon"=> "",
+          "timezone"=> "",
+          "isp"=> "",
+          "url"=> ""
+        ];
+        $hidden = "hidden";
         $categories = Category::all();
-        return view("blog.tools.urllookup", compact("categories", "data"));
+        return view("blog.tools.urllookup", compact("categories", "data", "hidden"));
     }
 
     public function Ulookup(Request $request) {
@@ -114,10 +139,280 @@ class ToolsController extends Controller
         ]);
         session(['domain' => $domain]);
         $data = json_decode($response->body(), true);
-        $data = implode(' ', $data);
-        $data = explode(' ', $data);
-        // dd($r);
+        $hidden = "";
+        // dd($data);
         $categories = Category::all();
-        return view("blog.tools.urllookup", compact("categories"))->with('data', $data);
+        return view("blog.tools.urllookup", compact("categories", "hidden"))->with('data', $data);
+    }
+
+     //URL lookup
+    public function IpLookup() {
+        $data = [
+          "is_valid"=> "",
+          "country"=> "",
+          "country_code"=> "",
+          "region_code"=> "",
+          "region"=> "",
+          "city"=> "",
+          "zip"=> "",
+          "lat"=> "",
+          "lon"=> "",
+          "timezone"=> "",
+          "isp"=> "",
+          "url"=> ""
+        ];
+        $hidden = "hidden";
+        $categories = Category::all();
+        return view("blog.tools.iplookup", compact("categories", "data", "hidden"));
+    }
+
+    public function Ilookup(Request $request) {
+
+        $this->validate($request, [
+            'search' => 'required',
+         ]);
+        
+        $ip = $request->get('search');
+
+        $response = Http::withHeaders([
+            'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
+             ])->get('https://api.api-ninjas.com/v1/iplookup', [
+            'address' => $ip,
+        ]);
+        session(['ip' => $ip]);
+        $data = json_decode($response->body(), true);
+        $hidden = "";
+        // dd($data);
+        $categories = Category::all();
+        return view("blog.tools.iplookup", compact("categories", "hidden"))->with('data', $data);
+    }
+
+    //Random Generator
+    public function RandomGenerator() {
+        
+        $categories = Category::all();
+        $randomString = '';
+
+        return view("blog.tools.randomgenerator", compact("categories", "randomString"));
+    }
+
+    public function GenerateRandom(Request $request) {
+        
+        $this->validate($request, [
+            'length' => 'required|max:70',
+            'string' => 'required'
+         ]);
+
+        
+            $charactersAll = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersUpper = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersUpperOnly = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLower = '0123456789abcdefghijklmnopqrstuvwxyz';
+            $charactersLowerOnly = 'abcdefghijklmnopqrstuvwxyz';
+            $charactersNumOnly = '0123456789';
+            $charactersChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            $randomString = '';
+
+
+            if(count($request->get('string')) == 3){
+                for ($i = 0; $i < $request->get('length'); $i++) {
+                    $index = rand(0, strlen($charactersAll) - 1);
+                    $randomString .= $charactersAll[$index];
+                    }
+            }
+
+            if(count($request->get('string')) == 2){
+
+                if(!in_array('lower', $request->get('string'))){
+                    for ($i = 0; $i < $request->get('length'); $i++) {
+                    $index = rand(0, strlen($charactersUpper) - 1);
+                    $randomString .= $charactersUpper[$index];
+                    }
+                    }
+                else if(!in_array('upper', $request->get('string'))){
+                    for ($i = 0; $i < $request->get('length'); $i++) {
+                    $index = rand(0, strlen($charactersLower) - 1);
+                    $randomString .= $charactersLower[$index];
+                    }
+                  }
+                else if(!in_array('numbers', $request->get('string'))){
+                    for ($i = 0; $i < $request->get('length'); $i++) {
+                    $index = rand(0, strlen($charactersChar) - 1);
+                    $randomString .= $charactersChar[$index];
+                    }
+                    }
+            }
+            if(count($request->get('string')) == 1){
+
+                if(in_array('lower', $request->get('string'))){
+                    for ($i = 0; $i < $request->get('length'); $i++) {
+                    $index = rand(0, strlen($charactersLowerOnly) - 1);
+                    $randomString .= $charactersLowerOnly[$index];
+                    }
+                    }
+                else if(in_array('upper', $request->get('string'))){
+                    for ($i = 0; $i < $request->get('length'); $i++) {
+                    $index = rand(0, strlen($charactersUpperOnly) - 1);
+                    $randomString .= $charactersUpperOnly[$index];
+                    }
+                  }
+                else if(in_array('numbers', $request->get('string'))){
+                    for ($i = 0; $i < $request->get('length'); $i++) {
+                    $index = rand(0, strlen($charactersNumOnly) - 1);
+                    $randomString .= $charactersNumOnly[$index];
+                    }
+                    }
+            }
+        
+        
+        $categories = Category::all();
+        
+        return view("blog.tools.randomgenerator", compact("categories", "randomString"));
+    }
+
+    //User Generator
+    public function UserGenerator() {
+        
+        $categories = Category::all();
+        $randomUser = 'hidden';
+        $data = [
+          "name"=> "",
+          "username"=> "",
+          "address"=> "",
+          "email"=> "",
+          "sex"=> "",
+          "birthday"=> "",
+        ];
+
+        return view("blog.tools.randomuser", compact("categories", "randomUser", "data"));
+    }
+    public function GenerateRandomUser(Request $request) {
+
+        
+
+        $response = Http::withHeaders([
+            'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
+             ])->get('https://api.api-ninjas.com/v1/randomuser');
+        
+        $data = json_decode($response->body(), true);
+        
+
+        $categories = Category::all();
+        $randomUser = '';
+
+        return view("blog.tools.randomuser", compact("categories", "randomUser", "data"));
+    }
+
+    //Password Generator
+    public function PasswordGenerator() {
+        
+        $categories = Category::all();
+        $pass = [
+          "random_password"=> "",
+          "message"=> "", 
+        ];
+        $hidden = 'hidden';
+
+        return view("blog.tools.passwordgenerator", compact("categories", "pass", "hidden"));
+    }
+    public function GeneratePassword(Request $request) {
+
+        if(count($request->get('string')) == 2){
+            $response = Http::withHeaders([
+            'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
+             ])->get('https://api.api-ninjas.com/v1/passwordgenerator', [
+            'length' => $request->get('length'),
+            'exclude_numbers' => true,
+            'exclude_special_chars' => true,
+        ]);
+        }
+        elseif(count($request->get('string')) == 1){
+                if(in_array('lower', $request->get('special'))){
+                    $response = Http::withHeaders([
+                        'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
+                         ])->get('https://api.api-ninjas.com/v1/passwordgenerator', [
+                        'length' => $request->get('length'),
+                        'exclude_numbers' => false,
+                        'exclude_special_chars' => true,
+                    ]);
+                }
+                else{
+                    $response = Http::withHeaders([
+                        'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
+                         ])->get('https://api.api-ninjas.com/v1/passwordgenerator', [
+                        'length' => $request->get('length'),
+                        'exclude_numbers' => true,
+                        'exclude_special_chars' => false,
+                    ]);
+                }
+        }
+        else{
+                $response = Http::withHeaders([
+                        'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
+                         ])->get('https://api.api-ninjas.com/v1/passwordgenerator', [
+                        'length' => $request->get('length'),
+                        'exclude_numbers' => false,
+                        'exclude_special_chars' => false,
+                    ]);
+        }
+        
+        $pass = json_decode($response->body(), true);
+        $categories = Category::all();
+        $hidden = '';
+        // dd($pass);
+
+        return view("blog.tools.passwordgenerator", compact("categories", "pass", "hidden"));
+    }
+
+    //Encode-Decode
+    public function EncodeDecode() {
+        
+        $categories = Category::all();
+        $hidden = 'hidden';
+
+        return view("blog.tools.endecode", compact("categories", "hidden"));
+    }
+
+    public function Encode(Request $request) {
+        
+        $categories = Category::all();
+        $hidden = 'hidden';
+        $string = Crypt::encryptString($request->get('text'));
+        dd($string);
+
+
+        return view("blog.tools.endecode", compact("categories", "hidden", "string"));
+    }
+
+    //Domain reputation
+    public function DomainReputation() {
+        
+        $categories = Category::all();
+        $hidden = 'hidden';
+        $result = [
+          "reputationScore"=> "",
+          "mode"=> "", 
+        ];
+
+        return view("blog.tools.domainreputation", compact("categories", "hidden", "result"));
+    }
+
+    public function CheckDomain(Request $request) {
+        
+        $categories = Category::all();
+        $hidden = '';
+        $this->validate($request, [
+            'domain' => 'required',
+         ]);
+
+        $httpClient = new Psr18Client();
+        $psr17Factory = new Psr17Factory();
+        $ipdata = new Ipdata('370ee16e655a378ec01d3dc8629129db142f4721d81035c8d81dbe40', $httpClient, $psr17Factory); 
+
+       $data = $ipdata->threat_score('69.78.70.144');
+       $result = json_encode($data, JSON_PRETTY_PRINT);
+       dd($result);
+        
+        return view("blog.tools.domainreputation", compact("categories", "hidden", "result"));
     }
 }

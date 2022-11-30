@@ -22,8 +22,8 @@
             </div>
 
           </div>
-        <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-3">
-            <ul class="flex flex-col mt-4 md:flex-row sm:ml-3 md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+        <div class="hidden justify-between sm:justify-center items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-3">
+            <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                 <li>
                     <a href="{{ route('home') }}" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500" aria-current="page">HOME</a>
                 </li>

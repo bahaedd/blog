@@ -2,7 +2,7 @@
 @section('title', 'Home')
 @section('content')
  <!-- container -->
-         <div class="container mx-auto flex flex-wrap py-3 mt-12 dark:bg-gray-800">
+        <div class="container mx-auto flex flex-wrap py-3 mt-12 dark:bg-gray-800">
             <!-- quotes --->
             <div class="w-full bg-white mb-4 flex items-center justify-center dark:bg-gray-800">
                 <div class="mb-4 mx-auto text-center">
@@ -85,5 +85,7 @@
                 </div>
                 @endforeach
             </div>
+            </div>
         </div>
 @endsection
+
