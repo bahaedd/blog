@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravelista\Comments\Commentable;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
-    use HasFactory, Commentable;
+    use HasFactory, Commentable, Searchable;
 
     protected $fillable = [
         'title',
@@ -19,6 +20,13 @@ class Post extends Model
         'seo_title',
         'featured',
     ];
+
+    public function toSearchableArray(){
+        return [
+            'title' => $this->title,
+            'body' => $this->body
+        ];
+    }
 
     public function user()
     {

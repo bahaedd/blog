@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 use Ipdata\ApiClient\Ipdata;
 use Symfony\Component\HttpClient\Psr18Client;
 use Nyholm\Psr7\Factory\Psr17Factory;
+use Illuminate\Support\Facades\Hash;
 
 class ToolsController extends Controller
 {
@@ -307,61 +308,22 @@ class ToolsController extends Controller
     public function PasswordGenerator() {
         
         $categories = Category::all();
-        $pass = [
-          "random_password"=> "",
-          "message"=> "", 
-        ];
+        $HashedPass = '';
         $hidden = 'hidden';
 
-        return view("blog.tools.passwordgenerator", compact("categories", "pass", "hidden"));
+        return view("blog.tools.passwordgenerator", compact("categories", "HashedPass", "hidden"));
     }
     public function GeneratePassword(Request $request) {
 
-        if(count($request->get('string')) == 2){
-            $response = Http::withHeaders([
-            'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
-             ])->get('https://api.api-ninjas.com/v1/passwordgenerator', [
-            'length' => $request->get('length'),
-            'exclude_numbers' => true,
-            'exclude_special_chars' => true,
-        ]);
-        }
-        elseif(count($request->get('string')) == 1){
-                if(in_array('lower', $request->get('special'))){
-                    $response = Http::withHeaders([
-                        'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
-                         ])->get('https://api.api-ninjas.com/v1/passwordgenerator', [
-                        'length' => $request->get('length'),
-                        'exclude_numbers' => false,
-                        'exclude_special_chars' => true,
-                    ]);
-                }
-                else{
-                    $response = Http::withHeaders([
-                        'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
-                         ])->get('https://api.api-ninjas.com/v1/passwordgenerator', [
-                        'length' => $request->get('length'),
-                        'exclude_numbers' => true,
-                        'exclude_special_chars' => false,
-                    ]);
-                }
-        }
-        else{
-                $response = Http::withHeaders([
-                        'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
-                         ])->get('https://api.api-ninjas.com/v1/passwordgenerator', [
-                        'length' => $request->get('length'),
-                        'exclude_numbers' => false,
-                        'exclude_special_chars' => false,
-                    ]);
-        }
-        
-        $pass = json_decode($response->body(), true);
+       $this->validate($request, [
+            'text' => 'required',
+         ]);
+       $HashedPass = Hash::make($request->get('text'));
         $categories = Category::all();
         $hidden = '';
         // dd($pass);
 
-        return view("blog.tools.passwordgenerator", compact("categories", "pass", "hidden"));
+        return view("blog.tools.passwordgenerator", compact("categories", "HashedPass", "hidden"));
     }
 
     //Encode-Decode
@@ -369,16 +331,26 @@ class ToolsController extends Controller
         
         $categories = Category::all();
         $hidden = 'hidden';
-
-        return view("blog.tools.endecode", compact("categories", "hidden"));
+        $string = '';
+        return view("blog.tools.endecode", compact("categories", "hidden", "string"));
     }
 
     public function Encode(Request $request) {
         
+        $this->validate($request, [
+            'text' => 'required',
+         ]);
+
         $categories = Category::all();
-        $hidden = 'hidden';
-        $string = Crypt::encryptString($request->get('text'));
-        dd($string);
+        $hidden = '';
+        
+        if ($request->get('encode') == 1){
+            $string = base64_encode($request->get('text'));
+        }else {
+            $string = base64_decode($request->get('text'));
+        }
+
+        
 
 
         return view("blog.tools.endecode", compact("categories", "hidden", "string"));

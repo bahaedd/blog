@@ -14,9 +14,7 @@ class SearchDropDown extends Component
         $searchResults = [];
 
         if(strlen($this->search >= 2)){
-            $searchResults = Post::where('title', 'like', '%' . $this->search . '%')
-                                   ->orWhere('body', 'like', '%' . $this->search . '%')
-                                   ->get();
+            $searchResults = Post::search($this->search)->get();
         }
 
         

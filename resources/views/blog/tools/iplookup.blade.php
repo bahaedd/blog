@@ -36,10 +36,6 @@
                 </section>
                 <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal {{ $hidden }}">
                     <h4 class="mb-4 text-center text-md font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Results for : {{ session()->get('ip') }}</h4>
-                    <div class="container mt-5">
-                       <h2>How to Add Google Map in Laravel? - ItSolutionStuff.com</h2>
-                       <div id="map"></div>
-                   </div>
                <div class="overflow-x-auto relative">
                         <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700 ml-12">
                            <li class="pb-3 sm:pb-4">
@@ -193,26 +189,6 @@
         <!-- Footer -->
         @include('/blog/layouts.footer')
         <livewire:scripts />
-            <script type="text/javascript">
-        function initMap() {
-          const myLatLng = { lat: 22.2734719, lng: 70.7512559 };
-          const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 5,
-            center: myLatLng,
-          });
-  
-          new google.maps.Marker({
-            position: myLatLng,
-            map,
-            title: "Hello Rajkot!",
-          });
-        }
-  
-        window.initMap = initMap;
-    </script>
-  
-    <script type="text/javascript"
-        src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap" ></script>
         <script>
             function getCarouselData() {
                 return {

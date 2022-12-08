@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3ce806acdc68e672ce2f72a26a8e46ed",
+    "content-hash": "c0abec6de02fd7ce7ad58b0d32f28f08",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -2126,16 +2126,16 @@
         },
         {
             "name": "laravel/scout",
-            "version": "v9.4.10",
+            "version": "v9.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/scout.git",
-                "reference": "45c7222ccd8f5d8ee069a85deeef799b7dcd79fa"
+                "reference": "dfffdfc197abe5c71ee1112f774859c7b6649523"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/scout/zipball/45c7222ccd8f5d8ee069a85deeef799b7dcd79fa",
-                "reference": "45c7222ccd8f5d8ee069a85deeef799b7dcd79fa",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/dfffdfc197abe5c71ee1112f774859c7b6649523",
+                "reference": "dfffdfc197abe5c71ee1112f774859c7b6649523",
                 "shasum": ""
             },
             "require": {
@@ -2194,7 +2194,7 @@
                 "issues": "https://github.com/laravel/scout/issues",
                 "source": "https://github.com/laravel/scout"
             },
-            "time": "2022-07-19T14:34:57+00:00"
+            "time": "2022-12-06T16:26:44+00:00"
         },
         {
             "name": "laravel/serializable-closure",
