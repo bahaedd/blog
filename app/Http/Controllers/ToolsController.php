@@ -16,8 +16,16 @@ use Illuminate\Support\Facades\Hash;
 
 class ToolsController extends Controller
 {
-    //main page
+    //MailerPack
     public function index() {
+
+        $categories = Category::all();
+        $tools = Tool::all();
+        return view("blog.tools.personalpack", compact("categories", "tools"));
+    }
+
+    //PersonalPack
+    public function PeronalPack() {
 
         $categories = Category::all();
         $tools = Tool::all();

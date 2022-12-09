@@ -32,6 +32,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('sitemap.xml',[SitemapController::class, 'index']);
     //projects
     Route::get('/projects/mailerpack',[ToolsController::class, 'index'])->name('mailerpack');
+    Route::get('/projects/personalpack',[ToolsController::class, 'PeronalPack'])->name('personalpack');
     //IP extractor
     Route::get('/projects/mailerpack/ipextractor',[ToolsController::class, 'extractor'])->name('ip-extractor');
     Route::post('/projects/ipextractor/extract',[ToolsController::class, 'extract']);
