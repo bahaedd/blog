@@ -16,22 +16,18 @@ use Illuminate\Support\Facades\Hash;
 
 class ToolsController extends Controller
 {
+
+    //         ######################### MailerPack ################################ 
+
+
+
     //MailerPack
     public function index() {
 
         $categories = Category::all();
-        $tools = Tool::all();
-        return view("blog.tools.personalpack", compact("categories", "tools"));
-    }
-
-    //PersonalPack
-    public function PeronalPack() {
-
-        $categories = Category::all();
-        $tools = Tool::all();
+        $tools = Tool::where('pack', 'MailerPack')->get();
         return view("blog.tools.mailerpack", compact("categories", "tools"));
     }
-
 
     //ip extractor
     public function extractor() {
@@ -394,5 +390,25 @@ class ToolsController extends Controller
        dd($result);
         
         return view("blog.tools.domainreputation", compact("categories", "hidden", "result"));
+    }
+
+    //         ######################### PersonalPack ################################
+
+
+    //PersonalPack
+    public function PeronalPack() {
+
+        $categories = Category::all();
+        $tools = Tool::where('pack', 'PersonalPack')->get();
+        return view("blog.tools.personalpack", compact("categories", "tools"));
+    }
+
+    //TodoApp
+    public function TodoApp() {
+        
+        $categories = Category::all();
+        $hidden = 'hidden';
+        $string = '';
+        return view("blog.tools.todo", compact("categories", "hidden", "string"));
     }
 }

@@ -19,5 +19,4 @@
         }
     </style>
     <livewire:styles />
-    
 </head>

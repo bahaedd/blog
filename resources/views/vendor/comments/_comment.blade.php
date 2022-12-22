@@ -8,7 +8,7 @@
     <div class="media-body">
         <div class="bg-white dark:bg-gray-800">
             <div class="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 antialiased flex max-w-lg">
-              <img class="rounded-full h-8 w-8 mr-2 mt-1 " src="https://www.gravatar.com/avatar/{{ md5($comment->commenter->email ?? $comment->guest_email) }}.jpg?s=64" alt="{{ $comment->commenter->name ?? $comment->guest_name }} Avatar"/>
+              <img class="p-1 m-3 w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://www.gravatar.com/avatar/{{ md5($comment->commenter->email ?? $comment->guest_email) }}.jpg?s=64" alt="{{ $comment->commenter->name ?? $comment->guest_name }} Avatar"/>
               <div>
                 <div class="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5">
                   <div class="font-semibold text-sm leading-relaxed">{{ $comment->commenter->name ?? $comment->guest_name }}</div>
@@ -24,24 +24,25 @@
             </div>
             </div>
 
-        <div>
+        {{-- <div>
             @can('reply-to-comment', $comment)
-                <button data-toggle="modal" data-target="#reply-modal-{{ $comment->getKey() }}" class="btn btn-sm btn-link text-uppercase">@lang('comments::comments.reply')</button>
+                <button data-modal-toggle="reply-modal-{{ $comment->getKey() }}" data-target="#reply-modal-{{ $comment->getKey() }}" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">@lang('comments::comments.reply')</button>
             @endcan
             @can('edit-comment', $comment)
-                <button data-toggle="modal" data-target="#comment-modal-{{ $comment->getKey() }}" class="btn btn-sm btn-link text-uppercase">@lang('comments::comments.edit')</button>
+                <button data-modal-toggle="comment-modal-{{ $comment->getKey() }}" data-target="#comment-modal-{{ $comment->getKey() }}" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">@lang('comments::comments.edit')</button>
             @endcan
             @can('delete-comment', $comment)
-                <a href="{{ route('comments.destroy', $comment->getKey()) }}" onclick="event.preventDefault();document.getElementById('comment-delete-form-{{ $comment->getKey() }}').submit();" class="btn btn-sm btn-link text-danger text-uppercase">@lang('comments::comments.delete')</a>
+                <a href="{{ route('comments.destroy', $comment->getKey()) }}" onclick="event.preventDefault();document.getElementById('comment-delete-form-{{ $comment->getKey() }}').submit();" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">@lang('comments::comments.delete')</a>
                 <form id="comment-delete-form-{{ $comment->getKey() }}" action="{{ route('comments.destroy', $comment->getKey()) }}" method="POST" style="display: none;">
                     @method('DELETE')
                     @csrf
                 </form>
             @endcan
-        </div>
+        </div> --}}
 
         @can('edit-comment', $comment)
-            <div class="modal fade" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
+        <div class="modal fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
+            {{-- <div class="modal fade" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <form method="POST" action="{{ route('comments.update', $comment->getKey()) }}">
@@ -66,13 +67,34 @@
                             </div>
                         </form>
                     </div>
+                </div> --}}
+                <div class="relative w-full h-full max-w-md md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="px-6 py-6 lg:px-8">
+                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">@lang('comments::comments.enter_your_message_here')</h3>
+                            <form class="space-y-6" method="POST" action="{{ route('comments.update', $comment->getKey()) }}">
+                                @method('PUT')
+                                @csrf
+                                <div>
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">@lang('comments::comments.update_your_message_here')</label>
+                                    <textarea required class="mt-6 w-1/2 bg-gray-50 rounded border-grey-50 px-4 py-3 font-body text-black md:mt-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500  py-4 px-12  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500 form-control" name="message" rows="3">{{ $comment->comment }}</textarea>
+                                </div>
+                                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">@lang('comments::comments.update')</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endcan
 
         @can('reply-to-comment', $comment)
-            <div class="modal fade" id="reply-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+            <div class="modal fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full" id="reply-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
+                {{-- <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <form method="POST" action="{{ route('comments.reply', $comment->getKey()) }}">
                             @csrf
@@ -95,8 +117,28 @@
                             </div>
                         </form>
                     </div>
+                </div> --}}
+                <div class="relative w-full h-full max-w-md md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="px-6 py-6 lg:px-8">
+                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">@lang('comments::comments.enter_your_message_here')</h3>
+                            <form class="space-y-6" method="POST" action="{{ route('comments.reply', $comment->getKey()) }}">
+                                <div>
+                                    {{-- <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">@lang('comments::comments.enter_your_message_here')</label> --}}
+                                    <textarea placeholder="Your Comment" required class="w-full mt-6 bg-gray-50 rounded border-grey-50 px-4 py-3 font-body text-black md:mt-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500  py-4 px-12  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500 form-control" name="message" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">@lang('comments::comments.reply')</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         @endcan
 
         <br />{{-- Margin bottom --}}

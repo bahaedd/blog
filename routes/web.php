@@ -31,8 +31,9 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::post('/portfolio/store', [ContactUsFormController::class, 'Contact'])->name('contact.store');
     Route::get('sitemap.xml',[SitemapController::class, 'index']);
     //projects
+    //         ######################### MailerPack ################################
     Route::get('/projects/mailerpack',[ToolsController::class, 'index'])->name('mailerpack');
-    Route::get('/projects/personalpack',[ToolsController::class, 'PeronalPack'])->name('personalpack');
+    
     //IP extractor
     Route::get('/projects/mailerpack/ipextractor',[ToolsController::class, 'extractor'])->name('ip-extractor');
     Route::post('/projects/ipextractor/extract',[ToolsController::class, 'extract']);
@@ -63,6 +64,16 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     //Domain reputation
     Route::get('/projects/mailerpack/domainreputation',[ToolsController::class, 'DomainReputation'])->name('domain-reputation');
     Route::post('/projects/domainreputation/check',[ToolsController::class, 'CheckDomain']);
+
+    //         ######################### PersonalPackApp ################################
+
+    Route::get('/projects/personalpack',[ToolsController::class, 'PeronalPack'])->name('personalpack');
+
+    //Todo App
+    Route::get('/projects/personalpack/todo',[ToolsController::class, 'TodoApp'])->name('todo');
+
+
+
 
 
     Route::group(['prefix' => 'admin'], function () {
