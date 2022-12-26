@@ -2,7 +2,7 @@
     <div>
     <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 mx-24">
        <!-- Add Task ---> 
-        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-4 dark:bg-gray-800 mx-auto">
+        <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 mb-4 dark:bg-gray-800 mx-auto">
             <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3 p-6">
                 <form class="space-y-6" action="#">
                     <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center">Add new Task</h5>

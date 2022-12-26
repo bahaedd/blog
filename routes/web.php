@@ -7,6 +7,8 @@ use App\Http\Controllers\tagController;
 use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ToolsController;
+use App\Http\Controllers\ArticleGenerator;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +73,14 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
 
     //Todo App
     Route::get('/projects/personalpack/todo',[ToolsController::class, 'TodoApp'])->name('todo');
+    //WriterBot App
+    Route::get('/write', function () {
+    $title = '';
+    $content = '';
+    $categories = Category::all();
+    return view('blog.tools.writebot', compact('title', 'content', 'categories'));
+    });
+    Route::post('/write/generate', [ArticleGenerator::class, 'index']);
 
 
 
