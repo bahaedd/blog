@@ -3,10 +3,13 @@
 namespace App\Http\Livewire;
 use App\Models\Task;
 use Livewire\Component;
+use Validator;
+use Carbon\Carbon;
 
 class TaskList extends Component
 {
     public $tasks;
+    public $completed_tasks;
     public $state = [];
 
     public $updateMode = false;
@@ -14,6 +17,17 @@ class TaskList extends Component
     public function mount()
     {
         $this->tasks = Task::all();
+
+        $completed_tasks = Task::where('completed_at', '!=', null)
+            ->orderBy('completed_at', 'desc')
+            ->get();
+
+        foreach ($completed_tasks as $key => $task) {
+            $date = Carbon::parse($task->completed_at);
+            $task->completed_at = $date->format('m/d/Y g:i A');
+        }
+
+        $this->completed_tasks = $completed_tasks;
     }
 
     private function resetInputFields(){

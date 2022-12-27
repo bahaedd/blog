@@ -7,7 +7,7 @@
     <!-- navbar -->
     @include('/blog/layouts.navbar')
     <!-- container -->
-    <div class="px-3 mx-3 py-3 md:py-20 mb-12">
+    <div class="px-3 mx-3 py-3 md:py-20 mb-3">
         <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">ToDo App</h2>
     </div>
     @livewire('task-list')
