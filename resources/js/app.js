@@ -14,6 +14,8 @@ window.$ = window.jQuery = $;
 //import 'jquery-ui/ui/widgets/datepicker.js';
 //add as many widget as you may need
 
+import 'alpinejs';
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

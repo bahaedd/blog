@@ -30,6 +30,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "alpinejs": "^3.10.5",
         "axios": "^0.27.2",
         "cors": "^2.8.5"
     }

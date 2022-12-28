@@ -16,7 +16,7 @@ class TaskList extends Component
 
     public function mount()
     {
-        $this->tasks = Task::all();
+        $this->tasks = Task::where('completed_at', '=', null)->get();
 
         $completed_tasks = Task::where('completed_at', '!=', null)
             ->orderBy('completed_at', 'desc')
@@ -38,12 +38,13 @@ class TaskList extends Component
     {
         $validator = Validator::make($this->state, [
             'title' => 'required',
+            'description' => 'max:30',
         ])->validate();
 
         Task::create($this->state);
 
         $this->reset('state');
-        $this->tasks = Task::all();
+        $this->mount();
     }
 
     public function edit($id)
@@ -57,18 +58,21 @@ class TaskList extends Component
             'title' => $task->title,
             'description' => $task->description,
         ];
+        $this->mount();
     }
 
     public function cancel()
     {
         $this->updateMode = false;
         $this->reset('state');
+        $this->mount();
     }
 
     public function update()
     {
         $validator = Validator::make($this->state, [
             'title' => 'required',
+            'description' => 'max:30',
         ])->validate();
 
 
@@ -82,7 +86,18 @@ class TaskList extends Component
 
             $this->updateMode = false;
             $this->reset('state');
-            $this->tasks = task::all();
+            $this->mount();
+        }
+    }
+
+    public function completeTask($id)
+    {
+        if($id){
+
+            $this->task = Task::find($id);
+            $this->task->completed_at = now()->toDateTimeString();
+            $this->task->save();
+            $this->mount();
         }
     }
 
@@ -91,6 +106,7 @@ class TaskList extends Component
         if($id){
             Task::where('id',$id)->delete();
             $this->tasks = Task::all();
+            $this->mount();
         }
     }
 
