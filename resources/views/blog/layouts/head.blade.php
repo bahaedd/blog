@@ -19,5 +19,8 @@
             font-family: 'Heebo', sans-serif;
         }
     </style>
+    <style>
+    [x-cloak] { display: none; }
+    </style>
     <livewire:styles />
 </head>

@@ -978,11 +978,11 @@ input:checked + .toggle-bg {
 .top-3 {
   top: 0.75rem;
 }
-.z-40 {
-  z-index: 40;
-}
 .z-10 {
   z-index: 10;
+}
+.z-40 {
+  z-index: 40;
 }
 .z-0 {
   z-index: 0;
@@ -1114,9 +1114,6 @@ input:checked + .toggle-bg {
 }
 .ml-1 {
   margin-left: 0.25rem;
-}
-.mr-6 {
-  margin-right: 1.5rem;
 }
 .mb-8 {
   margin-bottom: 2rem;
@@ -1813,6 +1810,10 @@ input:checked + .toggle-bg {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -2065,6 +2066,10 @@ input:checked + .toggle-bg {
 .text-red-400 {
   --tw-text-opacity: 1;
   color: rgb(249 128 128 / var(--tw-text-opacity));
+}
+.text-blue-700 {
+  --tw-text-opacity: 1;
+  color: rgb(26 86 219 / var(--tw-text-opacity));
 }
 .text-blue-400 {
   --tw-text-opacity: 1;
