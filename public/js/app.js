@@ -8849,7 +8849,9 @@ Vue.component('weather', (__webpack_require__(/*! ./components/weather.vue */ ".
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({});
+var app = new Vue({
+  el: '#app'
+});
 
 var cors = __webpack_require__(/*! cors */ "./node_modules/cors/lib/index.js");
 

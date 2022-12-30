@@ -91,11 +91,11 @@
                         </table>
                     </div>
                     <!-- Completed Tasks --->
-                    <div class=" w-full overflow-x-auto relative shadow-md sm:rounded-lg m-3 p-3">
+                    <div class=" w-full overflow-x-auto relative  sm:rounded-lg m-3 p-3">
                         <div class="py-1 bg-white text-center dark:bg-gray-800">
                             <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center mr-3">Completed Tasks</h5>
                         </div>
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-2">
+                        <table class="w-full shadow-md text-sm text-left text-gray-500 dark:text-gray-400 mt-2">
                             <tbody>
                                 @forelse ($completed_tasks as $task)
                                 <tr class="bg-white border dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-500 dark:hover:bg-gray-600">
@@ -103,19 +103,29 @@
                                         <div class="pl-1">
                                             <div class="text-base font-semibold">{{ $task->title }}</div>
                                             <div class="task font-normal text-gray-500">{{ $task->description }}</div>
+                                            <div class="font-normal text-gray-500">Completed at : {{ $task->completed_at }}</div>
                                         </div>
                                     </th>
-                                    <td class="py-4 px-6">
-                                        {{ $task->completed_at }}
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        <button data-tooltip-target="delete-completed-task" class="inline-block text-center" wire:click.prevent="delete({{ $task->id }})">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="red">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </button>
-                                        <div id="delete-completed-task" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
-                                            delete
+                                    <td class="py-1 px-3">
+                                        <div>
+                                            <button data-tooltip-target="return-completed-task" class="inline-block text-center" wire:click.prevent="returnTask({{ $task->id }})">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 15 15" stroke="blue">
+                                                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                                                </svg>
+                                            </button>
+                                            <div id="return-completed-task" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                                Return
+                                            </div>
+
+                                            <button data-tooltip-target="delete-completed-task" class="inline-block text-center" wire:click.prevent="delete({{ $task->id }})">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="red">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                            </button>
+                                            <div id="delete-completed-task" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                                Delete
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -128,10 +138,10 @@
                         </table>
                     </div>
                 </div>
-                <div class="shadow-lg rounded-lg overflow-hidden">
+                {{-- <div class="shadow-lg rounded-lg overflow-hidden">
                   <div class="py-3 px-5 bg-gray-800 text-blue-700">Habit Tracker</div>
                   <canvas class="p-10" id="chartLine"></canvas>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@
         "guzzlehttp/guzzle": "^7.5",
         "innocenzi/laravel-vite": "0.2.*",
         "ipdata/api-client": "^0.1.1",
+        "jantinnerezo/livewire-alert": "^2.2",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/scout": "^9.5",

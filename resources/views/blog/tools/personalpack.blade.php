@@ -7,9 +7,9 @@
         @include('/blog/layouts.navbar')
 
         <!-- container -->
-        <div class="px-16 mx-auto py-16 md:py-20">
-            <h2 class="my-4 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">PersonalPack</h2>
-            <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
+        <div class="px-16 py-16 md:py-20">
+            <h2 class="my-4 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700 mb-24 mt-12">PersonalPack</h2>
+            <div class="grid grid-cols-1 gap-6 pt-12 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
             @foreach ($tools as $tool)
                 <a href="{{ route($tool->url) }}">
                       <div class="group rounded px-8 py-12 shadow bg-green-500">

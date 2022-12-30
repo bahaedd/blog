@@ -23,4 +23,6 @@
     [x-cloak] { display: none; }
     </style>
     <livewire:styles />
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <x-livewire-alert::scripts />
 </head>

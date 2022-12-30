@@ -5,9 +5,12 @@ use App\Models\Task;
 use Livewire\Component;
 use Validator;
 use Carbon\Carbon;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class TaskList extends Component
 {
+    use LivewireAlert;
+
     public $tasks;
     public $completed_tasks;
     public $state = [];
@@ -45,6 +48,11 @@ class TaskList extends Component
 
         $this->reset('state');
         $this->mount();
+        $this->alert('success', 'Task Added', [
+            'position' => 'center',
+            'toast' => true
+        ]);
+
     }
 
     public function edit($id)
@@ -87,6 +95,10 @@ class TaskList extends Component
             $this->updateMode = false;
             $this->reset('state');
             $this->mount();
+            $this->alert('success', 'Task Updated', [
+            'position' => 'center',
+            'toast' => true
+            ]);
         }
     }
 
@@ -98,6 +110,25 @@ class TaskList extends Component
             $this->task->completed_at = now()->toDateTimeString();
             $this->task->save();
             $this->mount();
+            $this->alert('success', 'Task Completed', [
+            'position' => 'center',
+            'toast' => true
+             ]);
+        }
+    }
+
+    public function returnTask($id)
+    {
+        if($id){
+
+            $this->task = Task::find($id);
+            $this->task->completed_at = null;
+            $this->task->save();
+            $this->mount();
+            $this->alert('success', 'Task Returned', [
+            'position' => 'center',
+            'toast' => true
+            ]);
         }
     }
 
@@ -107,6 +138,10 @@ class TaskList extends Component
             Task::where('id',$id)->delete();
             $this->tasks = Task::all();
             $this->mount();
+            $this->alert('success', 'Task Deleted', [
+            'position' => 'center',
+            'toast' => true
+             ]);
         }
     }
 
