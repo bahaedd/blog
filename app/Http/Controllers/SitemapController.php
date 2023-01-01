@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 
@@ -20,6 +21,13 @@ class SitemapController extends Controller
 
         return response()->view('blog.sitemap', compact('posts'))
           ->header('Content-Type', 'text/xml');
+
+    }
+
+    public function about()
+    {
+        $categories = Category::all();
+        return view('blog.about', compact('categories'));
 
     }
 }
