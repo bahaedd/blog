@@ -41,7 +41,7 @@
                 </div>
                 </li>
                 <li>
-                    <a href="{{ route('portfolio') }}" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500 uppercase">about</a>
+                    <a href="{{ route('about') }}" class="text-sm font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500 uppercase">about</a>
                 </li>
             </ul>
         </div>

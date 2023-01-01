@@ -29,7 +29,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('blog/category/{slug}', [CategoryController::class, 'index'])->name('category');
     Route::get('blog/tag/{slug}', [TagController::class, 'index']);
     //portfolio
-    Route::get('/about',[SitemapController::class, 'about']);
+    Route::get('/about',[SitemapController::class, 'about'])->name('about');
     Route::get('/portfolio', [ContactUsFormController::class, 'Portfolio'])->name('portfolio');
     Route::post('/portfolio/store', [ContactUsFormController::class, 'Contact'])->name('contact.store');
     Route::get('sitemap.xml',[SitemapController::class, 'index']);
@@ -82,9 +82,8 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     return view('blog.tools.writebot', compact('title', 'content', 'categories'));
     });
     Route::post('/write/generate', [ArticleGenerator::class, 'index']);
-
-
-
+    //Habit tracker
+    Route::get('/projects/personalpack/habit-tracker',[ToolsController::class, 'HabitTracker'])->name('habit-tracker');
 
 
     Route::group(['prefix' => 'admin'], function () {

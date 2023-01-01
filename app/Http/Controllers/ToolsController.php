@@ -405,10 +405,12 @@ class ToolsController extends Controller
 
     //TodoApp
     public function TodoApp() {
-        
         $categories = Category::all();
-        $hidden = 'hidden';
-        $string = '';
-        return view("blog.tools.todo", compact("categories", "hidden", "string"));
+        return view("blog.tools.todo", compact("categories"));
+    }
+    //Habit Tracker
+    public function HabitTracker() {
+        $categories = Category::all();
+        return view("blog.tools.todo", compact("categories"));
     }
 }
