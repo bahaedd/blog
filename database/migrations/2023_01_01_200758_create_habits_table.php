@@ -17,7 +17,7 @@ class CreateHabitsTable extends Migration
             $table->id();
             $table->string('title');
             $table->enum('category', ['personal', 'work', 'others']);
-            $table->enum('repetation', ['daily', 'weekly']);
+            $table->integer('completed');
             $table->timestamps();
         });
     }
