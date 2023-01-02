@@ -15,6 +15,9 @@ class CreateHabitsTable extends Migration
     {
         Schema::create('habits', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->enum('category', ['personal', 'work', 'others']);
+            $table->enum('repetation', ['daily', 'weekly']);
             $table->timestamps();
         });
     }
