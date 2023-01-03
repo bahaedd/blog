@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
+use App\Models\Task;
 use Validator;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Component;
 
 class HabitList extends Component
 {

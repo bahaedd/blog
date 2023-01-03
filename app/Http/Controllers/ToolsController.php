@@ -411,6 +411,6 @@ class ToolsController extends Controller
     //Habit Tracker
     public function HabitTracker() {
         $categories = Category::all();
-        return view("blog.tools.todo", compact("categories"));
+        return view("blog.tools.habit-tracker", compact("categories"));
     }
 }
