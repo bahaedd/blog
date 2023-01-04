@@ -13,14 +13,18 @@ class HabitList extends Component
 {
     use LivewireAlert;
 
-    public $habits;
+    public $personal_habits;
+    public $work_habits;
+    public $other_habits;
     public $state = [];
 
     public $updateMode = false;
 
     public function mount()
     {
-        $this->habits = Habit::all();
+        $this->personal_habits = Habit::where('category', '=', 'personal')->get();
+        $this->work_habits = Habit::where('category', '=', 'work')->get();
+        $this->other_habits = Habit::where('category', '=', 'others')->get();
 
     }
 
@@ -39,7 +43,6 @@ class HabitList extends Component
             Habit::create([
             'title' => $this->state['title'],
             'category' => $this->state['category'],
-            'category_icon' => 'people-outline',
         ]);
         }
 
@@ -47,7 +50,6 @@ class HabitList extends Component
             Habit::create([
             'title' => $this->state['title'],
             'category' => $this->state['category'],
-            'category_icon' => 'calendar-outline',
         ]);
         }
 
@@ -55,7 +57,6 @@ class HabitList extends Component
             Habit::create([
             'title' => $this->state['title'],
             'category' => $this->state['category'],
-            'category_icon' => 'grid-outline',
         ]);
         }
 

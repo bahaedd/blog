@@ -17,7 +17,6 @@ class CreateHabitsTable extends Migration
             $table->id();
             $table->string('title');
             $table->enum('category', ['personal', 'work', 'others']);
-            $table->string('category_icon')->nullable();
             $table->integer('completed')->nullable();
             $table->timestamps();
         });
