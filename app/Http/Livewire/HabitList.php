@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Habit;
 use App\Models\Task;
 use Validator;
 use Carbon\Carbon;
@@ -12,26 +13,15 @@ class HabitList extends Component
 {
     use LivewireAlert;
 
-    public $tasks;
-    public $completed_tasks;
+    public $habits;
     public $state = [];
 
     public $updateMode = false;
 
     public function mount()
     {
-        $this->tasks = Task::where('completed_at', '=', null)->get();
+        $this->habits = Habit::all();
 
-        $completed_tasks = Task::where('completed_at', '!=', null)
-            ->orderBy('completed_at', 'desc')
-            ->get();
-
-        foreach ($completed_tasks as $key => $task) {
-            $date = Carbon::parse($task->completed_at);
-            $task->completed_at = $date->format('m/d/Y g:i A');
-        }
-
-        $this->completed_tasks = $completed_tasks;
     }
 
     private function resetInputFields(){
@@ -42,14 +32,37 @@ class HabitList extends Component
     {
         $validator = Validator::make($this->state, [
             'title' => 'required',
-            'description' => 'max:30',
+            'category' => 'required',
         ])->validate();
 
-        Task::create($this->state);
+        if($this->state['category'] == 'personal'){
+            Habit::create([
+            'title' => $this->state['title'],
+            'category' => $this->state['category'],
+            'category_icon' => 'people-outline',
+        ]);
+        }
+
+        elseif($this->state['category'] == 'work'){
+            Habit::create([
+            'title' => $this->state['title'],
+            'category' => $this->state['category'],
+            'category_icon' => 'calendar-outline',
+        ]);
+        }
+
+        else{
+            Habit::create([
+            'title' => $this->state['title'],
+            'category' => $this->state['category'],
+            'category_icon' => 'grid-outline',
+        ]);
+        }
+
 
         $this->reset('state');
         $this->mount();
-        $this->alert('success', 'Task Added', [
+        $this->alert('success', 'Habit Added', [
             'position' => 'center',
             'toast' => true
         ]);
