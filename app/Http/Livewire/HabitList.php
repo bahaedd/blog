@@ -103,7 +103,7 @@ class HabitList extends Component
             $habit = Habit::find($this->state['id']);
             $habit->update([
                 'title' => $this->state['title'],
-                'description' => $this->state['description'],
+                'category' => $this->state['category'],
             ]);
 
 
@@ -122,7 +122,7 @@ class HabitList extends Component
         if($id){
 
             $this->habit = Task::find($id);
-            $this->habit->completed = now()->toDateTimeString();
+            $this->habit->completed = $this->habit->completed + 1;
             $this->habit->save();
             $this->mount();
             $this->alert('success', 'Habit Completed for today', [
