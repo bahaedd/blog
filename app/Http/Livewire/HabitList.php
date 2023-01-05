@@ -74,12 +74,12 @@ class HabitList extends Component
     {
         $this->updateMode = true;
 
-        $task = Task::find($id);
+        $habit = Habit::find($id);
 
         $this->state = [
-            'id' => $task->id,
-            'title' => $task->title,
-            'description' => $task->description,
+            'id' => $habit->id,
+            'title' => $habit->title,
+            'category' => $habit->category,
         ];
         $this->mount();
     }
@@ -95,13 +95,13 @@ class HabitList extends Component
     {
         $validator = Validator::make($this->state, [
             'title' => 'required',
-            'description' => 'max:30',
+            'category' => 'required',
         ])->validate();
 
 
         if ($this->state['id']) {
-            $task = task::find($this->state['id']);
-            $task->update([
+            $habit = Habit::find($this->state['id']);
+            $habit->update([
                 'title' => $this->state['title'],
                 'description' => $this->state['description'],
             ]);
@@ -110,50 +110,35 @@ class HabitList extends Component
             $this->updateMode = false;
             $this->reset('state');
             $this->mount();
-            $this->alert('success', 'Task Updated', [
+            $this->alert('success', 'Habit Updated', [
             'position' => 'center',
             'toast' => true
             ]);
         }
     }
 
-    public function completeTask($id)
+    public function completeHabit($id)
     {
         if($id){
 
-            $this->task = Task::find($id);
-            $this->task->completed_at = now()->toDateTimeString();
-            $this->task->save();
+            $this->habit = Task::find($id);
+            $this->habit->completed = now()->toDateTimeString();
+            $this->habit->save();
             $this->mount();
-            $this->alert('success', 'Task Completed', [
+            $this->alert('success', 'Habit Completed for today', [
             'position' => 'center',
             'toast' => true
              ]);
         }
     }
 
-    public function returnTask($id)
-    {
-        if($id){
-
-            $this->task = Task::find($id);
-            $this->task->completed_at = null;
-            $this->task->save();
-            $this->mount();
-            $this->alert('success', 'Task Returned', [
-            'position' => 'center',
-            'toast' => true
-            ]);
-        }
-    }
 
     public function delete($id)
     {
         if($id){
-            Task::where('id',$id)->delete();
-            $this->tasks = Task::all();
+            Habit::where('id',$id)->delete();
             $this->mount();
-            $this->alert('success', 'Task Deleted', [
+            $this->alert('success', 'Habit Deleted', [
             'position' => 'center',
             'toast' => true
              ]);
