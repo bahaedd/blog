@@ -188,7 +188,7 @@
                                                                         delete
                                                                     </div>
                                                                 </div>
-                                                                <canvas class="p-10" id="chartLine"></canvas>
+                                                                <canvas class="p-10" id="chartLine{{ $habit->id }}"></canvas>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -252,7 +252,7 @@
                                                                         delete
                                                                     </div>
                                                                 </div>
-                                                                <canvas class="p-10" id="chartLine"></canvas>
+                                                                <canvas class="p-10" id="chartLine{{ $habit->id }}"></canvas>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -278,34 +278,3 @@
         </div>
     </div>
 </div>
-@once
-@push('scripts')
- <!-- Chart line -->
-    <script>
-      @foreach ($personal_habits as $habit)
-      const labels = ["January", "February", "March", "April", "May", "June"];
-      const data = {
-        labels: labels,
-        datasets: [
-          {
-            label: "Code for 45 min",
-            backgroundColor: "hsl(250, 100%, 50%)",
-            borderColor: "hsl(250, 100%, 50%)",
-            data: [0, 10, 5, 2, 20, 30, 45],
-          },
-        ],
-      };
-
-      const configLineChart = {
-        type: "line",
-        data,
-        options: {},
-      };
-        var chartLine{{ $habit->id }} = new Chart(
-        document.getElementById("chartLine{{ $habit->id }}"),
-        configLineChart
-      ); 
-      @endforeach
-    </script>
-@endpush
-@endonce

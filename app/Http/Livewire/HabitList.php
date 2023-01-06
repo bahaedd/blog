@@ -121,7 +121,7 @@ class HabitList extends Component
     {
         if($id){
 
-            $this->habit = Task::find($id);
+            $this->habit = Habit::find($id);
             $this->habit->completed = $this->habit->completed + 1;
             $this->habit->save();
             $this->mount();

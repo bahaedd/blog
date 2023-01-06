@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@section('title', "ToDo App")
+@section('title', "HabitsTracker")
 @include('/blog/layouts.head')
 
 <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
@@ -41,6 +41,34 @@
         }
     }
 
+    </script>
+     <!-- Chart line -->
+    <script>
+      const labels = ["January", "February", "March", "April", "May", "June"];
+      const data = {
+        labels: labels,
+        datasets: [
+          {
+            label : "habit title",
+            backgroundColor: "hsl(250, 100%, 50%)",
+            borderColor: "hsl(250, 100%, 50%)",
+            data: [0, 10, 5, 2, 20, 30, 45],
+          },
+        ],
+      };
+
+      const configLineChart = {
+        type: "line",
+        data,
+        options: {},
+      };
+      for (let i = 0; i < 100; i++) {
+          var chartLine = new Chart(
+        document.getElementById("chartLine3"),
+        configLineChart
+      );
+        }
+         
     </script>
     <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
     <script>

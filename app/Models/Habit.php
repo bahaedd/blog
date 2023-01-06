@@ -13,5 +13,6 @@ class Habit extends Model
     protected $fillable = [
         'title',
         'category',
+        'completed',
     ];
 }
