@@ -82,9 +82,12 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     return view('blog.tools.writebot', compact('title', 'content', 'categories'));
     });
     Route::post('/write/generate', [ArticleGenerator::class, 'index']);
+
     //Habit tracker
     Route::get('/projects/personalpack/habit-tracker',[ToolsController::class, 'HabitTracker'])->name('habit-tracker');
 
+    //Resume builder
+    Route::get('/projects/personalpack/resume-builder',[ToolsController::class, 'ResumeBuilder'])->name('resume-builder');
 
     Route::group(['prefix' => 'admin'], function () {
         Voyager::routes();

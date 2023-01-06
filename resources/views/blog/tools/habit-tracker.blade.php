@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@section('title', "HabitsTracker")
+@section('title', "Habits Tracker")
 @include('/blog/layouts.head')
 
 <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
@@ -49,7 +49,7 @@
         labels: labels,
         datasets: [
           {
-            label : "habit title",
+            label : "Streak Progress",
             backgroundColor: "hsl(250, 100%, 50%)",
             borderColor: "hsl(250, 100%, 50%)",
             data: [0, 10, 5, 2, 20, 30, 45],
@@ -64,7 +64,7 @@
       };
       for (let i = 0; i < 100; i++) {
           var chartLine = new Chart(
-        document.getElementById("chartLine3"),
+        document.getElementById("chartLine"+i),
         configLineChart
       );
         }

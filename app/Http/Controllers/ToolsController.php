@@ -413,4 +413,9 @@ class ToolsController extends Controller
         $categories = Category::all();
         return view("blog.tools.habit-tracker", compact("categories"));
     }
+    //Resume Builder
+    public function ResumeBuilder() {
+        $categories = Category::all();
+        return view("blog.tools.resume-builder", compact("categories"));
+    }
 }
