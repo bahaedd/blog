@@ -14,7 +14,7 @@
         <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
             <div class="md:w-1/3 w-full">
                 <header>
-                    <img src="{{URL('/images/profile.jpg')}}" alt="Profile" class="ml-12">
+                    <img src="{{URL('/images/profile.jpg')}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
                     <img src="https://i.ibb.co/m8479nW/Web-Developer.png" alt="Logo" class="mt-4 max-w-sm w-full">
                 </header>
                 <section class="mt-16">
