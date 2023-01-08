@@ -19,22 +19,18 @@ class ToolsController extends Controller
 
     //         ######################### MailerPack ################################ 
 
-
-
     //MailerPack
     public function index() {
 
-        $categories = Category::all();
         $tools = Tool::where('pack', 'MailerPack')->get();
-        return view("blog.tools.mailerpack", compact("categories", "tools"));
+        return view("blog.tools.mailerpack", compact("tools"));
     }
 
     //ip extractor
     public function extractor() {
 
-        $categories = Category::all();
         $ipmatch = [];
-        return view("blog.tools.ipextractor", compact("ipmatch", "categories"));
+        return view("blog.tools.ipextractor", compact("ipmatch"));
     }
     public function extract(Request $request) {
         // Form validation
@@ -45,7 +41,6 @@ class ToolsController extends Controller
         $text = $request->get('text');
         $reccord= $text;
         $regexIpAddress = '/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?:\/\d{2})?/';
-        $categories = Category::all();
          preg_match_all($regexIpAddress, $reccord, $ip_match);
          
          $ipmatch = Arr::collapse($ip_match);
@@ -53,15 +48,14 @@ class ToolsController extends Controller
             $ipmatch = ['0' => 'No IP Address Found!'];
          }
 
-        return view("blog.tools.ipextractor", compact("ipmatch", "categories"));
+        return view("blog.tools.ipextractor", compact("ipmatch"));
     }
 
     //Domain extractor
     public function domainExtractor() {
 
-        $categories = Category::all();
         $Dmatch = [];
-        return view("blog.tools.domainextractor", compact("Dmatch", "categories"));
+        return view("blog.tools.domainextractor", compact("Dmatch"));
     }
     public function extractDomain(Request $request) {
         // Form validation
@@ -72,21 +66,19 @@ class ToolsController extends Controller
         $text = $request->get('text');
         $reccord= $text;
         $regexIpAddress = '/([a-z0-9][a-z0-9\-]{0,61}[a-z0-9]\.)+[a-z0-9][a-z0-9\-]*[a-z0-9]/';
-        $categories = Category::all();
         preg_match_all($regexIpAddress, $reccord, $ip_match);
         $Dmatch = Arr::collapse($ip_match);
         if(empty($Dmatch)){
             $Dmatch = ['0' => 'No Domain name Found!'];
          }
 
-        return view("blog.tools.domainextractor", compact("Dmatch", "categories"));
+        return view("blog.tools.domainextractor", compact("Dmatch"));
     }
 
     //DNS lookup
     public function dnsLookup() {
         $data = [];
-        $categories = Category::all();
-        return view("blog.tools.dnslookup", compact("categories", "data"));
+        return view("blog.tools.dnslookup", compact("data"));
     }
 
     public function lookup(Request $request) {
@@ -104,8 +96,7 @@ class ToolsController extends Controller
         ]);
         session(['domain' => $domain]);
         $data = json_decode($response->body(), true);
-        $categories = Category::all();
-        return view("blog.tools.dnslookup", compact("categories"))->with('data', $data);
+        return view("blog.tools.dnslookup")->with('data', $data);
     }
 
     //URL lookup
@@ -125,8 +116,7 @@ class ToolsController extends Controller
           "url"=> ""
         ];
         $hidden = "hidden";
-        $categories = Category::all();
-        return view("blog.tools.urllookup", compact("categories", "data", "hidden"));
+        return view("blog.tools.urllookup", compact("data", "hidden"));
     }
 
     public function Ulookup(Request $request) {
@@ -145,9 +135,7 @@ class ToolsController extends Controller
         session(['domain' => $domain]);
         $data = json_decode($response->body(), true);
         $hidden = "";
-        // dd($data);
-        $categories = Category::all();
-        return view("blog.tools.urllookup", compact("categories", "hidden"))->with('data', $data);
+        return view("blog.tools.urllookup", compact("hidden"))->with('data', $data);
     }
 
      //URL lookup
@@ -167,8 +155,7 @@ class ToolsController extends Controller
           "url"=> ""
         ];
         $hidden = "hidden";
-        $categories = Category::all();
-        return view("blog.tools.iplookup", compact("categories", "data", "hidden"));
+        return view("blog.tools.iplookup", compact("data", "hidden"));
     }
 
     public function Ilookup(Request $request) {
@@ -187,18 +174,14 @@ class ToolsController extends Controller
         session(['ip' => $ip]);
         $data = json_decode($response->body(), true);
         $hidden = "";
-        // dd($data);
-        $categories = Category::all();
-        return view("blog.tools.iplookup", compact("categories", "hidden"))->with('data', $data);
+        return view("blog.tools.iplookup", compact("hidden"))->with('data', $data);
     }
 
     //Random Generator
     public function RandomGenerator() {
-        
-        $categories = Category::all();
-        $randomString = '';
 
-        return view("blog.tools.randomgenerator", compact("categories", "randomString"));
+        $randomString = '';
+        return view("blog.tools.randomgenerator", compact("randomString"));
     }
 
     public function GenerateRandom(Request $request) {
@@ -269,16 +252,12 @@ class ToolsController extends Controller
                     }
             }
         
-        
-        $categories = Category::all();
-        
-        return view("blog.tools.randomgenerator", compact("categories", "randomString"));
+        return view("blog.tools.randomgenerator", compact("randomString"));
     }
 
     //User Generator
     public function UserGenerator() {
         
-        $categories = Category::all();
         $randomUser = 'hidden';
         $data = [
           "name"=> "",
@@ -289,33 +268,27 @@ class ToolsController extends Controller
           "birthday"=> "",
         ];
 
-        return view("blog.tools.randomuser", compact("categories", "randomUser", "data"));
+        return view("blog.tools.randomuser", compact("randomUser", "data"));
     }
     public function GenerateRandomUser(Request $request) {
-
-        
 
         $response = Http::withHeaders([
             'X-Api-Key' => 'VRxSLgGVlgB7uFosZtuUkA==VAnSBjdccOdIoF3d',
              ])->get('https://api.api-ninjas.com/v1/randomuser');
         
         $data = json_decode($response->body(), true);
-        
-
-        $categories = Category::all();
         $randomUser = '';
 
-        return view("blog.tools.randomuser", compact("categories", "randomUser", "data"));
+        return view("blog.tools.randomuser", compact("randomUser", "data"));
     }
 
     //Password Generator
     public function PasswordGenerator() {
         
-        $categories = Category::all();
         $HashedPass = '';
         $hidden = 'hidden';
 
-        return view("blog.tools.passwordgenerator", compact("categories", "HashedPass", "hidden"));
+        return view("blog.tools.passwordgenerator", compact("HashedPass", "hidden"));
     }
     public function GeneratePassword(Request $request) {
 
@@ -323,20 +296,17 @@ class ToolsController extends Controller
             'text' => 'required',
          ]);
        $HashedPass = Hash::make($request->get('text'));
-        $categories = Category::all();
         $hidden = '';
-        // dd($pass);
 
-        return view("blog.tools.passwordgenerator", compact("categories", "HashedPass", "hidden"));
+        return view("blog.tools.passwordgenerator", compact("HashedPass", "hidden"));
     }
 
     //Encode-Decode
     public function EncodeDecode() {
-        
-        $categories = Category::all();
+
         $hidden = 'hidden';
         $string = '';
-        return view("blog.tools.endecode", compact("categories", "hidden", "string"));
+        return view("blog.tools.endecode", compact("hidden", "string"));
     }
 
     public function Encode(Request $request) {
@@ -345,7 +315,6 @@ class ToolsController extends Controller
             'text' => 'required',
          ]);
 
-        $categories = Category::all();
         $hidden = '';
         
         if ($request->get('encode') == 1){
@@ -354,28 +323,23 @@ class ToolsController extends Controller
             $string = base64_decode($request->get('text'));
         }
 
-        
-
-
-        return view("blog.tools.endecode", compact("categories", "hidden", "string"));
+        return view("blog.tools.endecode", compact("hidden", "string"));
     }
 
     //Domain reputation
     public function DomainReputation() {
-        
-        $categories = Category::all();
+
         $hidden = 'hidden';
         $result = [
           "reputationScore"=> "",
           "mode"=> "", 
         ];
 
-        return view("blog.tools.domainreputation", compact("categories", "hidden", "result"));
+        return view("blog.tools.domainreputation", compact("hidden", "result"));
     }
 
     public function CheckDomain(Request $request) {
-        
-        $categories = Category::all();
+
         $hidden = '';
         $this->validate($request, [
             'domain' => 'required',
@@ -389,7 +353,7 @@ class ToolsController extends Controller
        $result = json_encode($data, JSON_PRETTY_PRINT);
        dd($result);
         
-        return view("blog.tools.domainreputation", compact("categories", "hidden", "result"));
+        return view("blog.tools.domainreputation", compact("hidden", "result"));
     }
 
     //         ######################### PersonalPack ################################
@@ -398,15 +362,14 @@ class ToolsController extends Controller
     //PersonalPack
     public function PeronalPack() {
 
-        $categories = Category::all();
         $tools = Tool::where('pack', 'PersonalPack')->get();
-        return view("blog.tools.personalpack", compact("categories", "tools"));
+        return view("blog.tools.personalpack", compact("tools"));
     }
 
     //TodoApp
     public function TodoApp() {
-        $categories = Category::all();
-        return view("blog.tools.todo", compact("categories"));
+       
+        return view("blog.tools.todo");
     }
     //Habit Tracker
     public function HabitTracker() {
