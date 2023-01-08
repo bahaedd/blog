@@ -410,12 +410,12 @@ class ToolsController extends Controller
     }
     //Habit Tracker
     public function HabitTracker() {
-        $categories = Category::all();
-        return view("blog.tools.habit-tracker", compact("categories"));
+        
+        return view("blog.tools.habit-tracker");
     }
     //Resume Builder
     public function ResumeBuilder() {
-        $categories = Category::all();
-        return view("blog.tools.resume-builder", compact("categories"));
+        
+        return view("blog.tools.resume-builder");
     }
 }
