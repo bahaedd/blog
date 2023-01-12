@@ -86,8 +86,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     //Habit tracker
     Route::get('/projects/personalpack/habit-tracker',[ToolsController::class, 'HabitTracker'])->name('habit-tracker');
 
-    //Resume builder
-    Route::get('/projects/personalpack/resume-builder',[ToolsController::class, 'ResumeBuilder'])->name('resume-builder');
+    
 
     Route::group(['prefix' => 'admin'], function () {
         Voyager::routes();
@@ -102,8 +101,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    //Resume builder
+    Route::get('/projects/personalpack/resume-builder',[ToolsController::class, 'ResumeBuilder'])->name('resume-builder');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [PostController::class, 'index']);
