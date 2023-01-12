@@ -15,6 +15,8 @@ class CreateResumesTable extends Migration
     {
         Schema::create('resumes', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->enum('category', ['personal', 'work', 'education', 'skills']);
             $table->timestamps();
         });
     }
