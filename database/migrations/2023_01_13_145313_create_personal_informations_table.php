@@ -24,6 +24,7 @@ class CreatePersonalInformationsTable extends Migration
             $table->string('nationality');
             $table->string('linkedin');
             $table->string('twitter');
+            $table->string('github');
             $table->string('website');
             $table->string('image');
             $table->timestamps();
