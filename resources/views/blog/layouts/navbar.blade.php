@@ -2,7 +2,7 @@
     <div class="container flex flex-wrap justify-between items-center mx-auto">
         <a href="{{ route('home') }}" class="flex items-center">
             <img src="{{Voyager::image( setting('site.logo'))}}" class="m-l-6 h-12 sm:h-9" alt="AlienDev Logo" />
-            <span class="self-center text-lg font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500">AlienDev</span>
+            <span class="self-center text-lg font-medium text-gray-900 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-500 ml-3">AlienDev</span>
         </a>
         <div class="flex md:order-2">
             <button type="button" data-modal-toggle="staticModal" class="ml-6 text-green-500 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
