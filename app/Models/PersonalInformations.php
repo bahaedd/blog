@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PersonalInformations extends Model
 {
     use HasFactory;
+
+    public function resume()
+    {
+        return $this->belongsTo(Resume::class);
+    }
 }
