@@ -9,6 +9,11 @@ class Skill extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'level',
+    ];
+
     public function resume()
     {
         return $this->belongsTo(Resume::class);

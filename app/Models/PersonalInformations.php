@@ -9,6 +9,19 @@ class PersonalInformations extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'email',
+        'address',
+        'phone_number',
+        'birthday',
+        'linkedin',
+        'twitter',
+        'github',
+        'website',
+        'image',
+    ];
+
     public function resume()
     {
         return $this->belongsTo(Resume::class);

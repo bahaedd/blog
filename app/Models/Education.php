@@ -9,6 +9,14 @@ class Education extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'degree',
+        'school',
+        'description',
+        'starts',
+        'ends',
+    ];
+
     public function resume()
     {
         return $this->belongsTo(Resume::class);

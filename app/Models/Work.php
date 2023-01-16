@@ -9,6 +9,14 @@ class Work extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'position',
+        'company',
+        'description',
+        'starts',
+        'ends',
+    ];
+
     public function resume()
     {
         return $this->belongsTo(Resume::class);
