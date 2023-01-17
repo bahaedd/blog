@@ -2308,9 +2308,6 @@ select {
 .border-b-0 {
   border-bottom-width: 0px;
 }
-.border-t-0 {
-  border-top-width: 0px;
-}
 .border-dashed {
   border-style: dashed;
 }
@@ -2686,9 +2683,6 @@ select {
 }
 .pb-6 {
   padding-bottom: 1.5rem;
-}
-.pl-5 {
-  padding-left: 1.25rem;
 }
 .pl-1 {
   padding-left: 0.25rem;

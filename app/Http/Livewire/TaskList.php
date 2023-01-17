@@ -14,7 +14,6 @@ class TaskList extends Component
     public $tasks;
     public $completed_tasks;
     public $state = [];
-
     public $updateMode = false;
 
     public function mount()
