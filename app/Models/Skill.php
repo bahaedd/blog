@@ -10,6 +10,7 @@ class Skill extends Model
     use HasFactory;
 
     protected $fillable = [
+        'resume_id',
         'title',
         'level',
     ];

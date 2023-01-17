@@ -13,6 +13,8 @@ use Ipdata\ApiClient\Ipdata;
 use Symfony\Component\HttpClient\Psr18Client;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Illuminate\Support\Facades\Hash;
+use Auth;
+use App\Models\Resume;
 
 class ToolsController extends Controller
 {
@@ -378,7 +380,15 @@ class ToolsController extends Controller
     }
     //Resume Builder
     public function ResumeBuilder() {
-        
-        return view("blog.tools.resume-builder");
+
+        if (Resume::where('user_id', Auth::user()->id)->exists()) {
+
+            return view("blog.tools.resume-builder");
+        }
+        else {
+            Resume::create(['user_id' => Auth::user()->id]);
+            return view("blog.tools.resume-builder");
+        }
+
     }
 }

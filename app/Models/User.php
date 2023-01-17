@@ -61,6 +61,6 @@ class User extends \TCG\Voyager\Models\User
 
     public function resume()
     {
-        return $this->hasOne(Resume::class);
+        return $this->hasOne(Resume::class, 'user_id');
     }
 }

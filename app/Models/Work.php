@@ -10,6 +10,7 @@ class Work extends Model
     use HasFactory;
 
     protected $fillable = [
+        'resume_id',
         'position',
         'company',
         'description',
