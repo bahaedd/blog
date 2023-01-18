@@ -19,7 +19,7 @@ class Resume extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function personal_informations()
+    public function personalinfos()
     {
         return $this->hasMany(Personalinfo::class);
     }

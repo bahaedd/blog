@@ -5,6 +5,7 @@ use Validator;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use App\Models\Personalinfo;
 
 class ResumeBuilder extends Component
 {
@@ -37,16 +38,23 @@ class ResumeBuilder extends Component
             'image' => 'required',
         ])->validate();
 
-        PersonalInformations::create($this->statePersonalInfo);
+        Personalinfo::create($this->statePersonalInfo);
 
         $this->reset('state');
         $this->mount();
-        $this->alert('success', 'Task Added', [
+        $this->alert('success', 'Personal Inforlations saved!', [
             'position' => 'center',
             'toast' => true
         ]);
 
     }
+
+    public function updatePersonalInfo()
+    {
+       // Update
+
+    }
+
 
     public function render()
     {
