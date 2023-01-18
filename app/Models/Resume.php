@@ -21,7 +21,7 @@ class Resume extends Model
 
     public function personal_informations()
     {
-        return $this->hasMany(PersonalInformations::class);
+        return $this->hasMany(Personalinfo::class);
     }
 
     public function educations()

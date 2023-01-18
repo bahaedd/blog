@@ -14,13 +14,37 @@ class ResumeBuilder extends Component
     public $educations;
     public $work;
     public $skills;
-    public $state = [];
+    public $statePersonalInfo = [];
     public $updateMode = false;
 
 
     public function mount()
     {
         // $this->personal_informations = PersonalInformations::where('resume_id', '=', '')->get();
+
+    }
+
+    public function storePersonalInfo()
+    {
+        $validator = Validator::make($this->statePersonalInfo, [
+            'name' => 'required',
+            'email' => 'required',
+            'title' => 'required',
+            'address' => 'required',
+            'phone_number' => 'required',
+            'birthday' => 'required',
+            'nationality' => 'required',
+            'image' => 'required',
+        ])->validate();
+
+        PersonalInformations::create($this->statePersonalInfo);
+
+        $this->reset('state');
+        $this->mount();
+        $this->alert('success', 'Task Added', [
+            'position' => 'center',
+            'toast' => true
+        ]);
 
     }
 
