@@ -35,9 +35,11 @@ class ResumeBuilder extends Component
             'phone_number' => 'required',
             'birthday' => 'required',
             'nationality' => 'required',
-            'image' => 'required',
+            'image' => 'requiredimage|mimes:jpg,jpeg,png,svg,gif|max:2048',
         ])->validate();
 
+        $this->statePersonalInfo['image'] = time() .'_'. $this->statePersonalInfo['image']->getClientOriginalName();;
+        $this->statePersonalInfo['image']->store('profiles', 'public');
         Personalinfo::create($this->statePersonalInfo);
 
         $this->reset('state');
