@@ -11,8 +11,6 @@
         <h2 class="my-4 mb-3 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Resume Builder</h2>
     </div>
     @livewire('resume-builder')
-    <!-- Footer -->
-    <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
     @include('/blog/layouts.footer')
     <livewire:scripts />
     <!-- Required chart.js -->
@@ -39,32 +37,6 @@
                 this.currentIndex = this.currentIndex === this.images.length - 6 ? 0 : this.currentIndex - 1;
             },
         }
-    }
-
-    </script>
-    <!-- Chart line -->
-    <script>
-    const labels = ["January", "February", "March", "April", "May", "June"];
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: "Streak Progress",
-            backgroundColor: "hsl(250, 100%, 50%)",
-            borderColor: "hsl(250, 100%, 50%)",
-            data: [0, 10, 5, 2, 20, 30, 45],
-        }, ],
-    };
-
-    const configLineChart = {
-        type: "line",
-        data,
-        options: {},
-    };
-    for (let i = 0; i < 100; i++) {
-        var chartLine = new Chart(
-            document.getElementById("chartLine" + i),
-            configLineChart
-        );
     }
 
     </script>

@@ -8,7 +8,7 @@
     <link rel="canonical" href="{{url()->current()}}"/>
     <link rel="icon" href="{{URL('/images/alien.png')}}" type="image/x-icon"/>
     <link href="/css/app.css" rel="stylesheet">
-    <link href="{{ asset('js/app.js') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
