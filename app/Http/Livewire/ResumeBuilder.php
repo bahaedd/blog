@@ -6,10 +6,12 @@ use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use App\Models\Personalinfo;
+use Livewire\WithFileUploads;
 
 class ResumeBuilder extends Component
 {
     use LivewireAlert;
+    use WithFileUploads;
 
     public $personal_informations;
     public $educations;
@@ -30,12 +32,11 @@ class ResumeBuilder extends Component
         $validator = Validator::make($this->statePersonalInfo, [
             'name' => 'required',
             'email' => 'required',
-            'title' => 'required',
             'address' => 'required',
             'phone_number' => 'required',
             'birthday' => 'required',
             'nationality' => 'required',
-            'image' => 'requiredimage|mimes:jpg,jpeg,png,svg,gif|max:2048',
+            'image' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
         ])->validate();
 
         $this->statePersonalInfo['image'] = time() .'_'. $this->statePersonalInfo['image']->getClientOriginalName();;

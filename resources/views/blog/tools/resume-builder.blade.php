@@ -13,8 +13,6 @@
     @livewire('resume-builder')
     @include('/blog/layouts.footer')
     <livewire:scripts />
-    <!-- Required chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
     function getCarouselData() {
         return {
