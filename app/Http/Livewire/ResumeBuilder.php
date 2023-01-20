@@ -7,6 +7,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use App\Models\Personalinfo;
 use Livewire\WithFileUploads;
+use Auth;
 
 class ResumeBuilder extends Component
 {
@@ -24,11 +25,13 @@ class ResumeBuilder extends Component
     public function mount()
     {
         // $this->personal_informations = PersonalInformations::where('resume_id', '=', '')->get();
+        // dd(Auth::user()->resume->id);
 
     }
 
     public function storePersonalInfo()
     {
+        // dd($this->statePersonalInfo);
         $validator = Validator::make($this->statePersonalInfo, [
             'name' => 'required',
             'email' => 'required',
@@ -39,7 +42,7 @@ class ResumeBuilder extends Component
             'image' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
         ])->validate();
 
-        $this->statePersonalInfo['image'] = time() .'_'. $this->statePersonalInfo['image']->getClientOriginalName();;
+        $this->statePersonalInfo['resume_id'] = Auth::user()->resume->id;
         $this->statePersonalInfo['image']->store('profiles', 'public');
         Personalinfo::create($this->statePersonalInfo);
 
