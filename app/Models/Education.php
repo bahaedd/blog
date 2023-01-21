@@ -18,8 +18,8 @@ class Education extends Model
         'ends',
     ];
 
-    public function resume()
-    {
-        return $this->belongsTo(Resume::class);
-    }
+    // public function resume()
+    // {
+    //     return $this->belongsTo(Resume::class);
+    // }
 }

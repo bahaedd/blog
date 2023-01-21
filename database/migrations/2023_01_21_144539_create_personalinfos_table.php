@@ -15,7 +15,7 @@ class CreatePersonalinfosTable extends Migration
     {
         Schema::create('personalinfos', function (Blueprint $table) {
             $table->id();
-            $table->integer('resume_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('email');
             $table->string('address');
@@ -28,6 +28,8 @@ class CreatePersonalinfosTable extends Migration
             $table->string('website')->nullable();
             $table->string('image');
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

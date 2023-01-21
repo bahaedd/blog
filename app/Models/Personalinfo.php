@@ -22,8 +22,8 @@ class Personalinfo extends Model
         'image',
     ];
 
-    public function resume()
+    public function user()
     {
-        return $this->belongsTo(Resume::class);
+        return $this->belongsTo(User::class);
     }
 }

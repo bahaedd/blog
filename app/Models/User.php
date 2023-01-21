@@ -59,8 +59,8 @@ class User extends \TCG\Voyager\Models\User
         'profile_photo_url',
     ];
 
-    public function resume()
+    public function personalinfo()
     {
-        return $this->hasOne(Resume::class, 'user_id');
+        return $this->hasOne(Personalinfo::class, 'user_id');
     }
 }

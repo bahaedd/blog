@@ -15,8 +15,8 @@ class Skill extends Model
         'level',
     ];
 
-    public function resume()
-    {
-        return $this->belongsTo(Resume::class);
-    }
+    // public function resume()
+    // {
+    //     return $this->belongsTo(Resume::class);
+    // }
 }

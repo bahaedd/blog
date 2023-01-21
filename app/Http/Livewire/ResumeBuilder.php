@@ -42,13 +42,26 @@ class ResumeBuilder extends Component
             'image' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
         ])->validate();
 
-        $this->statePersonalInfo['resume_id'] = Auth::user()->resume->id;
+        // $this->statePersonalInfo['resume_id'] = Auth::user()->resume->id;
         $this->statePersonalInfo['image']->store('profiles', 'public');
-        Personalinfo::create($this->statePersonalInfo);
+        Personalinfo::create([
+            'resune_id' => Auth::user()->id,
+            'name' => $this->statePersonalInfo['name'],
+            'email' => $this->statePersonalInfo['email'],
+            'address' => $this->statePersonalInfo['address'],
+            'phone_number' => $this->statePersonalInfo['phone_number'],
+            'birthday' => $this->statePersonalInfo['birthday'],
+            'nationality' => $this->statePersonalInfo['nationality'],
+            'image' => $this->statePersonalInfo['image'],
+            'website' => $this->statePersonalInfo['website'],
+            'linkedin' => $this->statePersonalInfo['linkedin'],
+            'twitter' => $this->statePersonalInfo['twitter'],
+            'github' => $this->statePersonalInfo['github'],
+        ]);
 
         $this->reset('state');
         $this->mount();
-        $this->alert('success', 'Personal Inforlations saved!', [
+        $this->alert('success', 'Personal Informations saved!', [
             'position' => 'center',
             'toast' => true
         ]);
