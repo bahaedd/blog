@@ -66,8 +66,7 @@
                                 </div>
                                 <div>
                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                                    <input type="text" id="name" wire:model="statePersonalInfo.name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John">
-                                    <input wire:model="statePersonalInfo.user_id" id="user_id" value="{{ Auth::user()->id }}" class="hidden">
+                                    <input type="text" id="name" wire:model="statePersonalInfo.name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ Auth::user()->name }}" placeholder="{{ Auth::user()->name }}">
                                 </div>
                                 <div>
                                     <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Birthday</label>
@@ -77,16 +76,16 @@
                                                 <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                                             </svg>
                                         </div>
-                                        <input value="2017-06-01" type="date" id="birthday" wire:model="statePersonalInfo.birthday" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                                        <input value="2017-06-01" type="date" id="birthday" wire:model="statePersonalInfo.birthday" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your birthday">
                                     </div>
                                 </div>
                                 <div>
                                     <label for="nationality" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nationality</label>
-                                    <input type="text" id="nationality" wire:model="statePersonalInfo.nationality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John">
+                                    <input type="text" id="nationality" wire:model="statePersonalInfo.nationality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nationality">
                                 </div>
                                 <div>
                                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-                                    <input type="email" id="email" wire:model="statePersonalInfo.email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com">
+                                    <input type="email" id="email" wire:model="statePersonalInfo.email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ Auth::user()->email }}" placeholder="{{ Auth::user()->email }}">
                                 </div>
                                 <div>
                                     <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
@@ -94,7 +93,7 @@
                                 </div>
                                 <div>
                                     <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
-                                    <input type="tel" id="phone" wire:model="statePersonalInfo.phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                                    <input type="tel" id="phone" wire:model="statePersonalInfo.phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Phone number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
                                 </div>
                                 <div>
                                     <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website URL</label>
@@ -102,15 +101,15 @@
                                 </div>
                                 <div>
                                     <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LinkedIn</label>
-                                    <input type="text" id="linkedin" wire:model="statePersonalInfo.linkedin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="LinkedIn Profile">
+                                    <input type="text" id="linkedin" wire:model="statePersonalInfo.linkedin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="LinkedIn Profile link">
                                 </div>
                                 <div>
                                     <label for="twitter" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Twitter</label>
-                                    <input type="text" id="twitter" wire:model="statePersonalInfo.twitter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Twitter Profile">
+                                    <input type="text" id="twitter" wire:model="statePersonalInfo.twitter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Twitter Profile link">
                                 </div>
                                 <div>
                                     <label for="github" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Github</label>
-                                    <input type="text" id="github" wire:model="statePersonalInfo.github" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Github Profile" required>
+                                    <input type="text" id="github" wire:model="statePersonalInfo.github" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Github Profile link" required>
                                 </div>
                             </div>
                             <div class="text-center">
@@ -188,7 +187,7 @@
                     </div>
                 </div>
                 <!-- Work informations --->
-                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="work" role="tabpanel" aria-labelledby="work-tab">
+                <div class="p-4 bg-white md:p-8 dark:bg-gray-800" id="work" role="tabpanel" aria-labelledby="work-tab">
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div id="accordion-collapse" data-accordion="collapse">
                             <h2 id="accordion-collapse-heading-1">
@@ -248,7 +247,7 @@
                     </div>
                 </div>
                 <!-- Skills informations --->
-                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="skills" role="tabpanel" aria-labelledby="skills-tab">
+                <div class="p-4 bg-white md:p-8 dark:bg-gray-800" id="skills" role="tabpanel" aria-labelledby="skills-tab">
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                             <div>
@@ -284,10 +283,10 @@
                     </div>
                 </div>
                 <!-- Preview --->
-                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="preview" role="tabpanel" aria-labelledby="preview-tab">
+                <div class="p-4 bg-white md:p-8 dark:bg-gray-800" id="preview" role="tabpanel" aria-labelledby="preview-tab">
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
-                            <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-gray-200 shadow-md p-6">
+                            <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
                                 <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
                                     <div class="md:w-1/3 w-full">
                                         <header>
