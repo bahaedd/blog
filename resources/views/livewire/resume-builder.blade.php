@@ -32,18 +32,20 @@
                 <!-- Personal informations --->
                 <div class="p-4 bg-white md:p-8 dark:bg-gray-800" id="personal" role="tabpanel" aria-labelledby="personal-tab">
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
-                        <form action="#">
+                        <form action="#" enctype="multipart/form-data">
                             @if ($errors->any())
-                          <div class="flex p-4 mt-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                            <span class="sr-only">Info</span>
-                            <div>
-                              @foreach ($errors->all() as $error)
-                                 <span class="font-medium">{{ $error }}</span>
-                              @endforeach
+                            <div class="flex p-4 mt-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Info</span>
+                                <div>
+                                    @foreach ($errors->all() as $error)
+                                    <span class="font-medium">{{ $error }}</span>
+                                    @endforeach
+                                </div>
                             </div>
-                          </div>
-                      @endif
+                            @endif
                             <div class="grid gap-6 mb-6 md:grid-cols-2 p-16">
                                 <div>
                                     <div class="flex items-center justify-center w-full">
@@ -51,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="flex items-center justify-center w-full">
+                                    {{-- <div class="flex items-center justify-center w-full">
                                         <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                 <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="blue" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +64,9 @@
                                             </div>
                                             <input id="dropzone-file" wire:model="statePersonalInfo.image" type="file" class="hidden" />
                                         </label>
-                                    </div>
+                                    </div> --}}
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+                                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file" type="file" wire:model="statePersonalInfo.image">
                                 </div>
                                 <div>
                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
@@ -97,7 +101,7 @@
                                 </div>
                                 <div>
                                     <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website URL</label>
-                                    <input type="url" id="website" wire:model="statePersonalInfo.website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example.com" >
+                                    <input type="url" id="website" wire:model="statePersonalInfo.website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example.com">
                                 </div>
                                 <div>
                                     <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LinkedIn</label>
@@ -187,7 +191,7 @@
                     </div>
                 </div>
                 <!-- Work informations --->
-                <div class="p-4 bg-white md:p-8 dark:bg-gray-800" id="work" role="tabpanel" aria-labelledby="work-tab">
+                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="work" role="tabpanel" aria-labelledby="work-tab">
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div id="accordion-collapse" data-accordion="collapse">
                             <h2 id="accordion-collapse-heading-1">
@@ -247,7 +251,7 @@
                     </div>
                 </div>
                 <!-- Skills informations --->
-                <div class="p-4 bg-white md:p-8 dark:bg-gray-800" id="skills" role="tabpanel" aria-labelledby="skills-tab">
+                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="skills" role="tabpanel" aria-labelledby="skills-tab">
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                             <div>
@@ -283,27 +287,36 @@
                     </div>
                 </div>
                 <!-- Preview --->
-                <div class="p-4 bg-white md:p-8 dark:bg-gray-800" id="preview" role="tabpanel" aria-labelledby="preview-tab">
+                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="preview" role="tabpanel" aria-labelledby="preview-tab">
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                             <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
                                 <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
                                     <div class="md:w-1/3 w-full">
                                         <header>
-                                            <img src="{{URL('/images/profile.jpg')}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
+                                            <img src="{{ asset('storage/app/'.$personal_informations->image) }}" class="h-36 rounded-full sm:h-56" alt="{{ $personal_informations->name }}" width="230" height="160">
                                             <div class="text-white mt-4">
-                                                <a href="https://linkedin.com/in/justaashir" class="hover:underline flex items-center">
-                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
-                                                    LinkedIn
-                                                </a>
-                                                <a href="https://twitter.com/justaashir" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> Twitter
-                                                </a>
-                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="mail" class="mr-2"></ion-icon> sihassi.bahaeddine@gmail.com
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
                                                 </a>
                                                 <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="globe" class="mr-2"></ion-icon> aliendev.com
+                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> {{ $personal_informations->birthday }}
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="flag" class="mr-2"></ion-icon> {{ $personal_informations->nationality }}
+                                                </a>
+                                                <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
+                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
+                                                    {{ $personal_informations->linkedin }}
+                                                </a>
+                                                <a href="https://twitter.com/bahaeddine" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> {{ $personal_informations->twitter }}
+                                                </a>
+                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="mail" class="mr-2"></ion-icon> {{ $personal_informations->email }}
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="globe" class="mr-2"></ion-icon> {{ $personal_informations->website }}
                                                 </a>
                                             </div>
                                         </header>

@@ -19,6 +19,7 @@ class ResumeBuilder extends Component
     public $work;
     public $skills;
     public $statePersonalInfo = [];
+    public $profile_image;
     public $updateMode = false;
 
 
@@ -28,6 +29,7 @@ class ResumeBuilder extends Component
 
         if($this->personal_informations){
             $this->statePersonalInfo = [
+            'id' => $this->personal_informations->id,
             'name' => $this->personal_informations->name,
             'email' => $this->personal_informations->email,
             'address' => $this->personal_informations->address,
@@ -40,7 +42,7 @@ class ResumeBuilder extends Component
             'twitter' => $this->personal_informations->twitter,
             'github' => $this->personal_informations->github,
         ];
-        $updateMode = true;
+        $this->updateMode = true;
         }
 
     }
@@ -57,7 +59,8 @@ class ResumeBuilder extends Component
             'image' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
         ])->validate();
 
-        $this->statePersonalInfo['image']->store('public');
+        $this->statePersonalInfo['image']->move(public_path('assets/images'), $this->statePersonalInfo['image']);
+
         Personalinfo::create([
             'user_id' => Auth::user()->id,
             'name' => $this->statePersonalInfo['name'],
@@ -95,7 +98,10 @@ class ResumeBuilder extends Component
        if ($this->statePersonalInfo['id']) {
 
             $Personalinfo = Personalinfo::find($this->statePersonalInfo['id']);
-            $this->statePersonalInfo['image']->store('public');
+
+            $imageName = time().'.'. $this->statePersonalInfo['image']->extension();
+            $this->statePersonalInfo['image']->storeAs('images', $imageName);
+
             $Personalinfo->update([
                 'user_id' => Auth::user()->id,
                 'name' => $this->statePersonalInfo['name'],
@@ -104,7 +110,7 @@ class ResumeBuilder extends Component
                 'phone_number' => $this->statePersonalInfo['phone_number'],
                 'birthday' => $this->statePersonalInfo['birthday'],
                 'nationality' => $this->statePersonalInfo['nationality'],
-                'image' => $this->statePersonalInfo['image'],
+                'image' => $imageName,
                 'website' => $this->statePersonalInfo['website'],
                 'linkedin' => $this->statePersonalInfo['linkedin'],
                 'twitter' => $this->statePersonalInfo['twitter'],
@@ -112,7 +118,7 @@ class ResumeBuilder extends Component
             ]);
 
             $this->mount();
-            $this->alert('success', 'Personal Informations saved!', [
+            $this->alert('success', 'Personal Informations updated!', [
                 'position' => 'center',
                 'toast' => true
             ]);
