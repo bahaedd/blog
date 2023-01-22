@@ -48,9 +48,15 @@
                             @endif
                             <div class="grid gap-6 mb-6 md:grid-cols-2 p-16">
                                 <div>
+                                     @if($personal_informations)
                                     <div class="flex items-center justify-center w-full">
-                                        <img src="{{URL('/images/profile.jpg')}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
+                                        <img src="/storage/app/{{$personal_informations->image}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
                                     </div>
+                                    @else
+                                    <div class="flex items-center justify-center w-full">
+                                        <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
+                                    </div>
+                                    @endif
                                 </div>
                                 <div>
                                     {{-- <div class="flex items-center justify-center w-full">
@@ -294,7 +300,8 @@
                                 <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
                                     <div class="md:w-1/3 w-full">
                                         <header>
-                                            <img src="{{ asset('storage/app/'.$personal_informations->image) }}" class="h-36 rounded-full sm:h-56" alt="{{ $personal_informations->name }}" width="230" height="160">
+                                            @if($personal_informations)
+                                            <img src="/storage/app/{{$personal_informations->image}}" class="h-36 rounded-full sm:h-56" alt="{{ $personal_informations->name }}" width="230" height="160">
                                             <div class="text-white mt-4">
                                                 <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
                                                     <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
@@ -319,6 +326,34 @@
                                                     <ion-icon name="globe" class="mr-2"></ion-icon> {{ $personal_informations->website }}
                                                 </a>
                                             </div>
+                                            @else
+                                            <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
+                                            
+                                            <div class="text-white mt-4">
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="person" class="mr-2"></ion-icon> Your name
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> Birthday
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="flag" class="mr-2"></ion-icon> Nationality
+                                                </a>
+                                                <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
+                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
+                                                    Linkedin Profile
+                                                </a>
+                                                <a href="https://twitter.com/bahaeddine" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> Twitter Profile
+                                                </a>
+                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="mail" class="mr-2"></ion-icon> Email Address
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="globe" class="mr-2"></ion-icon> Website
+                                                </a>
+                                            </div>
+                                            @endif
                                         </header>
                                         <section class="mt-16">
                                             <h3 class="uppercase text-white font-medium text-3xl">Career Objectives</h3>
