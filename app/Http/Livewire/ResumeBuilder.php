@@ -59,9 +59,7 @@ class ResumeBuilder extends Component
             'image' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
         ])->validate();
 
-        $imageName = time().'.'. $this->statePersonalInfo['image']->extension();
-        $destinationPath = public_path().'\images' ;
-        $this->statePersonalInfo['image']->move($destinationPath, $imageName);
+        $this->statePersonalInfo['image']->store('profiles', 'public');
 
         Personalinfo::create([
             'user_id' => Auth::user()->id,
@@ -71,7 +69,7 @@ class ResumeBuilder extends Component
             'phone_number' => $this->statePersonalInfo['phone_number'],
             'birthday' => $this->statePersonalInfo['birthday'],
             'nationality' => $this->statePersonalInfo['nationality'],
-            'image' => $imageName,
+            'image' =>  $this->statePersonalInfo['image']->hashName(),
             'website' => $this->statePersonalInfo['website'],
             'linkedin' => $this->statePersonalInfo['linkedin'],
             'twitter' => $this->statePersonalInfo['twitter'],
@@ -100,11 +98,8 @@ class ResumeBuilder extends Component
        if ($this->statePersonalInfo['id']) {
 
             $Personalinfo = Personalinfo::find($this->statePersonalInfo['id']);
-
-            $imageName = time().'.'. $this->statePersonalInfo['image']->extension();
-            $destinationPath = public_path().'\images' ;
-            $this->statePersonalInfo['image']->move($destinationPath, $imageName);
-
+     
+            $this->statePersonalInfo['image']->store('profiles', 'public');
 
             $Personalinfo->update([
                 'user_id' => Auth::user()->id,
@@ -114,7 +109,7 @@ class ResumeBuilder extends Component
                 'phone_number' => $this->statePersonalInfo['phone_number'],
                 'birthday' => $this->statePersonalInfo['birthday'],
                 'nationality' => $this->statePersonalInfo['nationality'],
-                'image' => $imageName,
+                'image' =>  $this->statePersonalInfo['image']->hashName(),
                 'website' => $this->statePersonalInfo['website'],
                 'linkedin' => $this->statePersonalInfo['linkedin'],
                 'twitter' => $this->statePersonalInfo['twitter'],

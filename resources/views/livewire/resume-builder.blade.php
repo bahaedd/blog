@@ -50,7 +50,7 @@
                                 <div>
                                      @if($personal_informations)
                                     <div class="flex items-center justify-center w-full">
-                                        <img src="/storage/app/{{$personal_informations->image}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
+                                        <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
                                     </div>
                                     @else
                                     <div class="flex items-center justify-center w-full">
@@ -301,7 +301,7 @@
                                     <div class="md:w-1/3 w-full">
                                         <header>
                                             @if($personal_informations)
-                                            <img src="/storage/app/{{$personal_informations->image}}" class="h-36 rounded-full sm:h-56" alt="{{ $personal_informations->name }}" width="230" height="160">
+                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-36 rounded-full sm:h-56" alt="{{ $personal_informations->name }}" width="230" height="160">
                                             <div class="text-white mt-4">
                                                 <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
                                                     <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
