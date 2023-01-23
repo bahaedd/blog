@@ -4,25 +4,13 @@
             <div class="sm:hidden">
                 <label for="tabs" class="sr-only">Select tab</label>
                 <select id="tabs" class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option>Personal informations</option>
-                    <option>Education</option>
-                    <option>Work</option>
-                    <option>skills</option>
+                    <option>Informations</option>
                     <option>Preview</option>
                 </select>
             </div>
             <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
                 <li class="w-full">
-                    <button id="personal-tab" data-tabs-target="#personal" type="button" role="tab" aria-controls="personal-tab" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Personal Informations</button>
-                </li>
-                <li class="w-full">
-                    <button id="education-tab" data-tabs-target="#education" type="button" role="tab" aria-controls="education-tab" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Education</button>
-                </li>
-                <li class="w-full">
-                    <button id="work-tab" data-tabs-target="#work" type="button" role="tab" aria-controls="work-tab" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Work</button>
-                </li>
-                <li class="w-full">
-                    <button id="skills-tab" data-tabs-target="#skills" type="button" role="tab" aria-controls="skills-tab" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Skills</button>
+                    <button id="personal-tab" data-tabs-target="#personal" type="button" role="tab" aria-controls="personal-tab" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Informations</button>
                 </li>
                 <li class="w-full">
                     <button id="preview-tab" data-tabs-target="#preview" type="button" role="tab" aria-controls="preview-tab" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Preview</button>
@@ -31,7 +19,9 @@
             <div id="fullWidthTabContent">
                 <!-- Personal informations --->
                 <div class="p-4 bg-white md:p-8 dark:bg-gray-800" id="personal" role="tabpanel" aria-labelledby="personal-tab">
-                    <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
+                    <!-- Personal informations --->
+                    <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
+                            <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Personal Informations</h2>
                         <form action="#" enctype="multipart/form-data">
                             @if ($errors->any())
                             <div class="flex p-4 mt-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
@@ -48,7 +38,7 @@
                             @endif
                             <div class="grid gap-6 mb-6 md:grid-cols-2 p-16">
                                 <div>
-                                     @if($personal_informations)
+                                    @if($personal_informations)
                                     <div class="flex items-center justify-center w-full">
                                         <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
                                     </div>
@@ -129,10 +119,9 @@
                             </div>
                         </form>
                     </div>
-                </div>
-                <!-- Education informations --->
-                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="education" role="tabpanel" aria-labelledby="education-tab">
-                    <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
+                    <!-- Education informations --->
+                    <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
+                        <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Education</h2>
                         {{-- <div id="accordion-collapse" data-accordion="collapse">
                             <h2 id="accordion-collapse-heading-1">
                                 <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
@@ -199,10 +188,9 @@
                             </div>
                         </form>
                     </div>
-                </div>
-                <!-- Work informations --->
-                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="work" role="tabpanel" aria-labelledby="work-tab">
-                    <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
+                    <!-- Work informations --->
+                    <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
+                        <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Work Experience</h2>
                         <div id="accordion-collapse" data-accordion="collapse">
                             <h2 id="accordion-collapse-heading-1">
                                 <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
@@ -259,10 +247,9 @@
                             <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
                         </form>
                     </div>
-                </div>
-                <!-- Skills informations --->
-                <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="skills" role="tabpanel" aria-labelledby="skills-tab">
-                    <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
+                    <!-- skills informations --->
+                    <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
+                        <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Skills</h2>
                         <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                             <div>
                                 <div class="flex justify-between mb-1">
@@ -332,7 +319,6 @@
                                             </div>
                                             @else
                                             <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
-                                            
                                             <div class="text-white mt-4">
                                                 <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
                                                     <ion-icon name="person" class="mr-2"></ion-icon> Your name
