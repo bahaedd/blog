@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use App\Models\Personalinfo;
+use App\Models\Education;
 use Livewire\WithFileUploads;
 use Auth;
 
@@ -19,13 +20,14 @@ class ResumeBuilder extends Component
     public $work;
     public $skills;
     public $statePersonalInfo = [];
-    public $profile_image;
+    public $stateEducation = [];
     public $updateMode = false;
 
 
     public function mount()
     {
         $this->personal_informations = Auth::user()->personalinfo;
+        $this->educations = Auth::user()->educations;
 
         if($this->personal_informations){
             $this->statePersonalInfo = [
@@ -42,6 +44,7 @@ class ResumeBuilder extends Component
             'twitter' => $this->personal_informations->twitter,
             'github' => $this->personal_informations->github,
         ];
+
         $this->updateMode = true;
         }
 
@@ -124,6 +127,30 @@ class ResumeBuilder extends Component
         }
     }
 
+    public function storeEducation()
+    {
+        $validator = Validator::make($this->stateEducation, [
+            'degree' => 'required',
+            'score' => 'required',
+            'school' => 'required',
+            'starts' => 'required',
+            'ends' => 'required',
+        ])->validate();
+
+        Personalinfo::create($this->stateEducation);
+
+        $this->mount();
+        $this->alert('success', 'Personal Informations saved!', [
+            'position' => 'center',
+            'toast' => true
+        ]);
+
+    }
+
+    public function updateEducation()
+    {
+       // updateEducation
+    }
 
     public function render()
     {

@@ -15,11 +15,11 @@ class CreateEducationTable extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->integer('resume_id');
+            $table->integer('user_id');
             $table->string('degree');
             $table->string('score');
             $table->string('school');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->date('starts');
             $table->date('ends');
             $table->timestamps();
