@@ -122,20 +122,40 @@
                     <!-- Education informations --->
                     <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
                         <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Education</h2>
-                            <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
+                            <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
                                 @forelse($educations as $education)
-                                <li>
-                                    {{ $education->degree }}
-                                    <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
-                                        <li>Score: {{ $education->score }}</li>
-                                        <li>School: {{ $education->school }}</li>
-                                        <li>Date: {{ $education->starts }} / {{ $education->starts }}</li>
-                                    </ol>
-                                </li>
+                                <div class="group p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                                    <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
+                                        <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
+                                            <li class="mb-3 text-center">
+                                                <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="edit()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="blue">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                    </svg>
+                                                </button>
+                                                <div id="edit-edu" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    Edit
+                                                </div>
+                                                <button data-tooltip-target="delete-edu" class="inline-block text-center" wire:click.prevent="delete()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="red">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                                <div id="delete-edu" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    delete
+                                                </div>
+                                            </li>
+                                            <li>Degree: {{ $education->degree }}</li>
+                                            <li>Score: {{ $education->score }}</li>
+                                            <li>School: {{ $education->school }}</li>
+                                            <li>Date: {{ $education->starts }} / {{ $education->starts }}</li>
+                                        </ol>
+                                    </ul>
+                                </div>
                                 @empty
-                                <li>Add your degrees here</li>
+                                <p>Add your degrees here</p>
                                 @endforelse
-                            </ul>
+                            </div>
                             <form action="#">
                                 <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                                     <div>
@@ -386,7 +406,7 @@
                                     </div>
                                     <div class="md:w-2/4 w-full">
                                         <section class="mt-16 md:mt-0">
-                                            <h3 class="uppercase text-white font-medium text-3xl">Work Summary</h3>
+                                            {{-- <h3 class="uppercase text-white font-medium text-3xl">Work Summary</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
                                             <div class="mt-8">
@@ -406,43 +426,57 @@
                                                     <li> Working with distributed network of freelancers </li>
                                                     <li> Complete Branding & Design System (Email, Social Media, Website, Print) </li>
                                                 </ul>
+                                            </div> --}}
+                                            <h3 class="uppercase text-white font-medium text-3xl">Education Summary</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            </sectio>
-                                            <section class="mt-16">
-                                                <h3 class="uppercase text-white font-medium text-3xl">Freelance &amp; Other fun stuff</h3>
-                                                <div class="h-1 bg-green w-48 my-4">
-                                                </div>
-                                                <div class="mt-8">
-                                                    <h4 class="font-medium text-green text-2xl">Shopify Freelance Associate</h4>
-                                                    <p class="text-white">
-                                                        Proud member of the shopify community, and their partner program. Setting up Shopify stores and making custom themes from a long time.
-                                                    </p>
-                                                </div>
-                                                <div class="mt-8">
-                                                    <h4 class="font-medium text-green text-2xl"><a href="https://dev.to/justaashir" class="hover:underline">DEV Community</a> (Volunteer & Technical Writer)</h4>
-                                                    <ul class="text-white list-disc list-inside mt-4">
-                                                        <li>Have written about Vuejs, career advice and resources...</li>
-                                                        <li> Top 500 Author (Award)</li>
-                                                        <li> 16,000+ Followers + 150K+ Views</li>
-                                                        <li> 5 Badges</li>
-                                                    </ul>
-                                                </div>
-                                            </section>
-                                            <section class="mt-16">
-                                                <h3 class="uppercase text-white font-medium text-3xl">Passion Projects</h3>
-                                                <div class="h-1 bg-green w-48 my-4">
-                                                </div>
-                                                <div class="mt-8">
-                                                    <h4 class="font-medium text-green text-2xl"><a href="https://tailwindcssuikit.com" class="hover:underline">Tailwind CSS Ui Kit</a></h4>
-                                                    <p class="text-white mt-2">
-                                                        Building this, in my free time. Making modern design systems and kits possible with TailwindCSS
-                                                    </p>
-                                                </div>
-                                                <div class="mt-8">
-                                                    <h4 class="font-medium text-green text-2xl"><a href="https://remoteworkjar.com" class="hover:underline">RemoteWorkJar</a></h4>
-                                                    <p class="text-white mt-2">Remote Job Board, where the main focus is to manually screen every job posted and help candidates get high-quality remote-only job postings.</p>
-                                                </div>
-                                            </section>
+                                            @foreach($educations as $education)
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl">Degree: {{ $education->degree }}</h4>
+                                                <h5 class="text-xl text-green"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
+                                                <ul class="text-white list-disc list-inside mt-4">
+                                                    <li>Score: {{ $education->score }}</li>
+                                                    <li>School: {{ $education->school }}</li>
+                                                    <li>Description: {{ $education->description }}</li>
+                                                </ul>
+                                            </div>
+                                            @endforeach
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-white font-medium text-3xl">Freelance &amp; Other fun stuff</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl">Shopify Freelance Associate</h4>
+                                                <p class="text-white">
+                                                    Proud member of the shopify community, and their partner program. Setting up Shopify stores and making custom themes from a long time.
+                                                </p>
+                                            </div>
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl"><a href="https://dev.to/justaashir" class="hover:underline">DEV Community</a> (Volunteer & Technical Writer)</h4>
+                                                <ul class="text-white list-disc list-inside mt-4">
+                                                    <li>Have written about Vuejs, career advice and resources...</li>
+                                                    <li> Top 500 Author (Award)</li>
+                                                    <li> 16,000+ Followers + 150K+ Views</li>
+                                                    <li> 5 Badges</li>
+                                                </ul>
+                                            </div>
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-white font-medium text-3xl">Passion Projects</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl"><a href="https://tailwindcssuikit.com" class="hover:underline">Tailwind CSS Ui Kit</a></h4>
+                                                <p class="text-white mt-2">
+                                                    Building this, in my free time. Making modern design systems and kits possible with TailwindCSS
+                                                </p>
+                                            </div>
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl"><a href="https://remoteworkjar.com" class="hover:underline">RemoteWorkJar</a></h4>
+                                                <p class="text-white mt-2">Remote Job Board, where the main focus is to manually screen every job posted and help candidates get high-quality remote-only job postings.</p>
+                                            </div>
+                                        </section>
                                     </div>
                                 </div>
                             </div>

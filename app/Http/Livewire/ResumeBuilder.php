@@ -48,10 +48,6 @@ class ResumeBuilder extends Component
         $this->updateMode = true;
         }
 
-        if($this->educations->count()){
-        $this->updateEdu = true;
-        }
-
     }
 
     public function storePersonalInfo()
@@ -152,7 +148,7 @@ class ResumeBuilder extends Component
         ]);
 
         $this->mount();
-        $this->alert('success', 'Personal Informations saved!', [
+        $this->alert('success', 'Degree saved!', [
             'position' => 'center',
             'toast' => true
         ]);
