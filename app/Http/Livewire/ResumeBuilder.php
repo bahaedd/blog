@@ -22,12 +22,13 @@ class ResumeBuilder extends Component
     public $statePersonalInfo = [];
     public $stateEducation = [];
     public $updateMode = false;
+    public $updateEdu = false;
 
 
     public function mount()
     {
         $this->personal_informations = Auth::user()->personalinfo;
-        $this->educations = Auth::user()->educations;
+        $this->educations = Education::where('user_id', '=', Auth::user()->id)->get();
 
         if($this->personal_informations){
             $this->statePersonalInfo = [
@@ -44,8 +45,11 @@ class ResumeBuilder extends Component
             'twitter' => $this->personal_informations->twitter,
             'github' => $this->personal_informations->github,
         ];
-
         $this->updateMode = true;
+        }
+
+        if($this->educations->count()){
+        $this->updateEdu = true;
         }
 
     }
@@ -137,7 +141,15 @@ class ResumeBuilder extends Component
             'ends' => 'required',
         ])->validate();
 
-        Personalinfo::create($this->stateEducation);
+        Education::create([
+            'user_id' => Auth::user()->id,
+            'degree' => $this->stateEducation['degree'],
+            'score' => $this->stateEducation['score'],
+            'school' => $this->stateEducation['school'],
+            'starts' => $this->stateEducation['starts'],
+            'description' => $this->stateEducation['description'],
+            'ends' => $this->stateEducation['ends'],
+        ]);
 
         $this->mount();
         $this->alert('success', 'Personal Informations saved!', [
