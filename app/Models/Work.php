@@ -10,7 +10,7 @@ class Work extends Model
     use HasFactory;
 
     protected $fillable = [
-        'resume_id',
+        'user_id',
         'position',
         'company',
         'description',
@@ -18,8 +18,8 @@ class Work extends Model
         'ends',
     ];
 
-    // public function resume()
-    // {
-    //     return $this->belongsTo(Resume::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

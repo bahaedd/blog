@@ -50,6 +50,7 @@ class ResumeBuilder extends Component
 
     }
 
+    //Personal Infos
     public function storePersonalInfo()
     {
         $validator = Validator::make($this->statePersonalInfo, [
@@ -127,6 +128,7 @@ class ResumeBuilder extends Component
         }
     }
 
+    //Education
     public function storeEducation()
     {
         $validator = Validator::make($this->stateEducation, [
@@ -147,7 +149,7 @@ class ResumeBuilder extends Component
             'description' => $this->stateEducation['description'],
             'ends' => $this->stateEducation['ends'],
         ]);
-
+        $this->reset('stateEducation');
         $this->mount();
         $this->alert('success', 'Degree saved!', [
             'position' => 'center',
@@ -209,6 +211,17 @@ class ResumeBuilder extends Component
         }
     }
 
+    public function deleteEducation($id)
+    {
+        if($id){
+            Education::where('id',$id)->delete();
+            $this->mount();
+            $this->alert('success', 'Degree Deleted', [
+            'position' => 'center',
+            'toast' => true
+             ]);
+        }
+    }
 
     public function render()
     {

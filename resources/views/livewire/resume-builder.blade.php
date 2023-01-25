@@ -122,9 +122,9 @@
                     <!-- Education informations --->
                     <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
                         <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Education</h2>
-                            <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
+                            <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3 mb-3">
                                 @forelse($educations as $education)
-                                <div class="group p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                                <div class="group p-5 font-light border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                     <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
                                         <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
                                             <li class="mb-3 text-center">
@@ -147,6 +147,7 @@
                                             </li>
                                             <li>Degree: {{ $education->degree }}</li>
                                             <li>Score: {{ $education->score }}</li>
+                                            <li>Speciality: {{ $education->description }}</li>
                                             <li>School: {{ $education->school }}</li>
                                             <li>Date: {{ $education->starts }} / {{ $education->starts }}</li>
                                         </ol>
@@ -172,7 +173,7 @@
                                     </div>
                                     <div>
                                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description (Speciality)</label>
-                                        <input type="text" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="School or University" wire:model="stateEducation.description">
+                                        <input type="text" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Speciality" wire:model="stateEducation.description">
                                     </div>
                                     <div>
                                         <label for="start-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Starts at</label>

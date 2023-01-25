@@ -15,7 +15,7 @@ class CreateEducationTable extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('degree');
             $table->string('score');
             $table->string('school');
@@ -23,6 +23,8 @@ class CreateEducationTable extends Migration
             $table->date('starts');
             $table->date('ends');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

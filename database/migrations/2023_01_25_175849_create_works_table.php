@@ -15,13 +15,15 @@ class CreateWorksTable extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            $table->integer('resume_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('position');
             $table->string('company');
             $table->text('description');
             $table->date('starts');
             $table->date('ends');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
