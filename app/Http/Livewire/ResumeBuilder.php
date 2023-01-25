@@ -135,6 +135,7 @@ class ResumeBuilder extends Component
             'school' => 'required',
             'starts' => 'required',
             'ends' => 'required',
+            'description' => 'required',
         ])->validate();
 
         Education::create([
@@ -155,10 +156,59 @@ class ResumeBuilder extends Component
 
     }
 
+    public function editEducation($id)
+    {
+       $this->updateEdu = true;
+
+        $education = Education::find($id);
+
+        $this->stateEducation = [
+            'id' => $education->id,
+            'user_id' => $education->user_id,
+            'degree' => $education->degree,
+            'score' => $education->score,
+            'school' => $education->school,
+            'starts' => $education->starts,
+            'ends' => $education->ends,
+            'description' => $education->description,
+        ];
+        $this->mount();
+    }
+
     public function updateEducation()
     {
-       // updateEducation
+       $validator = Validator::make($this->stateEducation, [
+            'degree' => 'required',
+            'score' => 'required',
+            'school' => 'required',
+            'starts' => 'required',
+            'ends' => 'required',
+            'description' => 'required',
+        ])->validate();
+
+
+        if ($this->stateEducation['id']) {
+            $education = Education::find($this->stateEducation['id']);
+            $education->update([
+                'degree' => $this->stateEducation['degree'],
+                'score' => $this->stateEducation['score'],
+                'school' => $this->stateEducation['school'],
+                'starts' => $this->stateEducation['starts'],
+                'description' => $this->stateEducation['description'],
+                'ends' => $this->stateEducation['ends'],
+            ]);
+
+
+            $this->updateEdu = false;
+            $this->reset('stateEducation');
+            $this->mount();
+            $this->alert('success', 'Degree Updated', [
+            'position' => 'center',
+            'toast' => true
+            ]);
+        }
     }
+
 
     public function render()
     {

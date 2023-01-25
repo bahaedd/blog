@@ -128,7 +128,7 @@
                                     <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
                                         <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
                                             <li class="mb-3 text-center">
-                                                <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="edit()">
+                                                <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="editEducation({{ $education->id }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="blue">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
@@ -136,7 +136,7 @@
                                                 <div id="edit-edu" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Edit
                                                 </div>
-                                                <button data-tooltip-target="delete-edu" class="inline-block text-center" wire:click.prevent="delete()">
+                                                <button data-tooltip-target="delete-edu" class="inline-block text-center" wire:click.prevent="deleteEducation({{ $education->id }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="red">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>
@@ -153,11 +153,11 @@
                                     </ul>
                                 </div>
                                 @empty
-                                <p>Add your degrees here</p>
+                                <p class="font-normal text-gray-500 mt-6">Add your degrees here</p>
                                 @endforelse
                             </div>
-                            <form action="#">
-                                <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
+                            <form class="bg-white border border-gray-200 rounded-lg shadow-md sm:p-3 lg:p-3 mt-3 dark:bg-gray-800 dark:border-gray-700" action="#">
+                                <div class="grid gap-6 mb-3 md:grid-cols-2 p-16 mt-6">
                                     <div>
                                         <label for="degree" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Degree</label>
                                         <input type="text" id="degree" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Degree" wire:model="stateEducation.degree">
@@ -169,6 +169,10 @@
                                     <div>
                                         <label for="school" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School / University</label>
                                         <input type="text" id="school" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="School or University" wire:model="stateEducation.school">
+                                    </div>
+                                    <div>
+                                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description (Speciality)</label>
+                                        <input type="text" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="School or University" wire:model="stateEducation.description">
                                     </div>
                                     <div>
                                         <label for="start-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Starts at</label>
@@ -192,12 +196,8 @@
                                             <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateEducation.ends">
                                         </div>
                                     </div>
-                                    <div>
-                                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description (optional)</label>
-                                        <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" wire:model="stateEducation.description"></textarea>
-                                    </div>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center mb-3">
                                     @if ($updateEdu)
                                     <button type="submit" wire:click.prevent="updateEducation" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
                                     @else
