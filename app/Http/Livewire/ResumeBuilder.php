@@ -7,6 +7,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use App\Models\Personalinfo;
 use App\Models\Education;
+use App\Models\Work;
 use Livewire\WithFileUploads;
 use Auth;
 
@@ -17,18 +18,21 @@ class ResumeBuilder extends Component
 
     public $personal_informations;
     public $educations;
-    public $work;
+    public $works;
     public $skills;
     public $statePersonalInfo = [];
     public $stateEducation = [];
+    public $stateWork = [];
     public $updateMode = false;
     public $updateEdu = false;
+     public $updateWork = false;
 
 
     public function mount()
     {
         $this->personal_informations = Auth::user()->personalinfo;
         $this->educations = Education::where('user_id', '=', Auth::user()->id)->get();
+        $this->works = Work::where('user_id', '=', Auth::user()->id)->get();
 
         if($this->personal_informations){
             $this->statePersonalInfo = [
@@ -221,6 +225,33 @@ class ResumeBuilder extends Component
             'toast' => true
              ]);
         }
+    }
+
+    //Personal Infos
+    public function storeWork()
+    {
+        $validator = Validator::make($this->statePersonalInfo, [
+            'company' => 'required',
+            'profession' => 'required',
+            'starts' => 'required',
+            'ends' => 'required',
+            'description' => 'required',
+        ])->validate();
+
+        Work::create([
+            'user_id' => Auth::user()->id,
+            'name' => $this->statePersonalInfo['name'],
+            'email' => $this->statePersonalInfo['email'],
+            'address' => $this->statePersonalInfo['address'],
+            'phone_number' => $this->statePersonalInfo['phone_number'],
+        ]);
+
+        $this->mount();
+        $this->alert('success', 'Work Exper saved!', [
+            'position' => 'center',
+            'toast' => true
+        ]);
+
     }
 
     public function render()

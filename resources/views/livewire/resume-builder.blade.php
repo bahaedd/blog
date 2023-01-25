@@ -438,7 +438,7 @@
                                                 <ul class="text-white list-disc list-inside mt-4">
                                                     <li>Score: {{ $education->score }}</li>
                                                     <li>School: {{ $education->school }}</li>
-                                                    <li>Description: {{ $education->description }}</li>
+                                                    <li>Speciality: {{ $education->description }}</li>
                                                 </ul>
                                             </div>
                                             @endforeach
