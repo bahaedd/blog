@@ -254,7 +254,7 @@
                                     <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
                                         <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
                                             <li class="mb-3 text-center">
-                                                <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="editEducation({{ $work->id }})">
+                                                <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="editWork({{ $work->id }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="blue">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
@@ -262,7 +262,7 @@
                                                 <div id="edit-edu" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Edit
                                                 </div>
-                                                <button data-tooltip-target="delete-edu" class="inline-block text-center" wire:click.prevent="deleteEducation({{ $work->id }})">
+                                                <button data-tooltip-target="delete-edu" class="inline-block text-center" wire:click.prevent="deleteWork({{ $work->id }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="red">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>
@@ -271,8 +271,8 @@
                                                     delete
                                                 </div>
                                             </li>
-                                            <li>Profession: {{ $work->profession }}</li>
-                                            <li>Company: {{ $work->conmpany }}</li>
+                                            <li>Profession: {{ $work->position }}</li>
+                                            <li>Company: {{ $work->company }}</li>
                                             <li>Date: {{ $work->starts }} / {{ $work->ends }}</li>
                                             <li>{{ $work->description }}</li>
                                         </ol>
@@ -286,14 +286,14 @@
                                 <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                                     <div>
                                         <label for="profession" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profession</label>
-                                        <input type="text" id="profession" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Profession" wire:model="stateEducation.profession">
+                                        <input type="text" id="profession" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Profession" wire:model="stateWork.profession">
                                         @error('profession')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
                                         @enderror
                                     </div>
                                     <div>
                                         <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
-                                        <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Company" wire:model="stateEducation.company">
+                                        <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Company" wire:model="stateWork.company">
                                         @error('company')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
                                         @enderror
@@ -306,7 +306,7 @@
                                                     <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateEducation.starts">
+                                            <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateWork.starts">
                                         </div>
                                         @error('starts')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
@@ -320,7 +320,7 @@
                                                     <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateEducation.ends">
+                                            <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateWork.ends">
                                         </div>
                                         @error('ends')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
@@ -328,7 +328,7 @@
                                     </div>
                                     <div class="mb-6">
                                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                        <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" wire:model="stateEducation.description"></textarea>
+                                        <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" wire:model="stateWork.description"></textarea>
                                         @error('description')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
                                         @enderror
@@ -484,35 +484,14 @@
                                     </div>
                                     <div class="md:w-2/4 w-full">
                                         <section class="mt-16 md:mt-0">
-                                            {{-- <h3 class="uppercase text-white font-medium text-3xl">Work Summary</h3>
-                                            <div class="h-1 bg-green w-48 my-4">
-                                            </div>
-                                            <div class="mt-8">
-                                                <h4 class="font-medium text-green text-2xl">Junior Front-end engineer</h4>
-                                                <h5 class="text-xl text-green"><a href="https://renetal.com" class="hover:underline">Renetal</a> | <i>2019 - JULY 2020</i></h5>
-                                                <ul class="text-white list-disc list-inside mt-4">
-                                                    <li> Designed high-performant UI Components </li>
-                                                    <li> Complete SaaS app redesign using VueJs </li>
-                                                    <li> Worked with an amazing remote-team from SIngapore in an agile environment.</li>
-                                                </ul>
-                                            </div>
-                                            <div class="mt-8">
-                                                <h4 class="font-medium text-green text-2xl">Founder &lt; CEO</h4>
-                                                <h5 class="text-xl text-green"><a href="https://justifyagency.com" class="hover:underline">Justify Agency</a> | <i>2020 - Present</i></h5>
-                                                <ul class="text-white list-disc list-inside mt-4">
-                                                    <li> Meeting with clients to discuss project requirements and workflow. (Includes Startups & Products) </li>
-                                                    <li> Working with distributed network of freelancers </li>
-                                                    <li> Complete Branding & Design System (Email, Social Media, Website, Print) </li>
-                                                </ul>
-                                            </div> --}}
-                                            <h3 class="uppercase text-white font-medium text-3xl">Education Summary</h3>
+                                            <h3 class="uppercase text-green font-medium text-3xl dark:text-white">Education Summary</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
                                             @foreach($educations as $education)
                                             <div class="mt-8">
-                                                <h4 class="font-medium text-green text-2xl">Degree: {{ $education->degree }}</h4>
-                                                <h5 class="text-xl text-green"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
-                                                <ul class="text-white list-disc list-inside mt-4">
+                                                <h4 class="font-medium text-green text-2xl dark:text-white">Degree: {{ $education->degree }}</h4>
+                                                <h5 class="text-xl text-green dark:text-white"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
+                                                <ul class="text-green list-disc list-inside mt-4 dark:text-white">
                                                     <li>Score: {{ $education->score }}</li>
                                                     <li>School: {{ $education->school }}</li>
                                                     <li>Speciality: {{ $education->description }}</li>
@@ -521,6 +500,21 @@
                                             @endforeach
                                         </section>
                                         <section class="mt-16">
+                                            <h3 class="uppercase text-green font-medium text-3xl dark:text-white">Work Summary</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            @foreach($works as $work)
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl dark:text-white">{{ $work->position }}</h4>
+                                                <h5 class="text-xl text-green dark:text-white"><i>{{ $work->starts }} - {{ $work->ends }}</i></h5>
+                                                <ul class="text-green list-disc list-inside mt-4 dark:text-white">
+                                                    <li>Company: {{ $work->company }}</li>
+                                                    <li>{{ $work->description }}</li>
+                                                </ul>
+                                            </div>
+                                            @endforeach
+                                        </section>
+                                        {{-- <section class="mt-16">
                                             <h3 class="uppercase text-white font-medium text-3xl">Freelance &amp; Other fun stuff</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
@@ -554,7 +548,7 @@
                                                 <h4 class="font-medium text-green text-2xl"><a href="https://remoteworkjar.com" class="hover:underline">RemoteWorkJar</a></h4>
                                                 <p class="text-white mt-2">Remote Job Board, where the main focus is to manually screen every job posted and help candidates get high-quality remote-only job postings.</p>
                                             </div>
-                                        </section>
+                                        </section> --}}
                                     </div>
                                 </div>
                             </div>

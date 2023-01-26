@@ -240,19 +240,81 @@ class ResumeBuilder extends Component
 
         Work::create([
             'user_id' => Auth::user()->id,
+            'position' => $this->stateWork['profession'],
             'company' => $this->stateWork['company'],
-            'profession' => $this->stateWork['profession'],
+            'description' => $this->stateWork['description'],
             'starts' => $this->stateWork['starts'],
             'ends' => $this->stateWork['ends'],
-            'description' => $this->stateWork['description'],
         ]);
-
         $this->mount();
-        $this->alert('success', 'Work Exper saved!', [
+        $this->alert('success', $this->stateWork['profession'].' Experience Saved', [
             'position' => 'center',
             'toast' => true
         ]);
+        $this->reset('stateWork');
+    }
 
+    public function editWork($id)
+    {
+       $this->updateWork = true;
+
+        $work = Work::find($id);
+
+        $this->stateWork = [
+            'id' => $work->id,
+            'user_id' => $work->user_id,
+            'profession' => $work->position,
+            'company' => $work->company,
+            'description' => $work->description,
+            'starts' => $work->starts,
+            'ends' => $work->ends,
+        ];
+        $this->mount();
+    }
+
+    public function updateWork()
+    {
+       $validator = Validator::make($this->stateWork, [
+            'company' => 'required',
+            'profession' => 'required',
+            'starts' => 'required',
+            'ends' => 'required',
+            'description' => 'required',
+        ])->validate();
+
+
+        if ($this->stateWork['id']) {
+            $work = Work::find($this->stateWork['id']);
+            $work->update([
+                'user_id' => Auth::user()->id,
+                'position' => $this->stateWork['profession'],
+                'company' => $this->stateWork['company'],
+                'description' => $this->stateWork['description'],
+                'starts' => $this->stateWork['starts'],
+                'ends' => $this->stateWork['ends'],
+            ]);
+
+
+            $this->updateWork = false;
+            $this->mount();
+            $this->alert('success', $this->stateWork['profession'].' Experience Updated', [
+            'position' => 'center',
+            'toast' => true
+            ]);
+            $this->reset('stateWork');
+        }
+    }
+
+    public function deleteWork($id)
+    {
+        if($id){
+            Work::where('id',$id)->delete();
+            $this->mount();
+            $this->alert('success', 'Work Experience Deleted', [
+            'position' => 'center',
+            'toast' => true
+             ]);
+        }
     }
 
     public function render()
