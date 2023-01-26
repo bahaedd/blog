@@ -23,19 +23,6 @@
                     <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
                         <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Personal Informations</h2>
                             <form action="#" enctype="multipart/form-data">
-                                @if ($errors->any())
-                                <div class="flex p-4 mt-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-                                    <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span class="sr-only">Info</span>
-                                    <div>
-                                        @foreach ($errors->all() as $error)
-                                        <span class="font-medium">{{ $error }}</span>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @endif
                                 <div class="grid gap-6 mb-6 md:grid-cols-2 p-16">
                                     <div>
                                         @if($personal_informations)
@@ -50,7 +37,7 @@
                                     </div>
                                     <div>
                                         <div class="flex items-center justify-center w-full">
-                                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-700 dark:hover:bg-bray-800 dark:bg-gray-900 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                     <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="blue" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
@@ -60,11 +47,17 @@
                                                 </div>
                                                 <input id="dropzone-file" wire:model="statePersonalInfo.image" type="file" class="hidden" />
                                             </label>
+                                            @error('image')
+                                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div>
                                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                         <input type="text" id="name" wire:model="statePersonalInfo.name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ Auth::user()->name }}" placeholder="{{ Auth::user()->name }}">
+                                        @error('name')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Birthday</label>
@@ -76,38 +69,65 @@
                                             </div>
                                             <input value="2017-06-01" type="date" id="birthday" wire:model="statePersonalInfo.birthday" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your birthday">
                                         </div>
+                                        @error('birthday')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="nationality" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nationality</label>
                                         <input type="text" id="nationality" wire:model="statePersonalInfo.nationality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nationality">
+                                        @error('nationality')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
                                         <input type="email" id="email" wire:model="statePersonalInfo.email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ Auth::user()->email }}" placeholder="{{ Auth::user()->email }}">
+                                        @error('email')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
                                         <input type="text" id="address" wire:model="statePersonalInfo.address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Adress">
+                                        @error('address')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
                                         <input type="tel" id="phone" wire:model="statePersonalInfo.phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Phone number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                                        @error('phone_number')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website URL</label>
                                         <input type="url" id="website" wire:model="statePersonalInfo.website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example.com">
+                                        @error('website')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LinkedIn</label>
                                         <input type="text" id="linkedin" wire:model="statePersonalInfo.linkedin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="LinkedIn Profile link">
+                                        @error('linkedin')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="twitter" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Twitter</label>
                                         <input type="text" id="twitter" wire:model="statePersonalInfo.twitter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Twitter Profile link">
+                                        @error('twitter')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="github" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Github</label>
-                                        <input type="text" id="github" wire:model="statePersonalInfo.github" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Github Profile link" required>
+                                        <input type="text" id="github" wire:model="statePersonalInfo.github" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Github Profile link">
+                                        @error('github')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="text-center">
@@ -162,18 +182,30 @@
                                     <div>
                                         <label for="degree" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Degree</label>
                                         <input type="text" id="degree" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Degree" wire:model="stateEducation.degree">
+                                        @error('degree')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="score" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Score</label>
                                         <input type="text" id="score" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Score" wire:model="stateEducation.score">
+                                        @error('score')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="school" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School / University</label>
                                         <input type="text" id="school" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="School or University" wire:model="stateEducation.school">
+                                        @error('school')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description (Speciality)</label>
                                         <input type="text" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Speciality" wire:model="stateEducation.description">
+                                        @error('description')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="start-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Starts at</label>
@@ -185,6 +217,9 @@
                                             </div>
                                             <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateEducation.starts">
                                         </div>
+                                        @error('starts')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="end-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ends at</label>
@@ -196,6 +231,9 @@
                                             </div>
                                             <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateEducation.ends">
                                         </div>
+                                        @error('ends')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="text-center mb-3">
@@ -210,31 +248,55 @@
                     <!-- Work informations --->
                     <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
                         <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Work Experience</h2>
-                            <div id="accordion-collapse" data-accordion="collapse">
-                                <h2 id="accordion-collapse-heading-1">
-                                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-                                        <span>Laravel Developer</span>
-                                        <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                </h2>
-                                <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
-                                    <div class="p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                                        <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                                        <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
-                                    </div>
+                            <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3 mb-3">
+                                @forelse($works as $work)
+                                <div class="group p-5 font-light border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                                    <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
+                                        <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
+                                            <li class="mb-3 text-center">
+                                                <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="editEducation({{ $work->id }})">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="blue">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                    </svg>
+                                                </button>
+                                                <div id="edit-edu" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    Edit
+                                                </div>
+                                                <button data-tooltip-target="delete-edu" class="inline-block text-center" wire:click.prevent="deleteEducation({{ $work->id }})">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="red">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                                <div id="delete-edu" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    delete
+                                                </div>
+                                            </li>
+                                            <li>Profession: {{ $work->profession }}</li>
+                                            <li>Company: {{ $work->conmpany }}</li>
+                                            <li>Date: {{ $work->starts }} / {{ $work->ends }}</li>
+                                            <li>{{ $work->description }}</li>
+                                        </ol>
+                                    </ul>
                                 </div>
+                                @empty
+                                <p class="font-normal text-gray-500 mt-6">Add your Work Experience here</p>
+                                @endforelse
                             </div>
-                            <form>
+                            <form class="bg-white border border-gray-200 rounded-lg shadow-md sm:p-3 lg:p-3 mt-3 dark:bg-gray-800 dark:border-gray-700" action="#">
                                 <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                                     <div>
-                                        <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
-                                        <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+                                        <label for="profession" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profession</label>
+                                        <input type="text" id="profession" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Profession" wire:model="stateEducation.profession">
+                                        @error('profession')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
-                                        <label for="profession" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profession</label>
-                                        <input type="text" id="profession" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required>
+                                        <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
+                                        <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Company" wire:model="stateEducation.company">
+                                        @error('company')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="start-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Starts at</label>
@@ -244,8 +306,11 @@
                                                     <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                                            <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateEducation.starts">
                                         </div>
+                                        @error('starts')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div>
                                         <label for="end-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ends at</label>
@@ -255,15 +320,27 @@
                                                     <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                                            <input value="2017-06-01" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" wire:model="stateEducation.ends">
                                         </div>
+                                        @error('ends')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div class="mb-6">
                                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                        <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                                        <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" wire:model="stateEducation.description"></textarea>
+                                        @error('description')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                 </div>
-                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
+                                <div class="text-center mb-3">
+                                    @if ($updateWork)
+                                    <button type="submit" wire:click.prevent="updateWork" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+                                    @else
+                                    <button type="submit" wire:click.prevent="storeWork" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+                                    @endif
+                                </div>
                             </form>
                     </div>
                     <!-- skills informations --->

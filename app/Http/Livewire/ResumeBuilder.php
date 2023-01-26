@@ -227,10 +227,10 @@ class ResumeBuilder extends Component
         }
     }
 
-    //Personal Infos
+    //Work experience
     public function storeWork()
     {
-        $validator = Validator::make($this->statePersonalInfo, [
+        $validator = Validator::make($this->stateWork, [
             'company' => 'required',
             'profession' => 'required',
             'starts' => 'required',
@@ -240,10 +240,11 @@ class ResumeBuilder extends Component
 
         Work::create([
             'user_id' => Auth::user()->id,
-            'name' => $this->statePersonalInfo['name'],
-            'email' => $this->statePersonalInfo['email'],
-            'address' => $this->statePersonalInfo['address'],
-            'phone_number' => $this->statePersonalInfo['phone_number'],
+            'company' => $this->stateWork['company'],
+            'profession' => $this->stateWork['profession'],
+            'starts' => $this->stateWork['starts'],
+            'ends' => $this->stateWork['ends'],
+            'description' => $this->stateWork['description'],
         ]);
 
         $this->mount();
