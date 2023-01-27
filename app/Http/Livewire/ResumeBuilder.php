@@ -36,6 +36,7 @@ class ResumeBuilder extends Component
         $this->personal_informations = Auth::user()->personalinfo;
         $this->educations = Education::where('user_id', '=', Auth::user()->id)->get();
         $this->works = Work::where('user_id', '=', Auth::user()->id)->get();
+        $this->skills = Skill::where('user_id', '=', Auth::user()->id)->get();
 
         if($this->personal_informations){
             $this->statePersonalInfo = [
@@ -324,14 +325,14 @@ class ResumeBuilder extends Component
     public function storeSkill()
     {
         $validator = Validator::make($this->stateSkill, [
-            'skill' => 'required',
+            'title' => 'required',
             'level' => 'required',
         ])->validate();
 
        Skill::create([
             'user_id' => Auth::user()->id,
             'title' => $this->stateSkill['title'],
-            'level' => $this->stateWork['level'],
+            'level' => $this->stateSkill['level'],
         ]);
         $this->mount();
         $this->alert('success', $this->stateSkill['title'].' Skill Saved', [
@@ -347,16 +348,52 @@ class ResumeBuilder extends Component
 
         $skill = Skill::find($id);
 
-        $this->stateWork = [
-            'id' => $work->id,
-            'user_id' => $work->user_id,
-            'profession' => $work->position,
-            'company' => $work->company,
-            'description' => $work->description,
-            'starts' => $work->starts,
-            'ends' => $work->ends,
+        $this->stateSkill = [
+            'id' => $skill->id,
+            'user_id' => $skill->user_id,
+            'title' => $skill->title,
+            'level' => $skill->level,
         ];
         $this->mount();
+    }
+
+    public function updateSkill()
+    {
+       $validator = Validator::make($this->stateSkill, [
+            'title' => 'required',
+            'level' => 'required',
+        ])->validate();
+
+
+        if ($this->stateSkill['id']) {
+            $skill = Skill::find($this->stateSkill['id']);
+            $skill->update([
+                'user_id' => Auth::user()->id,
+                'title' => $this->stateSkill['title'],
+                'level' => $this->stateSkill['level'],
+            ]);
+
+
+            $this->updateSkill = false;
+            $this->mount();
+            $this->alert('success', $this->stateSkill['title'].' Skill Updated', [
+            'position' => 'center',
+            'toast' => true
+            ]);
+            $this->reset('stateSkill');
+        }
+    }
+
+    public function deleteSkill($id)
+    {
+        if($id){
+            Skill::where('id',$id)->delete();
+            $this->mount();
+            $this->alert('success', 'Skill Deleted', [
+            'position' => 'center',
+            'toast' => true
+             ]);
+        }
     }
 
     public function render()

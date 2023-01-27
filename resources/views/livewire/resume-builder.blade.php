@@ -345,37 +345,51 @@
                     </div>
                     <!-- skills informations --->
                     <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
-                        <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Skills</h2>
+                        <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-green rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white">Skills</h2>
                             <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
-                                <div class="border border-gray-200 rounded-lg shadow-md p-6">
+                                @forelse($skills as $skill)
+                                <div class="border border-gray-200 dark:border-gray-700 dark:bg-gray-900 p-12">
+                                    <div class="text-center">
+                                        <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="editSkill({{ $skill->id }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="blue">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                            </svg>
+                                        </button>
+                                        <div id="edit-edu" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                            Edit
+                                        </div>
+                                        <button data-tooltip-target="delete-edu" class="inline-block text-center" wire:click.prevent="deleteWork({{ $skill->id }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="red">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </button>
+                                        <div id="delete-edu" role="tooltip" class="inline-block absolute invisible z-10 py-1 px-1 text-sm font-medium text-blue-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                            delete
+                                        </div>
+                                    </div>
                                     <div class="flex justify-between mb-1">
-                                        <span class="text-base font-medium text-blue-700 dark:text-white">Laravel</span>
+                                        <span class="text-base font-medium text-blue-700 dark:text-white">{{ $skill->title }}</span>
                                     </div>
                                     <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 65%"></div>
+                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ $skill->level }}%"></div>
                                     </div>
                                 </div>
-                                <div class="mb-6 border border-gray-200 rounded-lg shadow-md p-6">
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-base font-medium text-blue-700 dark:text-white">Flowbite</span>
-                                    </div>
-                                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
-                                    </div>
-                                </div>
+                                @empty
+                                <p class="font-normal text-gray-500 mt-6">Add your Skill here</p>
+                                @endforelse
                             </div>
                             <form class="bg-white border border-gray-200 rounded-lg shadow-md sm:p-3 lg:p-3 mt-3 dark:bg-gray-800 dark:border-gray-700" action="#">
                                 <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                                     <div>
                                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skill</label>
-                                        <input type="text" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Skill" wire:model="stateWork.title">
+                                        <input type="text" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Skill" wire:model="stateSkill.title">
                                         @error('title')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
                                         @enderror
                                     </div>
                                     <div class="mb-6">
                                         <label for="level" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Level</label>
-                                        <input id="level" type="range" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" wire:model="stateWork.level">
+                                        <input id="level" type="range" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" wire:model="stateSkill.level">
                                         @error('level')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
                                         @enderror
@@ -401,7 +415,7 @@
                                         <header>
                                             @if($personal_informations)
                                             <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-36 rounded-full sm:h-56" alt="{{ $personal_informations->name }}" width="230" height="160">
-                                            <div class="text-white mt-4">
+                                            <div class="text-green dark:text-white mt-4">
                                                 <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
                                                     <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
                                                 </a>
@@ -454,23 +468,202 @@
                                             @endif
                                         </header>
                                         <section class="mt-16">
-                                            <h3 class="uppercase text-white font-medium text-3xl">Career Objectives</h3>
+                                            <h3 class="uppercase text-green dark:text-white font-medium text-3xl">Career Objectives</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            <p class="text-white">I am a motivated team player and aspiring web developer with great design and branding knowledge. My ultimate goal is to grow my knowledge of the industry and use my conversational skills to help fast-paced startup design UI/UX charismas.</p>
+                                            <p class="text-green dark:text-white">I am a motivated team player and aspiring web developer with great design and branding knowledge. My ultimate goal is to grow my knowledge of the industry and use my conversational skills to help fast-paced startup design UI/UX charismas.</p>
                                         </section>
                                         <section class="mt-16">
-                                            <h3 class="uppercase text-white font-medium text-3xl">Specializations</h3>
+                                            <h3 class="uppercase text-white font-medium text-3xl">Skills</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            <ul class="text-white list-disc list-inside">
-                                                <li>Front End Design (HTML, CSS, Figma, Sass)</li>
-                                                <li><a href="https://tailwindcss.com" class="hover:underline">TailwindCSS (♥)</a></li>
-                                                <li>Javascript ES6/*7 (Data Modelling, Debugging, Async Performance)</li>
-                                                <li>Front End Development (Vue.js, React.js, Svelte)</li>
-                                                <li>User Interface/User Experience</li>
-                                                <li>Design Thinking & Problem Solving </li>
-                                                <li>Can develop high-performant front-end interfaces which interacts with backend API</li>
+                                            <ul class="text-white list-none list-inside">
+                                                @foreach($skills as $skill)
+                                                <li class="mb-3">
+                                                    <div class="flex justify-between mb-1">
+                                                        <span class="text-base font-medium text-blue-700 dark:text-white">{{ $skill->title }}</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ $skill->level }}%"></div>
+                                                    </div>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-white font-medium text-3xl">Contact Info:</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <div class="text-white">
+                                                <a href="https://linkedin.com/in/justaashir" class="hover:underline flex items-center">
+                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
+                                                    LinkedIn
+                                                </a>
+                                                <a href="https://twitter.com/justaashir" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> Twitter
+                                                </a>
+                                                <a href="mailto:hello@justaashir.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="mail" class="mr-2"></ion-icon> hello@justaashir.com
+                                                </a>
+                                                <a href="https://justaashir.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="globe" class="mr-2"></ion-icon> www.justaashir.com
+                                                </a>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="md:w-2/4 w-full">
+                                        <section class="mt-16 md:mt-0">
+                                            <h3 class="uppercase text-green font-medium text-3xl dark:text-white">Education Summary</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            @foreach($educations as $education)
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl dark:text-white">Degree: {{ $education->degree }}</h4>
+                                                <h5 class="text-xl text-green dark:text-white"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
+                                                <ul class="text-green list-disc list-inside mt-4 dark:text-white">
+                                                    <li>Score: {{ $education->score }}</li>
+                                                    <li>School: {{ $education->school }}</li>
+                                                    <li>Speciality: {{ $education->description }}</li>
+                                                </ul>
+                                            </div>
+                                            @endforeach
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-green font-medium text-3xl dark:text-white">Work Summary</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            @foreach($works as $work)
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl dark:text-white">{{ $work->position }}</h4>
+                                                <h5 class="text-xl text-green dark:text-white"><i>{{ $work->starts }} - {{ $work->ends }}</i></h5>
+                                                <ul class="text-green list-disc list-inside mt-4 dark:text-white">
+                                                    <li>Company: {{ $work->company }}</li>
+                                                    <li>{{ $work->description }}</li>
+                                                </ul>
+                                            </div>
+                                            @endforeach
+                                        </section>
+                                        {{-- <section class="mt-16">
+                                            <h3 class="uppercase text-white font-medium text-3xl">Freelance &amp; Other fun stuff</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl">Shopify Freelance Associate</h4>
+                                                <p class="text-white">
+                                                    Proud member of the shopify community, and their partner program. Setting up Shopify stores and making custom themes from a long time.
+                                                </p>
+                                            </div>
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl"><a href="https://dev.to/justaashir" class="hover:underline">DEV Community</a> (Volunteer & Technical Writer)</h4>
+                                                <ul class="text-white list-disc list-inside mt-4">
+                                                    <li>Have written about Vuejs, career advice and resources...</li>
+                                                    <li> Top 500 Author (Award)</li>
+                                                    <li> 16,000+ Followers + 150K+ Views</li>
+                                                    <li> 5 Badges</li>
+                                                </ul>
+                                            </div>
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-white font-medium text-3xl">Passion Projects</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl"><a href="https://tailwindcssuikit.com" class="hover:underline">Tailwind CSS Ui Kit</a></h4>
+                                                <p class="text-white mt-2">
+                                                    Building this, in my free time. Making modern design systems and kits possible with TailwindCSS
+                                                </p>
+                                            </div>
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-green text-2xl"><a href="https://remoteworkjar.com" class="hover:underline">RemoteWorkJar</a></h4>
+                                                <p class="text-white mt-2">Remote Job Board, where the main focus is to manually screen every job posted and help candidates get high-quality remote-only job postings.</p>
+                                            </div>
+                                        </section> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
+                        <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
+                            <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
+                                <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
+                                    <div class="md:w-1/3 w-full">
+                                        <header>
+                                            @if($personal_informations)
+                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-36 rounded-full sm:h-56" alt="{{ $personal_informations->name }}" width="230" height="160">
+                                            <div class="text-green dark:text-white mt-4">
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> {{ $personal_informations->birthday }}
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="flag" class="mr-2"></ion-icon> {{ $personal_informations->nationality }}
+                                                </a>
+                                                <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
+                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
+                                                    {{ $personal_informations->linkedin }}
+                                                </a>
+                                                <a href="https://twitter.com/bahaeddine" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> {{ $personal_informations->twitter }}
+                                                </a>
+                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="mail" class="mr-2"></ion-icon> {{ $personal_informations->email }}
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="globe" class="mr-2"></ion-icon> {{ $personal_informations->website }}
+                                                </a>
+                                            </div>
+                                            @else
+                                            <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
+                                            <div class="text-white mt-4">
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="person" class="mr-2"></ion-icon> Your name
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> Birthday
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="flag" class="mr-2"></ion-icon> Nationality
+                                                </a>
+                                                <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
+                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
+                                                    Linkedin Profile
+                                                </a>
+                                                <a href="https://twitter.com/bahaeddine" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> Twitter Profile
+                                                </a>
+                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="mail" class="mr-2"></ion-icon> Email Address
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="globe" class="mr-2"></ion-icon> Website
+                                                </a>
+                                            </div>
+                                            @endif
+                                        </header>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-green dark:text-white font-medium text-3xl">Career Objectives</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <p class="text-green dark:text-white">I am a motivated team player and aspiring web developer with great design and branding knowledge. My ultimate goal is to grow my knowledge of the industry and use my conversational skills to help fast-paced startup design UI/UX charismas.</p>
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-white font-medium text-3xl">Skills</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <ul class="text-white list-none list-inside">
+                                                @foreach($skills as $skill)
+                                                <li class="mb-3">
+                                                    <div class="flex justify-between mb-1">
+                                                        <span class="text-base font-medium text-blue-700 dark:text-white">{{ $skill->title }}</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ $skill->level }}%"></div>
+                                                    </div>
+                                                </li>
+                                                @endforeach
                                             </ul>
                                         </section>
                                         <section class="mt-16">
