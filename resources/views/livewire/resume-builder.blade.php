@@ -146,7 +146,7 @@
                                 @forelse($educations as $education)
                                 <div class="group p-5 font-light border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                     <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
-                                        <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
+                                        <ol class="pl-5 mt-2 space-y-1 list-none list-inside">
                                             <li class="mb-3 text-center">
                                                 <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="editEducation({{ $education->id }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="blue">
@@ -252,7 +252,7 @@
                                 @forelse($works as $work)
                                 <div class="group p-5 font-light border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                                     <ul class="space-y-4 text-gray-500 list-disc list-inside dark:text-gray-400">
-                                        <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
+                                        <ol class="pl-5 mt-2 space-y-1 list-none list-inside">
                                             <li class="mb-3 text-center">
                                                 <button data-tooltip-target="edit-edu" type="submit" class="inline-block text-center" wire:click.prevent="editWork({{ $work->id }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="blue">
@@ -347,7 +347,7 @@
                     <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
                         <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Skills</h2>
                             <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
-                                <div>
+                                <div class="border border-gray-200 rounded-lg shadow-md p-6">
                                     <div class="flex justify-between mb-1">
                                         <span class="text-base font-medium text-blue-700 dark:text-white">Laravel</span>
                                     </div>
@@ -355,7 +355,7 @@
                                         <div class="bg-blue-600 h-2.5 rounded-full" style="width: 65%"></div>
                                     </div>
                                 </div>
-                                <div class="mb-6">
+                                <div class="mb-6 border border-gray-200 rounded-lg shadow-md p-6">
                                     <div class="flex justify-between mb-1">
                                         <span class="text-base font-medium text-blue-700 dark:text-white">Flowbite</span>
                                     </div>
@@ -364,18 +364,30 @@
                                     </div>
                                 </div>
                             </div>
-                            <form>
+                            <form class="bg-white border border-gray-200 rounded-lg shadow-md sm:p-3 lg:p-3 mt-3 dark:bg-gray-800 dark:border-gray-700" action="#">
                                 <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                                     <div>
                                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skill</label>
-                                        <input type="text" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+                                        <input type="text" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Skill" wire:model="stateWork.title">
+                                        @error('title')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                     <div class="mb-6">
                                         <label for="level" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Level</label>
-                                        <input id="level" type="range" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                                        <input id="level" type="range" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" wire:model="stateWork.level">
+                                        @error('level')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
                                     </div>
                                 </div>
-                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
+                                <div class="text-center mb-3">
+                                    @if ($updateSkill)
+                                    <button type="submit" wire:click.prevent="updateSkill" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+                                    @else
+                                    <button type="submit" wire:click.prevent="storeSkill" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+                                    @endif
+                                </div>
                             </form>
                     </div>
                 </div>

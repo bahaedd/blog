@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Personalinfo;
 use App\Models\Education;
 use App\Models\Work;
+use App\Models\Skill;
 use Livewire\WithFileUploads;
 use Auth;
 
@@ -23,9 +24,11 @@ class ResumeBuilder extends Component
     public $statePersonalInfo = [];
     public $stateEducation = [];
     public $stateWork = [];
+    public $stateSkill = [];
     public $updateMode = false;
     public $updateEdu = false;
-     public $updateWork = false;
+    public $updateWork = false;
+    public $updateSkill = false;
 
 
     public function mount()
@@ -153,12 +156,12 @@ class ResumeBuilder extends Component
             'description' => $this->stateEducation['description'],
             'ends' => $this->stateEducation['ends'],
         ]);
-        $this->reset('stateEducation');
         $this->mount();
-        $this->alert('success', 'Degree saved!', [
+        $this->alert('success', $this->stateEducation['degree'].'Degree saved!', [
             'position' => 'center',
             'toast' => true
         ]);
+        $this->reset('stateEducation');
 
     }
 
@@ -206,12 +209,12 @@ class ResumeBuilder extends Component
 
 
             $this->updateEdu = false;
-            $this->reset('stateEducation');
             $this->mount();
-            $this->alert('success', 'Degree Updated', [
+            $this->alert('success', $this->stateEducation['degree'].'Degree Updated', [
             'position' => 'center',
             'toast' => true
             ]);
+            $this->reset('stateEducation');
         }
     }
 
@@ -315,6 +318,45 @@ class ResumeBuilder extends Component
             'toast' => true
              ]);
         }
+    }
+
+    //Skills
+    public function storeSkill()
+    {
+        $validator = Validator::make($this->stateSkill, [
+            'skill' => 'required',
+            'level' => 'required',
+        ])->validate();
+
+       Skill::create([
+            'user_id' => Auth::user()->id,
+            'title' => $this->stateSkill['title'],
+            'level' => $this->stateWork['level'],
+        ]);
+        $this->mount();
+        $this->alert('success', $this->stateSkill['title'].' Skill Saved', [
+            'position' => 'center',
+            'toast' => true
+        ]);
+        $this->reset('stateSkill');
+    }
+
+    public function editSkill($id)
+    {
+       $this->updateSkill = true;
+
+        $skill = Skill::find($id);
+
+        $this->stateWork = [
+            'id' => $work->id,
+            'user_id' => $work->user_id,
+            'profession' => $work->position,
+            'company' => $work->company,
+            'description' => $work->description,
+            'starts' => $work->starts,
+            'ends' => $work->ends,
+        ];
+        $this->mount();
     }
 
     public function render()

@@ -2051,6 +2051,9 @@ select {
 .list-disc {
   list-style-type: disc;
 }
+.list-decimal {
+  list-style-type: decimal;
+}
 .list-none {
   list-style-type: none;
 }
@@ -2266,10 +2269,6 @@ select {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
-.rounded-t-xl {
-  border-top-left-radius: 0.75rem;
-  border-top-right-radius: 0.75rem;
-}
 .rounded-l-lg {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -2357,6 +2356,14 @@ select {
 .border-green-500 {
   --tw-border-opacity: 1;
   border-color: rgb(14 159 110 / var(--tw-border-opacity));
+}
+.border-gray-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(55 65 81 / var(--tw-border-opacity));
+}
+.border-green-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(5 122 85 / var(--tw-border-opacity));
 }
 .border-white {
   --tw-border-opacity: 1;
@@ -2452,6 +2459,10 @@ select {
 .bg-green-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(132 225 188 / var(--tw-bg-opacity));
+}
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 .bg-blue-600 {
   --tw-bg-opacity: 1;
@@ -2683,6 +2694,9 @@ select {
 }
 .pb-6 {
   padding-bottom: 1.5rem;
+}
+.pl-5 {
+  padding-left: 1.25rem;
 }
 .pl-1 {
   padding-left: 0.25rem;
@@ -3526,6 +3540,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(1 71 55 / var(--tw-text-opacity));
 }
+.dark .dark\:text-blue-700 {
+  --tw-text-opacity: 1;
+  color: rgb(26 86 219 / var(--tw-text-opacity));
+}
 .dark .dark\:text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -3632,10 +3650,6 @@ select {
 .dark .dark\:focus\:ring-gray-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
-}
-.dark .dark\:focus\:ring-gray-800:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(31 41 55 / var(--tw-ring-opacity));
 }
 .dark .dark\:focus\:ring-yellow-900:focus {
   --tw-ring-opacity: 1;
@@ -3845,6 +3859,10 @@ select {
 
   .sm\:p-8 {
     padding: 2rem;
+  }
+
+  .sm\:p-3 {
+    padding: 0.75rem;
   }
 
   .sm\:px-6 {
@@ -4135,6 +4153,11 @@ select {
     color: rgb(4 108 78 / var(--tw-text-opacity));
   }
 
+  .md\:text-blue-700 {
+    --tw-text-opacity: 1;
+    color: rgb(26 86 219 / var(--tw-text-opacity));
+  }
+
   .md\:hover\:text-green-500:hover {
     --tw-text-opacity: 1;
     color: rgb(14 159 110 / var(--tw-text-opacity));
@@ -4188,6 +4211,10 @@ select {
 
   .lg\:justify-start {
     justify-content: flex-start;
+  }
+
+  .lg\:p-3 {
+    padding: 0.75rem;
   }
 
   .lg\:px-8 {

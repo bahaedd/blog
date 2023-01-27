@@ -73,4 +73,9 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasMany(Work::class, 'user_id');
     }
+
+    public function skills()
+    {
+        return $this->hasMany(Skill::class, 'user_id');
+    }
 }
