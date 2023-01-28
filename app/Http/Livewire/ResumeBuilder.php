@@ -9,6 +9,7 @@ use App\Models\Personalinfo;
 use App\Models\Education;
 use App\Models\Work;
 use App\Models\Skill;
+use App\Models\Summary;
 use Livewire\WithFileUploads;
 use Auth;
 
@@ -21,14 +22,17 @@ class ResumeBuilder extends Component
     public $educations;
     public $works;
     public $skills;
+    public $summary;
     public $statePersonalInfo = [];
     public $stateEducation = [];
     public $stateWork = [];
     public $stateSkill = [];
+    public $stateSummary = [];
     public $updateMode = false;
     public $updateEdu = false;
     public $updateWork = false;
     public $updateSkill = false;
+    public $updateSummary = false;
 
 
     public function mount()
@@ -37,6 +41,7 @@ class ResumeBuilder extends Component
         $this->educations = Education::where('user_id', '=', Auth::user()->id)->get();
         $this->works = Work::where('user_id', '=', Auth::user()->id)->get();
         $this->skills = Skill::where('user_id', '=', Auth::user()->id)->get();
+        $this->summary = Auth::user()->summary;
 
         if($this->personal_informations){
             $this->statePersonalInfo = [
@@ -54,6 +59,14 @@ class ResumeBuilder extends Component
             'github' => $this->personal_informations->github,
         ];
         $this->updateMode = true;
+        }
+
+        if($this->summary){
+            $this->stateSummary = [
+            'id' => $this->summary->id,
+            'summary' => $this->summary->summary,
+        ];
+        $this->updateSummary = true;
         }
 
     }
@@ -393,6 +406,48 @@ class ResumeBuilder extends Component
             'position' => 'center',
             'toast' => true
              ]);
+        }
+    }
+
+    //Summary
+    public function storeSummary()
+    {
+        $validator = Validator::make($this->stateSummary, [
+            'summary' => 'required',
+        ])->validate();
+
+        Summary::create([
+            'user_id' => Auth::user()->id,
+            'summary' => $this->stateSummary['summary'],
+        ]);
+
+        $this->mount();
+        $this->alert('success', 'Personal Informations saved!', [
+            'position' => 'center',
+            'toast' => true
+        ]);
+
+    }
+
+    public function updateSummary()
+    {
+       $validator = Validator::make($this->stateSummary, [
+            'summary' => 'required',
+        ])->validate();
+       if ($this->stateSummary['id']) {
+
+            $Summary = Summary::find($this->stateSummary['id']);
+
+            $Summary->update([
+                'user_id' => Auth::user()->id,
+                'summary' => $this->stateSummary['summary'],
+            ]);
+
+            $this->mount();
+            $this->alert('success', 'Summary updated!', [
+                'position' => 'center',
+                'toast' => true
+            ]);
         }
     }
 

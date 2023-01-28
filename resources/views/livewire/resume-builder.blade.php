@@ -139,6 +139,28 @@
                                 </div>
                             </form>
                     </div>
+                    <!-- Summary informations --->
+                    <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
+                        <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Summary</h2>
+                            <form class="bg-white border border-gray-200 rounded-lg shadow-md sm:p-3 lg:p-3 mt-3 dark:bg-gray-800 dark:border-gray-700" action="#">
+                                <div class="w-full p-12">
+                                    <div>
+                                        <label for="summary" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Summary</label>
+                                        <textarea id="summary" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="stateSummary.summary"></textarea>
+                                        @error('summary')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</span></p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="text-center mb-3">
+                                    @if ($updateSummary)
+                                    <button type="submit" wire:click.prevent="updateSummary" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+                                    @else
+                                    <button type="submit" wire:click.prevent="storeSummary" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+                                    @endif
+                                </div>
+                            </form>
+                    </div>
                     <!-- Education informations --->
                     <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
                         <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Education</h2>
@@ -345,7 +367,7 @@
                     </div>
                     <!-- skills informations --->
                     <div class="w-full p-12 bg-white shadow-md border border-gray-700 rounded-lg mb-6 sm:p-6 dark:bg-gray-800">
-                        <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-green rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white">Skills</h2>
+                        <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Skills</h2>
                             <div class="grid gap-6 mb-6 md:grid-cols-2 p-16 mt-12">
                                 @forelse($skills as $skill)
                                 <div class="border border-gray-200 dark:border-gray-700 dark:bg-gray-900 p-12">
