@@ -493,7 +493,9 @@
                                             <h3 class="uppercase text-green dark:text-white font-medium text-3xl">Career Objectives</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            <p class="text-green dark:text-white">I am a motivated team player and aspiring web developer with great design and branding knowledge. My ultimate goal is to grow my knowledge of the industry and use my conversational skills to help fast-paced startup design UI/UX charismas.</p>
+                                            @if($summary)
+                                            <p class="text-green dark:text-white">{{ $summary->summary }}</p>
+                                            @endif
                                         </section>
                                         <section class="mt-16">
                                             <h3 class="uppercase text-white font-medium text-3xl">Skills</h3>
