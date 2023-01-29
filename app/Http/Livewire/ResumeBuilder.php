@@ -10,6 +10,7 @@ use App\Models\Education;
 use App\Models\Work;
 use App\Models\Skill;
 use App\Models\Summary;
+use App\Models\Language;
 use Livewire\WithFileUploads;
 use Auth;
 
@@ -23,16 +24,19 @@ class ResumeBuilder extends Component
     public $works;
     public $skills;
     public $summary;
+    public $languages;
     public $statePersonalInfo = [];
     public $stateEducation = [];
     public $stateWork = [];
     public $stateSkill = [];
     public $stateSummary = [];
+    public $stateLang = [];
     public $updateMode = false;
     public $updateEdu = false;
     public $updateWork = false;
     public $updateSkill = false;
     public $updateSummary = false;
+    public $updateLang = false;
 
 
     public function mount()
@@ -42,6 +46,7 @@ class ResumeBuilder extends Component
         $this->works = Work::where('user_id', '=', Auth::user()->id)->get();
         $this->skills = Skill::where('user_id', '=', Auth::user()->id)->get();
         $this->summary = Auth::user()->summary;
+        $this->languages = Language::where('user_id', '=', Auth::user()->id)->get();
 
         if($this->personal_informations){
             $this->statePersonalInfo = [
@@ -448,6 +453,38 @@ class ResumeBuilder extends Component
                 'position' => 'center',
                 'toast' => true
             ]);
+        }
+    }
+
+    //Languages
+    public function storeLang()
+    {
+        $validator = Validator::make($this->stateLang, [
+            'language' => 'required',
+        ])->validate();
+
+        Language::create([
+            'user_id' => Auth::user()->id,
+            'language' => $this->stateLang['language'],
+        ]);
+
+        $this->mount();
+        $this->alert('success', 'Language saved!', [
+            'position' => 'center',
+            'toast' => true
+        ]);
+
+    }
+
+    public function deleteLang($id)
+    {
+        if($id){
+            Language::where('id',$id)->delete();
+            $this->mount();
+            $this->alert('success', 'Language Deleted', [
+            'position' => 'center',
+            'toast' => true
+             ]);
         }
     }
 

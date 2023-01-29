@@ -83,4 +83,9 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasOne(Summary::class, 'user_id');
     }
+
+    public function languages()
+    {
+        return $this->hasMany(Skill::class, 'user_id');
+    }
 }
