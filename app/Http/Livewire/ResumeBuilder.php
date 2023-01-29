@@ -11,6 +11,7 @@ use App\Models\Work;
 use App\Models\Skill;
 use App\Models\Summary;
 use App\Models\Language;
+use App\Models\Project;
 use Livewire\WithFileUploads;
 use Auth;
 
@@ -25,18 +26,21 @@ class ResumeBuilder extends Component
     public $skills;
     public $summary;
     public $languages;
+    public $projects;
     public $statePersonalInfo = [];
     public $stateEducation = [];
     public $stateWork = [];
     public $stateSkill = [];
     public $stateSummary = [];
     public $stateLang = [];
+    public $stateProject = [];
     public $updateMode = false;
     public $updateEdu = false;
     public $updateWork = false;
     public $updateSkill = false;
     public $updateSummary = false;
     public $updateLang = false;
+    public $updateProject = false;
 
 
     public function mount()
@@ -47,6 +51,7 @@ class ResumeBuilder extends Component
         $this->skills = Skill::where('user_id', '=', Auth::user()->id)->get();
         $this->summary = Auth::user()->summary;
         $this->languages = Language::where('user_id', '=', Auth::user()->id)->get();
+        $this->projects = Project::where('user_id', '=', Auth::user()->id)->get();
 
         if($this->personal_informations){
             $this->statePersonalInfo = [
@@ -482,6 +487,91 @@ class ResumeBuilder extends Component
             Language::where('id',$id)->delete();
             $this->mount();
             $this->alert('success', 'Language Deleted', [
+            'position' => 'center',
+            'toast' => true
+             ]);
+        }
+    }
+
+    //Projects
+    public function storeProject()
+    {
+        $validator = Validator::make($this->stateProject, [
+            'title' => 'required',
+            'tools' => 'required',
+            'date' => 'required',
+            'description' => 'required',
+        ])->validate();
+
+        Project::create([
+            'user_id' => Auth::user()->id,
+            'title' => $this->stateProject['title'],
+            'tools' => $this->stateProject['tools'],
+            'date' => $this->stateProject['date'],
+            'description' => $this->stateProject['description'],
+        ]);
+        $this->mount();
+        $this->alert('success', $this->stateProject['title'].' Project saved!', [
+            'position' => 'center',
+            'toast' => true
+        ]);
+        $this->reset('stateProject');
+
+    }
+
+    public function editProject($id)
+    {
+       $this->updateProject = true;
+
+        $project = Project::find($id);
+
+        $this->stateProject = [
+            'id' => $project->id,
+            'user_id' => $project->user_id,
+            'title' => $project->title,
+            'tools' => $project->tools,
+            'date' => $project->date,
+            'description' => $project->description,
+        ];
+        $this->mount();
+    }
+
+    public function updateProject()
+    {
+       $validator = Validator::make($this->stateProject, [
+            'title' => 'required',
+            'tools' => 'required',
+            'date' => 'required',
+            'description' => 'required',
+        ])->validate();
+
+
+        if ($this->stateProject['id']) {
+            $project = Project::find($this->stateProject['id']);
+            $project->update([
+                'title' => $this->stateProject['title'],
+                'tools' => $this->stateProject['tools'],
+                'date' => $this->stateProject['date'],
+                'description' => $this->stateProject['description'],
+            ]);
+
+
+            $this->updateProject = false;
+            $this->mount();
+            $this->alert('success', $this->stateProject['title'].' Project Updated', [
+            'position' => 'center',
+            'toast' => true
+            ]);
+            $this->reset('stateProject');
+        }
+    }
+
+    public function deleteProject($id)
+    {
+        if($id){
+            Project::where('id',$id)->delete();
+            $this->mount();
+            $this->alert('success', 'Project Deleted', [
             'position' => 'center',
             'toast' => true
              ]);

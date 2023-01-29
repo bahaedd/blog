@@ -88,4 +88,9 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasMany(Skill::class, 'user_id');
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Skill::class, 'user_id');
+    }
 }
