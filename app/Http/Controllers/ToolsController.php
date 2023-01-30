@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Tool;
+use App\Models\Education;
+use App\Models\Work;
+use App\Models\Personalinfo;
+use App\Models\Summary;
+use App\Models\Skill;
+use App\Models\Language;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Arr;
@@ -381,6 +388,20 @@ class ToolsController extends Controller
     public function ResumeBuilder() {
 
          return view("blog.tools.resume-builder");
+
+    }
+
+    public function ResumeDownload($id) {
+
+        $personal_informations = Auth::user()->personalinfo;
+        $educations = Education::where('user_id', '=', Auth::user()->id)->get();
+        $works = Work::where('user_id', '=', Auth::user()->id)->get();
+        $skills = Skill::where('user_id', '=', Auth::user()->id)->get();
+        $summary = Auth::user()->summary;
+        $languages = Language::where('user_id', '=', Auth::user()->id)->get();
+        $projects = Project::where('user_id', '=', Auth::user()->id)->get();
+
+         return view("blog.tools.resume-download", compact("personal_informations", "educations", "works", "skills", "summary", "languages", "projects"));
 
     }
 }

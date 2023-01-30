@@ -555,6 +555,15 @@
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                             <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
+                                <div class="mt-3 mb-3 text-center">
+                                        <a href="{{ route('resume-download', Auth::user()->id) }}" class="inline-flex items-center text-blue-600 hover:underline">
+                                            Download
+                                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
                                 <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
                                     <div class="md:w-1/3 w-full">
                                         <header>
@@ -644,7 +653,7 @@
                                             <div class="text-gray-500 dark:text-white">
                                                 <ul class="text-gray-500 list-disc list-inside mt-4 dark:text-white">
                                                     @foreach($languages as $language)
-                                                        <li>{{ $language->language }}</li>
+                                                    <li>{{ $language->language }}</li>
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -658,7 +667,7 @@
                                             @foreach($educations as $education)
                                             <div class="mt-8">
                                                 <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $education->degree }}</h4>
-                                                <h5 class="text-xl text-gray-500 dark:text-white"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
+                                                <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
                                                 <ul class="text-gray-500 list-disc list-inside mt-4 dark:text-white">
                                                     <li>Score: {{ $education->score }}</li>
                                                     <li>School: {{ $education->school }}</li>
@@ -674,7 +683,7 @@
                                             @foreach($works as $work)
                                             <div class="mt-8">
                                                 <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $work->position }} | {{ $work->company }}</h4>
-                                                <h5 class="text-xl text-gray-500 dark:text-white"><i>{{ $work->starts }} - {{ $work->ends }}</i></h5>
+                                                <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $work->starts }} - {{ $work->ends }}</i></h5>
                                                 <p class="text-gray-500 dark:text-white">
                                                     {{ $work->description }}
                                                 </p>
@@ -688,7 +697,7 @@
                                             @foreach($projects as $project)
                                             <div class="mt-8">
                                                 <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $project->title }}</h4>
-                                                <h5 class="text-xl text-gray-500 dark:text-white"><i>{{ $project->date }} | {{ $project->tools }}</i></h5>
+                                                <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $project->date }} | {{ $project->tools }}</i></h5>
                                                 <p class="text-gray-500 dark:text-white">
                                                     {{ $project->description }}
                                                 </p>

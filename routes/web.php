@@ -99,6 +99,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
     //Resume builder
     Route::get('/projects/personalpack/resume-builder',[ToolsController::class, 'ResumeBuilder'])->name('resume-builder');
+    Route::get('/resume-builder/user/resume-download/{id}',[ToolsController::class, 'ResumeDownload'])->name('resume-download');
 });
 
 Auth::routes();

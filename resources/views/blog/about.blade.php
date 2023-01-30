@@ -1,4 +1,5 @@
 @extends('/blog/main')
+@section('title', "About")
 @section('content')
 <!-- container -->
 <div class="flex h-screen w-full items-center justify-center bg-white dark:bg-gray-800 bg-cover bg-no-repeat">
