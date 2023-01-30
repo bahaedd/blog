@@ -21,6 +21,7 @@ use Symfony\Component\HttpClient\Psr18Client;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use PDF;
 
 class ToolsController extends Controller
 {
@@ -404,4 +405,33 @@ class ToolsController extends Controller
          return view("blog.tools.resume-download", compact("personal_informations", "educations", "works", "skills", "summary", "languages", "projects"));
 
     }
+
+    public function pdfview(Request $request)
+    {
+        $personal_informations = Auth::user()->personalinfo;
+        $educations = Education::where('user_id', '=', Auth::user()->id)->get();
+        $works = Work::where('user_id', '=', Auth::user()->id)->get();
+        $skills = Skill::where('user_id', '=', Auth::user()->id)->get();
+        $summary = Auth::user()->summary;
+        $languages = Language::where('user_id', '=', Auth::user()->id)->get();
+        $projects = Project::where('user_id', '=', Auth::user()->id)->get();
+
+        view()->share('personal_informations',$personal_informations);
+        view()->share('educations',$educations);
+        view()->share('works',$works);
+        view()->share('skills',$skills);
+        view()->share('summary',$summary);
+        view()->share('languages',$languages);
+        view()->share('projects',$projects);
+
+
+        if($request->has('download')){
+            $pdf = PDF::loadView('blog.tools.resume-download');
+            return $pdf->download('resume-download.pdf');
+        }
+
+
+        return view('pdfview');
+    }
 }
+

@@ -9,7 +9,7 @@
     <!-- container -->
     <div class="px-3 mx-3 py-3 md:py-20 mb-3">
         <div class="mt-3 mb-3 text-center">
-            <a href="{{ route('resume-download', Auth::user()->id) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <a href="{{ route('pdfview',['download'=>'pdf']) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <ion-icon name="cloud-download" class="mr-2"></ion-icon> Download
             </a>
         </div>
