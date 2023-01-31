@@ -557,7 +557,7 @@
                         <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                             <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
                                 <div class="mt-3 mb-3 text-center">
-                                    <a href="{{ route('resume-download', Auth::user()->id) }}" class="inline-flex items-center text-blue-600 hover:underline">
+                                    <a href="{{ route('resume-download', ['model_id' => 1, 'user_id' => Auth::user()->id]) }}" class="inline-flex items-center text-blue-600 hover:underline">
                                         Download
                                         <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
@@ -733,7 +733,7 @@
                         <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                             <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
                                 <div class="mt-3 mb-3 text-center">
-                                    <a href="{{ route('resume-download', Auth::user()->id) }}" class="inline-flex items-center text-blue-600 hover:underline">
+                                            <a href="{{ route('resume-download', ['model_id' => 2, 'user_id' => Auth::user()->id]) }}" class="inline-flex items-center text-blue-600 hover:underline">
                                         Download
                                         <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
@@ -742,9 +742,9 @@
                                     </a>
                                 </div>
                                 <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
-                                    <header class="inline-flex items-baseline justify-between w-full mb-3 align-top border-b border-green-600">
-                                        <div class="block">
-                                            <h1 class="text-5xl font-bold text-gray-750">
+                                    <header class="inline-flex items-baseline justify-between w-full align-top border-b border-green-600">
+                                        <div class="mb-12">
+                                            <h1 class="mb-0 text-5xl font-bold text-gray-750">
                                                 Thomas Leon Highbaugh
                                             </h1>
                                             <!--Job Title--------------------------------------------------------------------------------------------------------->
@@ -757,9 +757,9 @@
                                             </h3>
                                         </div>
                                         <!--   Initials Block         -->
-                                        <div class="block">
+                                        <div>
                                             @if($personal_informations)
-                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-auto max-w-full rounded-lg" alt="{{ $personal_informations->name }}" width="230" height="160">
+                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-auto max-w-full rounded-lg mt-12" alt="{{ $personal_informations->name }}" width="230" height="160">
                                             @else
                                             <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
                                             @endif
@@ -768,7 +768,6 @@
                                     <div class="md:w-1/3 w-full mt-12">
                                         <header>
                                             @if($personal_informations)
-                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-auto max-w-full rounded-lg" alt="{{ $personal_informations->name }}" width="230" height="160">
                                             <div class="text-gray-500 dark:text-white mt-6">
                                                 <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
                                                     <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
@@ -794,7 +793,6 @@
                                                 </a>
                                             </div>
                                             @else
-                                            <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
                                             <div class="text-white mt-4">
                                                 <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
                                                     <ion-icon name="person" class="mr-2"></ion-icon> Your name

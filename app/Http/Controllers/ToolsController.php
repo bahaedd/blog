@@ -392,7 +392,7 @@ class ToolsController extends Controller
 
     }
 
-    public function ResumeDownload($id) {
+    public function ResumeDownload(Request $request, $model_id, $user_id) {
 
         $personal_informations = Auth::user()->personalinfo;
         $educations = Education::where('user_id', '=', Auth::user()->id)->get();
@@ -402,7 +402,12 @@ class ToolsController extends Controller
         $languages = Language::where('user_id', '=', Auth::user()->id)->get();
         $projects = Project::where('user_id', '=', Auth::user()->id)->get();
 
-         return view("blog.tools.resume-download", compact("personal_informations", "educations", "works", "skills", "summary", "languages", "projects"));
+        if($model_id == 1){
+            return view("blog.tools.resume-download", compact("personal_informations", "educations", "works", "skills", "summary", "languages", "projects"));
+        }
+        else {
+            return view("blog.tools.resume-download2", compact("personal_informations", "educations", "works", "skills", "summary", "languages", "projects"));
+        }
 
     }
 
