@@ -552,20 +552,220 @@
                 </div>
                 <!-- Preview --->
                 <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="preview" role="tabpanel" aria-labelledby="preview-tab">
+                    <!-- Model 1 --->
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                             <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
                                 <div class="mt-3 mb-3 text-center">
-                                        <a href="{{ route('resume-download', Auth::user()->id) }}" class="inline-flex items-center text-blue-600 hover:underline">
-                                            Download
-                                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
-                                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
-                                            </svg>
-                                        </a>
-                                    </div>
+                                    <a href="{{ route('resume-download', Auth::user()->id) }}" class="inline-flex items-center text-blue-600 hover:underline">
+                                        Download
+                                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                            <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
                                 <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
                                     <div class="md:w-1/3 w-full">
+                                        <header>
+                                            @if($personal_informations)
+                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-auto max-w-full rounded-lg" alt="{{ $personal_informations->name }}" width="230" height="160">
+                                            <div class="text-gray-500 dark:text-white mt-6">
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> {{ $personal_informations->birthday }}
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="flag" class="mr-2"></ion-icon> {{ $personal_informations->nationality }}
+                                                </a>
+                                                <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
+                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
+                                                    {{ $personal_informations->linkedin }}
+                                                </a>
+                                                <a href="https://twitter.com/bahaeddine" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> {{ $personal_informations->twitter }}
+                                                </a>
+                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="mail" class="mr-2"></ion-icon> {{ $personal_informations->email }}
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="globe" class="mr-2"></ion-icon> {{ $personal_informations->website }}
+                                                </a>
+                                            </div>
+                                            @else
+                                            <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
+                                            <div class="text-white mt-4">
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="person" class="mr-2"></ion-icon> Your name
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> Birthday
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="flag" class="mr-2"></ion-icon> Nationality
+                                                </a>
+                                                <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
+                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
+                                                    Linkedin Profile
+                                                </a>
+                                                <a href="https://twitter.com/bahaeddine" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> Twitter Profile
+                                                </a>
+                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="mail" class="mr-2"></ion-icon> Email Address
+                                                </a>
+                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
+                                                    <ion-icon name="globe" class="mr-2"></ion-icon> Website
+                                                </a>
+                                            </div>
+                                            @endif
+                                        </header>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Summary</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            @if($summary)
+                                            <p class="text-gray-500 dark:text-white">{{ $summary->summary }}</p>
+                                            @else
+                                            <p class="text-gray-500 dark:text-white">Summary about you.</p>
+                                            @endif
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Skills</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <ul class="text-white list-none list-inside">
+                                                @forelse($skills as $skill)
+                                                <li class="mb-3">
+                                                    <div class="flex justify-between mb-1">
+                                                        <span class="text-base font-medium text-blue-700 dark:text-white">{{ $skill->title }}</span>
+                                                    </div>
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ $skill->level }}%"></div>
+                                                    </div>
+                                                </li>
+                                                @empty
+                                                <p class="text-gray-500 dark:text-white">Your skills shows up here...</p>
+                                                @endforelse
+                                            </ul>
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Languages</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            <div class="text-gray-500 dark:text-white">
+                                                <ul class="text-gray-500 list-disc list-inside mt-4 dark:text-white">
+                                                    @forelse($languages as $language)
+                                                    <li>{{ $language->language }}</li>
+                                                    @empty
+                                                    <li>Languages you spoke ...</li>
+                                                    @endforelse
+                                                </ul>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="md:w-2/4 w-full">
+                                        <section class="mt-16 md:mt-0">
+                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Education</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            @forelse($educations as $education)
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $education->degree }}</h4>
+                                                <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
+                                                <ul class="text-gray-500 list-disc list-inside mt-4 dark:text-white">
+                                                    <li>Score: {{ $education->score }}</li>
+                                                    <li>School: {{ $education->school }}</li>
+                                                    <li>Speciality: {{ $education->description }}</li>
+                                                </ul>
+                                            </div>
+                                            @empty
+                                            <div class="mt-8">
+                                                <p class="text-gray-500 dark:text-white">Your degrees shows up here...</p>
+                                            </div>
+                                            @endforelse
+                                        </section>
+                                        <section class="mt-16">
+                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Work Experience</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            @forelse($works as $work)
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $work->position }} | {{ $work->company }}</h4>
+                                                <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $work->starts }} - {{ $work->ends }}</i></h5>
+                                                <p class="text-gray-500 dark:text-white">
+                                                    {{ $work->description }}
+                                                </p>
+                                            </div>
+                                            @empty
+                                            <div class="mt-8">
+                                                <p class="text-gray-500 dark:text-white">Your work experiences shows up here...</p>
+                                            </div>
+                                            @endforelse
+                                        </section>
+                                        <section class="mt-16 md:mt-12">
+                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Projects</h3>
+                                            <div class="h-1 bg-green w-48 my-4">
+                                            </div>
+                                            @forelse($projects as $project)
+                                            <div class="mt-8">
+                                                <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $project->title }}</h4>
+                                                <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $project->date }} | {{ $project->tools }}</i></h5>
+                                                <p class="text-gray-500 dark:text-white">
+                                                    {{ $project->description }}
+                                                </p>
+                                            </div>
+                                            @empty
+                                            <div class="mt-8">
+                                                <p class="text-gray-500 dark:text-white">Your projects shows up here...</p>
+                                            </div>
+                                            @endforelse
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Model 2 --->
+                    <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
+                        <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
+                            <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
+                                <div class="mt-3 mb-3 text-center">
+                                    <a href="{{ route('resume-download', Auth::user()->id) }}" class="inline-flex items-center text-blue-600 hover:underline">
+                                        Download
+                                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                            <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
+                                    <header class="inline-flex items-baseline justify-between w-full mb-3 align-top border-b border-green-600">
+                                        <div class="block">
+                                            <h1 class="text-5xl font-bold text-gray-750">
+                                                Thomas Leon Highbaugh
+                                            </h1>
+                                            <!--Job Title--------------------------------------------------------------------------------------------------------->
+                                            <h2 class="m-0 ml-2 text-2xl font-semibold text-gray-700 leading-snugish">
+                                                Full Stack Web Development
+                                            </h2>
+                                            <!--Location --------------------------------------------------------------------------------------------------------->
+                                            <h3 class="m-0 mt-2 ml-2 font-semibold text-md text-gray-550 leading-snugish">
+                                                San Francisco, California
+                                            </h3>
+                                        </div>
+                                        <!--   Initials Block         -->
+                                        <div class="block">
+                                            @if($personal_informations)
+                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-auto max-w-full rounded-lg" alt="{{ $personal_informations->name }}" width="230" height="160">
+                                            @else
+                                            <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
+                                            @endif
+                                        </div>
+                                    </header>
+                                    <div class="md:w-1/3 w-full mt-12">
                                         <header>
                                             @if($personal_informations)
                                             <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-auto max-w-full rounded-lg" alt="{{ $personal_informations->name }}" width="230" height="160">
@@ -659,7 +859,7 @@
                                             </div>
                                         </section>
                                     </div>
-                                    <div class="md:w-2/4 w-full">
+                                    <div class="md:w-2/4 w-full mt-12">
                                         <section class="mt-16 md:mt-0">
                                             <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Education Summary</h3>
                                             <div class="h-1 bg-green w-48 my-4">
@@ -704,182 +904,6 @@
                                             </div>
                                             @endforeach
                                         </section>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
-                        <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
-                            <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
-                                <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
-                                    <div class="md:w-1/3 w-full">
-                                        <header>
-                                            @if($personal_informations)
-                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-36 rounded-full sm:h-56" alt="{{ $personal_informations->name }}" width="230" height="160">
-                                            <div class="text-gray-500 dark:text-white mt-4">
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> {{ $personal_informations->birthday }}
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="flag" class="mr-2"></ion-icon> {{ $personal_informations->nationality }}
-                                                </a>
-                                                <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
-                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
-                                                    {{ $personal_informations->linkedin }}
-                                                </a>
-                                                <a href="https://twitter.com/bahaeddine" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> {{ $personal_informations->twitter }}
-                                                </a>
-                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="mail" class="mr-2"></ion-icon> {{ $personal_informations->email }}
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="globe" class="mr-2"></ion-icon> {{ $personal_informations->website }}
-                                                </a>
-                                            </div>
-                                            @else
-                                            <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
-                                            <div class="text-white mt-4">
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="person" class="mr-2"></ion-icon> Your name
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> Birthday
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="flag" class="mr-2"></ion-icon> Nationality
-                                                </a>
-                                                <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
-                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
-                                                    Linkedin Profile
-                                                </a>
-                                                <a href="https://twitter.com/bahaeddine" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> Twitter Profile
-                                                </a>
-                                                <a href="mailto:sihassi.bahaeddine@gmail.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="mail" class="mr-2"></ion-icon> Email Address
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="globe" class="mr-2"></ion-icon> Website
-                                                </a>
-                                            </div>
-                                            @endif
-                                        </header>
-                                        <section class="mt-16">
-                                            <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Career Objectives</h3>
-                                            <div class="h-1 bg-green w-48 my-4">
-                                            </div>
-                                            <p class="text-gray-500 dark:text-white">I am a motivated team player and aspiring web developer with great design and branding knowledge. My ultimate goal is to grow my knowledge of the industry and use my conversational skills to help fast-paced startup design UI/UX charismas.</p>
-                                        </section>
-                                        <section class="mt-16">
-                                            <h3 class="uppercase text-white font-medium text-3xl">Skills</h3>
-                                            <div class="h-1 bg-green w-48 my-4">
-                                            </div>
-                                            <ul class="text-white list-none list-inside">
-                                                @foreach($skills as $skill)
-                                                <li class="mb-3">
-                                                    <div class="flex justify-between mb-1">
-                                                        <span class="text-base font-medium text-blue-700 dark:text-white">{{ $skill->title }}</span>
-                                                    </div>
-                                                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ $skill->level }}%"></div>
-                                                    </div>
-                                                </li>
-                                                @endforeach
-                                            </ul>
-                                        </section>
-                                        <section class="mt-16">
-                                            <h3 class="uppercase text-white font-medium text-3xl">Contact Info:</h3>
-                                            <div class="h-1 bg-green w-48 my-4">
-                                            </div>
-                                            <div class="text-white">
-                                                <a href="https://linkedin.com/in/justaashir" class="hover:underline flex items-center">
-                                                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
-                                                    LinkedIn
-                                                </a>
-                                                <a href="https://twitter.com/justaashir" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon> Twitter
-                                                </a>
-                                                <a href="mailto:hello@justaashir.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="mail" class="mr-2"></ion-icon> hello@justaashir.com
-                                                </a>
-                                                <a href="https://justaashir.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="globe" class="mr-2"></ion-icon> www.justaashir.com
-                                                </a>
-                                            </div>
-                                        </section>
-                                    </div>
-                                    <div class="md:w-2/4 w-full">
-                                        <section class="mt-16 md:mt-0">
-                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Education Summary</h3>
-                                            <div class="h-1 bg-green w-48 my-4">
-                                            </div>
-                                            @foreach($educations as $education)
-                                            <div class="mt-8">
-                                                <h4 class="font-medium text-gray-500 text-2xl dark:text-white">Degree: {{ $education->degree }}</h4>
-                                                <h5 class="text-xl text-gray-500 dark:text-white"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
-                                                <ul class="text-gray-500 list-disc list-inside mt-4 dark:text-white">
-                                                    <li>Score: {{ $education->score }}</li>
-                                                    <li>School: {{ $education->school }}</li>
-                                                    <li>Speciality: {{ $education->description }}</li>
-                                                </ul>
-                                            </div>
-                                            @endforeach
-                                        </section>
-                                        <section class="mt-16">
-                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Work Summary</h3>
-                                            <div class="h-1 bg-green w-48 my-4">
-                                            </div>
-                                            @foreach($works as $work)
-                                            <div class="mt-8">
-                                                <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $work->position }}</h4>
-                                                <h5 class="text-xl text-gray-500 dark:text-white"><i>{{ $work->starts }} - {{ $work->ends }}</i></h5>
-                                                <ul class="text-gray-500 list-disc list-inside mt-4 dark:text-white">
-                                                    <li>Company: {{ $work->company }}</li>
-                                                    <li>{{ $work->description }}</li>
-                                                </ul>
-                                            </div>
-                                            @endforeach
-                                        </section>
-                                        {{-- <section class="mt-16">
-                                            <h3 class="uppercase text-white font-medium text-3xl">Freelance &amp; Other fun stuff</h3>
-                                            <div class="h-1 bg-green w-48 my-4">
-                                            </div>
-                                            <div class="mt-8">
-                                                <h4 class="font-medium text-gray-500 text-2xl">Shopify Freelance Associate</h4>
-                                                <p class="text-white">
-                                                    Proud member of the shopify community, and their partner program. Setting up Shopify stores and making custom themes from a long time.
-                                                </p>
-                                            </div>
-                                            <div class="mt-8">
-                                                <h4 class="font-medium text-gray-500 text-2xl"><a href="https://dev.to/justaashir" class="hover:underline">DEV Community</a> (Volunteer & Technical Writer)</h4>
-                                                <ul class="text-white list-disc list-inside mt-4">
-                                                    <li>Have written about Vuejs, career advice and resources...</li>
-                                                    <li> Top 500 Author (Award)</li>
-                                                    <li> 16,000+ Followers + 150K+ Views</li>
-                                                    <li> 5 Badges</li>
-                                                </ul>
-                                            </div>
-                                        </section>
-                                        <section class="mt-16">
-                                            <h3 class="uppercase text-white font-medium text-3xl">Passion Projects</h3>
-                                            <div class="h-1 bg-green w-48 my-4">
-                                            </div>
-                                            <div class="mt-8">
-                                                <h4 class="font-medium text-gray-500 text-2xl"><a href="https://tailwindcssuikit.com" class="hover:underline">Tailwind CSS Ui Kit</a></h4>
-                                                <p class="text-white mt-2">
-                                                    Building this, in my free time. Making modern design systems and kits possible with TailwindCSS
-                                                </p>
-                                            </div>
-                                            <div class="mt-8">
-                                                <h4 class="font-medium text-gray-500 text-2xl"><a href="https://remoteworkjar.com" class="hover:underline">RemoteWorkJar</a></h4>
-                                                <p class="text-white mt-2">Remote Job Board, where the main focus is to manually screen every job posted and help candidates get high-quality remote-only job postings.</p>
-                                            </div>
-                                        </section> --}}
                                     </div>
                                 </div>
                             </div>
