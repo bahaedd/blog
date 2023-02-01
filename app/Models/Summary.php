@@ -12,6 +12,7 @@ class Summary extends Model
     protected $fillable = [
         'user_id',
         'summary',
+        'job_title',
     ];
 
     public function user()

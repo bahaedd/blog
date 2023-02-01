@@ -20,7 +20,7 @@
                         <header class="inline-flex items-center justify-between w-full align-top border-b border-green-600">
                             <div class="mb-12">
                                 @if($personal_informations)
-                                <h1 class="mb-0 text-4xl font-bold uppercase text-gray-500 dark:text-white">
+                                <h1 class="mb-3 text-4xl font-bold uppercase text-gray-500 dark:text-white">
                                     {{ $personal_informations->name }}
                                 </h1>
                                 @else
@@ -28,9 +28,9 @@
                                     Full name
                                 </h1> 
                                 @endif
-                                @if($personal_informations)
+                                @if($summary)
                                 <h2 class="m-0 ml-2 text-2xl font-semibold text-gray-500 dark:text-white leading-snugish">
-                                    {{ $personal_informations->name }}
+                                    {{ $summary->job_title }}
                                 </h2>
                                 @else
                                 <h1 class="mb-0 text-5xl font-bold text-gray-500 dark:text-white">
@@ -56,7 +56,6 @@
                                 </h3> 
                                 @endif
                             </div>
-                            <!--   Initials Block         -->
                             <div class="mb-12">
                                 @if($personal_informations)
                                 <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="rounded w-32 h-96 m-0 " alt="{{ $personal_informations->name }}" width="200" height="180" style="">

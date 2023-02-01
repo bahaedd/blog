@@ -75,6 +75,7 @@ class ResumeBuilder extends Component
             $this->stateSummary = [
             'id' => $this->summary->id,
             'summary' => $this->summary->summary,
+            'job_title' => $this->summary->job_title,
         ];
         $this->updateSummary = true;
         }
@@ -429,6 +430,7 @@ class ResumeBuilder extends Component
         Summary::create([
             'user_id' => Auth::user()->id,
             'summary' => $this->stateSummary['summary'],
+            'job_title' => $this->stateSummary['job_title'],
         ]);
 
         $this->mount();
@@ -451,6 +453,7 @@ class ResumeBuilder extends Component
             $Summary->update([
                 'user_id' => Auth::user()->id,
                 'summary' => $this->stateSummary['summary'],
+                'job_title' => $this->stateSummary['job_title'],
             ]);
 
             $this->mount();
