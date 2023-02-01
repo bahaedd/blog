@@ -553,6 +553,7 @@
                 <!-- Preview --->
                 <div class="hidden p-4 bg-white md:p-8 dark:bg-gray-800" id="preview" role="tabpanel" aria-labelledby="preview-tab">
                     <!-- Model 1 --->
+                    <h6 class="my-4 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">--- Model 1 ---</h2>
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                             <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
@@ -728,12 +729,13 @@
                             </div>
                         </div>
                     </div>
+                    <h6 class="my-4 mt-6 mb-3 text-2xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">--- Model 2 ---</h2>
                     <!-- Model 2 --->
                     <div class="w-full p-12 bg-white shadow-md sm:p-6 dark:bg-gray-800">
                         <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                             <div class="bg-dark-gray w-full min-h-screen rounded-lg border border-green-600 shadow-md p-6 border border-green-600">
                                 <div class="mt-3 mb-3 text-center">
-                                            <a href="{{ route('resume-download', ['model_id' => 2, 'user_id' => Auth::user()->id]) }}" class="inline-flex items-center text-blue-600 hover:underline">
+                                    <a href="{{ route('resume-download', ['model_id' => 2, 'user_id' => Auth::user()->id]) }}" class="inline-flex items-center text-blue-600 hover:underline">
                                         Download
                                         <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
@@ -742,42 +744,59 @@
                                     </a>
                                 </div>
                                 <div class="w-full max-w-6xl mx-auto px-4 py-8 flex justify-between md:flex-no-wrap flex-wrap">
-                                    <header class="inline-flex items-baseline justify-between w-full align-top border-b border-green-600">
+                                    <header class="inline-flex items-center justify-between w-full align-top border-b border-green-600">
                                         <div class="mb-12">
-                                            <h1 class="mb-0 text-5xl font-bold text-gray-750">
-                                                Thomas Leon Highbaugh
+                                            @if($personal_informations)
+                                            <h1 class="mb-0 text-4xl font-bold uppercase text-gray-500 dark:text-white">
+                                                {{ $personal_informations->name }}
                                             </h1>
-                                            <!--Job Title--------------------------------------------------------------------------------------------------------->
-                                            <h2 class="m-0 ml-2 text-2xl font-semibold text-gray-700 leading-snugish">
-                                                Full Stack Web Development
+                                            @else
+                                            <h1 class="mb-0 text-5xl font-bold text-gray-500 dark:text-white">
+                                                Full name
+                                            </h1>
+                                            @endif
+                                            @if($personal_informations)
+                                            <h2 class="m-0 ml-2 text-2xl font-semibold text-gray-500 dark:text-white leading-snugish">
+                                                {{ $personal_informations->name }}
                                             </h2>
-                                            <!--Location --------------------------------------------------------------------------------------------------------->
-                                            <h3 class="m-0 mt-2 ml-2 font-semibold text-md text-gray-550 leading-snugish">
-                                                San Francisco, California
+                                            @else
+                                            <h1 class="mb-0 text-5xl font-bold text-gray-500 dark:text-white">
+                                                Full Stack Web Development
+                                            </h1>
+                                            @endif
+                                            @if($personal_informations)
+                                            <h3 class="m-0 mt-2 ml-2 font-semibold text-md text-gray-500 dark:text-white leading-snugish">
+                                                {{ $personal_informations->nationality }} / {{ $personal_informations->birthday }}
                                             </h3>
+                                            @else
+                                            <h3 class="m-0 mt-2 ml-2 font-semibold text-md text-gray-500 dark:text-white leading-snugish">
+                                                Nationality / Birthday
+                                            </h3>
+                                            @endif
+                                            @if($personal_informations)
+                                            <h3 class="m-0 mt-2 ml-2 font-semibold text-md text-gray-500 dark:text-white leading-snugish">
+                                                {{ $personal_informations->address }}
+                                            </h3>
+                                            @else
+                                            <h3 class="m-0 mt-2 ml-2 font-semibold text-md text-gray-500 dark:text-white leading-snugish">
+                                                Adress
+                                            </h3>
+                                            @endif
                                         </div>
                                         <!--   Initials Block         -->
-                                        <div>
+                                        <div class="mb-12">
                                             @if($personal_informations)
-                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-auto max-w-full rounded-lg mt-12" alt="{{ $personal_informations->name }}" width="230" height="160">
+                                            <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="rounded w-32 h-96 m-0 " alt="{{ $personal_informations->name }}" width="200" height="180" style="">
                                             @else
-                                            <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
+                                            <img src="{{URL('/images/guest.jpg')}}" class="rounded w-32 h-96 p-3 mt-12" alt="Profile picture" width="230" height="160">
                                             @endif
                                         </div>
                                     </header>
                                     <div class="md:w-1/3 w-full mt-12">
-                                        <header>
+                                        <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Contact Infos</h3>
+                                        <header class="border-b border-green-600">
                                             @if($personal_informations)
-                                            <div class="text-gray-500 dark:text-white mt-6">
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="person" class="mr-2"></ion-icon> {{ $personal_informations->name }}
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> {{ $personal_informations->birthday }}
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="flag" class="mr-2"></ion-icon> {{ $personal_informations->nationality }}
-                                                </a>
+                                            <div class="text-gray-500 dark:text-white mt-6 mb-6">
                                                 <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
                                                     <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
                                                     {{ $personal_informations->linkedin }}
@@ -793,16 +812,7 @@
                                                 </a>
                                             </div>
                                             @else
-                                            <div class="text-white mt-4">
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="person" class="mr-2"></ion-icon> Your name
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="calendar-clear" class="mr-2"></ion-icon> Birthday
-                                                </a>
-                                                <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
-                                                    <ion-icon name="flag" class="mr-2"></ion-icon> Nationality
-                                                </a>
+                                            <div class="text-white mt-6 mb-6">
                                                 <a href="https://linkedin.com/in/bahaeddine" class="hover:underline flex items-center">
                                                     <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
                                                     Linkedin Profile
@@ -819,20 +829,22 @@
                                             </div>
                                             @endif
                                         </header>
-                                        <section class="mt-16">
-                                            <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Career Objectives</h3>
+                                        <section class="mt-12 border-b border-green-600">
+                                            <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Summary</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
                                             @if($summary)
-                                            <p class="text-gray-500 dark:text-white">{{ $summary->summary }}</p>
+                                            <p class="text-gray-500 dark:text-white mb-6">{{ $summary->summary }}</p>
+                                            @else
+                                            <p class="text-gray-500 dark:text-white mb-6">Your summary</p>
                                             @endif
                                         </section>
-                                        <section class="mt-16">
+                                        <section class="mt-12 border-b border-green-600">
                                             <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Skills</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            <ul class="text-white list-none list-inside">
-                                                @foreach($skills as $skill)
+                                            <ul class="text-white list-none list-inside mb-6">
+                                                @forelse($skills as $skill)
                                                 <li class="mb-3">
                                                     <div class="flex justify-between mb-1">
                                                         <span class="text-base font-medium text-blue-700 dark:text-white">{{ $skill->title }}</span>
@@ -841,29 +853,35 @@
                                                         <div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ $skill->level }}%"></div>
                                                     </div>
                                                 </li>
-                                                @endforeach
+                                                @empty
+                                                <li class="mb-3">
+                                                    Skills shows up here
+                                                </li>
+                                                @endforelse
                                             </ul>
                                         </section>
-                                        <section class="mt-16">
+                                        <section class="mt-12 border-b border-green-600">
                                             <h3 class="uppercase text-gray-500 dark:text-white font-medium text-3xl">Languages</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            <div class="text-gray-500 dark:text-white">
+                                            <div class="text-gray-500 dark:text-white mb-6">
                                                 <ul class="text-gray-500 list-disc list-inside mt-4 dark:text-white">
-                                                    @foreach($languages as $language)
+                                                    @forelse($languages as $language)
                                                     <li>{{ $language->language }}</li>
-                                                    @endforeach
+                                                    @empty
+                                                    <li>Languages shows up here</li>
+                                                    @endforelse
                                                 </ul>
                                             </div>
                                         </section>
                                     </div>
                                     <div class="md:w-2/4 w-full mt-12">
-                                        <section class="mt-16 md:mt-0">
-                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Education Summary</h3>
+                                        <section class="mt-12 md:mt-0 border-b border-green-600">
+                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Education</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            @foreach($educations as $education)
-                                            <div class="mt-8">
+                                            @forelse($educations as $education)
+                                            <div class="mt-6 mb-6">
                                                 <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $education->degree }}</h4>
                                                 <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $education->starts }} - {{ $education->ends }}</i></h5>
                                                 <ul class="text-gray-500 list-disc list-inside mt-4 dark:text-white">
@@ -872,35 +890,47 @@
                                                     <li>Speciality: {{ $education->description }}</li>
                                                 </ul>
                                             </div>
-                                            @endforeach
+                                            @empty
+                                            <div class="mt-6 mb-6">
+                                                Degrees shows up here
+                                            </div>
+                                            @endforelse
                                         </section>
-                                        <section class="mt-16">
-                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Work Summary</h3>
+                                        <section class="mt-12 border-b border-green-600">
+                                            <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Work Experience</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            @foreach($works as $work)
-                                            <div class="mt-8">
+                                            @forelse($works as $work)
+                                            <div class="mt-6 mb-6">
                                                 <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $work->position }} | {{ $work->company }}</h4>
                                                 <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $work->starts }} - {{ $work->ends }}</i></h5>
                                                 <p class="text-gray-500 dark:text-white">
                                                     {{ $work->description }}
                                                 </p>
                                             </div>
-                                            @endforeach
+                                            @empty
+                                            <div class="mt-6 mb-6">
+                                                Work Experiences shows up here
+                                            </div>
+                                            @endforelse
                                         </section>
-                                        <section class="mt-16 md:mt-12">
+                                        <section class="mt-12 md:mt-12 border-b border-green-600">
                                             <h3 class="uppercase text-gray-500 font-medium text-3xl dark:text-white">Projects</h3>
                                             <div class="h-1 bg-green w-48 my-4">
                                             </div>
-                                            @foreach($projects as $project)
-                                            <div class="mt-8">
+                                            @forelse($projects as $project)
+                                            <div class="mt-6 mb-6">
                                                 <h4 class="font-medium text-gray-500 text-2xl dark:text-white">{{ $project->title }}</h4>
                                                 <h5 class="font-medium text-gray-500 dark:text-white"><i>{{ $project->date }} | {{ $project->tools }}</i></h5>
                                                 <p class="text-gray-500 dark:text-white">
                                                     {{ $project->description }}
                                                 </p>
                                             </div>
-                                            @endforeach
+                                            @empty
+                                            <div class="mt-6 mb-6">
+                                                Projects shows up here
+                                            </div>
+                                            @endforelse
                                         </section>
                                     </div>
                                 </div>
