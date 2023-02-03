@@ -603,7 +603,7 @@
                                                     </a>
                                                 </div>
                                                 @else
-                                                <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-full sm:h-56" alt="Profile picture" width="230" height="160">
+                                                <img src="{{URL('/images/guest.jpg')}}" class="h-auto max-w-full rounded-lg" alt="Profile picture" width="230" height="160">
                                                 <div class="text-white mt-4">
                                                     <a href="https://aliendev.com" class="hover:underline flex items-center mt-1">
                                                         <ion-icon name="person" class="mr-2"></ion-icon> Your name
@@ -792,9 +792,9 @@
                                                 </div>
                                                 <div class="mb-12">
                                                     @if($personal_informations)
-                                                    <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="rounded w-32 h-96 m-0 " alt="{{ $personal_informations->name }}" width="200" height="180" style="">
+                                                    <img src="{{URL('/storage/profiles/'.$personal_informations->image)}}" class="h-36 rounded-lg sm:h-56" alt="{{ $personal_informations->name }}" width="200" height="180" style="">
                                                     @else
-                                                    <img src="{{URL('/images/guest.jpg')}}" class="rounded w-32 h-96 p-3 mt-12" alt="Profile picture" width="230" height="160">
+                                                    <img src="{{URL('/images/guest.jpg')}}" class="h-36 rounded-lg sm:h-56" alt="Profile picture" width="230" height="160">
                                                     @endif
                                                 </div>
                                             </header>
