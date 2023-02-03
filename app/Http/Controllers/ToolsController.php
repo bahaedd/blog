@@ -438,5 +438,12 @@ class ToolsController extends Controller
 
         return view('pdfview');
     }
+
+    //MultiNotes
+    public function Multinotes() {
+
+         return view("blog.tools.multinotes");
+
+    }
 }
 

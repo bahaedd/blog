@@ -101,6 +101,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/projects/personalpack/resume-builder',[ToolsController::class, 'ResumeBuilder'])->name('resume-builder');
     Route::get('/resume-builder/user/resume-download/Model{model_id}/{user_id}',[ToolsController::class, 'ResumeDownload'])->name('resume-download');
     Route::get('pdfview',array('as'=>'pdfview','uses'=>'App\Http\Controllers\ToolsController@pdfview'));
+    Route::get('/projects/personalpack/multinotes',[ToolsController::class, 'Multinotes'])->name('multinotes');
 });
 
 Auth::routes();
