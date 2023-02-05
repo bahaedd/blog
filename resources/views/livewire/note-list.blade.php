@@ -18,7 +18,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="block shadow-lg bg-yellow-300 max-w-sm text-center m-12">
+                                <div class="block shadow-lg bg-green-300 max-w-sm text-center m-12">
                                     <div class="py-3 px-6 border-b border-gray-300">
                                         <ion-icon name="attach" size="large"></ion-icon>
                                     </div>
@@ -29,7 +29,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="block shadow-lg bg-yellow-300 max-w-sm text-center m-12">
+                                <div class="block shadow-lg bg-blue-300 max-w-sm text-center m-12">
                                     <div class="py-3 px-6 border-b border-gray-300">
                                         <ion-icon name="attach" size="large"></ion-icon>
                                     </div>
