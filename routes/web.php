@@ -32,6 +32,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/about',[SitemapController::class, 'about'])->name('about');
     Route::get('/portfolio', [ContactUsFormController::class, 'Portfolio'])->name('portfolio');
     Route::post('/portfolio/store', [ContactUsFormController::class, 'Contact'])->name('contact.store');
+    Route::get('/contact',[ContactUsFormController::class, 'ContactPage'])->name('contact');
     Route::get('sitemap.xml',[SitemapController::class, 'index']);
     //projects
     //         ######################### MailerPack ################################

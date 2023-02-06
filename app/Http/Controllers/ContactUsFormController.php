@@ -15,6 +15,11 @@ class ContactUsFormController extends Controller
         return view("blog.portfolio", compact("categories"));
     }
 
+    public function ContactPage(Request $request) {
+        $categories = Category::all();
+        return view("blog.contact", compact("categories"));
+    }
+
     public function Contact(Request $request) {
         // Form validation
         $this->validate($request, [

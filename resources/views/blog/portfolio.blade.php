@@ -52,7 +52,6 @@
             </p>
             <div class="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start">
                 <div class="flex items-center justify-center pl-0 sm:justify-start md:pl-1">
-                    {{-- <p class="font-body text-lg uppercase text-white">let's connect >> </p> --}}
                 </div>
                 <div class="flex items-center space-x-6 justify-center pt-3 pl-2 sm:justify-start sm:pt-0">
                     <a href="https://www.instagram.com/bahaeddine_bahae/" class="text-red-400 hover:text-white" target="_blank">
