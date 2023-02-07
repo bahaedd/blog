@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use PDF;
 use Redirect;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class ToolsController extends Controller
 {
@@ -39,9 +40,10 @@ class ToolsController extends Controller
     //ip extractor
     public function extractor() {
 
-        
-        return view("blog.tools.ipextractor");
+        $ipmatch = [];
+        return view("blog.tools.ipextractor", compact("ipmatch"));
     }
+
     public function extractIP(Request $request) {
         // Form validation
         $this->validate($request, [
@@ -57,11 +59,12 @@ class ToolsController extends Controller
          if(empty($ipmatch)){
             $ipmatch = ['0' => 'No IP Address Found!'];
          }
-         // dd($ipmatch);
-        return view("blog.tools.ipextractor", compact("ipmatch"));
+         
+         
+        return redirect()->back()->with('ipmatch', $ipmatch);
         // return redirect()->route('ip-extractor')->with( ['ipmatch' => $ipmatch] );
          // return Redirect::route('ip-extractor',['ipmatch' => $ipmatch]);
-         // return redirect()->route('ip-extractor',compact("ipmatch"));
+          // return redirect()->route('ip-extractor',$ipmatch);
          // return redirect(route('ip-extractor', $ipmatch));
         //  return redirect()->action(
         //     [ToolsController::class, 'extractor'], ['ipmatch' => $ipmatch]
