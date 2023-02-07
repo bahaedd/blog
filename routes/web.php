@@ -40,7 +40,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     
     //IP extractor
     Route::get('/projects/mailerpack/ipextractor',[ToolsController::class, 'extractor'])->name('ip-extractor');
-    Route::post('/projects/ipextractor/extract',[ToolsController::class, 'extract']);
+    Route::post('/projects/mailerpack/ipextractor/extract',[ToolsController::class, 'extractIP']);
     //Domain extractor
     Route::get('/projects/mailerpack/domainextractor',[ToolsController::class, 'domainExtractor'])->name('domain-extractor');
     Route::post('/projects/domainextractor/extract',[ToolsController::class, 'extractDomain']);
@@ -105,6 +105,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/projects/personalpack/multinotes',[ToolsController::class, 'Multinotes'])->name('multinotes');
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [PostController::class, 'index']);

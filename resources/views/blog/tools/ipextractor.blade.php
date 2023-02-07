@@ -10,7 +10,7 @@
         <!-- container -->
         <div class="px-16 mx-auto py-16 md:py-20 mb-24">
             <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">IP Address Extractor</h2>
-            <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('projects/ipextractor/extract')}}" method="post">
+            <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" method="POST" action="{{url('/projects/mailerpack/ipextractor/extract')}}">
                 @csrf
                 <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
                 <textarea id="text" name="text" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Paste your text here..."></textarea>
@@ -25,16 +25,20 @@
                       </div>
                     </div>
                 @endif
-                <input type="submit" name="send" value="Submit" class="mt-6 flex items-center justify-center rounded bg-green-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
+                <button type="submit" name="send" class="mt-6 flex items-center justify-center rounded bg-green-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">Submit</button>
                 </section>
                 <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
-                    <div id="result" name="result" class="block p-3 h-64 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @if(empty($ipmatch)) hidden @endif">
+                    <div id="result" name="result" class="block p-3 h-64 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <div class="flex justify-end">
                           <button type="button" class="btn" data-tooltip-target="tooltip-dark" data-clipboard-target="#result"><ion-icon name="clipboard-outline"></ion-icon></button>
                         </div>
-                        @foreach ($ipmatch as $key => $value)
+                        @isset($ipmatch)
+                        @forelse ($ipmatch as $key => $value)
                             {{ $value }} <br>
-                        @endforeach
+                        @empty
+                        Paste text that contains ips
+                        @endforelse
+                        @endisset
                     </div>
                 </section>
                 <div id="tooltip-dark" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">

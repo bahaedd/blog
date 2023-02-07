@@ -22,6 +22,7 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use PDF;
+use Redirect;
 
 class ToolsController extends Controller
 {
@@ -38,15 +39,15 @@ class ToolsController extends Controller
     //ip extractor
     public function extractor() {
 
-        $ipmatch = [];
-        return view("blog.tools.ipextractor", compact("ipmatch"));
+        
+        return view("blog.tools.ipextractor");
     }
-    public function extract(Request $request) {
+    public function extractIP(Request $request) {
         // Form validation
         $this->validate($request, [
             'text' => 'required',
          ]);
-        
+        $ipmatch = [];
         $text = $request->get('text');
         $reccord= $text;
         $regexIpAddress = '/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?:\/\d{2})?/';
@@ -56,8 +57,15 @@ class ToolsController extends Controller
          if(empty($ipmatch)){
             $ipmatch = ['0' => 'No IP Address Found!'];
          }
-
+         // dd($ipmatch);
         return view("blog.tools.ipextractor", compact("ipmatch"));
+        // return redirect()->route('ip-extractor')->with( ['ipmatch' => $ipmatch] );
+         // return Redirect::route('ip-extractor',['ipmatch' => $ipmatch]);
+         // return redirect()->route('ip-extractor',compact("ipmatch"));
+         // return redirect(route('ip-extractor', $ipmatch));
+        //  return redirect()->action(
+        //     [ToolsController::class, 'extractor'], ['ipmatch' => $ipmatch]
+        // );
     }
 
     //Domain extractor
