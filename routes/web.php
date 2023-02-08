@@ -40,34 +40,34 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     
     //IP extractor
     Route::get('/projects/mailerpack/ipextractor',[ToolsController::class, 'extractor'])->name('ip-extractor');
-    Route::post('/projects/mailerpack/ipextractor/extract',[ToolsController::class, 'extractIP']);
+    Route::any('/projects/mailerpack/ipextractor/extract', [ToolsController::class, 'extractIP']);
     //Domain extractor
     Route::get('/projects/mailerpack/domainextractor',[ToolsController::class, 'domainExtractor'])->name('domain-extractor');
-    Route::post('/projects/domainextractor/extract',[ToolsController::class, 'extractDomain']);
+    Route::any('/projects/domainextractor/extract',[ToolsController::class, 'extractDomain']);
     //DNS Lookup
     Route::get('/projects/mailerpack/dnslookup',[ToolsController::class, 'dnsLookup'])->name('dns-lookup');
-    Route::post('/projects/dnslookup/lookup',[ToolsController::class, 'lookup']);
+    Route::any('/projects/dnslookup/lookup',[ToolsController::class, 'lookup']);
     //URL Lookup
     Route::get('/projects/mailerpack/urllookup',[ToolsController::class, 'UrlLookup'])->name('url-lookup');
-    Route::post('/projects/urllookup/lookup',[ToolsController::class, 'Ulookup']);
+    Route::any('/projects/urllookup/lookup',[ToolsController::class, 'Ulookup']);
     //IP Lookup
     Route::get('/projects/mailerpack/iplookup',[ToolsController::class, 'IpLookup'])->name('ip-lookup');
-    Route::post('/projects/iplookup/lookup',[ToolsController::class, 'Ilookup']);
+    Route::any('/projects/iplookup/lookup',[ToolsController::class, 'Ilookup']);
     //Random Generator
     Route::get('/projects/mailerpack/randomgenerator',[ToolsController::class, 'RandomGenerator'])->name('random-generator');
-    Route::post('/projects/randomgenerator/generate',[ToolsController::class, 'GenerateRandom']);
+    Route::any('/projects/randomgenerator/generate',[ToolsController::class, 'GenerateRandom']);
     //User Generator
     Route::get('/projects/mailerpack/usergenerator',[ToolsController::class, 'UserGenerator'])->name('user-generator');
-    Route::post('/projects/randomusergenerator/generate',[ToolsController::class, 'GenerateRandomUser']);
+    Route::any('/projects/randomusergenerator/generate',[ToolsController::class, 'GenerateRandomUser']);
     //Password Generator
     Route::get('/projects/mailerpack/passwordgenerator',[ToolsController::class, 'PasswordGenerator'])->name('pass-generator');
-    Route::post('/projects/passwordgenerator/generate',[ToolsController::class, 'GeneratePassword']);
+    Route::any('/projects/passwordgenerator/generate',[ToolsController::class, 'GeneratePassword']);
     //Encode-Decode
     Route::get('/projects/mailerpack/encodedecode',[ToolsController::class, 'EncodeDecode'])->name('encode-decode');
-    Route::post('/projects/encodedecode/encode',[ToolsController::class, 'Encode']);
+    Route::any('/projects/encodedecode/encode',[ToolsController::class, 'Encode']);
     //Domain reputation
     Route::get('/projects/mailerpack/domainreputation',[ToolsController::class, 'DomainReputation'])->name('domain-reputation');
-    Route::post('/projects/domainreputation/check',[ToolsController::class, 'CheckDomain']);
+    Route::any('/projects/domainreputation/check',[ToolsController::class, 'CheckDomain']);
 
     //         ######################### PersonalPackApp ################################
 

@@ -43,9 +43,13 @@ class ToolsController extends Controller
         $ipmatch = [];
         return view("blog.tools.ipextractor", compact("ipmatch"));
     }
+    public function extractorshow() {
+        $ipmatch = [];
+        return view("blog.tools.ipextractor-show", compact("ipmatch"));
+    }
 
     public function extractIP(Request $request) {
-        // Form validation
+
         $this->validate($request, [
             'text' => 'required',
          ]);
@@ -61,7 +65,7 @@ class ToolsController extends Controller
          }
          
          
-        return redirect()->back()->with('ipmatch', $ipmatch);
+         return view("blog.tools.ipextractor", compact("ipmatch"));
         // return redirect()->route('ip-extractor')->with( ['ipmatch' => $ipmatch] );
          // return Redirect::route('ip-extractor',['ipmatch' => $ipmatch]);
           // return redirect()->route('ip-extractor',$ipmatch);
