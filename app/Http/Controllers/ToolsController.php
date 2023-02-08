@@ -60,19 +60,12 @@ class ToolsController extends Controller
          preg_match_all($regexIpAddress, $reccord, $ip_match);
          
          $ipmatch = Arr::collapse($ip_match);
+         $ipmatch = array_unique($ipmatch);
          if(empty($ipmatch)){
             $ipmatch = ['0' => 'No IP Address Found!'];
          }
-         
-         
+               
          return view("blog.tools.ipextractor", compact("ipmatch"));
-        // return redirect()->route('ip-extractor')->with( ['ipmatch' => $ipmatch] );
-         // return Redirect::route('ip-extractor',['ipmatch' => $ipmatch]);
-          // return redirect()->route('ip-extractor',$ipmatch);
-         // return redirect(route('ip-extractor', $ipmatch));
-        //  return redirect()->action(
-        //     [ToolsController::class, 'extractor'], ['ipmatch' => $ipmatch]
-        // );
     }
 
     //Domain extractor
@@ -89,9 +82,13 @@ class ToolsController extends Controller
         
         $text = $request->get('text');
         $reccord= $text;
-        $regexIpAddress = '/([a-z0-9][a-z0-9\-]{0,61}[a-z0-9]\.)+[a-z0-9][a-z0-9\-]*[a-z0-9]/';
-        preg_match_all($regexIpAddress, $reccord, $ip_match);
+        $regexIpAddress = '/($[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]\.)+[a-z0-9][a-z0-9\-]*[a-z0-9]$/';
+
+        
+        preg_match_all("/([a-z0-9][a-z0-9\-]{0,61}[a-z0-9]\.)+[a-z0-9][a-z0-9\-]*[a-z0-9]/", $reccord, $ip_match);
         $Dmatch = Arr::collapse($ip_match);
+        $Dmatch = preg_grep('/([a-z0-9][a-z0-9\-]{0,61}[a-z0-9]\.)/', $Dmatch);
+        $Dmatch = array_unique($Dmatch);
         if(empty($Dmatch)){
             $Dmatch = ['0' => 'No Domain name Found!'];
          }
