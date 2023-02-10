@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="md:flex lg:flex xl:flex justify-between bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3 p-6">
+                <div class="">
                     <div class="w-full overflow-x-auto relative shadow-md sm:rounded-lg m-3 mr-3">
                         <div class="w-full bg-gray-800 border shadow-md dark:bg-gray-800 dark:border-gray-700">
                             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
