@@ -3,7 +3,7 @@
 @section('content')
 <section class="bg-gray-50 dark:bg-gray-800 mt-12">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <a href="{{ route('home') }}" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <a href="{{ route('home') }}" class="flex items-center mb-2 text-1xl font-semibold text-gray-900 dark:text-white">
             <img class="w-8 h-8 mr-2" src="{{Voyager::image( setting('site.logo'))}}" alt="logo">
             AlienDev
         </a>

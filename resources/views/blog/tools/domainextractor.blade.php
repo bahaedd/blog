@@ -51,8 +51,9 @@
                 <input type="submit" name="send" value="Submit" class="mt-6 flex items-center justify-center rounded bg-green-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20">
                 </section>
                 <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
-                    <textarea id="result" name="result" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @if(empty($Dmatch)) hidden @endif " placeholder="" style="white-space: white-space: pre-wrap;;">
-                        @foreach ($Dmatch as $key => $value){{ $value }}&nbsp; @endforeach
+                    <textarea id="result" name="result" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @if(empty($Dmatch)) hidden @endif " placeholder="" style="white-space: white-space: pre-wrap;">
+                        @foreach ($Dmatch as $key => $value){{ $value }}
+                        @endforeach
                     </textarea>
                     <button type="button" class="btn mt-6 flex items-center justify-center rounded bg-green-700 px-8 py-3 font-header text-lg font-bold uppercase text-white hover:bg-grey-20 @if(empty($Dmatch)) hidden @endif" data-tooltip-target="tooltip-dark" data-clipboard-target="#result">Copy</button>
                 </section>

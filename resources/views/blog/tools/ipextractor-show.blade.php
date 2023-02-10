@@ -32,7 +32,10 @@
                         <div class="flex justify-end">
                           <button type="button" class="btn" data-tooltip-target="tooltip-dark" data-clipboard-target="#result"><ion-icon name="clipboard-outline"></ion-icon></button>
                         </div>
-                        
+                        @foreach ($ipmatch as $key => $value)
+                            {{ $value }} <br>
+                        Paste text that contains ips
+                        @endforeach
                     </div>
                       <textarea id="text" name="text" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Paste your text here..." required></textarea>
                 </section>
