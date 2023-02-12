@@ -7,7 +7,7 @@ use Validator;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Note;
-
+use Auth;
 
 class NoteList extends Component
 {
@@ -16,6 +16,7 @@ class NoteList extends Component
     public $work_notes;
     public $other_notes;
     public $state = [];
+    public $updateMode = false;
 
 
     public function render()
@@ -41,6 +42,7 @@ class NoteList extends Component
 
         if($this->state['category'] == 'personal'){
             Note::create([
+            'user_id' => Auth::user()->id,
             'title' => $this->state['title'],
             'category' => $this->state['category'],
             'description' => $this->state['description'],
@@ -49,6 +51,7 @@ class NoteList extends Component
 
         elseif($this->state['category'] == 'work'){
             Notet::create([
+            'user_id' => Auth::user()->id,
             'title' => $this->state['title'],
             'category' => $this->state['category'],
             'description' => $this->state['description'],
@@ -57,6 +60,7 @@ class NoteList extends Component
 
         else{
             Note::create([
+            'user_id' => Auth::user()->id, 
             'title' => $this->state['title'],
             'category' => $this->state['category'],
             'description' => $this->state['description'],
