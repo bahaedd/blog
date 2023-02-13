@@ -91,76 +91,44 @@
                                 </div>
                                 <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                     <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
+                                        @forelse ($work_notes as $note)
                                         <div class="block shadow-lg bg-yellow-300 max-w-sm text-center m-12">
                                             <div class="py-3 px-6 border-b border-gray-300">
                                                 <ion-icon name="attach" size="large"></ion-icon>
                                             </div>
                                             <div class="p-6">
-                                                <h5 class="text-gray-900 text-xl font-medium mb-2">Special title treatment</h5>
+                                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $note->title }}</h5>
                                                 <p class="text-gray-700 text-base mb-6">
-                                                    With supporting text below as a natural lead-in to additional content.
+                                                    {{ $note->description }}
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="block shadow-lg bg-green-300 max-w-sm text-center m-12">
-                                            <div class="py-3 px-6 border-b border-gray-300">
-                                                <ion-icon name="attach" size="large"></ion-icon>
-                                            </div>
-                                            <div class="p-6">
-                                                <h5 class="text-gray-900 text-xl font-medium mb-2">Special title treatment</h5>
-                                                <p class="text-gray-700 text-base mb-6">
-                                                    With supporting text below as a natural lead-in to additional content.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="block shadow-lg bg-blue-300 max-w-sm text-center m-12">
-                                            <div class="py-3 px-6 border-b border-gray-300">
-                                                <ion-icon name="attach" size="large"></ion-icon>
-                                            </div>
-                                            <div class="p-6">
-                                                <h5 class="text-gray-900 text-xl font-medium mb-2">Special title treatment</h5>
-                                                <p class="text-gray-700 text-base mb-6">
-                                                    With supporting text below as a natural lead-in to additional content.
-                                                </p>
-                                            </div>
-                                        </div>
+                                        @empty
+                                        <tr class="bg-white border dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <p class="text-center font-normal text-gray-500 mt-6">No notes to show yet...</p>
+                                        </tr>
+                                        @endforelse
                                     </div>
                                 </div>
                                 <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                                     <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
+                                        @forelse ($other_notes as $note)
                                         <div class="block shadow-lg bg-yellow-300 max-w-sm text-center m-12">
                                             <div class="py-3 px-6 border-b border-gray-300">
                                                 <ion-icon name="attach" size="large"></ion-icon>
                                             </div>
                                             <div class="p-6">
-                                                <h5 class="text-gray-900 text-xl font-medium mb-2">Special title treatment</h5>
+                                                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $note->title }}</h5>
                                                 <p class="text-gray-700 text-base mb-6">
-                                                    With supporting text below as a natural lead-in to additional content.
+                                                    {{ $note->description }}
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="block shadow-lg bg-green-300 max-w-sm text-center m-12">
-                                            <div class="py-3 px-6 border-b border-gray-300">
-                                                <ion-icon name="attach" size="large"></ion-icon>
-                                            </div>
-                                            <div class="p-6">
-                                                <h5 class="text-gray-900 text-xl font-medium mb-2">Special title treatment</h5>
-                                                <p class="text-gray-700 text-base mb-6">
-                                                    With supporting text below as a natural lead-in to additional content.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="block shadow-lg bg-blue-300 max-w-sm text-center m-12">
-                                            <div class="py-3 px-6 border-b border-gray-300">
-                                                <ion-icon name="attach" size="large"></ion-icon>
-                                            </div>
-                                            <div class="p-6">
-                                                <h5 class="text-gray-900 text-xl font-medium mb-2">Special title treatment</h5>
-                                                <p class="text-gray-700 text-base mb-6">
-                                                    With supporting text below as a natural lead-in to additional content.
-                                                </p>
-                                            </div>
-                                        </div>
+                                        @empty
+                                        <tr class="bg-white border dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <p class="text-center font-normal text-gray-500 mt-6">No notes to show yet...</p>
+                                        </tr>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
