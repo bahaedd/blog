@@ -11,6 +11,7 @@ use Auth;
 
 class NoteList extends Component
 {
+    use LivewireAlert;
 
     public $personal_notes;
     public $work_notes;
