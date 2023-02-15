@@ -457,5 +457,12 @@ class ToolsController extends Controller
          return view("blog.tools.multinotes");
 
     }
+
+    //MultiNotes
+    public function BucketGenerator() {
+
+         return view("blog.tools.bucket-generator");
+
+    }
 }
 
