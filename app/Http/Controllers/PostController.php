@@ -37,6 +37,17 @@ class PostController extends Controller
         return view("blog.home", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags"));
     }
 
+    public function postTemplate() {
+
+        $latest_posts = Post::latest()->get();
+        $laravel_posts = Post::where('category_id', '=', 1)->get();
+        $s_post = Post::latest()->take(1)->get();
+        $categories = Category::all();
+        $tags = Tag::all();
+        $recent_posts = Post::latest()->get();
+        return view("blog.post-template", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags"));
+    }
+
     public function show($slug) {
         $post = Cache::remember('posts', $slug, function () use ($slug) {
             return Post::where('slug', '=', $slug)->firstOrFail();

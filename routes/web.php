@@ -24,6 +24,7 @@ use App\Models\Category;
 Route::group(['middleware'=>'HtmlMinifier'], function(){ 
     //Blog
     Route::get('/blog', [PostController::class, 'index']);
+    Route::get('/post-template', [PostController::class, 'postTemplate']);
     Route::get('/', [PostController::class, 'index'])->name('home');
     Route::get('blog/post/{slug}', [PostController::class, 'show']);
     Route::get('blog/category/{slug}', [CategoryController::class, 'index'])->name('category');
