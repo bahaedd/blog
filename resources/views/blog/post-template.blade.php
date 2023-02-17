@@ -14,124 +14,75 @@
             </p>
         </div>
         <!--Post Content-->
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">JSON has become a popular format for representing complex data structures in modern web applications. As such, the ability to store JSON data in a database is a critical feature for many developers. Laravel, provides a convenient way to handle JSON data and store it in a database.</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">When dealing with large or unstructured data, it may not be practical to create numerous fields in a database table with nullable fields. In such cases, a JSON data type can be used to store the values instead. If you need to store a JSON array in a Laravel database, I can provide a straightforward example of how to do so.</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">To begin, you will first create a migration that includes a JSON column. Then, you will create a model that includes a getter and setter. When creating records, you can pass the data as an array, and when retrieving records, you will receive an array. By following this example, you can easily learn how to store and access a JSON array in a Laravel database.</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Step 1: Installation</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To get started, you need to have a Laravel application set up. If you don't have one, you can create a new Laravel application by running the following command:</p>
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
-            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> composer create-project --prefer-dist laravel/laravel project_name</div>
-        </div>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Step 2: Create Migration</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To set up the "examples" table in the database with "title" and "data" (JSON column) columns, we will need to create a database migration. Additionally, we will create a model for the "examples" table:</p>
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
-            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan make:model Example -mc</div>
-        </div>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">This command will create the Model and the "examples" table and also a Controller</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Now let's add the "title" and "data" culumns to the "examples" table</p>
+                <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Full text search is an essential feature of many modern web applications. With the ability to search across large volumes of data, developers can create powerful search functionality that enhances the user experience and improves the overall effectiveness of their applications.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Laravel, provides built-in support for full text search. In this post, we'll explore how to use full text search in Laravel and provide two examples to help you get started.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">To get started, I suppose you have already set up a Laravel Application, and I will provide you two ways for performing a full text search in Laravel</p>
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Example 1 : use "MATCH AGAINST"</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Laravel, a popular PHP web framework, provides built-in support for full text search through the use of the MySQL <span class="text-green-400">"MATCH AGAINST"</span> </p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To use full text search in Laravel, you'll need to have a MySQL database with a FULLTEXT index on one or more columns. The FULLTEXT index enables MySQL to perform efficient full text searches on the specified columns. Once you have a database with a FULLTEXT index, you can use the MATCH AGAINST operator in your Laravel application to perform full text searches.</p>
+        
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">To perform a full text search in Laravel, you can use the whereRaw method to add a MATCH AGAINST clause to your query. Here's an example</p>
         <!-- code source -->
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-gray-400  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400 text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
                 <pre class="">
-                    <p class="text-blue-400  text-center">database/migrations/2023_02_17_147774_create_examples_table.php</p>
-                    <p class="text-green-400"> public function up()</p>
-                    <p class="text-green-400">    {</p>
-                    <p class="text-green-400">        Schema::create('examples', function (Blueprint $table) {</p>
-                    <p>            $table->id();</p>
-                    <p class="text-blue-400">            $table->string('title');</p>
-                    <p class="text-blue-400">            $table->json('data')->nullable();</p>
-                    <p>            $table->timestamps();</p>
-                    <p class="text-green-400">        });</p>
-                    <p class="text-green-400">    }</p>
+                    <p>$searchTerm = 'example';</p>
+                    <p></p>
+                    <p>$results = DB::table('articles')</p>
+                    <p>    ->select('*')</p>
+                    <p>    ->whereRaw("MATCH(title, body) AGAINST(? IN BOOLEAN MODE)", [$searchTerm])</p>
+                    <p>    ->get();</p>
                 </pre>  
         </div>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Then run migration command to create the table.</p>
+
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Example 2 : use the "nicolaslopezj/searchable" package</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">The nicolaslopezj/searchable package is a powerful tool for implementing full text search in Laravel applications. By providing a simple and intuitive API, the package enables developers to easily add full text search functionality to their Laravel applications.</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To get started with the nicolaslopezj/searchable package, you'll need to add it to your Laravel project using Composer. Here's the command you'll need to run:</p>
         <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
-            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan migrate</div>
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> composer require nicolaslopezj/searchable</div>
         </div>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Now let's add the getter and setter to our Model</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Once you've added the package to your project, you can start using its functionality to implement full text search in your application.</p>
+
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To implement full text search with the nicolaslopezj/searchable package, you'll need to add a searchable trait to your model and specify the columns you want to search on. Here's how you can do it:</p>
         <!-- code source -->
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-gray-400  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
                 <pre class="">
-                    <p class="text-blue-400  text-center">App/Models/Example.php</p>
-                    <p class="text-green-400">class Example extends Model</p>
-                    <p class="text-green-400">{</p>
-                    <p>    use HasFactory;</p>
-                    <p>    protected $fillable = [</p>
-                    <p>        'title', 'data' </p>
-                    <p>    ]; </p>
-                    <p class="text-green-400">    protected function data(): Attribute</p>
-                    <p class="text-green-400">    {</p>
-                    <p class="text-blue-400">        return Attribute::make(</p>
-                    <p class="text-blue-400">            get: fn ($value) => json_decode($value, true),</p>
-                    <p class="text-blue-400">            set: fn ($value) => json_encode($value),</p>
-                    <p class="text-blue-400">        );</p>
-                    <p class="text-green-400">    } </p>
-                    <p class="text-green-400">}</p>
-                </pre>  
-        </div> 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Step 3: Create the Route</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Now we have to add the route</p>
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-gray-400  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
-                <pre class="">
-                    <p class="text-blue-400  text-center">routes/routes.php</p>
-                    <p class="text-green-400"><?php</p>
-                    <p class="text-green-400">use Illuminate\Support\Facades\Route;</p>
-                    <p class="text-green-400">use App\Http\Controllers\ExampleController;</p>
-                    <p>   </p>
-                    <p> /* </p>
-                    <p>|-------------------------------------------------------------------------- </p>
-                    <p>| Web Routes</p>
-                    <p>|-------------------------------------------------------------------------- </p>
-                    <p>|</p>
-                    <p> */ </p>
-                    <p class="text-blue-400">Route::get('json', [ExampleController::class, 'index']);</p>
-                </pre>  
-        </div> 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Step 3: Add logic to Controller</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">in the <code>index()</code> will store the records to our database and dump them to figure out the output</p>
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-gray-400  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
-                <pre class="">
-                    <p class="text-blue-400  text-center">app/Http/Controllers/ItemController.php</p>
-                    <p class="text-green-400">use Illuminate\Http\Request;</p>
-                    <p class="text-green-400">use App\Models\Example;</p>
-                    <p>  </p>
-                    <p class="text-green-400" >class ExampleController extends Controller</p>
-                    <p class="text-green-400">{</p>
-                    <p class="text-green-400">    public function index()</p>
-                    <p class="text-green-400">    {</p>
-                    <p class="text-blue-400">        $input = [</p>
-                    <p class="text-blue-400">            'title' => 'JSON example',</p>
-                    <p class="text-blue-400">            'data' => [</p>
-                    <p class="text-blue-400">                '1' => 'Laravel',</p>
-                    <p class="text-blue-400">                '2' => 'TailwindCSS',</p>
-                    <p class="text-blue-400">                '3' => 'Livewire'</p>
-                    <p class="text-blue-400">                '4' => 'Flowbite'</p>
-                    <p class="text-blue-400">            ]</p>
-                    <p class="text-blue-400">        ];</p>
-                    <p>  </p>
-                    <p>        $json = Example::create($input);</p>
-                    <p>  </p>
-                    <p>        dd($json->data);</p>
-                    <p>  </p>
-                    <p class="text-green-400">    }</p>
-                    <p class="text-green-400">}</p>
+                    <p>use Nicolaslopezj\Searchable\SearchableTrait;</p>
+                    <p></p>
+                    <p>class Article extends Model</p>
+                    <p>{</p>
+                    <p>    use SearchableTrait;</p>
+                    <p></p>
+                    <p>    protected $searchable = [</p>
+                    <p>        'columns' => [</p>
+                    <p>            'title' => 10,</p>
+                    <p>            'body' => 5,</p>
+                    <p>        ],</p>
+                    <p>    ];</p>
+                    <p>}</p>
                 </pre>  
         </div>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Now if we check the URL: <code> http://localhost:8000/examples </code> we got this: </p>
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400  font-semibold subpixel-antialiased bg-gray-700  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
-            <p>array:3 [</p>
-                <p></p>
-                <p>     1 => "Laravel"</p>
-                <p></p>
-                <p>     2 => "TailwindCSS"</p>
-                <p></p>
-                <p>     3 => "Livewire"</p>
-                <p></p>
-                <p>     4 => "Flowbite"</p>
-                <p></p>
-                <p>]</p>
-        </div> 
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">In conclusion, Laravel provides an intuitive and convenient way to store JSON data in a database. With its built-in support for JSON columns, you can easily save and retrieve complex, structured data within your application. By leveraging the power of Eloquent and the schema builder, you can take full advantage of Laravel's capabilities and create applications that are robust and scalable. Whether you're building a small app or a large-scale enterprise system, Laravel's JSON handling capabilities offer a powerful tool to manage your data effectively.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">We're adding the searchable trait to our Article model and specifying the title and body columns as searchable. We're also assigning weights to each column to control the relevance of the search results.</p>
+
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">To perform a search using the searchable trait, you can use the search method on your model.</p>
+        <!-- code source -->
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
+                <pre class="">
+                    <p>$searchTerm = 'example';</p>
+                    <p></p>
+                    <p>$results = Article::search($searchTerm)->get();</p>
+                </pre>  
+        </div>
+
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">In this post, we've explored different ways to implement full text search in Laravel applications. We've covered some of the built-in tools and techniques that Laravel provides, as well as some third-party packages that offer more advanced functionality.</p>
+
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">One of the easiest ways to implement full text search in Laravel is to use Laravel's built-in query builder and the LIKE operator. This approach is simple and effective, but it may not be the best choice for large or complex applications.</p>
+
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Another option is to use Laravel Scout, a full-text search package that provides a simple and powerful API for searching your models. Scout offers support for Elasticsearch, Algolia, and other search engines, making it a versatile option for a wide range of applications.</p>
+
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Finally, we explored the nicolaslopezj/searchable package, which provides a flexible and intuitive API for implementing full text search in Laravel. This package is particularly useful for applications that require more advanced search functionality or need to search across multiple models.</p>
+
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Ultimately, the best approach to implementing full text search in your Laravel application will depend on your specific needs and requirements. By understanding the different options available and their strengths and weaknesses, you can make an informed decision that will help you build a robust and effective search functionality that meets your users' needs.</p>
+
         <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Thanks for following up to this point, I hope that was clear and helpful. Enjoy Laravel...</p>
     </div>
     <!-- sidebar -->
