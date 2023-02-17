@@ -35,6 +35,7 @@
     "dependencies": {
         "alpinejs": "^3.10.5",
         "axios": "^0.27.2",
+        "code-prettify": "^0.1.0",
         "cors": "^2.8.5",
         "flowbite-datepicker": "^1.2.2"
     }
