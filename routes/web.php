@@ -74,8 +74,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
 
     Route::get('/projects/personalpack',[ToolsController::class, 'PeronalPack'])->name('personalpack');
 
-    //Todo App
-    Route::get('/projects/personalpack/todo',[ToolsController::class, 'TodoApp'])->name('todo');
+    
     //WriterBot App
     Route::get('/write', function () {
     $title = '';
@@ -105,6 +104,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/resume-builder/user/resume-download/Model{model_id}/{user_id}',[ToolsController::class, 'ResumeDownload'])->name('resume-download');
     Route::get('pdfview',array('as'=>'pdfview','uses'=>'App\Http\Controllers\ToolsController@pdfview'));
     Route::get('/projects/personalpack/multinotes',[ToolsController::class, 'Multinotes'])->name('multinotes');
+    //Todo App
+    Route::get('/projects/personalpack/todo',[ToolsController::class, 'TodoApp'])->name('todo');
 });
 
 // Auth::routes();

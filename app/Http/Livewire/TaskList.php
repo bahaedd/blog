@@ -6,6 +6,7 @@ use Livewire\Component;
 use Validator;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Auth;
 
 class TaskList extends Component
 {
@@ -18,15 +19,18 @@ class TaskList extends Component
 
     public function mount()
     {
-        $this->tasks = Task::where('completed_at', '=', null)->get();
+        $this->tasks = Task::where('user_id', '=', Auth::user()->id)
+        ->where('completed_at', '=', null)
+        ->get();
 
-        $completed_tasks = Task::where('completed_at', '!=', null)
+        $completed_tasks = Task::where('user_id', '=', Auth::user()->id)
+            ->where('completed_at', '!=', null)
             ->orderBy('completed_at', 'desc')
             ->get();
 
         foreach ($completed_tasks as $key => $task) {
             $date = Carbon::parse($task->completed_at);
-            $task->completed_at = $date->format('m/d/Y g:i A');
+            $task->completed_at = $date->format('m/d/Y g:i A'); 
         }
 
         $this->completed_tasks = $completed_tasks;
@@ -43,7 +47,11 @@ class TaskList extends Component
             'description' => 'max:30',
         ])->validate();
 
-        Task::create($this->state);
+        Task::create([
+            'user_id' => Auth::user()->id,
+            'title' => $this->state['title'],
+            'description' => $this->state['description'],
+        ]);
 
         $this->reset('state');
         $this->mount();
@@ -88,6 +96,7 @@ class TaskList extends Component
             $task->update([
                 'title' => $this->state['title'],
                 'description' => $this->state['description'],
+                'user_id' => Auth::user()->id,
             ]);
 
 

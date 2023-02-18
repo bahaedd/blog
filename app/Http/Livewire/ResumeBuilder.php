@@ -40,7 +40,7 @@ class ResumeBuilder extends Component
     public $updateSkill = false;
     public $updateSummary = false;
     public $updateLang = false;
-    public $updateProject = false;
+    public $updateProject = false; 
 
 
     public function mount()
