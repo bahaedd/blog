@@ -14,76 +14,216 @@
             </p>
         </div>
         <!--Post Content-->
-                <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Full text search is an essential feature of many modern web applications. With the ability to search across large volumes of data, developers can create powerful search functionality that enhances the user experience and improves the overall effectiveness of their applications.</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Laravel, provides built-in support for full text search. In this post, we'll explore how to use full text search in Laravel and provide two examples to help you get started.</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">To get started, I suppose you have already set up a Laravel Application, and I will provide you two ways for performing a full text search in Laravel</p>
-        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Example 1 : use "MATCH AGAINST"</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Laravel, a popular PHP web framework, provides built-in support for full text search through the use of the MySQL <span class="text-green-400">"MATCH AGAINST"</span> </p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To use full text search in Laravel, you'll need to have a MySQL database with a FULLTEXT index on one or more columns. The FULLTEXT index enables MySQL to perform efficient full text searches on the specified columns. Once you have a database with a FULLTEXT index, you can use the MATCH AGAINST operator in your Laravel application to perform full text searches.</p>
-        
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">To perform a full text search in Laravel, you can use the whereRaw method to add a MATCH AGAINST clause to your query. Here's an example</p>
-        <!-- code source -->
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400 text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
-                <pre class="">
-                    <p>$searchTerm = 'example';</p>
-                    <p></p>
-                    <p>$results = DB::table('articles')</p>
-                    <p>    ->select('*')</p>
-                    <p>    ->whereRaw("MATCH(title, body) AGAINST(? IN BOOLEAN MODE)", [$searchTerm])</p>
-                    <p>    ->get();</p>
-                </pre>  
-        </div>
-
-        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Example 2 : use the "nicolaslopezj/searchable" package</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">The nicolaslopezj/searchable package is a powerful tool for implementing full text search in Laravel applications. By providing a simple and intuitive API, the package enables developers to easily add full text search functionality to their Laravel applications.</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To get started with the nicolaslopezj/searchable package, you'll need to add it to your Laravel project using Composer. Here's the command you'll need to run:</p>
+                <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Are you tired of creating multiple login credentials for different websites? If yes, then implementing social media login in your Laravel application can be a great solution. In this tutorial, we will show you how to implement social media login in Laravel using the Socialite package.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">To get started, I suppose you have already set up a Laravel Application, and I will show you how to implement Social Media Login</p>
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 1 : install JetStream</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Jetstream is a new official package for Laravel that provides a starting point for building modern applications . It provides a pre-built authentication system, a dashboard with account management features, and a flexible way to add additional features and components.</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">So for that we need to install it by runing the following command:</p>
         <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
-            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> composer require nicolaslopezj/searchable</div>
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> composer require laravel/jetstream</div>
         </div>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Once you've added the package to your project, you can start using its functionality to implement full text search in your application.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white"> we need to create the authentication system, for that run the command bellow</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan jetstream:install livewire</div>
+        </div>
 
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To implement full text search with the nicolaslopezj/searchable package, you'll need to add a searchable trait to your model and specify the columns you want to search on. Here's how you can do it:</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white"> for node the package and run it, execute the command</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> npm install && npm run dev</div>
+        </div>
+
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white"> Then, create the database tables:</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan migrate</div>
+        </div>
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 2 : install Socialite</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Socialite is an official Laravel package that makes it easy to integrate with OAuth authentication providers, such as Facebook, Twitter, provider, and LinkedIn. It provides a simple, consistent interface for interacting with OAuth authentication providers, making it easy to authenticate users through third-party services in Laravel applications.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white"> To install it run:</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> composer require laravel/socialite</div>
+        </div>
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 3 : Create Social Media Apps</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Before you can use social media login, you need to create apps for each social media platform you want to use. Here are the links to create apps for some popular platforms:
+            <ul>
+                <li><a target="_blank" href="https://developers.facebook.com/apps/" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">Facebook: https://developers.facebook.com/apps/</a></li>
+                <li><a target="_blank" href="https://developer.twitter.com/en/apps" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">Twitter: https://developer.twitter.com/en/apps</a></li>
+                <li><a target="_blank" href="https://console.developers.provider.com/" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">provider: https://console.developers.provider.com/</a></li>
+                <li><a target="_blank" href="https://www.linkedin.com/developers/" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline">LinkedIn: https://www.linkedin.com/developers/</a></li>
+            </ul>  
+        </p>        
+         <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Once you have created the apps, make sure to note down the client ID and client secret, which you will need later.</p>
+         <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 4 : Configure Services</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Next, you need to configure the services you want to use in your Laravel application. Open the <code>config/services.php</code> file and add the following code:</p>
+        <!-- code source -->
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-green-400 text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
+                <pre class="">
+                    <p>'facebook' => [</p>
+                    <p>    'client_id' => env('FACEBOOK_CLIENT_ID'),</p>
+                    <p>    'client_secret' => env('FACEBOOK_CLIENT_SECRET'),</p>
+                    <p>    'redirect' => env('FACEBOOK_CALLBACK_URL'),</p>
+                    <p>],</p>
+                    <p>'twitter' => [</p>
+                    <p>    'client_id' => env('TWITTER_CLIENT_ID'),</p>
+                    <p>    'client_secret' => env('TWITTER_CLIENT_SECRET'),</p>
+                    <p>    'redirect' => env('TWITTER_CALLBACK_URL'),</p>
+                    <p>],</p>
+                    <p>'provider' => [</p>
+                    <p>    'client_id' => env('provider_CLIENT_ID'),</p>
+                    <p>    'client_secret' => env('provider_CLIENT_SECRET'),</p>
+                    <p>    'redirect' => env('provider_CALLBACK_URL'),</p>
+                    <p>],</p>
+                </pre>  
+        </div>
+
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 5 :  Add Routes && Create SocialController</p>
+        
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">After configuring the services, add the necessary routes to your application's <code>routes/web.php</code> file:</p>
         <!-- code source -->
         <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
                 <pre class="">
-                    <p>use Nicolaslopezj\Searchable\SearchableTrait;</p>
+                    <p>Route::get('/auth/{provider}', 'Auth\SocialController@redirect');</p>
+                    <p>Route::get('/auth/{provider}/callback', 'Auth\SocialController@callback');</p>
+                </pre>  
+        </div>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Create a SocialController by running the following command:</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan make:controller Auth/SocialController</div>
+        </div>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Then, add the following logic to the SocialController:</p>
+        <!-- code source -->
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
+                <pre class="">
+                    <p>namespace App\Http\Controllers\Auth;</p>
                     <p></p>
-                    <p>class Article extends Model</p>
-                    <p>{</p>
-                    <p>    use SearchableTrait;</p>
+                    <p>use App\Http\Controllers\Controller;</p>
+                    <p>use Illuminate\Http\Request;</p>
+                    <p>use Socialite;</p>
                     <p></p>
-                    <p>    protected $searchable = [</p>
-                    <p>        'columns' => [</p>
-                    <p>            'title' => 10,</p>
-                    <p>            'body' => 5,</p>
-                    <p>        ],</p>
+                    <p class="text-green-400">class SocialController extends Controller</p>
+                    <p class="text-green-400">{</p>
+                    <p class="text-red-400">    public function redirect($provider)</p>
+                    <p class="text-red-400">    {</p>
+                    <p>        return Socialite::driver($provider)->redirect();</p>
+                    <p class="text-red-400">    }</p>
+                    <p></p>
+                    <p class="text-red-400">    public function callback($provider)</p>
+                    <p class="text-red-400">    {</p>
+                    <p>        $user = Socialite::driver($provider)->user();</p>
+                    <p></p>
+                    <p class="text-red-400">try {</p>
+                    <p>            $user = Socialite::driver('provider')->user();</p>
+                    <p>            $finduser = User::where('provider_id', $user->id)->first();</p>
+                    <p class="text-red-400">            if($finduser){</p>
+                    <p>                Auth::login($finduser);</p>
+                    <p>                return redirect()->intended('dashboard');</p>
+                    <p>         </p>
+                    <p class="text-red-400">            }else{</p>
+                    <p>                $newUser = User::updateOrCreate(['email' => $user->email],[</p>
+                    <p>                        'name' => $user->name,</p>
+                    <p>                        'provider_id'=> $user->id,</p>
+                    <p>                        'password' => encrypt('password')</p>
+                    <p>                    ]);</p>
+                    <p>                Auth::login($newUser);</p>
+                    <p>                return redirect()->intended('dashboard');</p>
+                    <p class="text-red-400">            }</p>
+                    <p class="text-red-400">        } catch (Exception $e) {</p>
+                    <p>            dd($e->getMessage());</p>
+                    <p class="text-red-400">        }</p>
+                    <p class="text-red-400">    }</p>
+                    <p class="text-red-400">    }</p>
+                    <p class="text-green-400">}</p>
+                    <p></p>
+                </pre>  
+        </div>
+
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 6 :  Add Database Column && Update the User Model</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">we have to create migration for add provider_id in your user table. So let's run bellow command::</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan make:migration add_provider_id_column</div>
+        </div>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Update the migration :</p>
+        <!-- code source -->
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
+                <pre class="">
+                    <p>public function up()</p>
+                    <p>    {</p>
+                    <p>        Schema::table('users', function ($table) {</p>
+                    <p>            $table->string('provider_id')->nullable();</p>
+                    <p>        });</p>
+                    <p>    }</p>
+                </pre>  
+        </div>
+        
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">and run :</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan migrate</div>
+        </div>
+
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Then update the User Model :</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">add the 'provider_id' to the attributes that are mass assignable.  :</p>
+        <!-- code source -->
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
+                <pre class="">
+                    <p> protected $fillable = [</p>
+                    <p>        'name',</p>
+                    <p>        'email',</p>
+                    <p>        'password',</p>
+                    <p>        'provider_id'</p>
                     <p>    ];</p>
-                    <p>}</p>
                 </pre>  
         </div>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">We're adding the searchable trait to our Article model and specifying the title and body columns as searchable. We're also assigning weights to each column to control the relevance of the search results.</p>
+        
 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">To perform a search using the searchable trait, you can use the search method on your model.</p>
-        <!-- code source -->
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 7 :  Update .env File</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">update the .env file with the client ID, client secret, and callback URL for each social media platform:</p>
+
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
+                <pre class="">
+                    <p>FACEBOOK_CLIENT_ID=your-client-id</p>
+                    <p>FACEBOOK_CLIENT_SECRET=your-client-secret</p>
+                    <p>FACEBOOK_CALLBACK_URL=http://your-app-url/auth/facebook/callback</p>
+                    <p></p>
+                    <p>TWITTER_CLIENT_ID=your-client-id</p>
+                    <p>TWITTER_CLIENT_SECRET=your-client-secret</p>
+                    <p>TWITTER_CALLBACK_URL=http://your-app-url/auth/twitter/callback</p>
+                    <p></p>
+                    <p>GOOGLE_CLIENT_ID=your-client-id</p>
+                    <p>GOOGLE_CLIENT_SECRET=your-client-secret</p>
+                    <p>GOOGLE_CALLBACK_URL=http://your-app-url/auth/likedin/callback</p>
+                    <p></p>
+                    <p></p>
+                    <p>LINKEDIN_CLIENT_ID=your-client-id</p>
+                    <p>LINKEDIN_CLIENT_SECRET=your-client-secret</p>
+                    <p>LINKEDIN_CALLBACK_URL=http://your-app-url/auth/likedin/callback</p>
+                </pre>  
+        </div>
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 8 :  Add the link to login blade</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">The last thing to do is to update <code> resources/views/auth/login.blade.php</code></p>
+
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Add a link or button to your application that allows users to initiate the OAuth flow for the social network you want to integrate with. For example, to initiate the Google OAuth flow, you could add a link like this:</p>
+
         <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
                 <pre class="">
-                    <p>$searchTerm = 'example';</p>
-                    <p></p>
-                    <p>$results = Article::search($searchTerm)->get();</p>
+                    <p>Route::get('/auth/google', 'Auth\SocialController@redirect');</p>
+                    <p>Route::get('/auth/google/callback', 'Auth\SocialController@callback');</p>
                 </pre>  
         </div>
 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">In this post, we've explored different ways to implement full text search in Laravel applications. We've covered some of the built-in tools and techniques that Laravel provides, as well as some third-party packages that offer more advanced functionality.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Finally, go ahead and run your application:</p>
 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">One of the easiest ways to implement full text search in Laravel is to use Laravel's built-in query builder and the LIKE operator. This approach is simple and effective, but it may not be the best choice for large or complex applications.</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan serve</div>
+        </div>
 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Another option is to use Laravel Scout, a full-text search package that provides a simple and powerful API for searching your models. Scout offers support for Elasticsearch, Algolia, and other search engines, making it a versatile option for a wide range of applications.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">and Go to your web browser, type the given URL and view the app output:</p>
 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Finally, we explored the nicolaslopezj/searchable package, which provides a flexible and intuitive API for implementing full text search in Laravel. This package is particularly useful for applications that require more advanced search functionality or need to search across multiple models.</p>
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">http://localhost:8000/login</span></div>
+        </div>
 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Ultimately, the best approach to implementing full text search in your Laravel application will depend on your specific needs and requirements. By understanding the different options available and their strengths and weaknesses, you can make an informed decision that will help you build a robust and effective search functionality that meets your users' needs.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">And that's it! With these steps, you should be able to implement Social Login in your Laravel application using the Socialite package.</p>
 
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Thanks for following up to this point, I hope that was clear and helpful. Enjoy Laravel...</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Thanks for following up to this point, I hope that was clear and helpful. Enjoy your code journey...</p>
     </div>
     <!-- sidebar -->
     @include('/blog/layouts.sidebar')
