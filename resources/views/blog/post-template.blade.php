@@ -14,103 +14,79 @@
             </p>
         </div>
         <!--Post Content-->
-                <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">QR codes, or Quick Response codes, are two-dimensional barcodes that can be scanned with a smartphone or other mobile device to quickly access information or perform an action. QR codes are becoming increasingly popular for marketing, ticketing, and other applications.</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">In this post, we'll compare two popular packages for generating QR codes in Laravel: BaconQrCode and Simple-QRcode.</p>
-        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 1 : install packages</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">You install the two packages using the commands below:</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">for BaconQrCode package:</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Artisan is Laravel's command-line interface, and it comes with a range of built-in commands that can help you with common tasks like generating controllers, models, and migrations. But sometimes you may need to create a custom Artisan command to automate a task specific to your project. In this post, we'll show you how to create a custom Artisan command in Laravel .</p>
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 1 : Create the Command</p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To create a new custom Artisan command, you can use the  <code>make:command</code> Artisan command. This command will generate a new command class in the <code>app/Console/Commands</code> directory. </p>
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">in this tutorial I will provide an example command that will create a new file in the <code>storage/app</code> directory with the given name and content:</p>
         <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
-            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> composer require bacon/bacon-qr-code</div>
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan make:command CreateFile</div>
         </div>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">for Simple-QRcode package:</p>
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
-            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> composer require simplesoftwareio/simple-qrcode</div>
-        </div>
-        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 2 : Create Controller && Generating QR Codes</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white"> Let's create the QrCodeController:</p>
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
-            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan make:controller QrCodeController</div>
-        </div>
-        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Generating QR Codes with BaconQrCode</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To generate a QR code using the BaconQrCode package, you can use the BaconQrCode\Encoder class to encode the data you want to display in the QR code, and then use the BaconQrCode\Renderer\Image\Png class to render the QR code as a PNG image. Here's an example controller method that generates a QR code using BaconQrCode: 
-        </p>        
+        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">This command will generate a CreateFile class in the <code>app/Console/Commands</code>  directory. Open the <code>CreateFile.php</code> file and add the code below:</p>       
          <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-green-400 text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
                 <pre class="">
-                    <p>use BaconQrCode\Encoder\QrCode;</p>
-                    <p>use BaconQrCode\Renderer\Image\Png;</p>
+                    <p>namespace App\Console\Commands;</p>
                     <p></p>
-                    <p class="text-red-400">class QrCodeController extends Controller</p>
-                    <p class="text-red-400">{</p>
-                    <p>    public function generateWithBacon(Request $request)</p>
-                    <p>    {</p>
-                    <p>        $qrCode = new QrCode($request->input('text'));</p>
-                    <p>        $renderer = new Png();</p>
-                    <p>        $image = $renderer->render($qrCode);</p>
-                    <p>        </p>
-                    <p>        return response($image, 200, [</p>
-                    <p>            'Content-Type' => 'image/png',</p>
-                    <p>            'Content-Disposition' => 'inline; filename="qrcode.png"',</p>
-                    <p>        ]);</p>
-                    <p class="text-red-400">    }</p>
-                    <p class="text-red-400">}</p>
-                </pre>  
-        </div>
-         <h6 class="pt-6 font-body leading-relaxed text-blue-400">Generating QR Codes with Simple-QRcode</p>
-        <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">To generate a QR code using the Simple-QRcode package, you can use the SimpleSoftwareIO\QrCode\Facades\QrCode facade to generate a QR code from the text you want to display. Simple-QRcode provides several configuration options for customizing the size, margin, color, and other aspects of the generated QR code. Here's an example controller method that generates a QR code using Simple-QRcode:</p>
-        <!-- code source -->
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-green-400 text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
-                <pre class="">
-                    <p>use SimpleSoftwareIO\QrCode\Facades\QrCode;</p>
+                    <p>use Illuminate\Console\Command;</p>
+                    <p>use Illuminate\Support\Facades\File;</p>
                     <p></p>
-                    <p class="text-red-400">class QrCodeController extends Controller</p>
+                    <p class="text-red-400">class CreateFile extends Command</p>
                     <p class="text-red-400">{</p>
-                    <p>    public function generateWithSimple(Request $request)</p>
-                    <p>    {</p>
-                    <p>        return QrCode::size(300)</p>
-                    <p>            ->margin(10)</p>
-                    <p>            ->generate($request->input('text'));</p>
-                    <p>    }</p>
+                    <p>    /**</p>
+                    <p>     * The name and signature of the console command.</p>
+                    <p>     *</p>
+                    <p>     * @var string</p>
+                    <p>     */</p>
+                    <p class="text-blue-400">    protected $signature = 'file:create {name} {content}';</p>
+                    <p></p>
+                    <p>    /**</p>
+                    <p>     * The console command description.</p>
+                    <p>     *</p>
+                    <p>     * @var string</p>
+                    <p>     */</p>
+                    <p class="text-blue-400">    protected $description = 'Create a new file with the given name and content';</p>
+                    <p></p>
+                    <p>    /**</p>
+                    <p>     * Execute the console command.</p>
+                    <p>     *</p>
+                    <p>     * @return void</p>
+                    <p>     */</p>
+                    <p class="text-blue-400">    public function handle()</p>
+                    <p class="text-blue-400">    {</p>
+                    <p class="text-blue-400">        $name = $this->argument('name');</p>
+                    <p class="text-blue-400">        $content = $this->argument('content');</p>
+                    <p></p>
+                    <p class="text-blue-400">        File::put(storage_path('app/' . $name), $content);</p>
+                    <p></p>
+                    <p class="text-blue-400">        $this->info("File {$name} created successfully!");</p>
+                    <p class="text-blue-400">    }</p>
                     <p class="text-red-400">}</p>
+                    <p></p>
                 </pre>  
         </div>
 
-        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 3 :  Add Routes</p>
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 2 :  Register the Command</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Next, you need to register your custom Artisan command with Laravel. Open the <code>app/Console/Kernel.php</code> file and add your command class to the $commands array:</p>
         <!-- code source -->
         <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-blue-400  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
                 <pre class="">
-                    <p>Route::get('/bacon-code/{text}', [QrCodeController::class, 'generateWithBacon']);</p>
-                    <p>Route::get('/simple-code/{text}', [QrCodeController::class, 'generateWithSimple']);</p>
-                </pre>  
-        </div>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">For Simple-QRcode package you need to open <code>config/app.php</code> file and add service provider and aliase:</p>
-        <!-- code source -->
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  text-sm bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
-                <pre class="">
-                    <p>'providers' => [</p>
                     <p></p>
-                    <p>    ....</p>
-                    <p></p>
-                    <p>    SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class</p>
-                    <p></p>
-                    <p>],</p>
-                    <p></p>
-                    <p>'aliases' => [</p>
-                    <p></p>
-                    <p>    ....</p>
-                    <p></p>
-                    <p>    'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class</p>
-                    <p></p>
-                    <p>],</p>
+                    <p>protected $commands = [</p>
+                    <p>    \App\Console\Commands\CreateFile::class,</p>
+                    <p>];</p>
                 </pre>  
         </div>
 
-        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 4 :  Run you application</p>
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Test your QR code generation by visiting the /bacon-code/{text} and /simple-code/{text} routes in your application and replacing {text} with the text you want to generate a QR code for. You should see an image of the QR code generated from the text you entered.</p>
+        <h6 class="pt-6 font-body leading-relaxed text-blue-400">Step 3 :  Use the Command</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Now you can run your custom Artisan command using the <code>php artisan</code>  command. Here's an example of how to create a new file called example.txt with the content "Congrats, your Artisan custom command created successfly !":</p>
         
+        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-white  font-bold subpixel-antialiased bg-gray-900  pb-6 pt-4 rounded-lg leading-normal overflow-hidden">
+            <div class="mt-4 flex text-sm"><span class="text-green-400 mr-3">laravel-tutorials:~$</span> php artisan file:create example.txt "Congrats, your Artisan custom command created successfly !"
+            </div>
+        </div>
 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Both the BaconQrCode and Simple-QRcode packages are excellent choices for generating QR codes in Laravel, and which one you choose will depend on your specific needs and preferences. BaconQrCode provides more fine-grained control over the encoding and rendering process, while Simple-QRcode offers a more streamlined and user-friendly interface for generating QR codes.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">This will create a new file in the <code>storage/app</code> directory with the given name and content, and output a success message to the console.</p>
 
-        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">And that's it! With these steps, you should be able to generate QR codes in your Laravel application using the Simple-QRcode and BaconQrCode packages. Note that this is just a basic example and you'll likely need to customize and refine the implementation to suit your specific requirements.</p>
+        <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Creating a custom Artisan command in Laravel  is a powerful way to automate tasks specific to your project. By following the steps outlined in this post, you can create your own custom commands to improve your workflow and save time.</p>
 
         <p class="pt-6 pb-6 font-body leading-relaxed text-grey-20 dark:text-white">Thanks for following up to this point, I hope that was clear and helpful. Enjoy your code journey...</p>
     </div>
