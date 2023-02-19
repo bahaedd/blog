@@ -270,10 +270,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="shadow-lg rounded-lg overflow-hidden">
-                    <div class="py-3 px-5 bg-gray-800 text-blue-700">Habit Tracker</div>
-                    <canvas class="p-10" id="chartLine"></canvas>
-                </div> --}}
             </div>
         </div>
     </div>
