@@ -63,7 +63,7 @@
         <p class="pt-6 font-body leading-relaxed text-grey-20 dark:text-white">Laravel also supports nested transactions, which can be useful when you need to perform multiple transactions within a single database operation:</p>
 
         <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-green-400 text-sm bg-gray-700  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12">
-                <pre class="">
+                <code class="">
                     <p>DB::beginTransaction();</p>
                     <p></p>
                     <p>try {</p>
@@ -80,7 +80,7 @@
                     <p>} catch (\Exception $e) {</p>
                     <p>    DB::rollback();</p>
                     <p>}</p>
-                </pre>  
+                </code>  
         </div>
         
 
