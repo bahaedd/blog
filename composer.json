@@ -24,6 +24,7 @@
         "nyholm/psr7": "^1.5",
         "openai-php/client": "^0.2.1",
         "spatie/laravel-newsletter": "^4.11",
+        "spatie/laravel-sitemap": "^6.2",
         "symfony/http-client": "^6.1",
         "tcg/voyager": "^1.5"
     },
