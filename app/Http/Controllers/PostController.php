@@ -45,7 +45,10 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $recent_posts = Post::latest()->get();
-        return view("blog.post-template", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags"));
+        $title = '{{ $title }}';
+        $content = '{{ $content }}';
+
+        return view("blog.post-template", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags", "title", "content"));
     }
 
     public function show($slug) {
