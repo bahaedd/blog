@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -63,6 +64,7 @@ class LoginController extends Controller
       if(!$user){
          $user = new User();
          $user->name = $data->name;
+         $user->password = encrypt('123456dummy');
          $user->email = $data->email;
          $user->provider_id = $data->id;
          $user->avatar = $data->avatar;
@@ -93,10 +95,28 @@ class LoginController extends Controller
     //linkedin callback  
     public function handleLinkedinCallback(){
 
-    $user = Socialite::driver('linkedin')->stateless()->user();
-
-      $this->_registerorLoginUser($user);
-      return redirect()->route('home');
+     try {
+     
+            $user = Socialite::driver('linkedin')->user();
+      
+            $linkedinUser = User::where('provider_id', $user->id)->first();
+      
+            if($linkedinUser){
+      
+                $this->_registerorLoginUser($linkedinUser);
+     
+                return redirect()->intended();
+      
+            }else{
+                $this->_registerorLoginUser($linkedinUser);
+      
+                return redirect()->intended();
+            }
+     
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     }
 
     //Github Login
