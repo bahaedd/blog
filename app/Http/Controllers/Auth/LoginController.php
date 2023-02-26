@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -55,5 +56,60 @@ class LoginController extends Controller
         }
   
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+    }
+
+    protected function _registerOrLoginUser($data){
+    $user = User::where('email',$data->email)->first();
+      if(!$user){
+         $user = new User();
+         $user->name = $data->name;
+         $user->email = $data->email;
+         $user->provider_id = $data->id;
+         $user->avatar = $data->avatar;
+         $user->save();
+      }
+    Auth::login($user);
+    }
+
+    //Google Login
+    public function redirectToGoogle(){
+    return Socialite::driver('google')->stateless()->redirect();
+    }
+
+    //Google callback  
+    public function handleGoogleCallback(){
+
+    $user = Socialite::driver('google')->stateless()->user();
+
+      $this->_registerorLoginUser($user);
+      return redirect()->route('home');
+    }
+
+    //linkedin Login
+    public function redirectToLinkedin(){
+    return Socialite::driver('linkedin')->stateless()->redirect();
+    }
+
+    //linkedin callback  
+    public function handleLinkedinCallback(){
+
+    $user = Socialite::driver('linkedin')->stateless()->user();
+
+      $this->_registerorLoginUser($user);
+      return redirect()->route('home');
+    }
+
+    //Github Login
+    public function redirectToGithub(){
+    return Socialite::driver('github')->stateless()->redirect();
+    }
+
+    //github callback  
+    public function handleGithubCallback(){
+
+    $user = Socialite::driver('github')->stateless()->user();
+
+      $this->_registerorLoginUser($user);
+      return redirect()->route('home');
     }
 }
