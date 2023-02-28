@@ -3,7 +3,7 @@
 <div class="container mx-auto flex flex-wrap py-3 mt-12 dark:bg-gray-800">
     <div class="w-full md:w-2/3 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal " style="font-family:Georgia,serif;">
         <!-- Article Image -->
-        <a href="#" class="hover:opacity-75">
+        <a href="#" class="hover:opacity-75" title="logo">
             <img src="{{Voyager::image( setting('site.logo'))}}">
         </a>
         <!--Title-->

@@ -47,7 +47,7 @@
                     <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800">
                         <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
                             <a href="/blog/post/{{ $post->slug }}">
-                                <img class="rounded-t-lg" src="{{Voyager::image( $post->image )}}" alt="" />
+                                <img class="rounded-t-lg" src="{{Voyager::image( $post->image )}}" alt="latest post" />
                             </a>
                             <div class="p-5">
                                 <a href="/blog/post/{{ $post->slug }}">
@@ -71,7 +71,7 @@
                 <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4 transform transition duration-500 hover:scale-110">
                     <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
                         <a href="/blog/post/{{ $post->slug }}">
-                            <img class="rounded-t-lg" src="{{Voyager::image( $post->image )}}" alt="" />
+                            <img class="rounded-t-lg" src="{{Voyager::image( $post->image )}}" alt="post image" />
                         </a>
                         <div class="p-5">
                             <a href="/blog/post/{{ $post->slug }}">
