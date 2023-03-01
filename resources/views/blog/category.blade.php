@@ -9,7 +9,7 @@
             </div>
             <div class="flex flex-wrap mt-12">
                 @foreach ($posts as $post)
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4 mb-6">
+                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4 mb-6 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
                     <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
                         <a href="/blog/post/{{ $post->slug }}">
                             <img class="rounded-t-lg" src="{{Voyager::image( $post->image )}}" alt="" />

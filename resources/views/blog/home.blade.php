@@ -68,7 +68,7 @@
             <h2 class="my-2 ml-6 text-xl font-bold text-white rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400">LARAVEL POSTS</h2>
             <div class="flex flex-wrap px-4 m-b-3 md:px-6">
                 @foreach ($laravel_posts as $post)
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4 transform transition duration-500 hover:scale-110">
+                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 mb-4 dark:bg-gray-800 mt-4 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
                     <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-3">
                         <a href="/blog/post/{{ $post->slug }}">
                             <img class="rounded-t-lg" src="{{Voyager::image( $post->image )}}" alt="post image" />

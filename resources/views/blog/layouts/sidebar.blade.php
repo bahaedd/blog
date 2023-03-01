@@ -6,7 +6,7 @@
     <div class="grid grid-cols-2 gap-4">
         @foreach ($recent_posts as $post)
         <div>
-            <div class="relative max-h-100 overflow-hidden rounded">
+            <div class="relative max-h-100 overflow-hidden rounded transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
                 <a href="/blog/post/{{ $post->slug }}" class="hover:opacity-75">
                     <img class="max-w-full w-full mx-auto h-auto" src="{{Voyager::image( $post->image )}}" alt="Image description">
                 </a>
