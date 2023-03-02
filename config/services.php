@@ -40,17 +40,17 @@ return [
     'google' => [
    'client_id' => env('GOOGLE_CLIENT_ID'),
    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-   'redirect' => 'your_redirect_url',
+   'redirect' => '/login/google/callback',
     ],
     'linkedin' => [
        'client_id' => env('LINKEDIN_CLIENT_ID'),
        'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-       'redirect' => 'your_redirect_url',
+       'redirect' => '/login/linkedin/callback',
     ],
     'github' => [
        'client_id' => env('GITHUB_CLIENT_ID'),
        'client_secret' => env('GITHUB_CLIENT_SECRET'),
-       'redirect' => 'your_redirect_url',
+       'redirect' => '/login/github/callback',
     ],
 
 ];
