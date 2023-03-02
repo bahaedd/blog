@@ -12,6 +12,11 @@
         <!--Title-->
         <div class="font-sans">
             <h1 class="font-bold font-sans break-normal text-green-400 pt-6 pb-2 text-3xl md:text-4xl">{{ $post->title }}</h1>
+            <p class="text-bold text-md pb-3 ">
+                <span class="bg-blue-100 text-white text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-gray-800">
+                      <ion-icon name="bookmark-outline" class="mr-2"></ion-icon> {{ $post->category->name }}
+                  </span>
+                </p>
             <p class="text-sm pb-3 text-gray-500 dark:text-gray-400">
                 By <a href="#" class="font-semibold text-gray-400 hover:text-gray-200">bahaeddine</a>, Published on {{ $post->created_at }}
             </p>
