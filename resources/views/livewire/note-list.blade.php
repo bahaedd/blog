@@ -148,9 +148,9 @@
             <div class="">
                 <div class="w-full overflow-x-auto relative shadow-md sm:rounded-lg m-3 mr-3">
                     <div class="flex items-center justify-center space-x-2 my-5">
-                        <span class="h-px w-16 bg-gray-100"></span>
+                        <span class="h-px w-16 bg-green-700"></span>
                         <span class="text-gray-300 font-normal">Other notes </span>
-                        <span class="h-px w-16 bg-gray-100"></span>
+                        <span class="h-px w-16 bg-green-700"></span>
                     </div>
                     <div class="flex flex-wrap">
                         @forelse ($other_notes as $note)
