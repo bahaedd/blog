@@ -10,11 +10,7 @@
     <!-- Footer -->
     @include('/blog/layouts.footer')
     <livewire:scripts />
-    <div id="loading" class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
-    <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-64 w-64">
-        <img src="{{URL('/images/profile.jpg')}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
-    </div>
-</div>
+    
     <div id="staticModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
         <div class="relative w-full h-full max-w-2xl md:h-auto">
             <!-- Modal content -->
@@ -34,11 +30,11 @@
             </div>
         </div>
     </div>
-    <script>
-  $(window).load(function() {
-    $('#loading').hide();
-  });
-</script>
+    <div id="loader" class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+    <div id="loading-content" class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-64 w-64">
+    </div>
+    
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
     <script>
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -92,6 +88,21 @@
     });
 
     </script>
+<script>
+    document.onreadystatechange = function() {
+        if (document.readyState !== "complete") {
+            document.querySelector(
+            "body").style.visibility = "hidden";
+            document.querySelector(
+            "#loader").style.visibility = "visible";
+        } else {
+            document.querySelector(
+            "#loader").style.display = "none";
+            document.querySelector(
+            "body").style.visibility = "visible";
+        }
+    };
+</script>
 </body>
 
 </html>
