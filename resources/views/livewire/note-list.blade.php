@@ -61,22 +61,21 @@
                         <form action="#">
                             <div class="grid gap-4 mb-4 sm:grid-cols-2">
                                 <div>
-                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="title" required="">
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">title</label>
+                                    <input type="text" name="name" wire:model="state.title" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="title" required="">
                                 </div>
                                 <div>
                                     <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                    <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected="">Select category</option>
-                                        <option value="TV">TV/Monitors</option>
-                                        <option value="PC">PC</option>
-                                        <option value="GA">Gaming/Console</option>
-                                        <option value="PH">Phones</option>
+                                    <select id="category" wire:model="state.category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="">Select a category</option>
+                                        <option value="personal">Personal</option>
+                                        <option value="work">Work</option>
+                                        <option value="others">Other</option>
                                     </select>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                    <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write product description here"></textarea>
+                                    <textarea id="description" wire:model="state.description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write product description here"></textarea>
                                 </div>
                             </div>
                             <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -112,8 +111,8 @@
                             </div>
                         </div>
                         @empty
-                            <p class="text-center font-normal text-gray-500 mt-6">Personal Notes</p>
-                            @endforelse
+                        <p class="text-center font-normal text-gray-500 mt-6">Personal Notes</p>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -139,9 +138,9 @@
                                 </div>
                             </div>
                         </div>
-                         @empty
-                            <p class="text-center font-normal text-gray-500 mt-6">Work notes</p>
-                            @endforelse
+                        @empty
+                        <p class="text-center font-normal text-gray-500 mt-6">Work notes</p>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -168,8 +167,8 @@
                             </div>
                         </div>
                         @empty
-                            <p class="text-center font-normal text-gray-500 mt-6">Other Notes</p>
-                            @endforelse
+                        <p class="text-center font-normal text-gray-500 mt-6">Other Notes</p>
+                        @endforelse
                     </div>
                 </div>
             </div>

@@ -32,8 +32,8 @@
     </div>
     <div id="loader" class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
     <div id="loading-content" class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-64 w-64">
+        <img src="{{URL('/images/alien.png')}}" class="h-36 rounded-full sm:h-56" alt="bahaeddine" width="230" height="160">
     </div>
-    
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
     <script>
