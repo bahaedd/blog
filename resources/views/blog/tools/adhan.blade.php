@@ -65,7 +65,7 @@
                         <td class="px-6 py-4">
                             {{ $data['data'][0]['timings']['Isha'] }}
                         </td>
-                        @foreach(range(date('Y')-5, date('Y')) as $y)
+                        @foreach( date('j', strtotime(date('F Y'))) as $y)
                             {{$y}}
                         @endforeach
                     </tr>
