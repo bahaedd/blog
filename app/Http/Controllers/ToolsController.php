@@ -464,5 +464,20 @@ class ToolsController extends Controller
          return view("blog.tools.bucket-generator");
 
     }
+
+    //AdhanTime
+    public function Adhan() {
+
+
+
+        $response = Http::get('http://api.aladhan.com/v1/calendarByCity/2023/3?city=Fes&country=Morocco&method=2');
+        
+        $data = json_decode($response->body(), true);
+
+        // dd($data);
+
+         return view("blog.tools.adhan", compact('data'));
+
+    }
 }
 

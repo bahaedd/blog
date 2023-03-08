@@ -88,6 +88,9 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/projects/personalpack/habit-tracker',[ToolsController::class, 'HabitTracker'])->name('habit-tracker');
     Route::get('/projects/personalpack/bucket-generator',[ToolsController::class, 'BucketGenerator'])->name('bucket-generator');
 
+    //Adhan
+    Route::get('/projects/personalpack/adhan',[ToolsController::class, 'Adhan'])->name('adhan');
+
     
 
     Route::group(['prefix' => 'admin'], function () {
