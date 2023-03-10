@@ -474,7 +474,7 @@ class ToolsController extends Controller
         
         $data = json_decode($response->body(), true);
 
-        // dd($data);
+        //dd(count($data['data']));
 
          return view("blog.tools.adhan", compact('data'));
 

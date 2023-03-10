@@ -40,35 +40,34 @@
                     </tr>
                 </thead>
                 <tbody>
+                  @for ($i = 0; $i < count($data['data']); $i++)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data['data'][0]['date']['readable'] }}
-                        </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data['data'][0]['timings']['Fajr'] }}
+                            {{ $data['data'][$i]['date']['gregorian']['weekday']['en'] }}, {{ $data['data'][$i]['date']['hijri']['date'] }} | {{ $data['data'][$i]['date']['readable'] }} ,{{ $data['data'][$i]['date']['hijri']['weekday']['ar'] }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $data['data'][0]['timings']['Sunrise'] }}
+                            {{ $data['data'][$i]['timings']['Fajr'] }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $data['data'][0]['timings']['Dhuhr'] }}
+                            {{ $data['data'][$i]['timings']['Sunrise'] }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $data['data'][0]['timings']['Asr'] }}
+                            {{ $data['data'][$i]['timings']['Dhuhr'] }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $data['data'][0]['timings']['Sunset'] }}
+                            {{ $data['data'][$i]['timings']['Asr'] }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $data['data'][0]['timings']['Maghrib'] }}
+                            {{ $data['data'][$i]['timings']['Sunset'] }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $data['data'][0]['timings']['Isha'] }}
+                            {{ $data['data'][$i]['timings']['Maghrib'] }}
                         </td>
-                        @foreach( date('j', strtotime(date('F Y'))) as $y)
-                            {{$y}}
-                        @endforeach
+                        <td class="px-6 py-4">
+                            {{ $data['data'][$i]['timings']['Isha'] }}
+                        </td>
                     </tr>
+                  @endfor
                 </tbody>
             </table>
         </div>
