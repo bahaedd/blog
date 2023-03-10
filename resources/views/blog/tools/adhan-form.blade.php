@@ -12,7 +12,9 @@
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">{{ $data['data'][$today]['date']['gregorian']['weekday']['en'] }}, {{ $data['data'][$today]['date']['gregorian']['day'] }} {{ $data['data'][$today]['date']['gregorian']['month']['en'] }} {{ $data['data'][$today]['date']['gregorian']['year']}} | {{ $data['data'][$today]['date']['hijri']['weekday']['ar'] }}, {{ $data['data'][$today]['date']['hijri']['day'] }} {{ $data['data'][$today]['date']['hijri']['month']['ar'] }} {{ $data['data'][$today]['date']['hijri']['year']}}</p>
+            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+                {{ $data['data'][$i]['date']['gregorian']['weekday']['en'] }}, {{ $data['data'][$i]['date']['gregorian']['day'] }} {{ $data['data'][$i]['date']['gregorian']['month']['en'] }} $data['data'][$i]['date']['gregorian']['month']['en'] }} | {{ $data['data'][$i]['date']['readable'] }} ,{{ $data['data'][$i]['date']['hijri']['weekday']['ar'] }}
+            </p>
         </caption>
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -46,7 +48,7 @@
                   @for ($i = 0; $i < count($data['data']); $i++)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data['data'][$i]['date']['gregorian']['weekday']['en'] }}, {{ $data['data'][$i]['date']['gregorian']['day'] }} {{ $data['data'][$i]['date']['gregorian']['month']['en'] }} {{ $data['data'][$i]['date']['gregorian']['year']}} | {{ $data['data'][$i]['date']['hijri']['weekday']['ar'] }}, {{ $data['data'][$i]['date']['hijri']['day'] }} {{ $data['data'][$i]['date']['hijri']['month']['ar'] }} {{ $data['data'][$i]['date']['hijri']['year']}}
+                            {{ $data['data'][$i]['date']['gregorian']['weekday']['en'] }}, {{ $data['data'][$i]['date']['hijri']['date'] }} | {{ $data['data'][$i]['date']['readable'] }} ,{{ $data['data'][$i]['date']['hijri']['weekday']['ar'] }}
                         </th>
                         <td class="px-6 py-4">
                             {{ $data['data'][$i]['timings']['Fajr'] }}

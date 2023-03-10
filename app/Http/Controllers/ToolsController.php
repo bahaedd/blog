@@ -24,6 +24,7 @@ use Auth;
 use PDF;
 use Redirect;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Carbon\Carbon;
 
 class ToolsController extends Controller
 {
@@ -468,7 +469,12 @@ class ToolsController extends Controller
     //AdhanTime
     public function Adhan() {
 
+        $now = date('d-m-Y');;
+        $now_content = explode('-', $now);
+        $today = $now_content[0];
 
+        $user = \Location::get(request()->ip());
+        dd(\Request::getClientIp(true));
 
         $response = Http::get('http://api.aladhan.com/v1/calendarByCity/2023/3?city=Fes&country=Morocco&method=2');
         
@@ -476,7 +482,7 @@ class ToolsController extends Controller
 
         //dd(count($data['data']));
 
-         return view("blog.tools.adhan", compact('data'));
+         return view("blog.tools.adhan", compact('data', 'today'));
 
     }
 }
