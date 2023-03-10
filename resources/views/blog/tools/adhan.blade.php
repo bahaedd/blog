@@ -3,76 +3,158 @@
 @section('title', "Adhan, Prayer Times")
 @include('/blog/layouts.head')
 
-<body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
+<body class="dark:bg-gray-800 bg-cover bg-center" style="height:40rem; background-repeat: no-repeat; background-attachment: fixed; background-image: url({{URL('/images/ramadan.png')}});">
     <!-- navbar -->
     @include('/blog/layouts.navbar')
     <!-- container -->
-    <div class="px-16 mx-auto py-16 md:py-20 mb-72">
-        <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Prayer Times</h2>
-        <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-               <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">{{ $data['data'][$today]['date']['gregorian']['weekday']['en'] }}, {{ $data['data'][$today]['date']['gregorian']['day'] }} {{ $data['data'][$today]['date']['gregorian']['month']['en'] }} {{ $data['data'][$today]['date']['gregorian']['year']}} | {{ $data['data'][$today]['date']['hijri']['weekday']['ar'] }}, {{ $data['data'][$today]['date']['hijri']['day'] }} {{ $data['data'][$today]['date']['hijri']['month']['ar'] }} {{ $data['data'][$today]['date']['hijri']['year']}}</p>
-        </caption>
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Day
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Fajr
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Sunrise
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Dhuhr
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Asr
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Sunset
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Maghrib
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Isha
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                  @for ($i = 0; $i < count($data['data']); $i++)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $data['data'][$i]['date']['gregorian']['weekday']['en'] }}, {{ $data['data'][$i]['date']['gregorian']['day'] }} {{ $data['data'][$i]['date']['gregorian']['month']['en'] }} {{ $data['data'][$i]['date']['gregorian']['year']}} | {{ $data['data'][$i]['date']['hijri']['weekday']['ar'] }}, {{ $data['data'][$i]['date']['hijri']['day'] }} {{ $data['data'][$i]['date']['hijri']['month']['ar'] }} {{ $data['data'][$i]['date']['hijri']['year']}}
-                        </th>
-                        <td class="px-6 py-4">
-                            {{ $data['data'][$i]['timings']['Fajr'] }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $data['data'][$i]['timings']['Sunrise'] }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $data['data'][$i]['timings']['Dhuhr'] }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $data['data'][$i]['timings']['Asr'] }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $data['data'][$i]['timings']['Sunset'] }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $data['data'][$i]['timings']['Maghrib'] }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $data['data'][$i]['timings']['Isha'] }}
-                        </td>
-                    </tr>
-                  @endfor
-                </tbody>
-            </table>
+    <div class="px-16 mx-auto py-16 md:py-20 mb-6">
+        <h2 class="my-4 mb-3 text-4xl text-center font-semibold text-yellow-300 rounded md:bg-transparent md:p-0 dark:text-yellow-300">Adhan Times</h2>
+    </div>
+    <div>
+        <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 mx-24">
+            <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 mb-4 dark:bg-gray-800 mx-auto">
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-700">
+                        <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800 border border-gray-700">
+                            <p class="mt-1 text-xl font-bold text-yellow-500 dark:text-yellow-500">{{ $data['data'][$today]['date']['gregorian']['day'] }} {{ $data['data'][$today]['date']['gregorian']['month']['en'] }} {{ $data['data'][$today]['date']['gregorian']['year']}} <span class="text-gray-300">|</span> {{ $data['data'][$today]['date']['hijri']['day'] }} {{ $data['data'][$today]['date']['hijri']['month']['ar'] }} {{ $data['data'][$today]['date']['hijri']['year']}}</p>
+                        </caption>
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-900 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Prayer
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Time
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Fajr
+                                </th>
+                                <td class="px-3 py-4">
+                                    {{ $data['data'][$today]['timings']['Fajr'] }}
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Sunrise
+                                </th>
+                                <td class="px-3 py-4">
+                                    {{ $data['data'][$today]['timings']['Sunrise'] }}
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Dhuhr
+                                </th>
+                                <td class="px-3 py-4">
+                                    {{ $data['data'][$today]['timings']['Dhuhr'] }}
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Asr
+                                </th>
+                                <td class="px-3 py-4">
+                                    {{ $data['data'][$today]['timings']['Asr'] }}
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Sunset
+                                </th>
+                                <td class="px-3 py-4">
+                                    {{ $data['data'][$today]['timings']['Sunset'] }}
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                   Maghrib
+                                </th>
+                                <td class="px-3 py-4">
+                                    {{ $data['data'][$today]['timings']['Maghrib'] }}
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                   Isha
+                                </th>
+                                <td class="px-3 py-4">
+                                    {{ $data['data'][$today]['timings']['Isha'] }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-700">
+                        <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800 border border-gray-700">
+                            <p class="mt-1 text-xl font-bold text-yellow-500 dark:text-yellow-500 text-center">{{ $data['data'][$today]['date']['gregorian']['month']['en'] }} {{ $data['data'][$today]['date']['gregorian']['year']}} <span class="text-gray-300">|</span> {{ $data['data'][$today]['date']['hijri']['month']['ar'] }} {{ $data['data'][$today]['date']['hijri']['year']}}</p>
+                        </caption>
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Day
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Fajr
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Sunrise
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Dhuhr
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Asr
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Sunset
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Maghrib
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Isha
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for ($i = 0; $i < count($data['data']); $i++) <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespa ce-nowrap dark:text-white">
+                                    {{ $data['data'][$today]['date']['gregorian']['day'] }} {{ $data['data'][$today]['date']['gregorian']['month']['en'] }} {{ $data['data'][$today]['date']['gregorian']['year']}} <span class="text-gray-300">|</span> {{ $data['data'][$today]['date']['hijri']['day'] }} {{ $data['data'][$today]['date']['hijri']['month']['ar'] }} {{ $data['data'][$today]['date']['hijri']['year']}}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $data['data'][$i]['timings']['Fajr'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $data['data'][$i]['timings']['Sunrise'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $data['data'][$i]['timings']['Dhuhr'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $data['data'][$i]['timings']['Asr'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $data['data'][$i]['timings']['Sunset'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $data['data'][$i]['timings']['Maghrib'] }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $data['data'][$i]['timings']['Isha'] }}
+                                </td>
+                                </tr>
+                                @endfor
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Footer -->

@@ -473,8 +473,8 @@ class ToolsController extends Controller
         $now_content = explode('-', $now);
         $today = $now_content[0];
 
-        $user = \Location::get(request()->ip());
-        dd(\Request::getClientIp(true));
+        // $user = \Location::get(request()->ip());
+        // dd(\Request::getClientIp(true));
 
         $response = Http::get('http://api.aladhan.com/v1/calendarByCity/2023/3?city=Fes&country=Morocco&method=2');
         
