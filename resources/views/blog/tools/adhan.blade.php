@@ -71,7 +71,7 @@
                             </tr>
                             <tr class="bg-white dark:bg-gray-800">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                   Maghrib
+                                    Maghrib
                                 </th>
                                 <td class="px-3 py-4">
                                     {{ $data['data'][$today]['timings']['Maghrib'] }}
@@ -79,7 +79,7 @@
                             </tr>
                             <tr class="bg-white dark:bg-gray-800">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                   Isha
+                                    Isha
                                 </th>
                                 <td class="px-3 py-4">
                                     {{ $data['data'][$today]['timings']['Isha'] }}
@@ -126,7 +126,7 @@
                         <tbody>
                             @for ($i = 0; $i < count($data['data']); $i++) <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespa ce-nowrap dark:text-white">
-                                    {{ $data['data'][$today]['date']['gregorian']['day'] }} {{ $data['data'][$today]['date']['gregorian']['month']['en'] }} {{ $data['data'][$today]['date']['gregorian']['year']}} <span class="text-gray-300">|</span> {{ $data['data'][$today]['date']['hijri']['day'] }} {{ $data['data'][$today]['date']['hijri']['month']['ar'] }} {{ $data['data'][$today]['date']['hijri']['year']}}
+                                    {{ $data['data'][$i]['date']['gregorian']['day'] }} {{ $data['data'][$i]['date']['gregorian']['month']['en'] }} {{ $data['data'][$i]['date']['gregorian']['year']}} <span class="text-gray-300">|</span> {{ $data['data'][$i]['date']['hijri']['day'] }} {{ $data['data'][$i]['date']['hijri']['month']['ar'] }} {{ $data['data'][$i]['date']['hijri']['year']}}
                                 </th>
                                 <td class="px-6 py-4">
                                     {{ $data['data'][$i]['timings']['Fajr'] }}
@@ -157,8 +157,6 @@
             </div>
         </div>
     </div>
-    <!-- Footer -->
-    @include('/blog/layouts.footer')
     <livewire:scripts />
     <script>
     function getCarouselData() {
