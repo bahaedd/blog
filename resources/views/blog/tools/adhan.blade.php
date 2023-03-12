@@ -89,6 +89,7 @@
                     </table>
                 </div>
             </div>
+            
             <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-700">
