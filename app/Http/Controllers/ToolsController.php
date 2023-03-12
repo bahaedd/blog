@@ -459,7 +459,7 @@ class ToolsController extends Controller
 
     }
 
-    //MultiNotes
+    //BucketGenerator
     public function BucketGenerator() {
 
          return view("blog.tools.bucket-generator");
@@ -483,6 +483,13 @@ class ToolsController extends Controller
         //dd(count($data['data']));
 
          return view("blog.tools.adhan", compact('data', 'today'));
+
+    }
+
+     //Email Extractor
+    public function EmailExtractor() {
+
+         return view("blog.tools.email-extractor");
 
     }
 }
