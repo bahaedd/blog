@@ -71,7 +71,7 @@
                             </tr>
                             <tr class="bg-white dark:bg-gray-800">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Maghrib
+                                   Maghrib
                                 </th>
                                 <td class="px-3 py-4">
                                     {{ $data['data'][$today]['timings']['Maghrib'] }}
@@ -79,7 +79,7 @@
                             </tr>
                             <tr class="bg-white dark:bg-gray-800">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Isha
+                                   Isha
                                 </th>
                                 <td class="px-3 py-4">
                                     {{ $data['data'][$today]['timings']['Isha'] }}
@@ -89,7 +89,6 @@
                     </table>
                 </div>
             </div>
-            
             <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-700">
