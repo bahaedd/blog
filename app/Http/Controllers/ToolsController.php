@@ -489,9 +489,9 @@ class ToolsController extends Controller
      //Email Extractor
     public function EmailExtractor() {
 
-        $ipmatch = [];
+        $emails = [];
 
-         return view("blog.tools.email-extractor", compact('ipmatch'));
+         return view("blog.tools.email-extractor", compact('emails'));
 
     }
 
@@ -500,19 +500,19 @@ class ToolsController extends Controller
         $this->validate($request, [
             'text' => 'required',
          ]);
-        $ipmatch = [];
+        $emails = [];
         $text = $request->get('text');
         $reccord= $text;
-        $regexIpAddress = '/([a-z0-9_\. \-])+\@(([a-z0-9\-])+\.) +([a-z0-9]{2,4})+/i';
-         preg_match_all($regexIpAddress, $reccord, $ip_match);
-         dd($ip_match);
-         $ipmatch = Arr::collapse($ip_match);
-         $ipmatch = array_unique($ipmatch);
-         if(empty($ipmatch)){
-            $ipmatch = ['0' => 'No IP Address Found!'];
+        $regexEmailAddress = '/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i';
+         preg_match_all($regexEmailAddress, $reccord, $email_match);
+         
+         $emails = Arr::collapse($email_match);
+         $emails = array_unique($emails);
+         if(empty($emails)){
+            $emails = ['0' => 'No IP Address Found!'];
          }
 
-         return view("blog.tools.email-extractor", compact('ipmatch'));
+         return view("blog.tools.email-extractor", compact('emails'));
 
     }
 }

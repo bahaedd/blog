@@ -32,9 +32,8 @@
                         <div class="flex justify-end">
                           <button type="button" class="btn" data-tooltip-target="tooltip-dark" data-clipboard-target="#result"><ion-icon name="clipboard-outline"></ion-icon></button>
                         </div>
-                        @foreach ($ipmatch as $key => $value)
+                        @foreach ($emails as $key => $value)
                             {{ $value }} <br>
-                        Paste text that contains ips
                         @endforeach
                     </div>
                 </section>
