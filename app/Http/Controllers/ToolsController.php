@@ -515,5 +515,21 @@ class ToolsController extends Controller
          return view("blog.tools.email-extractor", compact('emails'));
 
     }
+
+     //IP Location
+    public function ipLocation() {
+
+         $location = [];
+         return view("blog.tools.ipLocation", compact('location'));
+
+    }
+
+    public function GetLocation(Request $request) {
+
+        
+
+         return view("blog.tools.iplocation", compact('location'));
+
+    }
 }
 

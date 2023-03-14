@@ -95,6 +95,10 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/projects/mailerpack/email-extractor',[ToolsController::class, 'EmailExtractor'])->name('email-extractor');
     Route::any('/projects/emailextractor/email-extract',[ToolsController::class, 'EmailExtract']);
 
+    //IP location
+    Route::get('/projects/mailerpack/ip-location',[ToolsController::class, 'ipLocation'])->name('ip-location');
+    Route::any('/projects/iplocation/location',[ToolsController::class, 'GetLocation']);
+
     
 
     Route::group(['prefix' => 'admin'], function () {
