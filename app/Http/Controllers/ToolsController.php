@@ -526,9 +526,31 @@ class ToolsController extends Controller
 
     public function GetLocation(Request $request) {
 
-        
-
          return view("blog.tools.iplocation", compact('location'));
+
+    }
+
+    //Shuffle Lines
+    public function ShuffleLines() {
+
+         $lines = [];
+         return view("blog.tools.shufflelines", compact('lines'));
+
+    }
+
+    public function Shuffle(Request $request) {
+
+
+        $this->validate($request, [
+            'text' => 'required',
+         ]);
+        $lines = [];
+        $text = $request->get('text');
+        $array = explode("\n", $text );       
+        $lines = shuffle($array);
+        // dd($array);
+
+         return view("blog.tools.shufflelines", compact('array'));
 
     }
 }

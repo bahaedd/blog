@@ -99,6 +99,10 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/projects/mailerpack/ip-location',[ToolsController::class, 'ipLocation'])->name('ip-location');
     Route::any('/projects/iplocation/location',[ToolsController::class, 'GetLocation']);
 
+    //Shuffle lines
+    Route::get('/projects/mailerpack/suffle-lines',[ToolsController::class, 'ShuffleLines'])->name('suffle-lines');
+    Route::any('/projects/shufflelines/shuffle',[ToolsController::class, 'Shuffle']);
+
     
 
     Route::group(['prefix' => 'admin'], function () {
