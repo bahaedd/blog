@@ -24,6 +24,7 @@
         "livewire/livewire": "^2.5",
         "nyholm/psr7": "^1.5",
         "openai-php/client": "^0.2.1",
+        "ralphjsmit/laravel-seo": "*",
         "spatie/laravel-newsletter": "^4.11",
         "spatie/laravel-sitemap": "^6.2",
         "stevebauman/location": "^6.6",
