@@ -91,15 +91,15 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     //Adhan
     Route::get('/projects/personalpack/adhan',[ToolsController::class, 'Adhan'])->name('adhan');
 
-    //Email Extractor
+    //Email-Extractor
     Route::get('/projects/mailerpack/email-extractor',[ToolsController::class, 'EmailExtractor'])->name('email-extractor');
     Route::any('/projects/emailextractor/email-extract',[ToolsController::class, 'EmailExtract']);
 
-    //IP location
+    //Ip-location
     Route::get('/projects/mailerpack/ip-location',[ToolsController::class, 'ipLocation'])->name('ip-location');
     Route::any('/projects/iplocation/location',[ToolsController::class, 'GetLocation']);
 
-    //Shuffle lines
+    //Shuffle-ines
     Route::get('/projects/mailerpack/suffle-lines',[ToolsController::class, 'ShuffleLines'])->name('suffle-lines');
     Route::any('/projects/shufflelines/shuffle',[ToolsController::class, 'Shuffle']);
 
