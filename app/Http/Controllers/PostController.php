@@ -7,7 +7,6 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use SEOMeta;
 
 class PostController extends Controller
 {
@@ -35,11 +34,13 @@ class PostController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $recent_posts = Post::latest()->get();
-        SEOMeta::setDefaults([
-        'title' => 'Your specific homepage title',
-        'description' => 'Your specific homepage description',
-        // Override any other default values as needed
-        ]);
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->description('AlienDev here you can improve your programming skills')
+        ->favicon()
+        ->withUrl()
+        ->locale('en_EN');
+
             return view("blog.home", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags"));
         }
 
