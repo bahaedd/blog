@@ -3,8 +3,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>AlienDev | @yield('title')</title>
-    <meta name="keywords" content="@yield('meta_keywords','AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development')">
-    <meta name="description" content="@yield('meta_description','AlienDev here you can improve your programming skills')">
+    {{-- <meta name="keywords" content="@yield('meta_keywords','AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development')">
+    <meta name="description" content="@yield('meta_description','AlienDev here you can improve your programming skills')"> --}}
+    {!! SEOMeta::generate() !!}
     <link rel="canonical" href="{{url()->current()}}"/>
     <link rel="icon" href="{{URL('/images/alien.png')}}" type="image/x-icon"/>
     <link href="/css/app.css" rel="stylesheet">
