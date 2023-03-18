@@ -1,9 +1,10 @@
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    {{-- <meta name="keywords" content="@yield('meta_keywords','AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development')">
-    <meta name="description" content="@yield('meta_description','AlienDev here you can improve your programming skills')"> --}}
+    <meta name="author" content="Bahaeddine">
+    <meta name="robots" content="index, follow">
     <x-seo::meta />
     <link rel="canonical" href="{{url()->current()}}"/>
     <link rel="icon" href="{{URL('/images/alien.png')}}" type="image/x-icon"/>
