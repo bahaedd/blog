@@ -1,5 +1,4 @@
 @extends('/blog/main')
-@section('title', 'Portfolio')
 @section('content')
 <div class="w-full bg-cover bg-center" style="height:40rem; background-image: url({{URL('/images/bg.jpg')}});">
     <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50">
