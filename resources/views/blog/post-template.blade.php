@@ -14,11 +14,11 @@
             </p>
         </div>
         <!--Post Content-->
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">In many web applications, importing data from CSV files is a common task. Laravel provides an easy way to import CSV files and display their contents. In this tutorial, we will walk you through the process of importing a CSV file and displaying its contents in a Laravel application.</p>
+        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">In many web applications, importing data from CSV files is a common task. Laravel provides an easy way to import CSV files and display their contents. In this tutorial, we will walk you through the process of importing a CSV file and displaying its contents in a Laravel application.</p>
 
         <h3 class="pt-6 font-light leading-relaxed text-blue-700">#Create a route for the CSV import</h3>
 
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">we need to create a route in our Laravel application that will handle the CSV import. Open the routes/web.php file and add the following route:</p>
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">we need to create a route in our Laravel application that will handle the CSV import. Open the routes/web.php file and add the following route:</p>
 
 
         <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-red-400 text-sm bg-gray-700  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">

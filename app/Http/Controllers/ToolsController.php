@@ -574,8 +574,7 @@ class ToolsController extends Controller
     //Resume Builder
     public function ResumeBuilder() {
 
-         return view("blog.tools.resume-builder");
-         seo()
+        seo()
         ->title('AlienDev | Web Development tutorials')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
@@ -589,6 +588,9 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
+         return view("blog.tools.resume-builder");
+         
+
     }
 
     public function ResumeDownload(Request $request, $model_id, $user_id) {
@@ -600,6 +602,19 @@ class ToolsController extends Controller
         $summary = Auth::user()->summary;
         $languages = Language::where('user_id', '=', Auth::user()->id)->get();
         $projects = Project::where('user_id', '=', Auth::user()->id)->get();
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->favicon()
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
 
         if($model_id == 1){
             return view("blog.tools.resume-download", compact("personal_informations", "educations", "works", "skills", "summary", "languages", "projects"));
@@ -640,6 +655,19 @@ class ToolsController extends Controller
 
     //MultiNotes
     public function Multinotes() {
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->favicon()
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
 
          return view("blog.tools.multinotes");
 
@@ -647,6 +675,19 @@ class ToolsController extends Controller
 
     //BucketGenerator
     public function BucketGenerator() {
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->favicon()
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
 
          return view("blog.tools.bucket-generator");
 

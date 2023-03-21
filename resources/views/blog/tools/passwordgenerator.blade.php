@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @section('title', "Password Generator")
     @include('/blog/layouts.head')
     <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
         <!-- navbar -->
