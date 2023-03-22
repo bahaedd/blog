@@ -686,7 +686,7 @@ class ToolsController extends Controller
         // $user = \Location::get(request()->ip());
         // dd(\Request::getClientIp(true));
 
-        $response = Http::get('http://api.aladhan.com/v1/calendarByCity/2023/3?city=Fes&country=Morocco&method=2');
+        $response = Http::get('http://api.aladhan.com/v1/calendarByCity/2023/3?city=fes&country=Morocco&method=4');
         
         $data = json_decode($response->body(), true);
 
@@ -758,7 +758,7 @@ class ToolsController extends Controller
         ->twitterTitle('AlienDev | Web Development tutorials')
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
-        
+
          return view("blog.tools.email-extractor", compact('emails'));
 
     }

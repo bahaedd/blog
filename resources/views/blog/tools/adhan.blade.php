@@ -11,8 +11,8 @@
         <h2 class="my-4 mb-3 text-4xl text-center font-semibold text-yellow-300 rounded md:bg-transparent md:p-0 dark:text-yellow-300">Adhan Times</h2>
     </div>
     <div>
-        <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 mx-24">
-            <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 mb-4 dark:bg-gray-800 mx-auto">
+        <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto mx-12">
+            <!-- <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 mb-4 dark:bg-gray-800 mx-auto">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-700">
                         <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800 border border-gray-700">
@@ -88,7 +88,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> -->
             <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-700">
@@ -104,16 +104,10 @@
                                     Fajr
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Sunrise
-                                </th>
-                                <th scope="col" class="px-6 py-3">
                                     Dhuhr
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Asr
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Sunset
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Maghrib
@@ -124,7 +118,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < count($data['data']); $i++) <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            @for ($i = 0; $i < count($data['data']); $i++) <tr class="@if($data['data'][$i]['date']['gregorian']['day'] == $data['data'][$today]['date']['gregorian']['day']) text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 @else bg-white border-b dark:bg-gray-800 @endif dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespa ce-nowrap dark:text-white">
                                     {{ $data['data'][$i]['date']['gregorian']['day'] }} {{ $data['data'][$i]['date']['gregorian']['month']['en'] }} {{ $data['data'][$i]['date']['gregorian']['year']}} <span class="text-gray-300">|</span> {{ $data['data'][$i]['date']['hijri']['day'] }} {{ $data['data'][$i]['date']['hijri']['month']['ar'] }} {{ $data['data'][$i]['date']['hijri']['year']}}
                                 </th>
@@ -132,16 +126,10 @@
                                     {{ $data['data'][$i]['timings']['Fajr'] }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $data['data'][$i]['timings']['Sunrise'] }}
-                                </td>
-                                <td class="px-6 py-4">
                                     {{ $data['data'][$i]['timings']['Dhuhr'] }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $data['data'][$i]['timings']['Asr'] }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $data['data'][$i]['timings']['Sunset'] }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $data['data'][$i]['timings']['Maghrib'] }}
