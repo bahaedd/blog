@@ -712,8 +712,20 @@ class ToolsController extends Controller
     public function EmailExtractor() {
 
         $emails = [];
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
 
-         return view("blog.tools.email-extractor", compact('emails'));
+        return view("blog.tools.email-extractor", compact('emails'));
 
     }
 
@@ -726,14 +738,27 @@ class ToolsController extends Controller
         $text = $request->get('text');
         $reccord= $text;
         $regexEmailAddress = '/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i';
-         preg_match_all($regexEmailAddress, $reccord, $email_match);
+        preg_match_all($regexEmailAddress, $reccord, $email_match);
          
-         $emails = Arr::collapse($email_match);
-         $emails = array_unique($emails);
-         if(empty($emails)){
-            $emails = ['0' => 'No IP Address Found!'];
+        $emails = Arr::collapse($email_match);
+        $emails = array_unique($emails);
+        if(empty($emails)){
+            $emails = ['0' => 'No Email Address Found!'];
          }
 
+         seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+        
          return view("blog.tools.email-extractor", compact('emails'));
 
     }
