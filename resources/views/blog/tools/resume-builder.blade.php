@@ -3,8 +3,9 @@
 @include('/blog/layouts.head')
 
 <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
-    <!-- navbar -->
+    
     @include('/blog/layouts.navbar')
+    
     <!-- container -->
     <div class="px-3 mx-3 py-3 md:py-20 mb-3">
         <h2 class="my-4 mb-3 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Resume Builder</h2>

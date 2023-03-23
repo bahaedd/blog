@@ -38,7 +38,6 @@ class PostController extends Controller
         ->title('AlienDev | Web Development tutorials')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
-        ->favicon()
         ->url(url()->current())
         ->image(URL('/images/alien.png'))
         ->locale('en_US')
