@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@section('title', "Adhan, Prayer Times")
 @include('/blog/layouts.head')
 
 <body class="dark:bg-gray-800 bg-cover bg-center" style="height:40rem; background-repeat: no-repeat; background-attachment: fixed; background-image: url({{URL('/images/ramadan.png')}});">
-    <!-- navbar -->
+   
     @include('/blog/layouts.navbar')
-    <!-- container -->
+   
     <div class="px-16 mx-auto py-16 md:py-20 mb-6">
         <h2 class="my-4 mb-3 text-4xl text-center font-semibold text-yellow-300 rounded md:bg-transparent md:p-0 dark:text-yellow-300">Adhan Times</h2>
         <label for="underline_select" class="sr-only">Underline select</label>
