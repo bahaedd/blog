@@ -99,9 +99,12 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/projects/mailerpack/ip-location',[ToolsController::class, 'ipLocation'])->name('ip-location');
     Route::any('/projects/iplocation/location',[ToolsController::class, 'GetLocation']);
 
-    //Shuffle-ines
+    //Shuffle-lines
     Route::get('/projects/mailerpack/suffle-lines',[ToolsController::class, 'ShuffleLines'])->name('suffle-lines');
     Route::any('/projects/shufflelines/shuffle',[ToolsController::class, 'Shuffle']);
+
+    //Asmaa lah alhosna
+    Route::get('/projects/mailerpack/asma-al-husna',[ToolsController::class, 'Asmaa'])->name('asma-al-husna');
 
     
 
@@ -109,30 +112,31 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
         Voyager::routes();
     });
   
-  });
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    //Resume builder
-    Route::get('/projects/personalpack/resume-builder',[ToolsController::class, 'ResumeBuilder'])->name('resume-builder');
-    Route::get('/resume-builder/user/resume-download/Model{model_id}/{user_id}',[ToolsController::class, 'ResumeDownload'])->name('resume-download');
-    Route::get('pdfview',array('as'=>'pdfview','uses'=>'App\Http\Controllers\ToolsController@pdfview'));
-    Route::get('/projects/personalpack/multinotes',[ToolsController::class, 'Multinotes'])->name('multinotes');
-    //Todo App
-    Route::get('/projects/personalpack/todo',[ToolsController::class, 'TodoApp'])->name('todo');
-});
+    });
 
-// Auth::routes();
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+        //Resume builder
+        Route::get('/projects/personalpack/resume-builder',[ToolsController::class, 'ResumeBuilder'])->name('resume-builder');
+        Route::get('/resume-builder/user/resume-download/Model{model_id}/{user_id}',[ToolsController::class, 'ResumeDownload'])->name('resume-download');
+        Route::get('pdfview',array('as'=>'pdfview','uses'=>'App\Http\Controllers\ToolsController@pdfview'));
+        Route::get('/projects/personalpack/multinotes',[ToolsController::class, 'Multinotes'])->name('multinotes');
+        //Todo App
+        Route::get('/projects/personalpack/todo',[ToolsController::class, 'TodoApp'])->name('todo');
+    });
 
-//Google
-Route::get('/login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
-Route::get('/login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
-//LinkedIn
-Route::get('/login/linkedin', [App\Http\Controllers\Auth\LoginController::class, 'redirectToLinkedin'])->name('login.linkedin');
-Route::get('/login/linkedin/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleLinkedinCallback']);
-//Github
-Route::get('/login/github', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGithub'])->name('login.github');
-Route::get('/login/github/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGithubCallback']);
+    // Auth::routes();
 
-Route::get('/home', [PostController::class, 'index']);
+    //Google
+    Route::get('/login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('/login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
+    //LinkedIn
+    Route::get('/login/linkedin', [App\Http\Controllers\Auth\LoginController::class, 'redirectToLinkedin'])->name('login.linkedin');
+    Route::get('/login/linkedin/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleLinkedinCallback']);
+    //Github
+    Route::get('/login/github', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGithub'])->name('login.github');
+    Route::get('/login/github/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGithubCallback']);
+
+    Route::get('/home', [PostController::class, 'index']);
