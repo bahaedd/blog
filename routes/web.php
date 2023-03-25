@@ -104,7 +104,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::any('/projects/shufflelines/shuffle',[ToolsController::class, 'Shuffle']);
 
     //Asmaa lah alhosna
-    Route::get('/projects/mailerpack/asma-al-husna',[ToolsController::class, 'Asmaa'])->name('asma-al-husna');
+    Route::get('/projects/muslimpack/asma-al-husna',[ToolsController::class, 'AsmaaAlhosna'])->name('asma-al-husna');
 
     
 
