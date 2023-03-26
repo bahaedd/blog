@@ -715,7 +715,7 @@ class ToolsController extends Controller
         
         $data = json_decode($response->body(), true);
 
-        dd($data);
+        // dd($data);
 
         seo()
         ->title('AlienDev | Web Development tutorials')
@@ -730,7 +730,7 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-         return view("blog.tools.asmaa");
+         return view("blog.tools.asmaa", compact('data'));
 
     }
 
