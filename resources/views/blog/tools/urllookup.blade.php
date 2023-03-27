@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @section('title', "URL Lookup")
     @include('/blog/layouts.head')
     <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
-        <!-- navbar -->
         @include('/blog/layouts.navbar')
 
-        <!-- container -->
+        
         <div class="px-16 mx-auto py-16 md:py-20 mb-72">
             <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">URL Lookup</h2>
             <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" method="POST" action="{{url('/projects/urllookup/lookup')}}">

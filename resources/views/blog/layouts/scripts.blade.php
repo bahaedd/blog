@@ -26,7 +26,7 @@
 <script src="../path/to/flowbite/dist/flowbite.js"></script>
 <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
 <script>
-// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+
 if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.add('dark');
 } else {
@@ -37,7 +37,7 @@ if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localS
 var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-// Change the icons inside the button based on previous settings
+
 if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     themeToggleLightIcon.classList.remove('hidden');
 } else {
@@ -48,7 +48,7 @@ var themeToggleBtn = document.getElementById('theme-toggle');
 
 themeToggleBtn.addEventListener('click', function() {
 
-// toggle icons inside button
+
 themeToggleDarkIcon.classList.toggle('hidden');
 themeToggleLightIcon.classList.toggle('hidden');
 
