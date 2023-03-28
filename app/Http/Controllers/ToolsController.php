@@ -806,7 +806,7 @@ class ToolsController extends Controller
     //Shuffle Lines
     public function ShuffleLines() {
 
-         $lines = [];
+         $lines  = [];
          seo()
         ->title('AlienDev | Web Development tutorials')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
@@ -832,8 +832,8 @@ class ToolsController extends Controller
         $lines = [];
         $text = $request->get('text');
         $array = explode("\n", $text );       
-        $lines = shuffle($array);
-        // dd($array);
+        $lines = array_filter(explode("\n", $text));
+        shuffle($lines);
         seo()
         ->title('AlienDev | Web Development tutorials')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
@@ -847,7 +847,7 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-         return view("blog.tools.shufflelines", compact('array'));
+         return view("blog.tools.shufflelines", compact('lines'));
 
     }
 }
