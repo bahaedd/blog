@@ -3,9 +3,7 @@
 @include('/blog/layouts.head')
 
 <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
-    <!-- navbar -->
     @include('/blog/layouts.navbar')
-    <!-- container -->
     <div class="px-3 mx-3 py-3 md:py-20 mb-3">
         <div class="mt-3 mb-3 text-center">
             <a href="{{ route('pdfview',['download'=>'pdf']) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -238,7 +236,7 @@
     </script>
     <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
     <script>
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
     } else {
@@ -250,7 +248,7 @@
     var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-    // Change the icons inside the button based on previous settings
+    
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         themeToggleLightIcon.classList.remove('hidden');
     } else {
@@ -261,11 +259,11 @@
 
     themeToggleBtn.addEventListener('click', function() {
 
-        // toggle icons inside button
+       
         themeToggleDarkIcon.classList.toggle('hidden');
         themeToggleLightIcon.classList.toggle('hidden');
 
-        // if set via local storage previously
+       
         if (localStorage.getItem('color-theme')) {
             if (localStorage.getItem('color-theme') === 'light') {
                 document.documentElement.classList.add('dark');
@@ -275,7 +273,7 @@
                 localStorage.setItem('color-theme', 'light');
             }
 
-            // if NOT set via local storage previously
+            
         } else {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
