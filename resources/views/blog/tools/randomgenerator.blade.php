@@ -2,10 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include('/blog/layouts.head')
     <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
-        <!-- navbar -->
         @include('/blog/layouts.navbar')
 
-        <!-- container -->
         <div class="px-16 mx-auto py-16 md:py-20 mb-72">
             <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Random Generator</h2>
             <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('/projects/randomgenerator/generate')}}" method="post">
@@ -67,7 +65,7 @@
             </div>
         </div>
 
-        <!-- Footer -->
+       
         @include('/blog/layouts.footer')
         <livewire:scripts />
         <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
@@ -114,7 +112,7 @@
         </script>
         <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
         <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -125,7 +123,7 @@
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-        // Change the icons inside the button based on previous settings
+        
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             themeToggleLightIcon.classList.remove('hidden');
         } else {
@@ -136,11 +134,11 @@
 
         themeToggleBtn.addEventListener('click', function() {
 
-        // toggle icons inside button
+        
         themeToggleDarkIcon.classList.toggle('hidden');
         themeToggleLightIcon.classList.toggle('hidden');
 
-        // if set via local storage previously
+        
         if (localStorage.getItem('color-theme')) {
             if (localStorage.getItem('color-theme') === 'light') {
                 document.documentElement.classList.add('dark');
@@ -150,7 +148,7 @@
                 localStorage.setItem('color-theme', 'light');
             }
 
-        // if NOT set via local storage previously
+        
         } else {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
