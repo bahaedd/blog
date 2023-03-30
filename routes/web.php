@@ -106,6 +106,15 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     //Asmaa lah alhosna
     Route::get('/projects/muslimpack/asma-al-husna',[ToolsController::class, 'AsmaaAlhosna'])->name('asma-al-husna');
 
+    //Hisn Almoslim
+    Route::get('/projects/muslimpack/hisn-almoslim',[ToolsController::class, 'HisnAlmoslim'])->name('hisn-almoslim');
+    //Adhkar sabah
+    Route::get('/projects/muslimpack/adhkar-sabah',[ToolsController::class, 'AdhkarSabah'])->name('adhkar-sabah');
+    //Adhkar almasae
+    Route::get('/projects/muslimpack/adhkar-almasae',[ToolsController::class, 'AdhkarAlmasae'])->name('adhkar-almasae');
+    //Adhkar salat
+    Route::get('/projects/muslimpack/adhkar-salat',[ToolsController::class, 'AdhkarSalat'])->name('adhkar-salat');
+
     
 
     Route::group(['prefix' => 'admin'], function () {

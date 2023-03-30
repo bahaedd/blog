@@ -2,22 +2,33 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('/blog/layouts.head')
 
-<body class="dark:bg-gray-800 bg-cover bg-center" style="background-repeat: no-repeat; background-attachment: fixed; background-image: url({{URL('/images/1.webp')}});">
+<body class="bg-white dark:bg-gray-800">
     @include('/blog/layouts.navbar')
-    <div class="px-16 mx-auto py-16 md:py-20 mb-6 mt-24">
-        <ul class="grid w-full gap-6 md:grid-cols-5">
-            @for ($i = 0; $i < 99; $i++) <li>
-                <input type="radio" id="hosting-small" name="hosting" value="hosting-small" class="hidden peer" required>
-                <label for="hosting-small" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <div class="block">
-                        <div class="w-full text-lg font-semibold">{{ $data['data'][$i]['name'] }}</div>
-                        <div class="w-full">{{ $data['data'][$i]['transliteration'] }}</div>
-                        <div class="w-full">{{ $data['data'][$i]['en']['meaning'] }}</div>
+    <div class="px-16 mx-auto py-16 md:py-20 mb-6 mt-24" style="direction: rtl;">
+        <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-yellow-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-yellow-700">حصن المسلم</h2>
+        <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
+            <a href="{{ route('adhkar-sabah') }}">
+                <div class="group rounded px-8 py-12 shadow bg-yellow-300">
+                    <div class="text-center">
+                        <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">أذكار الصباح</h3>
                     </div>
-                </label>
-                </li>
-                @endfor
-        </ul>
+                </div>
+            </a>
+            <a href="{{ route('home') }}">
+                <div class="group rounded px-8 py-12 shadow bg-yellow-300">
+                    <div class="text-center">
+                        <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">أذكار بعد الصلاة</h3>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ route('adhkar-almasae') }}">
+                <div class="group rounded px-8 py-12 shadow bg-yellow-300">
+                    <div class="text-center">
+                        <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">أذكار المساء</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
     <livewire:scripts />
     <script>

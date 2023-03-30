@@ -734,6 +734,102 @@ class ToolsController extends Controller
 
     }
 
+    //Hisn Almoslim
+    public function HisnAlmoslim() {
+
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+         return view("blog.tools.hisn-almoslim");
+
+    }
+
+    //Adhkar Sabah
+    public function AdhkarSabah() {
+
+        $response = Http::get('https://ahegazy.github.io/muslimKit/json/azkar_sabah.json');
+        
+        $data = json_decode($response->body(), true);
+
+        //dd($data);
+
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+         return view("blog.tools.adhkar-sabah", compact('data'));
+
+    }
+
+    //Adhkar Almasae
+    public function AdhkarAlmasae() {
+
+        $response = Http::get('https://ahegazy.github.io/muslimKit/json/azkar_massa.json');
+        
+        $data = json_decode($response->body(), true);
+
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+         return view("blog.tools.adhkar-almasae", compact('data'));
+
+    }
+
+    //Adhkar Salat
+    public function AdhkarSalat() {
+
+        $response = Http::get('https://ahegazy.github.io/muslimKit/json/PostPrayer_azkar.json');
+        
+        $data = json_decode($response->body(), true);
+
+        dd($data);
+
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+         return view("blog.tools.adhkar-almasae", compact('data'));
+
+    }
+
      //Email Extractor
     public function EmailExtractor() {
 
