@@ -1,5 +1,4 @@
 @extends('/blog/main')
-@section('title', 'Home')
 @section('content')
 <!-- container -->
 <div class="container mx-auto flex flex-wrap py-3 mt-12 dark:bg-gray-800">

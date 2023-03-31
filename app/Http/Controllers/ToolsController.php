@@ -811,7 +811,7 @@ class ToolsController extends Controller
         
         $data = json_decode($response->body(), true);
 
-        
+
 
         seo()
         ->title('AlienDev | Web Development tutorials')
@@ -885,7 +885,7 @@ class ToolsController extends Controller
 
     }
 
-     //IP Location
+     //IPLocation
     public function ipLocation() {
 
          $location = [];
