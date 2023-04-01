@@ -1,5 +1,4 @@
 @extends('/blog/main')
-@section('title', $m_category->name)
 @section('content')
  <!-- container -->
         <div class="container mx-auto py-3 mt-12 mb-12 dark:bg-gray-800">
