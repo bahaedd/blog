@@ -89,7 +89,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/projects/personalpack/bucket-generator',[ToolsController::class, 'BucketGenerator'])->name('bucket-generator');
 
     //Adhan
-    Route::get('/projects/personalpack/adhan',[ToolsController::class, 'Adhan'])->name('adhan');
+    Route::any('/projects/personalpack/adhan',[ToolsController::class, 'Adhan']);
     //AdhanSelect
     Route::get('/projects/personalpack/adhan-select',[ToolsController::class, 'AdhanSelect'])->name('adhan-select');
 

@@ -697,16 +697,15 @@ class ToolsController extends Controller
     }
 
     //AdhanTime
-    public function Adhan() {
+    public function Adhan(Request $request) {
 
         $now = date('d-m-Y');;
         $now_content = explode('-', $now);
         $today = $now_content[0];
+        $city = $request->get('city');
 
-        // $user = \Location::get(request()->ip());
-        // dd(\Request::getClientIp(true));
 
-        $response = Http::get('http://api.aladhan.com/v1/calendarByCity/2023/3?city=fes&country=Morocco&method=4');
+        $response = Http::get('http://api.aladhan.com/v1/calendarByCity/2023/4?city='.$city.'&country=Morocco&method=4');
         
         $data = json_decode($response->body(), true);
 
