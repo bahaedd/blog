@@ -90,6 +90,8 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
 
     //Adhan
     Route::get('/projects/personalpack/adhan',[ToolsController::class, 'Adhan'])->name('adhan');
+    //AdhanSelect
+    Route::get('/projects/personalpack/adhan-select',[ToolsController::class, 'AdhanSelect'])->name('adhan-select');
 
     //Email-Extractor
     Route::get('/projects/mailerpack/email-extractor',[ToolsController::class, 'EmailExtractor'])->name('email-extractor');
