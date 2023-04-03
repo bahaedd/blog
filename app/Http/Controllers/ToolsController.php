@@ -709,7 +709,7 @@ class ToolsController extends Controller
         
         $data = json_decode($response->body(), true);
 
-        //dd(count($data['data']));
+        // dd($data);
         seo()
         ->title('AlienDev | Web Development tutorials')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')

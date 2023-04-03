@@ -5,27 +5,14 @@
 <body class="dark:bg-gray-800 bg-cover bg-center" style="height:40rem; background-repeat: no-repeat; background-attachment: fixed; background-image: url({{URL('/images/ramadan.png')}});">
    
     @include('/blog/layouts.navbar')
-   
-    <div class="px-16 mx-auto py-16 md:py-20 mb-6">
-        <h2 class="my-4 mb-3 text-4xl text-center font-semibold text-yellow-300 rounded md:bg-transparent md:p-0 dark:text-yellow-300">Adhan Times</h2>
-        <label for="underline_select" class="sr-only">Underline select</label>
-         <select id="underline_select" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-             <option selected>Choose a country</option>
-             <option value="US">United States</option>
-             <option value="CA">Canada</option>
-             <option value="FR">France</option>
-             <option value="DE">Germany</option>
-         </select>
-    </div>
+
     <div>
         <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto mx-12">
             </div> -->
             <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-700">
-                        <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800 border border-gray-700">
-                            <p class="mt-1 text-xl font-bold text-yellow-500 dark:text-yellow-500 text-center">{{ $data['data'][$today]['date']['gregorian']['month']['en'] }} {{ $data['data'][$today]['date']['gregorian']['year']}} <span class="text-gray-300">|</span> {{ $data['data'][$today]['date']['hijri']['month']['ar'] }} {{ $data['data'][$today]['date']['hijri']['year']}}</p>
-                        </caption>
+                        
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
