@@ -1,6 +1,5 @@
 @extends('/blog/main')
 @section('content')
-<!-- container -->
 <div class="container mx-auto flex flex-wrap py-3 mt-12 dark:bg-gray-800">
     <!-- quotes --->
     <div class="w-full bg-white mb-4 flex items-center justify-center dark:bg-gray-800">
@@ -11,11 +10,9 @@
             </div>
         </div>
     </div>
-    <!-- Post Section -->
     <section class="w-full md:w-2/3 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
         @foreach ($s_post as $s_post)
         <article class="bg-white flex flex-col rounded-lg border border-gray-200 shadow-md my-4 dark:border-gray-700 dark:bg-gray-600">
-            <!-- Article Image -->
             <a href="/blog/post/{{ $s_post->slug }}" class="w-full hover:opacity-75 rounded">
                 <img src="{{Voyager::image( $s_post->image )}}">
             </a>
@@ -37,7 +34,6 @@
         </article>
         @endforeach
     </section>
-    <!-- sidebar posts -->
     @include('/blog/layouts.sidebar', ['recent_posts, categories' => $recent_posts, $categories, $tags])
     <!-- latest posts -->
     <div class="w-full md:w-3/3 flex flex-wrap px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal mt-3">
@@ -62,7 +58,6 @@
             @endforeach
         </div>
     </div>
-    <!-- laravel posts -->
     <div class="container mx-auto py-3 mt-12 dark:bg-gray-800">
         <h2 class="my-2 ml-6 text-xl font-bold text-white rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400">LARAVEL POSTS</h2>
         <div class="flex flex-wrap px-4 m-b-3 md:px-6">

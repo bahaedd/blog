@@ -24,7 +24,6 @@
             @foreach ($tags as $tag)
             <div class="flex items-center justify-between mt-4">
                 <div class="flex items-center">
-                    {{-- <a href="#"class="mx-3 text-sm font-semibold text-white bg-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400 hover:underline ml-3">{{ $tag->name }}</a> --}}
                     <a href="/blog/tag/{{ $tag->slug }}" class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">{{ $tag->name }}</a>
                 </div>
             </div>
