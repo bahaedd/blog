@@ -725,7 +725,7 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-         return view("blog.tools.adhan", compact('data', 'today'));
+         return view("blog.tools.adhan", compact('data', 'today', 'city'));
 
     }
 
