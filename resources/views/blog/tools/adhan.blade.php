@@ -8,7 +8,7 @@
 
     <div>
         <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto mx-12">
-            </div> -->
+            </div> 
             <div class="w-full sm:w-full md:w-full lg:w-full xl:w-full mb-4 dark:bg-gray-800 mx-auto">
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-700">
@@ -36,7 +36,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < count($data['data']); $i++) <tr class="@if($data['data'][$i]['date']['gregorian']['day'] == $data['data'][$today]['date']['gregorian']['day']) text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 @else bg-white border-b dark:bg-gray-800 @endif dark:border-gray-700">
+                            @for ($i = 0; $i < count($data['data']); $i++) <tr class="@if($data['data'][$i]['date']['gregorian']['day'] == $data['data'][$today-1]['date']['gregorian']['day']) text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 @else bg-white border-b dark:bg-gray-800 @endif dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespa ce-nowrap dark:text-white">
                                     {{ $data['data'][$i]['date']['gregorian']['day'] }} {{ $data['data'][$i]['date']['gregorian']['month']['en'] }} {{ $data['data'][$i]['date']['gregorian']['year']}} <span class="text-gray-300">|</span> {{ $data['data'][$i]['date']['hijri']['day'] }} {{ $data['data'][$i]['date']['hijri']['month']['ar'] }} {{ $data['data'][$i]['date']['hijri']['year']}}
                                 </th>

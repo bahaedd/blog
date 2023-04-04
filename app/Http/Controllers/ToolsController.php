@@ -699,13 +699,15 @@ class ToolsController extends Controller
     //AdhanTime
     public function Adhan(Request $request) {
 
-        $now = date('d-m-Y');;
+        $now = Carbon::now()->format('j-n-Y');
         $now_content = explode('-', $now);
         $today = $now_content[0];
+        $month = $now_content[1];
+        $year = $now_content[2];
         $city = $request->get('city');
 
 
-        $response = Http::get('http://api.aladhan.com/v1/calendarByCity/2023/4?city='.$city.'&country=Morocco&method=4');
+        $response = Http::get('http://api.aladhan.com/v1/calendarByCity/'.$year.'/'.$month.'?city='.$city.'&country=Morocco&method=4');
         
         $data = json_decode($response->body(), true);
 
