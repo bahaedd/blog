@@ -14,9 +14,12 @@
             </p>
         </div>
         <!--Post Content-->
-        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">In many web applications, importing data from CSV files is a common task. Laravel provides an easy way to import CSV files and display their contents. In this tutorial, we will walk you through the process of importing a CSV file and displaying its contents in a Laravel application.</p>
+        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">Tall Stack is a full-stack web development technology stack that consists of Tailwind CSS, Alpine.js, Laravel, and Livewire. It offers a seamless web development experience by providing an easy-to-use, modern, and flexible toolset that allows developers to build high-quality web applications efficiently.</p>
 
-        <h3 class="pt-6 font-light leading-relaxed text-blue-700">#Create a route for the CSV import</h3>
+        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">In this article, we will explore the components of the Tall Stack and guide you on how to set up a Tall Stack project.</p>
+
+        <h3 class="pt-6 font-light leading-relaxed text-blue-700">#Components of the Tall Stack</h3>
+        <h2 class="pt-6 font-light leading-relaxed text-blue-700">TailwindCSS</h2>
 
         <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">we need to create a route in our Laravel application that will handle the CSV import. Open the routes/web.php file and add the following route:</p>
 

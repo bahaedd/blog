@@ -278,7 +278,7 @@ class ToolsController extends Controller
     //Random Generator
     public function RandomGenerator() {
 
-        $randomString = '';
+        $randomStrings = array();
         seo()
         ->title('AlienDev | Web Development tutorials')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
@@ -294,76 +294,84 @@ class ToolsController extends Controller
         return view("blog.tools.randomgenerator", compact("randomString"));
     }
 
-    public function GenerateRandom(Request $request) {
+    public function GenerateRandom(Request $request)
+{
+    $this->validate($request, [
+        'length' => 'required|max:70',
+        'string' => 'required',
+        'num' => 'required|max:10'
+    ]);
+
+    $charactersAll = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersUpper = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersUpperOnly = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLower = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $charactersLowerOnly = 'abcdefghijklmnopqrstuvwxyz';
+    $charactersNumOnly = '0123456789';
+    $charactersChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    
+    $randomStrings = array();
+
+    for ($j = 0; $j < $request->get('num'); $j++) {
+        $randomString = '';
         
-        $this->validate($request, [
-            'length' => 'required|max:70',
-            'string' => 'required'
-         ]);
-
-        
-            $charactersAll = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersUpper = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersUpperOnly = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLower = '0123456789abcdefghijklmnopqrstuvwxyz';
-            $charactersLowerOnly = 'abcdefghijklmnopqrstuvwxyz';
-            $charactersNumOnly = '0123456789';
-            $charactersChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-            $randomString = '';
-
-
-            if(count($request->get('string')) == 3){
-                for ($i = 0; $i < $request->get('length'); $i++) {
-                    $index = rand(0, strlen($charactersAll) - 1);
-                    $randomString .= $charactersAll[$index];
-                    }
+        if(count($request->get('string')) == 3){
+            for ($i = 0; $i < $request->get('length'); $i++) {
+                $index = rand(0, strlen($charactersAll) - 1);
+                $randomString .= $charactersAll[$index];
             }
+        }
 
-            if(count($request->get('string')) == 2){
+        if(count($request->get('string')) == 2){
 
-                if(!in_array('lower', $request->get('string'))){
-                    for ($i = 0; $i < $request->get('length'); $i++) {
+            if(!in_array('lower', $request->get('string'))){
+                for ($i = 0; $i < $request->get('length'); $i++) {
                     $index = rand(0, strlen($charactersUpper) - 1);
                     $randomString .= $charactersUpper[$index];
-                    }
-                    }
-                else if(!in_array('upper', $request->get('string'))){
-                    for ($i = 0; $i < $request->get('length'); $i++) {
+                }
+            }
+            else if(!in_array('upper', $request->get('string'))){
+                for ($i = 0; $i < $request->get('length'); $i++) {
                     $index = rand(0, strlen($charactersLower) - 1);
                     $randomString .= $charactersLower[$index];
-                    }
-                  }
-                else if(!in_array('numbers', $request->get('string'))){
-                    for ($i = 0; $i < $request->get('length'); $i++) {
+                }
+            }
+            else if(!in_array('numbers', $request->get('string'))){
+                for ($i = 0; $i < $request->get('length'); $i++) {
                     $index = rand(0, strlen($charactersChar) - 1);
                     $randomString .= $charactersChar[$index];
-                    }
-                    }
+                }
             }
-            if(count($request->get('string')) == 1){
+        }
+        if(count($request->get('string')) == 1){
 
-                if(in_array('lower', $request->get('string'))){
-                    for ($i = 0; $i < $request->get('length'); $i++) {
+            if(in_array('lower', $request->get('string'))){
+                for ($i = 0; $i < $request->get('length'); $i++) {
                     $index = rand(0, strlen($charactersLowerOnly) - 1);
                     $randomString .= $charactersLowerOnly[$index];
-                    }
-                    }
-                else if(in_array('upper', $request->get('string'))){
-                    for ($i = 0; $i < $request->get('length'); $i++) {
+                }
+            }
+            else if(in_array('upper', $request->get('string'))){
+                for ($i = 0; $i < $request->get('length'); $i++) {
                     $index = rand(0, strlen($charactersUpperOnly) - 1);
                     $randomString .= $charactersUpperOnly[$index];
-                    }
-                  }
-                else if(in_array('numbers', $request->get('string'))){
-                    for ($i = 0; $i < $request->get('length'); $i++) {
+                }
+            }
+            else if(in_array('numbers', $request->get('string'))){
+                for ($i = 0; $i < $request->get('length'); $i++) {
                     $index = rand(0, strlen($charactersNumOnly) - 1);
                     $randomString .= $charactersNumOnly[$index];
-                    }
-                    }
+                }
             }
-        
-        return view("blog.tools.randomgenerator", compact("randomString"));
+        }
+
+        array_push($randomStrings, $randomString);
     }
+
+
+    return view("blog.tools.randomgenerator", compact("randomStrings"));
+}
+
 
     //User Generator
     public function UserGenerator() {
