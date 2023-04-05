@@ -291,7 +291,7 @@ class ToolsController extends Controller
         ->twitterTitle('AlienDev | Web Development tutorials')
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
-        return view("blog.tools.randomgenerator", compact("randomString"));
+        return view("blog.tools.randomgenerator", compact("randomStrings"));
     }
 
     public function GenerateRandom(Request $request)
