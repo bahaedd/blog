@@ -309,6 +309,7 @@ class ToolsController extends Controller
     $charactersLowerOnly = 'abcdefghijklmnopqrstuvwxyz';
     $charactersNumOnly = '0123456789';
     $charactersChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    $region = $request->get('region');
     
     $randomStrings = array();
 
@@ -369,7 +370,7 @@ class ToolsController extends Controller
     }
 
 
-    return view("blog.tools.randomgenerator", compact("randomStrings"));
+    return view("blog.tools.randomgenerator", compact("randomStrings", "region"));
 }
 
 

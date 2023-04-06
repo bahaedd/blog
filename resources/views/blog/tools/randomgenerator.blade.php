@@ -35,6 +35,37 @@
                             <label for="num" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Number</label>
                         </div>
                     </div>
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                        <div class="relative z-0 mb-6 w-full group">
+                            <label for="region" class="mb-2 text-sm font-medium text-gray-700">Region</label>
+                              <select id="region" name="region" class="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="us-east-1">US East (N. Virginia)</option>
+                                <option value="us-east-2">US East (Ohio)</option>
+                                <option value="us-west-1">US West (N. California)</option>
+                                <option value="us-west-2">US West (Oregon)</option>
+                                <option value="ca-central-1">Canada (Central)</option>
+                                <option value="sa-east-1">South America (São Paulo)</option>
+                                <option value="eu-west-1">Europe (Ireland)</option>
+                                <option value="eu-west-2">Europe (London)</option>
+                                <option value="eu-west-3">Europe (Paris)</option>
+                                <option value="eu-central-1">Europe (Frankfurt)</option>
+                                <option value="eu-north-1">Europe (Stockholm)</option>
+                                <option value="ap-south-1">Asia Pacific (Mumbai)</option>
+                                <option value="ap-southeast-1">Asia Pacific (Singapore)</option>
+                                <option value="ap-southeast-2">Asia Pacific (Sydney)</option>
+                                <option value="ap-northeast-1">Asia Pacific (Tokyo)</option>
+                                <option value="ap-northeast-2">Asia Pacific (Seoul)</option>
+                                <option value="ap-east-1">Asia Pacific (Hong Kong)</option>
+                                <option value="me-south-1">Middle East (Bahrain)</option>
+                                <option value="af-south-1">Africa (Cape Town)</option>
+                                <option value="us-gov-east-1">AWS GovCloud (US-East)</option>
+                                <option value="us-gov-west-1">AWS GovCloud (US-West)</option>
+                                <option value="cn-north-1">China (Beijing)</option>
+                                <option value="cn-northwest-1">China (Ningxia)</option>
+                                <option value="eu-south-1">Europe (Milan)</option>
+                              </select>
+                        </div>
+                    </div>
                     <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Generate</button>
                 </fieldset>
                 @if ($errors->any())
@@ -53,7 +84,7 @@
             </section>
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
                 <h4 class="my-4 mb-6 mt-0 text-sm text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Buckets</h4>
-                <div id="result" name="result" class="block p-3 h-64 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{-- <div id="result" name="result" class="block p-3 h-64 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <div class="flex justify-end">
                         <button type="button" class="btn" data-tooltip-target="tooltip-dark" data-clipboard-target="#result">
                             <ion-icon name="clipboard-outline"></ion-icon>
@@ -62,9 +93,14 @@
                     @foreach ($randomStrings as $key => $value)
                             {{ $value }} <br>
                     @endforeach
-                </div>
+                </div> --}}
+                <textarea id="result" name="result" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center @if(empty($randomStrings)) hidden @endif" placeholder="" style="white-space: white-space: pre-wrap;">
+                        @foreach ($randomStrings as $key => $value){{ $value }}
+@endforeach
+                    </textarea>
+                <button type="button" class="btn mt-6 flex items-center justify-center rounded text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue600 dark:focus:ring-blue-800 @if(empty($randomStrings)) hidden @endif" data-tooltip-target="tooltip-dark" data-clipboard-target="#result">Copy</button>
                 <h4 class="my-4 mb-3 mt-3 text-sm text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Commands</h4>
-                <div id="resultcmd" name="resultcmd" class="block p-3 h-64 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                {{-- <div id="resultcmd" name="resultcmd" class="block p-3 h-64 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <div class="flex justify-end">
                         <button type="button" class="btn" data-tooltip-target="tooltip-dark" data-clipboard-target="#resultcmd">
                             <ion-icon name="clipboard-outline"></ion-icon>
@@ -73,7 +109,12 @@
                     @foreach ($randomStrings as $key => $value)
                            aws s3 mb s3://{{ $value }} --region us-east-1 <br>
                     @endforeach
-                </div>
+                </div> --}}
+                                <textarea id="resultcmd" name="resultcmd" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center @if(empty($randomStrings)) hidden @endif" placeholder="" style="white-space: white-space: pre-wrap;">
+                        @foreach ($randomStrings as $key => $value)aws s3 mb s3://{{ $value }} --region {{ $region}}
+@endforeach
+                    </textarea>
+                <button type="button" class="btn mt-6 flex items-center justify-center rounded text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue600 dark:focus:ring-blue-800 @if(empty($randomStrings)) hidden @endif" data-tooltip-target="tooltip-dark" data-clipboard-target="#resultcmd">Copy</button>
             </section>
             <div id="tooltip-dark" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                 Copy to clipboard
