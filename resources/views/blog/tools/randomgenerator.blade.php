@@ -6,7 +6,7 @@
     @include('/blog/layouts.navbar')
     <div class="px-16 mx-auto py-16 md:py-20 mb-72">
         <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Random Generator</h2>
-        <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('/projects/randomgenerator/generate')}}" method="post">
+        <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 mt-12" action="{{url('/projects/randomgenerator/generate')}}" method="post">
             @csrf
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal rounded border border-gray-500 p-12">
                 <fieldset>
@@ -83,33 +83,13 @@
                 @endif
             </section>
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
-                <h4 class="my-4 mb-6 mt-0 text-sm text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Buckets</h4>
-                {{-- <div id="result" name="result" class="block p-3 h-64 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <div class="flex justify-end">
-                        <button type="button" class="btn" data-tooltip-target="tooltip-dark" data-clipboard-target="#result">
-                            <ion-icon name="clipboard-outline"></ion-icon>
-                        </button>
-                    </div>
-                    @foreach ($randomStrings as $key => $value)
-                            {{ $value }} <br>
-                    @endforeach
-                </div> --}}
+                <h4 class="my-4 mb-6 mt-0 text-sm text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700 @if(empty($randomStrings)) hidden @endif">Buckets</h4>
                 <textarea id="result" name="result" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center @if(empty($randomStrings)) hidden @endif" placeholder="" style="white-space: white-space: pre-wrap;">
                         @foreach ($randomStrings as $key => $value){{ $value }}
 @endforeach
                     </textarea>
                 <button type="button" class="btn mt-6 flex items-center justify-center rounded text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue600 dark:focus:ring-blue-800 @if(empty($randomStrings)) hidden @endif" data-tooltip-target="tooltip-dark" data-clipboard-target="#result">Copy</button>
-                <h4 class="my-4 mb-3 mt-3 text-sm text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Commands</h4>
-                {{-- <div id="resultcmd" name="resultcmd" class="block p-3 h-64 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <div class="flex justify-end">
-                        <button type="button" class="btn" data-tooltip-target="tooltip-dark" data-clipboard-target="#resultcmd">
-                            <ion-icon name="clipboard-outline"></ion-icon>
-                        </button>
-                    </div>
-                    @foreach ($randomStrings as $key => $value)
-                           aws s3 mb s3://{{ $value }} --region us-east-1 <br>
-                    @endforeach
-                </div> --}}
+                <h4 class="my-4 mb-3 mt-3 text-sm text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700 @if(empty($randomStrings)) hidden @endif">Commands</h4>
                                 <textarea id="resultcmd" name="resultcmd" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center @if(empty($randomStrings)) hidden @endif" placeholder="" style="white-space: white-space: pre-wrap;">
                         @foreach ($randomStrings as $key => $value)aws s3 mb s3://{{ $value }} --region {{ $region}}
 @endforeach
