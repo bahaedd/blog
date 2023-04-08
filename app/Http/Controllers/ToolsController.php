@@ -485,12 +485,18 @@ class ToolsController extends Controller
     public function DomainReputation() {
 
         $hidden = 'hidden';
-        $result = [
-          "reputationScore"=> "",
-          "mode"=> "", 
+        $data = [
+          "data" => [
+              "attributes"=> [
+              "last_analysis_stats"=> [
+                  "harmless"=>"",
+                  ],
+              ],
+              ],
+           
         ];
 
-        return view("blog.tools.domainreputation", compact("hidden", "result"));
+        return view("blog.tools.domainreputation", compact("hidden", "data"));
     }
 
     public function CheckDomain(Request $request) {
@@ -512,15 +518,17 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-        $httpClient = new Psr18Client();
-        $psr17Factory = new Psr17Factory();
-        $ipdata = new Ipdata('370ee16e655a378ec01d3dc8629129db142f4721d81035c8d81dbe40', $httpClient, $psr17Factory); 
-
-       $data = $ipdata->threat_score('69.78.70.144');
-       $result = json_encode($data, JSON_PRETTY_PRINT);
-       dd($result);
+        $response = Http::withHeaders([
+            'X-Apikey' => 'a35244de6de6ad4cb065e617ddd2055493af9dbaa3c6dc0989e5fb1687399498',
+             ])->get('https://www.virustotal.com/api/v3/domains/'.$request->get('domain'));
         
-        return view("blog.tools.domainreputation", compact("hidden", "result"));
+       $data = json_decode($response, true);
+        
+    // dd($data['data']['attributes']['last_analysis_stats']['harmless']);
+
+       dd($data);
+        
+        return view("blog.tools.domainreputation", compact("hidden", "data"));
     }
 
     //         ######################### PersonalPack ################################
