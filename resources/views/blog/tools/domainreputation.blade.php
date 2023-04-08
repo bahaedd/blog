@@ -8,7 +8,35 @@
     @include('/blog/layouts.navbar')
     <!-- container -->
     <div class="px-16 mx-auto py-16 md:py-20 mb-72">
-        <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Domain Reputation</h2>
+        <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Domain Reputation Checker</h2>
+        <nav class="flex mb-12 mt-12 ml-6" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="" class="inline-flex items-center text-sm font-medium text-blue-700 hover:text-blue-600 dark:text-blue-400 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>
+                        Tools
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <a href="{{ route('mailerpack') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">MailerPack</a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Domain Reputation Checker</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
         <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('projects/domainreputation/check')}}" method="post">
             @csrf
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
@@ -18,8 +46,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </div>
-                    <input type="search" id="domain" name="domain" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter any Valid Domain Name">
-                    <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Check</button>
+                    <input type="search" id="domain" name="domain" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example.com">
+                    <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Check</button>
                 </div>
                 @if ($errors->any())
                 <div class="flex p-4 mt-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
@@ -34,25 +62,36 @@
                     </div>
                 </div>
                 @endif
-                <div class="flex justify-items-center mt-12">
-                    <a href="{{ route('mailerpack') }}" class="text-green-700 mt-4 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">
-                        <ion-icon name="chevron-back-outline"></ion-icon> Back to MailerPack
-                    </a>
-                </div>
             </section>
             <section class="w-full md:w-2/4 flex flex-col items-center px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal mt-6 {{ $hidden }}">
-                <div class="w-full items-center mr-12 max-w-sm bg-gray-600 text-gray-600  rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                <div class="w-full items-center mr-12 max-w-sm bg-white text-gray-600  dark:bg-gray-800 dark:border-gray-900">
                     <div class="px-3 pb-3 pt-6">
-                        <a href="#">
-                            <h5 class="text-xl font-semibold tracking-tight dark:text-white">
-                                {{ session()->get('domain') }}
-                            </h5>
-                        </a>
+                        @if(isset($data['data']))
                         <div class="flex items-center">
-                            <div class="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
-                                <div class="h-6 bg-green-600 rounded-full dark:bg-green-500 text-center text-white" style="width: {{ $data['data']['attributes']['last_analysis_stats']['harmless'] }}%;">{{ $data['data']['attributes']['last_analysis_stats']['harmless'] }}%</div>
+                            <div class="w-full h-6 bg-gray-900 rounded-full dark:bg-gray-900">
+                                <div class="h-6 {{ $color }} rounded-full dark:{{ $color }} text-center text-white" style="width: {{ $data['data']['attributes']['last_analysis_stats']['harmless'] }}%;">{{ $data['data']['attributes']['last_analysis_stats']['harmless'] }}%</div>
                             </div>
                         </div>
+                        <h5 class="text-xl mt-3 font-semibold tracking-tight dark:text-white text-center">
+                                {{ $rate }}
+                        </h5>
+                        <h2 class="mb-2 mt-6 text-lg font-semibold text-gray-900 dark:text-white">Categories:</h2>
+                        <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+                            <li>
+                                Forcepoint ThreatSeeker : {{ $data['data']['attributes']['categories']['Forcepoint ThreatSeeker'] }}
+                            </li>
+                            <li>
+                                BitDefender : {{ $data['data']['attributes']['categories']['BitDefender'] }}
+                            </li>
+                            <li>
+                                alphaMountain.ai : {{ $data['data']['attributes']['categories']['alphaMountain.ai'] }}
+                            </li>
+                        </ul>
+                        @else
+                        <h5 class="text-xl mt-3 font-semibold tracking-tight dark:text-red-300 text-center">
+                                {{ $rate }}
+                        </h5>
+                        @endif
                     </div>
                 </div>
             </section>

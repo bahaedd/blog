@@ -485,6 +485,8 @@ class ToolsController extends Controller
     public function DomainReputation() {
 
         $hidden = 'hidden';
+        $rate = '';
+        $color = '';
         $data = [
           "data" => [
               "attributes"=> [
@@ -496,12 +498,14 @@ class ToolsController extends Controller
            
         ];
 
-        return view("blog.tools.domainreputation", compact("hidden", "data"));
+        return view("blog.tools.domainreputation", compact("hidden", "data" , "rate" , "color"));
     }
 
     public function CheckDomain(Request $request) {
 
         $hidden = '';
+        $rate = '';
+        $color = '';
         $this->validate($request, [
             'domain' => 'required',
          ]);
@@ -526,9 +530,39 @@ class ToolsController extends Controller
         
     // dd($data['data']['attributes']['last_analysis_stats']['harmless']);
 
-       dd($data);
+       // dd($data);
+
+       if (isset($data['data'])) {
+        if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 0 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 20) {
+           $rate = 'Malicious';
+           $color= 'bg-yellow-300';
+       }
+       else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 20 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 40) {
+           $rate = 'High Risk';
+           $color = 'bg-red-500';
+       }
+       else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 40 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 50) {
+           $rate = 'Suspicious';
+           $color = 'bg-red-700';
+       }
+       else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 50 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 70) {
+           $rate = 'Suspicious';
+           $color = 'bg-red-900';
+       }
+       else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 70 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 100) {
+           $rate = 'Trustworthy';
+           $color = 'bg-green-700';
+       }
+       }
+       else {
+        $rate = 'Sorry!! domain not found';
+       }
+
+       
         
-        return view("blog.tools.domainreputation", compact("hidden", "data"));
+        
+
+        return view("blog.tools.domainreputation", compact("hidden", "data", "rate", "color"));
     }
 
     //         ######################### PersonalPack ################################
