@@ -70,6 +70,10 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/projects/mailerpack/domainreputation',[ToolsController::class, 'DomainReputation'])->name('domain-reputation');
     Route::any('/projects/domainreputation/check',[ToolsController::class, 'CheckDomain']);
 
+    //Domain Health Checker
+    Route::get('/projects/mailerpack/domainhealth',[ToolsController::class, 'DomainHealth'])->name('domain-health');
+    Route::any('/projects/domainhealth/check',[ToolsController::class, 'CheckDomainHealth']);
+
     //         ######################### PersonalPackApp ################################
 
     Route::get('/projects/personalpack',[ToolsController::class, 'PeronalPack'])->name('personalpack');

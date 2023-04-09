@@ -527,6 +527,86 @@ class ToolsController extends Controller
              ])->get('https://www.virustotal.com/api/v3/domains/'.$request->get('domain'));
         
        $data = json_decode($response, true);
+       
+       if (isset($data['data'])) {
+        if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 0 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 20) {
+           $rate = 'Malicious';
+           $color= 'bg-yellow-300';
+       }
+       else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 20 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 40) {
+           $rate = 'High Risk';
+           $color = 'bg-red-500';
+       }
+       else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 40 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 50) {
+           $rate = 'Suspicious';
+           $color = 'bg-red-700';
+       }
+       else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 50 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 70) {
+           $rate = 'Suspicious';
+           $color = 'bg-red-700';
+       }
+       else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 70 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 100) {
+           $rate = 'Trustworthy';
+           $color = 'bg-green-700';
+       }
+       }
+       else {
+        $rate = 'Sorry!! domain not found';
+       }
+
+       
+        
+        
+
+        return view("blog.tools.domainreputation", compact("hidden", "data", "rate", "color"));
+    }
+
+    //Domain Health
+    public function DomainHealth() {
+
+        $hidden = 'hidden';
+        $rate = '';
+        $color = '';
+        $data = [
+          "data" => [
+              "attributes"=> [
+              "last_analysis_stats"=> [
+                  "harmless"=>"",
+                  ],
+              ],
+              ],
+           
+        ];
+
+        return view("blog.tools.domainreputation", compact("hidden", "data" , "rate" , "color"));
+    }
+
+    public function CheckDomainHealth(Request $request) {
+
+        $hidden = '';
+        $rate = '';
+        $color = '';
+        $this->validate($request, [
+            'domain' => 'required',
+         ]);
+        seo()
+        ->title('AlienDev | Web Development tutorials')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+        $response = Http::withHeaders([
+            'X-Apikey' => 'a35244de6de6ad4cb065e617ddd2055493af9dbaa3c6dc0989e5fb1687399498',
+             ])->get('https://www.virustotal.com/api/v3/domains/'.$request->get('domain'));
+        
+       $data = json_decode($response, true);
         
     // dd($data['data']['attributes']['last_analysis_stats']['harmless']);
 
