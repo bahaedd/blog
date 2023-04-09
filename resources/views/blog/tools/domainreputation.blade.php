@@ -64,6 +64,7 @@
                 @endif
             </section>
             <section class="w-full md:w-2/4 flex flex-col items-center px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal mt-6 {{ $hidden }}">
+                <h4 class="mb-4 text-center text-md font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">{{ session()->get('domain') }}</h4>
                 <div class="w-full items-center mr-12 max-w-sm bg-white text-gray-600  dark:bg-gray-800 dark:border-gray-900">
                     <div class="px-3 pb-3 pt-6">
                         @if(isset($data['data']))
@@ -75,18 +76,30 @@
                         <h5 class="text-xl mt-3 font-semibold tracking-tight dark:text-white text-center">
                                 {{ $rate }}
                         </h5>
-                        <h2 class="mb-2 mt-6 text-lg font-semibold text-gray-900 dark:text-white">Categories:</h2>
-                        <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+                        @if(isset($data['data']['attributes']['categories']))
+                        <h2 class="mb-2 mt-6 text-lg font-semibold text-blue-700">- Category</h2>
+                        <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 text-sm">
+                            @if(isset( $data['data']['attributes']['categories']['BitDefender'] ))
                             <li>
-                                Forcepoint ThreatSeeker : {{ $data['data']['attributes']['categories']['Forcepoint ThreatSeeker'] }}
+                               {{ $data['data']['attributes']['categories']['BitDefender'] }}
                             </li>
+                            @else
                             <li>
-                                BitDefender : {{ $data['data']['attributes']['categories']['BitDefender'] }}
+                               None
                             </li>
-                            <li>
-                                alphaMountain.ai : {{ $data['data']['attributes']['categories']['alphaMountain.ai'] }}
-                            </li>
+                            @endif
                         </ul>
+                        @endif
+                            <h2 class="mb-2 mt-6 text-lg font-semibold text-blue-700">- WhoIs Informations</h2>
+                            @if(isset($data['data']['attributes']['categories']))
+                            <div class="text-sm font-semibold text-gray-900 dark:text-white">
+                                {{ $data['data']['attributes']['whois'] }}
+                            </div>
+                            @else
+                            <div class="text-sm font-semibold text-gray-900 dark:text-white">
+                                No records found!
+                            </div>
+                            @endif
                         @else
                         <h5 class="text-xl mt-3 font-semibold tracking-tight dark:text-red-300 text-center">
                                 {{ $rate }}
@@ -124,7 +137,6 @@
             },
         }
     }
-
     </script>
     <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
     <script>
@@ -134,27 +146,21 @@
     } else {
         document.documentElement.classList.remove('dark')
     }
-
     </script>
     <script>
     var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
     // Change the icons inside the button based on previous settings
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         themeToggleLightIcon.classList.remove('hidden');
     } else {
         themeToggleDarkIcon.classList.remove('hidden');
     }
-
     var themeToggleBtn = document.getElementById('theme-toggle');
-
     themeToggleBtn.addEventListener('click', function() {
-
         // toggle icons inside button
         themeToggleDarkIcon.classList.toggle('hidden');
         themeToggleLightIcon.classList.toggle('hidden');
-
         // if set via local storage previously
         if (localStorage.getItem('color-theme')) {
             if (localStorage.getItem('color-theme') === 'light') {
@@ -164,7 +170,6 @@
                 document.documentElement.classList.remove('dark');
                 localStorage.setItem('color-theme', 'light');
             }
-
             // if NOT set via local storage previously
         } else {
             if (document.documentElement.classList.contains('dark')) {
@@ -175,9 +180,7 @@
                 localStorage.setItem('color-theme', 'dark');
             }
         }
-
     });
-
     </script>
 </body>
 

@@ -547,7 +547,7 @@ class ToolsController extends Controller
        }
        else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 50 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 70) {
            $rate = 'Suspicious';
-           $color = 'bg-red-900';
+           $color = 'bg-red-700';
        }
        else if ($data['data']['attributes']['last_analysis_stats']['harmless'] > 70 && $data['data']['attributes']['last_analysis_stats']['harmless'] < 100) {
            $rate = 'Trustworthy';
