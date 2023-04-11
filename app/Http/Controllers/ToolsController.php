@@ -554,10 +554,6 @@ class ToolsController extends Controller
         $rate = 'Sorry!! domain not found';
        }
 
-       
-        
-        
-
         return view("blog.tools.domainreputation", compact("hidden", "data", "rate", "color"));
     }
 

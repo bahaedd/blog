@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@section('title', "Domain Reputation")
+@section('title', "Domain Health Checker")
 @include('/blog/layouts.head')
 
 <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
     @include('/blog/layouts.navbar')
     <div class="px-16 mx-auto py-16 md:py-20 mb-72">
-        <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Domain Reputation Checker</h2>
+        <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Domain Health Checker</h2>
         <nav class="flex mb-12 mt-12 ml-6" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -30,12 +30,12 @@
                         <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Domain Reputation Checker</span>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Domain Health Checker</span>
                     </div>
                 </li>
             </ol>
         </nav>
-        <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('tools/domainreputation/check')}}" method="post">
+        <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('tools/domainhealth/check')}}" method="post">
             @csrf
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
                 <div class="relative mt-12">
@@ -66,38 +66,40 @@
                 <div class="w-full items-center mr-12 max-w-sm bg-white text-gray-600  dark:bg-gray-800 dark:border-gray-900">
                     <div class="px-3 pb-3 pt-6">
                         @if(isset($data['data']))
-                        <div class="flex items-center">
-                            <div class="w-full h-6 bg-gray-900 rounded-full dark:bg-gray-900">
-                                <div class="h-6 {{ $color }} rounded-full dark:{{ $color }} text-center text-white" style="width: {{ $data['data']['attributes']['last_analysis_stats']['harmless'] }}%;">{{ $data['data']['attributes']['last_analysis_stats']['harmless'] }}%</div>
-                            </div>
-                        </div>
-                        <h5 class="text-xl mt-3 font-semibold tracking-tight dark:text-white text-center">
-                            {{ $rate }}
-                        </h5>
-                        @if(isset($data['data']['attributes']['categories']))
-                        <h2 class="mb-2 mt-6 text-lg font-semibold text-blue-700">- Category</h2>
-                        <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 text-sm">
-                            @if(isset( $data['data']['attributes']['categories']['BitDefender'] ))
-                            <li>
-                                {{ $data['data']['attributes']['categories']['BitDefender'] }}
-                            </li>
-                            @else
-                            <li>
-                                None
-                            </li>
+                        <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left text-white dark:text-white border border-gray-700 mb-12">
+                        <thead class="text-xs text-white uppercase bg-gray-800 dark:bg-gray-800 dark:text-white">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Company
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Result
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(isset($data['data']['attributes']['last_analysis_results']))
+                            <tr class="border-gray-700 bg-gray-900">
+                                <th scope="row" class="px-6 py-4 font-medium text-white whitespa ce-nowrap dark:text-white">
+                                    {{ $data['data']['attributes']['last_analysis_results']['CMC Threat Intelligence']['engine_name'] }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $data['data']['attributes']['last_analysis_results']['CMC Threat Intelligence']['result'] }}
+                                </td>
+                            </tr>
+                            <tr class="border-gray-700 bg-gray-900">
+                                <th scope="row" class="px-6 py-4 font-medium text-white whitespa ce-nowrap dark:text-white">
+                                    {{ $data['data']['attributes']['last_analysis_results']['Snort IP sample list']['engine_name'] }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $data['data']['attributes']['last_analysis_results']['Snort IP sample list']['result'] }}
+                                </td>
+                            </tr>
                             @endif
-                        </ul>
-                        @endif
-                        <h2 class="mb-2 mt-6 text-lg font-semibold text-blue-700">- WhoIs Informations</h2>
-                        @if(isset($data['data']['attributes']['categories']))
-                        <div class="text-sm font-semibold text-gray-900 dark:text-white">
-                            {{ $data['data']['attributes']['whois'] }}
-                        </div>
-                        @else
-                        <div class="text-sm font-semibold text-gray-900 dark:text-white">
-                            No records found!
-                        </div>
-                        @endif
+                        </tbody>
+                    </table>
+                </div>
                         @else
                         <h5 class="text-xl mt-3 font-semibold tracking-tight dark:text-red-300 text-center">
                             {{ $rate }}
