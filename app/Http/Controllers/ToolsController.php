@@ -280,7 +280,7 @@ class ToolsController extends Controller
 
         $randomStrings = array();
         seo()
-        ->title('AlienDev | Web Development tutorials')
+        ->title('AlienDev | Random Generator')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
         ->url(url()->current())
@@ -387,7 +387,7 @@ class ToolsController extends Controller
           "birthday"=> "",
         ];
         seo()
-        ->title('AlienDev | Web Development tutorials')
+        ->title('AlienDev | User Generator')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
         ->url(url()->current())
@@ -958,11 +958,8 @@ class ToolsController extends Controller
         $response = Http::get('https://ahegazy.github.io/muslimKit/json/PostPrayer_azkar.json');
         
         $data = json_decode($response->body(), true);
-
-
-
         seo()
-        ->title('AlienDev | Web Development tutorials')
+        ->title('AlienDev | Adhkar Salat')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
         ->url(url()->current())
@@ -983,7 +980,7 @@ class ToolsController extends Controller
 
         $emails = [];
         seo()
-        ->title('AlienDev | Web Development tutorials')
+        ->title('AlienDev | Email Extractor')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
         ->url(url()->current())
@@ -1017,7 +1014,7 @@ class ToolsController extends Controller
          }
 
          seo()
-        ->title('AlienDev | Web Development tutorials')
+        ->title('AlienDev | Email extractorshow')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
         ->url(url()->current())
@@ -1052,7 +1049,7 @@ class ToolsController extends Controller
 
          $lines  = [];
          seo()
-        ->title('AlienDev | Web Development tutorials')
+        ->title('AlienDev | ShuffleLines')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
         ->url(url()->current())
@@ -1079,7 +1076,7 @@ class ToolsController extends Controller
         $lines = array_filter(explode("\n", $text));
         shuffle($lines);
         seo()
-        ->title('AlienDev | Web Development tutorials')
+        ->title('AlienDev | Shuffle lines')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
         ->description('AlienDev here you can improve your programming skills')
         ->url(url()->current())
