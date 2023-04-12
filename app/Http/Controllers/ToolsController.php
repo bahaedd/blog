@@ -1030,17 +1030,18 @@ class ToolsController extends Controller
 
     }
 
-     //IPLocation
+     //exchange-rate
     public function ipLocation() {
 
          $location = [];
-         return view("blog.tools.ipLocation", compact('location'));
+         return view("blog.tools.exchange-rate", compact('location'));
 
     }
 
     public function GetLocation(Request $request) {
-
-         return view("blog.tools.iplocation", compact('location'));
+        
+        $location = [];
+         return view("blog.tools.exchange-rate", compact('location'));
 
     }
 

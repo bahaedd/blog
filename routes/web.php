@@ -74,6 +74,10 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/projects/mailerpack/domainhealth',[ToolsController::class, 'DomainHealth'])->name('domain-health');
     Route::any('/projects/domainhealth/check',[ToolsController::class, 'CheckDomainHealth']);
 
+    //Convercy Rate
+    Route::get('/projects/personalpack/exchange-rate',[ToolsController::class, 'exchangeRate'])->name('exchange-rate');
+    Route::any('/projects/exchange-rate/check',[ToolsController::class, 'CheckDomainHealth']);
+
     //         ######################### PersonalPackApp ################################
 
     Route::get('/projects/personalpack',[ToolsController::class, 'PeronalPack'])->name('personalpack');
