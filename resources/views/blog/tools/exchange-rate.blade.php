@@ -6,13 +6,14 @@
     @include('/blog/layouts.navbar')
     <div class="px-16 mx-auto py-16 md:py-20 mb-24">
         <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Exchange rate Converter</h2>
-        <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" method="POST" action="{{url('/projects/shufflelines/shuffle')}}">
+        <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" method="POST" action="{{url('/projects/exchange-rate/check')}}">
             @csrf
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <div class="">
                         <label for="from" class="text-sm font-medium text-gray-900 dark:text-gray-300">From</label>
                         <select id="from" name="from" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option value="">Select a currency</option>
                             @foreach ($data as $key => $value)
                             <option value="{{ $key }}">{{ $key }} ({{ $value }})</option>
                             @endforeach
@@ -21,6 +22,7 @@
                     <div class="">
                         <label for="to" class="text-sm font-medium text-gray-900 dark:text-gray-300">To</label>
                         <select id="to" name="to" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option value="">Select a currency</option>
                             @foreach ($data as $key => $value)
                             <option value="{{ $key }}">{{ $key }} ({{ $value }})</option>
                             @endforeach
@@ -32,8 +34,8 @@
                 </div>
             </section>
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:p-6 text-xl text-white-800 leading-normal">
-                <div class="p-4 mb-4 mt-12 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-700 dark:text-blue-400 text-center" role="alert">
-                    <span class="font-medium">Result here</span>
+                <div class="p-4 mb-4 mt-12 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-700 dark:text-blue-400 text-center @if($hidden) hidden @endif" role="alert">
+                    <span class="font-medium">{{ $result['query']['amount'] }} {{ $result['query']['from'] }} = {{ $result['result'] }} {{ $result['query']['to'] }}</span>
                 </div>
             </section>
         </form>

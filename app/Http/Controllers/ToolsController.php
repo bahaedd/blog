@@ -1033,20 +1033,26 @@ class ToolsController extends Controller
      //exchange-rate
     public function exchangeRate() {
 
-        $response = Http::get('https://openexchangerates.org/api/currencies.json');
-        
+        $hidden = 'hidden';
+        $result = '';
+        $response = Http::get('https://openexchangerates.org/api/currencies.json');     
         $data = json_decode($response->body(), true);
 
-        // dd($data);
-
-        return view("blog.tools.exchange-rate", compact('data'));
+        return view("blog.tools.exchange-rate", compact('data', 'hidden', 'result'));
 
     }
 
     public function CheckExchange(Request $request) {
 
-        $location = [];
-         return view("blog.tools.exchange-rate", compact('location'));
+        $hidden = '';
+        $response = Http::get('https://openexchangerates.org/api/currencies.json');     
+        $data = json_decode($response->body(), true);
+        $rate = Http::get('https://api.exchangerate.host/convert?from='.$request->get('from').'&to='.$request->get('to'));     
+        $result = json_decode($rate->body(), true);
+
+        // dd($result);
+
+         return view("blog.tools.exchange-rate", compact('hidden', 'data', 'result'));
 
     }
 
