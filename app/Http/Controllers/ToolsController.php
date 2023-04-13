@@ -1031,15 +1031,20 @@ class ToolsController extends Controller
     }
 
      //exchange-rate
-    public function ipLocation() {
+    public function exchangeRate() {
 
-         $location = [];
-         return view("blog.tools.exchange-rate", compact('location'));
+        $response = Http::get('https://openexchangerates.org/api/currencies.json');
+        
+        $data = json_decode($response->body(), true);
+
+        // dd($data);
+
+        return view("blog.tools.exchange-rate", compact('data'));
 
     }
 
-    public function GetLocation(Request $request) {
-        
+    public function CheckExchange(Request $request) {
+
         $location = [];
          return view("blog.tools.exchange-rate", compact('location'));
 

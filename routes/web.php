@@ -76,7 +76,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
 
     //Convercy Rate
     Route::get('/projects/personalpack/exchange-rate',[ToolsController::class, 'exchangeRate'])->name('exchange-rate');
-    Route::any('/projects/exchange-rate/check',[ToolsController::class, 'CheckDomainHealth']);
+    Route::any('/projects/exchange-rate/check',[ToolsController::class, 'CheckExchage']);
 
     //         ######################### PersonalPackApp ################################
 
