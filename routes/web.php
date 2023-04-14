@@ -78,6 +78,10 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/projects/personalpack/exchange-rate',[ToolsController::class, 'exchangeRate'])->name('exchange-rate');
     Route::any('/projects/exchange-rate/check',[ToolsController::class, 'CheckExchange']);
 
+    //Email Address Validator
+    Route::get('/projects/mailerpack/email-validator',[ToolsController::class, 'emailValidator'])->name('email-validator');
+    Route::any('/projects/email-validator/check',[ToolsController::class, 'CheckEmail']);
+
     //         ######################### PersonalPackApp ################################
 
     Route::get('/projects/personalpack',[ToolsController::class, 'PeronalPack'])->name('personalpack');

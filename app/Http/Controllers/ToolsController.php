@@ -1115,5 +1115,61 @@ class ToolsController extends Controller
          return view("blog.tools.shufflelines", compact('lines'));
 
     }
+
+    //Email Validator
+    public function emailValidator() {
+
+        $emails = [];
+        seo()
+        ->title('AlienDev | Email Extractor')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+        return view("blog.tools.email-validator", compact('emails'));
+
+    }
+
+    public function CheckEmail(Request $request) {
+
+        $this->validate($request, [
+            'text' => 'required',
+         ]);
+        $emails = [];
+        $text = $request->get('text');
+        $reccord= $text;
+        $regexEmailAddress = '/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i';
+        preg_match_all($regexEmailAddress, $reccord, $email_match);
+         
+        $emails = Arr::collapse($email_match);
+        $emails = array_unique($emails);
+        if(empty($emails)){
+            $emails = ['0' => 'No Email Address Found!'];
+         }
+
+         seo()
+        ->title('AlienDev | Email extractorshow')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+         return view("blog.tools.email-validator", compact('emails'));
+
+    }
+
 }
 

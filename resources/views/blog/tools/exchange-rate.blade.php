@@ -6,6 +6,28 @@
     @include('/blog/layouts.navbar')
     <div class="px-16 mx-auto py-16 md:py-20 mb-24">
         <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Currency Converter</h2>
+        <nav class="flex mb-12 mt-12 ml-6" aria-label="Breadcrumb">
+              <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                  <a href="" class="inline-flex items-center text-sm font-medium text-blue-700 hover:text-blue-600 dark:text-blue-400 dark:hover:text-white">
+                    <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Tools
+                  </a>
+                </li>
+                <li>
+                  <div class="flex items-center">
+                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="{{ route('personalpack') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">PersonalPack</a>
+                  </div>
+                </li>
+                <li aria-current="page">
+                  <div class="flex items-center">
+                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Currency Converter</span>
+                  </div>
+                </li>
+              </ol>
+            </nav>
         <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" method="POST" action="{{url('/projects/exchange-rate/check')}}">
             @csrf
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
@@ -47,8 +69,12 @@
                 </div>
             </section>
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:p-6 text-xl text-white-800 leading-normal">
-                <div class="p-4 mb-4 mt-12 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-700 dark:text-blue-400 text-center @if($hidden) hidden @endif" role="alert">
+                <div class="p-4 mb-4 mt-12 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-700 dark:text-blue-400 text-center {{ $hidden }}" role="alert">
+                    @if($result['query']['amount'] = '')
                     <span class="font-medium">{{ $result['query']['amount'] }} {{ $result['query']['from'] }} = {{ $result['result'] }} {{ $result['query']['to'] }}</span>
+                    @else
+                    <span class="font-medium text-red-700">Please select a currency</span>
+                    @endif
                 </div>
             </section>
         </form>
