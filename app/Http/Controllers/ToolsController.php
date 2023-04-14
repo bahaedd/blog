@@ -1030,11 +1030,19 @@ class ToolsController extends Controller
 
     }
 
-     //exchange-rate
+    //exchange-rate
     public function exchangeRate() {
 
         $hidden = 'hidden';
-        $result = '';
+        $result = [
+          "query" => [
+              "from" => '',
+              "to" => '',
+              "amount" => ''
+              ],
+          "result" => ''
+           
+        ];
         $response = Http::get('https://openexchangerates.org/api/currencies.json');     
         $data = json_decode($response->body(), true);
 
@@ -1044,13 +1052,16 @@ class ToolsController extends Controller
 
     public function CheckExchange(Request $request) {
 
+        $this->validate($request, [
+            'from' => 'required',
+            'to' => 'required'
+         ]);
+
         $hidden = '';
         $response = Http::get('https://openexchangerates.org/api/currencies.json');     
         $data = json_decode($response->body(), true);
         $rate = Http::get('https://api.exchangerate.host/convert?from='.$request->get('from').'&to='.$request->get('to'));     
         $result = json_decode($rate->body(), true);
-
-        // dd($result);
 
          return view("blog.tools.exchange-rate", compact('hidden', 'data', 'result'));
 
@@ -1082,6 +1093,7 @@ class ToolsController extends Controller
         $this->validate($request, [
             'text' => 'required',
          ]);
+
         $lines = [];
         $text = $request->get('text');
         $array = explode("\n", $text );       
