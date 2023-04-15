@@ -70,11 +70,7 @@
             </section>
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:p-6 text-xl text-white-800 leading-normal">
                 <div class="p-4 mb-4 mt-12 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-700 dark:text-blue-400 text-center {{ $hidden }}" role="alert">
-                    @if($result['query']['amount'] = '')
                     <span class="font-medium">{{ $result['query']['amount'] }} {{ $result['query']['from'] }} = {{ $result['result'] }} {{ $result['query']['to'] }}</span>
-                    @else
-                    <span class="font-medium text-red-700">Please select a currency</span>
-                    @endif
                 </div>
             </section>
         </form>

@@ -1119,7 +1119,8 @@ class ToolsController extends Controller
     //Email Validator
     public function emailValidator() {
 
-        $emails = [];
+        $hidden = 'hidden';
+
         seo()
         ->title('AlienDev | Email Extractor')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
@@ -1133,26 +1134,21 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-        return view("blog.tools.email-validator", compact('emails'));
+        return view("blog.tools.email-validator", compact('hidden'));
 
     }
 
     public function CheckEmail(Request $request) {
 
+        $hidden = '';
+
         $this->validate($request, [
-            'text' => 'required',
+            'email' => 'required'
          ]);
-        $emails = [];
-        $text = $request->get('text');
-        $reccord= $text;
-        $regexEmailAddress = '/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i';
-        preg_match_all($regexEmailAddress, $reccord, $email_match);
-         
-        $emails = Arr::collapse($email_match);
-        $emails = array_unique($emails);
-        if(empty($emails)){
-            $emails = ['0' => 'No Email Address Found!'];
-         }
+
+        $response = Http::get('https://api.zerobounce.net/v2/validate?api_key=8ba76e7fb0ce456895fe8b9213dad9ca&email='.$request->get('email').'&ip_address=156.124.12.145');     
+        $data = json_decode($response->body(), true);
+        dd($data);
 
          seo()
         ->title('AlienDev | Email extractorshow')
@@ -1167,7 +1163,7 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-         return view("blog.tools.email-validator", compact('emails'));
+         return view("blog.tools.email-validator", compact('hidden'));
 
     }
 

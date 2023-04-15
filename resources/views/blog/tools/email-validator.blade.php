@@ -29,12 +29,12 @@
                         <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Domain Reputation Checker</span>
+                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Email Address Validator</span>
                     </div>
                 </li>
             </ol>
         </nav>
-        <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('tools/domainreputation/check')}}" method="post">
+        <form class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0" action="{{url('projects/email-validator/check')}}" method="post">
             @csrf
             <section class="w-full md:w-2/4 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal">
                 <div class="relative mt-12">
@@ -43,7 +43,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </div>
-                    <input type="search" id="domain" name="domain" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example.com">
+                    <input type="search" id="email" name="email" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="valid@example.com" required>
                     <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Check</button>
                 </div>
                 @if ($errors->any())
@@ -64,44 +64,7 @@
                 <h4 class="mb-4 text-center text-md font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">{{ session()->get('domain') }}</h4>
                 <div class="w-full items-center mr-12 max-w-sm bg-white text-gray-600  dark:bg-gray-800 dark:border-gray-900">
                     <div class="px-3 pb-3 pt-6">
-                        @if(isset($data['data']))
-                        <div class="flex items-center">
-                            <div class="w-full h-6 bg-gray-900 rounded-full dark:bg-gray-900">
-                                <div class="h-6 {{ $color }} rounded-full dark:{{ $color }} text-center text-white" style="width: {{ $data['data']['attributes']['last_analysis_stats']['harmless'] }}%;">{{ $data['data']['attributes']['last_analysis_stats']['harmless'] }}%</div>
-                            </div>
-                        </div>
-                        <h5 class="text-xl mt-3 font-semibold tracking-tight dark:text-white text-center">
-                            {{ $rate }}
-                        </h5>
-                        @if(isset($data['data']['attributes']['categories']))
-                        <h2 class="mb-2 mt-6 text-lg font-semibold text-blue-700">- Category</h2>
-                        <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 text-sm">
-                            @if(isset( $data['data']['attributes']['categories']['BitDefender'] ))
-                            <li>
-                                {{ $data['data']['attributes']['categories']['BitDefender'] }}
-                            </li>
-                            @else
-                            <li>
-                                None
-                            </li>
-                            @endif
-                        </ul>
-                        @endif
-                        <h2 class="mb-2 mt-6 text-lg font-semibold text-blue-700">- WhoIs Informations</h2>
-                        @if(isset($data['data']['attributes']['categories']))
-                        <div class="text-sm font-semibold text-gray-900 dark:text-white">
-                            {{ $data['data']['attributes']['whois'] }}
-                        </div>
-                        @else
-                        <div class="text-sm font-semibold text-gray-900 dark:text-white">
-                            No records found!
-                        </div>
-                        @endif
-                        @else
-                        <h5 class="text-xl mt-3 font-semibold tracking-tight dark:text-red-300 text-center">
-                            {{ $rate }}
-                        </h5>
-                        @endif
+                       
                     </div>
                 </div>
             </section>
