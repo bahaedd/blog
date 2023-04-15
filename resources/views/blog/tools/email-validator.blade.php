@@ -62,10 +62,83 @@
             </section>
             <section class="w-full md:w-2/4 flex flex-col items-center px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal mt-6 {{ $hidden }}">
                 <h4 class="mb-4 text-center text-md font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">{{ session()->get('domain') }}</h4>
-                <div class="w-full items-center mr-12 max-w-sm bg-white text-gray-600  dark:bg-gray-800 dark:border-gray-900">
-                    <div class="px-3 pb-3 pt-6">
-                       
-                    </div>
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Address
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Status
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Free Email
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    SMTP Provider
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    MX Record
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $data['address'] }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    @if($data['status'] = 'valid')
+                                    <span class="font-medium">
+                                        <div class="flex items-center">
+                                            <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Valid
+                                        </div>
+                                    </span>
+                                    @else
+                                    <span class="font-medium">
+                                        <div class="flex items-center">
+                                            <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Invalid
+                                        </div>
+                                    </span>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4">
+                                    @if(empty($data['free_email']))
+                                    <span class="font-medium">
+                                        No
+                                    </span>
+                                    @else
+                                    <span class="font-medium">
+                                        Yes
+                                    </span>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4">
+                                    @if(empty($data['smtp_provider']))
+                                    <span class="font-medium">
+                                        Not found
+                                    </span>
+                                    @else
+                                    <span class="font-medium">
+                                        {{ $data['smtp_provider'] }}
+                                    </span>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4">
+                                    @if($data['mx_found'] = 'true')
+                                    <span class="font-medium">
+                                        {{ $data['mx_record'] }}
+                                    </span>
+                                    @else
+                                    <span class="font-medium">
+                                        Not found
+                                    </span>
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </form>

@@ -1121,6 +1121,15 @@ class ToolsController extends Controller
 
         $hidden = 'hidden';
 
+        $data = [
+          "address" => "",
+          "status" => "",
+          "free_email" => false,
+          "smtp_provider" => "",
+          "mx_found" => "false",
+          "mx_record" => ""
+        ];
+
         seo()
         ->title('AlienDev | Email Extractor')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
@@ -1134,7 +1143,7 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-        return view("blog.tools.email-validator", compact('hidden'));
+        return view("blog.tools.email-validator", compact('hidden', 'data'));
 
     }
 
@@ -1148,7 +1157,7 @@ class ToolsController extends Controller
 
         $response = Http::get('https://api.zerobounce.net/v2/validate?api_key=8ba76e7fb0ce456895fe8b9213dad9ca&email='.$request->get('email').'&ip_address=156.124.12.145');     
         $data = json_decode($response->body(), true);
-        dd($data);
+        // dd($data);
 
          seo()
         ->title('AlienDev | Email extractorshow')
@@ -1163,7 +1172,7 @@ class ToolsController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-         return view("blog.tools.email-validator", compact('hidden'));
+         return view("blog.tools.email-validator", compact('hidden', 'data'));
 
     }
 
