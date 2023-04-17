@@ -19,6 +19,26 @@
                         </div>
                       </div>
                 </a>
+                <a href="">
+                      <div class="group rounded px-8 py-12 shadow bg-green-500">
+                        <div class="mx-auto h-8 w-8 text-center">
+                          
+                        </div>
+                        <div class="text-center">
+                          <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">Batch Email Validator</h3>
+                        </div>
+                      </div>
+                </a>
+                <a href="">
+                      <div class="group rounded px-8 py-12 shadow bg-green-500">
+                        <div class="mx-auto h-8 w-8 text-center">
+                          
+                        </div>
+                        <div class="text-center">
+                          <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">File Validator</h3>
+                        </div>
+                      </div>
+                </a>
             </div>
         </div>
 

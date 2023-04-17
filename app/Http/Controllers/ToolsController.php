@@ -1186,5 +1186,12 @@ class ToolsController extends Controller
 
     }
 
+    //Email Address Validation 
+    public function EmailAddressValidation() {
+
+        return view("blog.toolsv2.email-address-validation");
+
+    }
+
 }
 
