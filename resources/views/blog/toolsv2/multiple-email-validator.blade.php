@@ -5,7 +5,7 @@
 <body class="border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
     @include('/blog/layouts.navbar')
     <div class="px-16 mx-auto py-16 md:py-20 mb-72">
-        <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Email Address Validator</h2>
+        <h2 class="my-4 mb-12 text-4xl text-center font-semibold text-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-700">Multipe Email Address Validator</h2>
         <nav class="flex mb-12 mt-12 ml-6" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">

@@ -80,10 +80,14 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
 
     //Email Address Validator landing
     Route::get('/projects/mailerpack/email-address-validator',[ToolsController::class, 'EmailAddressValidation'])->name('email-address-validator');
-    
+
     //Email Address Validator
     Route::get('/projects/mailerpack/email-validator',[ToolsController::class, 'emailValidator'])->name('email-validator');
     Route::any('/projects/email-validator/check',[ToolsController::class, 'CheckEmail']);
+
+    //Multipe Email Address Validator
+    Route::get('/projects/mailerpack/multipe-email-validator',[ToolsController::class, 'multipeEmailValidator'])->name('multipe-email-validator');
+    Route::any('/projects/email-validator/check',[ToolsController::class, 'CheckEmails']);
 
     //         ######################### PersonalPackApp ################################
 
