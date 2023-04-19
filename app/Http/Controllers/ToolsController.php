@@ -1263,5 +1263,74 @@ class ToolsController extends Controller
 
     }
 
+    public function fileEmailValidator() {
+
+        $hidden = 'hidden';
+
+        $data = [
+          "address" => "",
+          "status" => "",
+          "free_email" => false,
+          "smtp_provider" => "",
+          "mx_found" => "false",
+          "mx_record" => ""
+        ];
+
+        seo()
+        ->title('AlienDev | Email Extractor')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+        return view("blog.tools.email-validator", compact('hidden', 'data'));
+
+    }
+
+    public function CheckFileEmails(Request $request) {
+
+        $hidden = '';
+
+        $this->validate($request, [
+            'email' => 'required'
+         ]);
+
+        $data = [
+          "address" => "",
+          "status" => "",
+          "free_email" => false,
+          "smtp_provider" => "",
+          "mx_found" => "false",
+          "mx_record" => ""
+        ];
+        // $response = Http::get('https://api.zerobounce.net/v2/validate?api_key=8ba76e7fb0ce456895fe8b9213dad9ca&email='.$request->get('email').'&ip_address=156.124.12.145');     
+        // $data = json_decode($response->body(), true);
+        $response = Http::get('https://hadithapi.com/api/sahih-bukhari/chapters?apiKey=$2y$10$zn69snVUym17Mu1drpLvO7o54vuZIiLtLPYTFwWYd361SdQPy2F6');     
+        $data = json_decode($response->body(), true);
+        dd($data);
+
+         seo()
+        ->title('AlienDev | Email extractorshow')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
+         return view("blog.tools.email-validator", compact('hidden', 'data'));
+
+    }
+
 }
 
