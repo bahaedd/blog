@@ -69,26 +69,21 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     //Domain reputation
     Route::get('/projects/mailerpack/domainreputation',[ToolsController::class, 'DomainReputation'])->name('domain-reputation');
     Route::any('/projects/domainreputation/check',[ToolsController::class, 'CheckDomain']);
-
     //Domain Health Checker
     Route::get('/projects/mailerpack/domainhealth',[ToolsController::class, 'DomainHealth'])->name('domain-health');
     Route::any('/projects/domainhealth/check',[ToolsController::class, 'CheckDomainHealth']);
-
     //Convercy Rate
     Route::get('/projects/personalpack/exchange-rate',[ToolsController::class, 'exchangeRate'])->name('exchange-rate');
     Route::any('/projects/exchange-rate/check',[ToolsController::class, 'CheckExchange']);
 
     //Email Address Validator landing
     Route::get('/projects/mailerpack/email-address-validator',[ToolsController::class, 'EmailAddressValidation'])->name('email-address-validator');
-
     //Email Address Validator
     Route::get('/projects/mailerpack/email-validator',[ToolsController::class, 'emailValidator'])->name('email-validator');
     Route::any('/projects/email-validator/check',[ToolsController::class, 'CheckEmail']);
-
     //Multipe Email Address Validator
     Route::get('/projects/mailerpack/multipe-email-validator',[ToolsController::class, 'multipeEmailValidator'])->name('multipe-email-validator');
     Route::any('/projects/email-validator/check',[ToolsController::class, 'CheckEmails']);
-
     //File Email Address Validator
     Route::get('/projects/mailerpack/file-email-validator',[ToolsController::class, 'fileEmailValidator'])->name('file-email-validator');
     Route::any('/projects/file-email-validator/check',[ToolsController::class, 'CheckFileEmails']);
