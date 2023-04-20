@@ -1240,8 +1240,7 @@ class ToolsController extends Controller
           "mx_found" => "false",
           "mx_record" => ""
         ];
-        // $response = Http::get('https://api.zerobounce.net/v2/validate?api_key=8ba76e7fb0ce456895fe8b9213dad9ca&email='.$request->get('email').'&ip_address=156.124.12.145');     
-        // $data = json_decode($response->body(), true);
+        
         $response = Http::get('https://hadithapi.com/api/sahih-bukhari/chapters?apiKey=$2y$10$zn69snVUym17Mu1drpLvO7o54vuZIiLtLPYTFwWYd361SdQPy2F6');     
         $data = json_decode($response->body(), true);
         dd($data);
@@ -1309,8 +1308,7 @@ class ToolsController extends Controller
           "mx_found" => "false",
           "mx_record" => ""
         ];
-        // $response = Http::get('https://api.zerobounce.net/v2/validate?api_key=8ba76e7fb0ce456895fe8b9213dad9ca&email='.$request->get('email').'&ip_address=156.124.12.145');     
-        // $data = json_decode($response->body(), true);
+       
         $response = Http::get('https://hadithapi.com/api/sahih-bukhari/chapters?apiKey=$2y$10$zn69snVUym17Mu1drpLvO7o54vuZIiLtLPYTFwWYd361SdQPy2F6');     
         $data = json_decode($response->body(), true);
         dd($data);
