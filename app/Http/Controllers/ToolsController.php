@@ -369,6 +369,18 @@ class ToolsController extends Controller
         array_push($randomStrings, $randomString);
     }
 
+    seo()
+        ->title('AlienDev | Random Generator')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
 
     return view("blog.tools.randomgenerator", compact("randomStrings", "region"));
 }
@@ -478,6 +490,19 @@ class ToolsController extends Controller
             $string = base64_decode($request->get('text'));
         }
 
+        seo()
+        ->title('AlienDev | Random Generator')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
         return view("blog.tools.endecode", compact("hidden", "string"));
     }
 
@@ -497,6 +522,19 @@ class ToolsController extends Controller
               ],
            
         ];
+
+        seo()
+        ->title('AlienDev | Random Generator')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
 
         return view("blog.tools.domainreputation", compact("hidden", "data" , "rate" , "color"));
     }
