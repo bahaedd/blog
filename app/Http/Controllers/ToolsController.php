@@ -612,6 +612,19 @@ class ToolsController extends Controller
            
         ];
 
+        seo()
+        ->title('AlienDev | Random Generator')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
+
         return view("blog.tools.domainreputation", compact("hidden", "data" , "rate" , "color"));
     }
 
@@ -684,6 +697,18 @@ class ToolsController extends Controller
 
     //PersonalPack
     public function PeronalPack() {
+        seo()
+        ->title('AlienDev | PersonalPack')
+        ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
+        ->description('AlienDev here you can improve your programming skills')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Web Development tutorials')
+        ->twitterDescription('AlienDev here you can improve your programming skills')
+        ->twitterImage(URL('/images/alien.png'));
 
         $tools = Tool::where('pack', 'PersonalPack')->get();
         return view("blog.tools.personalpack", compact("tools"));
