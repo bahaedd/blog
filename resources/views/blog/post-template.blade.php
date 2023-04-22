@@ -14,93 +14,68 @@
             </p>
         </div>
         <!--Post Content-->
-        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">Tall Stack is a full-stack web development technology stack that consists of Tailwind CSS, Alpine.js, Laravel, and Livewire. It offers a seamless web development experience by providing an easy-to-use, modern, and flexible toolset that allows developers to build high-quality web applications efficiently.</p>
-        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">In this article, we will explore the components of the Tall Stack and guide you on how to set up a Tall Stack project.</p>
-        <h3 class="pt-6 font-light leading-relaxed text-blue-700">#Components of the Tall Stack</h3>
-        <h4 class="pt-6 font-light leading-relaxed text-blue-500">TailwindCSS</h4>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">Tailwind CSS is a utility-first CSS framework that offers a set of pre-defined classes that you can use to style your HTML elements. It enables you to create responsive and customizable UI components without writing any CSS code. Tailwind CSS is highly flexible and can be customized according to your project needs.</p>
-        <h4 class="pt-6 font-light leading-relaxed text-blue-500">Alpine.js</h4>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">Alpine.js is a lightweight JavaScript framework that offers a declarative syntax for building dynamic web applications. It allows you to add interactivity to your HTML elements without requiring complex JavaScript code. Alpine.js is designed to work seamlessly with Tailwind CSS and Laravel.</p>
-        <h4 class="pt-6 font-light leading-relaxed text-blue-500">Laravel</h4>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">Laravel is a popular PHP framework that offers a set of tools and features for building robust and scalable web applications. It provides an elegant syntax for writing PHP code, and its modular structure enables you to build complex applications with ease. Laravel offers a range of features such as routing, middleware, database migrations, and authentication.</p>
-        <h4 class="pt-6 font-light leading-relaxed text-blue-500">Livewire</h4>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">Livewire is a front-end framework that enables you to build dynamic web applications using Laravel's back-end features. It offers a reactive programming model that allows you to build real-time user interfaces without using JavaScript. Livewire integrates seamlessly with Tailwind CSS and Alpine.js, enabling you to build powerful UI components with ease.</p>
-        <h3 class="pt-6 font-light leading-relaxed text-blue-700">#Setting up a Tall Stack project</h3>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">To set up a Tall Stack project, you need to follow these steps:</p>
-        <h5 class="pt-6 font-light leading-relaxed text-blue-500">Step 1: Install Laravel</h5>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">To install Laravel, you need to have PHP installed on your system. You can download and install PHP from the official PHP website. Once you have PHP installed, you can use Composer to install Laravel.</p>
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-bold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm">composer <span class="text-white ml-2">create-project --prefer-dist laravel/laravel tall-stack-app</span></div>
+        
+        <blockquote class="p-4 my-4 border-l-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
+    <p class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">In Laravel's Eloquent ORM, Query Scopes are a powerful feature that allows you to define reusable query constraints for your models. Query Scopes can be used to filter models based on specific criteria in multiple places throughout your application.</p>
+</blockquote>
+        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">In this tutorial, we will learn how to create Query Scopes in Laravel and use them to filter a sample Post model based on content length.</p>
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">To get started, let's create a new Laravel project and a simple "Post" model:</p>
+        
+        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-semibold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
+            <div class="mt-1 flex text-sm"><span class="text-white ml-2">php artisan make:model Post -m</span></div>
         </div>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">This command will create a new Laravel project called "tall-stack-app" in the current directory.</p>
-        <h5 class="pt-6 font-light leading-relaxed text-blue-500">Step 2: Install Tailwind CSS and Alpine.js</h5>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">To install Tailwind CSS and Alpine.js, you can use the following command:</p>
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-bold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm"><span class="text-white ml-2">npm install tailwindcss alpinejs</span></div>
-        </div>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">This command will install Tailwind CSS and Alpine.js in your project's node_modules directory.</p>
-        <h5 class="pt-6 font-light leading-relaxed text-blue-500">Step 3: Configure Tailwind CSS</h5>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">To configure Tailwind CSS, you need to create a new configuration file called "tailwind.config.js" in the root directory of your project. You can use the following command to create this file:</p>
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-bold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm"><span class="text-white ml-2">npx tailwindcss init</span></div>
-        </div>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">This command will create a new Tailwind CSS configuration file with the default settings.</p>
-        <h5 class="pt-6 font-light leading-relaxed text-blue-500">Step 4: Configure Alpine.js</h5>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">To configure Alpine.js, you need import alpine.js in your project's <code>app.js</code> file:</p>
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-bold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm"><span class="text-green-700 ml-2">import 'alpinejs'</span></div>
-        </div>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">This code will import the Alpine.js library into your project.</p>
-        <h5 class="pt-6 font-light leading-relaxed text-blue-500">Step 5: Install Livewire</h5>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">To install Livewire, you can use the following command:</p>
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-bold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm">composer<span class="text-white ml-2">require livewire/livewire</span></div>
-        </div>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">Now that we have Livewire installed let's create a Livewire component, to do so you need to run the following command:</p>
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-bold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm">php artisan<span class="text-white ml-2">make:livewire counter</span></div>
-        </div>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">This command will create a new Livewire component called "Counter" in your project's "app/Http/Livewire" directory.</p>
-        <h5 class="pt-6 font-light leading-relaxed text-blue-500">Step 6: Build your UI using Tailwind CSS and Alpine.js</h5>
-        <p class="pt-3 font-light leading-relaxed text-grey-20 dark:text-white text-base">To build your UI, you can use Tailwind CSS and Alpine.js to create responsive and interactive components. For example, you can create a simple counter component that increments or decrements a value:</p>
-        <div class="coding inverse-toggle px-5 pt-4 shadow-lg text-red-400 text-sm bg-gray-700  pb-6 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">This will create a new Post model class and a migration file for the posts table.</p>
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Now, let's add some fields to the posts table in the migration file:</p>
+        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700  pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
             <code class="php p-12" style="font-family:monospace;">
-                <blockquote>
-                    <ol>
-                        <li>
-                            <font color="#339933">&lt;</font>div&nbsp;x<font color="#339933">-</font>data<font color="#339933">=</font>
-                            <font color="yellow">&quot;{&nbsp;count:&nbsp;0&nbsp;}&quot;</font>
-                            <font color="#339933">&gt;</font>
-                        </li>
-                        <li>&nbsp;&nbsp;<font color="#339933">&lt;</font>button&nbsp;<font color="#339933">@</font>click<font color="#339933">=</font>
-                            <font color="yellow">&quot;count--&quot;</font>
-                            <font color="#339933">&gt;-&lt;/</font>button<font color="#339933">&gt;</font>
-                        </li>
-                        <li>&nbsp;&nbsp;<font color="#339933">&lt;</font>span&nbsp;x<font color="#339933">-</font>text<font color="#339933">=</font>
-                            <font color="yellow">&quot;count&quot;</font>
-                            <font color="#339933">&gt;&lt;/</font>span<font color="#339933">&gt;</font>
-                        </li>
-                        <li>&nbsp;&nbsp;<font color="#339933">&lt;</font>button&nbsp;<font color="#339933">@</font>click<font color="#339933">=</font>
-                            <font color="yellow">&quot;count++&quot;</font>
-                            <font color="#339933">&gt;+&lt;/</font>button<font color="#339933">&gt;</font>
-                        </li>
-                        <li>
-                            <font color="#339933">&lt;/</font>div<font color="#339933">&gt;</font>
-                        </li>
-                    </ol>
-                </blockquote>
+                <blockquote><ol><li>Schema<font color="#339933">::</font><font color="white">create</font><font color="#009900">&#40;</font><font color="yellow">'posts'</font><font color="#339933">,</font>&nbsp;<font color="orange">function</font>&nbsp;<font color="#009900">&#40;</font>Blueprint&nbsp;<font color="red">$table</font><font color="#009900">&#41;</font>&nbsp;<font color="#009900">&#123;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">$table</font><font color="#339933">-&gt;</font><font color="white">id</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">$table</font><font color="#339933">-&gt;</font><font color="white">string</font><font color="#009900">&#40;</font><font color="yellow">'title'</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">$table</font><font color="#339933">-&gt;</font><font color="white">text</font><font color="#009900">&#40;</font><font color="yellow">'content'</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">$table</font><font color="#339933">-&gt;</font><font color="white">timestamps</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li><font color="#009900">&#125;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;</li></ol></blockquote>
             </code>
         </div>
-        <h5 class="pt-6 font-light leading-relaxed text-blue-500">Step 7: Run your app</h5>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">To start the development server, you can use the following command:</p>
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-bold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm"><span class="text-white ml-2">php artisan serve</span></div>
+
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Next, let's add some sample data to the posts table by running the migration and creating a seeder:</p>
+        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-semibold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
+            <div class="mt-1 flex text-sm"><span class="text-white ml-2">php artisan migrate</span></div>
+            <div class="mt-1 flex text-sm"><span class="text-white ml-2">php artisan make:seeder PostSeeder</span></div>
         </div>
 
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">To test your application, open your web browser and navigate to http://localhost:8000. You should see the counter component that you created earlier, which should allow you to increment or decrement a value.</p>
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">This will create a new Post model class and a migration file for the posts table.</p>
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">In the <code>database/seeders/PostSeeder.php</code> file, add the following code to create some sample posts:</p>
+        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700  pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
+            <code class="php p-12" style="font-family:monospace;">
+               <blockquote><ol><li><font color="orange">use</font>&nbsp;Illuminate\Database\Seeder<font color="#339933">;</font></li><li><font color="orange">use</font>&nbsp;App\Models\Post<font color="#339933">;</font></li><li>&nbsp;</li><li><font color="orange">class</font>&nbsp;PostSeeder&nbsp;<font color="orange">extends</font>&nbsp;Seeder</li><li><font color="#009900">&#123;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">public</font>&nbsp;<font color="orange">function</font>&nbsp;run<font color="#009900">&#40;</font><font color="#009900">&#41;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#123;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Post<font color="#339933">::</font><font color="white">create</font><font color="#009900">&#40;</font><font color="#009900">&#91;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="yellow">'title'</font>&nbsp;<font color="#339933">=&gt;</font>&nbsp;<font color="yellow">'First&nbsp;post'</font><font color="#339933">,</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="yellow">'content'</font>&nbsp;<font color="#339933">=&gt;</font>&nbsp;<font color="yellow">'Lorem&nbsp;ipsum&nbsp;dolor&nbsp;sit&nbsp;amet,&nbsp;consectetur&nbsp;adipiscing&nbsp;elit.'</font><font color="#339933">,</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#93;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Post<font color="#339933">::</font><font color="white">create</font><font color="#009900">&#40;</font><font color="#009900">&#91;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="yellow">'title'</font>&nbsp;<font color="#339933">=&gt;</font>&nbsp;<font color="yellow">'Second&nbsp;post'</font><font color="#339933">,</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="yellow">'content'</font>&nbsp;<font color="#339933">=&gt;</font>&nbsp;<font color="yellow">'Sed&nbsp;do&nbsp;eiusmod&nbsp;tempor&nbsp;incididunt&nbsp;ut&nbsp;labore&nbsp;et&nbsp;dolore&nbsp;magna&nbsp;aliqua.'</font><font color="#339933">,</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#93;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Post<font color="#339933">::</font><font color="white">create</font><font color="#009900">&#40;</font><font color="#009900">&#91;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="yellow">'title'</font>&nbsp;<font color="#339933">=&gt;</font>&nbsp;<font color="yellow">'Third&nbsp;post'</font><font color="#339933">,</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="yellow">'content'</font>&nbsp;<font color="#339933">=&gt;</font>&nbsp;<font color="yellow">'Ut&nbsp;enim&nbsp;ad&nbsp;minim&nbsp;veniam,&nbsp;quis&nbsp;nostrud&nbsp;exercitation&nbsp;ullamco&nbsp;laboris&nbsp;nisi&nbsp;ut&nbsp;aliquip&nbsp;ex&nbsp;ea.'</font><font color="#339933">,</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#93;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#125;</font></li><li><font color="#009900">&#125;</font></li><li>&nbsp;</li></ol></blockquote>
+            </code>
+        </div>
 
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">In summary, the Tall Stack is a powerful web development technology stack that offers a range of features for building high-quality web applications. With its easy-to-use toolset, developers can create dynamic and interactive user interfaces with ease. By following the steps outlined in this article, you can set up a Tall Stack project and start building your own web applications.</p>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white">Thanks for following up to this point, I hope that was clear and helpful. Enjoy your code journey...</p>
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Finally, run the seeder to populate the posts table:</p>
+        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-semibold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
+            <div class="mt-1 flex text-sm"><span class="text-white ml-2">php artisan db:seed --class=PostSeeder</span></div>
+        </div>
+
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Now that we have some data, let's create a Query Scope on our Post model. In this example, we'll create a Query Scope to filter posts based on their length.</p>
+
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Add the following method to the Post model:</p>
+
+        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700  pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
+            <code class="php p-12" style="font-family:monospace;">
+               <blockquote><ol><li><font color="orange">public</font>&nbsp;<font color="orange">function</font>&nbsp;scopeLength<font color="#009900">&#40;</font><font color="red">$query</font><font color="#339933">,</font>&nbsp;<font color="red">$length</font><font color="#009900">&#41;</font></li><li><font color="#009900">&#123;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#b1b100">return</font>&nbsp;<font color="red">$query</font><font color="#339933">-&gt;</font><font color="white">whereRaw</font><font color="#009900">&#40;</font><font color="yellow">'length(content)'</font>&nbsp;<font color="#339933">.</font>&nbsp;<font color="red">$length</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li><font color="#009900">&#125;</font></li><li>&nbsp;</li></ol></blockquote>
+            </code>
+        </div>
+
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Here, we've defined a Query Scope named length. The length Query Scope takes an argument $length, which will be used to determine the length of the content. This Query Scope returns posts with content that matches the length criteria.</p>
+
+
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">To use the 'length' Query Scope, we can call it on the Post model like this:</p>
+
+        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700  pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
+            <code class="php p-12" style="font-family:monospace;">
+               <blockquote><ol><li><font color="orange">$shortPosts</font>&nbsp;<font color="#339933">=</font>&nbsp;Post<font color="#339933">::</font><font color="white">length</font><font color="#009900">&#40;</font><font color="red">'&lt;&nbsp;50'</font><font color="#009900">&#41;</font><font color="#339933">-&gt;</font><font color="white">get</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li><font color="orange">$longPosts</font>&nbsp;<font color="#339933">=</font>&nbsp;Post<font color="#339933">::</font><font color="white">length</font><font color="#009900">&#40;</font><font color="red">'&gt;=&nbsp;50'</font><font color="#009900">&#41;</font><font color="#339933">-&gt;</font><font color="white">get</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;</li></ol></blockquote>
+            </code>
+        </div>
+
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">This will return collections of posts that match the length criteria defined in each Query Scope.</p>
+
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">In this tutorial, we learned how to create Query Scopes in Laravel's Eloquent ORM and use them to filter a sample Post model based on content length. Query Scopes are a powerful tool for filtering models based on common criteria. By defining query constraints in a Query Scope, you can avoid code duplication and keep your code DRY. </p>
+        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">With this knowledge, you can start using Query Scopes to optimize your queries and streamline your Laravel applications. Query Scopes are flexible and can be used for a variety of purposes. They are a great way to make your code more maintainable and reusable. I hope this tutorial has helped you understand how to create Query Scopes in Laravel's Eloquent ORM and how to use them effectively. Happy coding!</p>
     </div>
     <!-- sidebar -->
     @include('/blog/layouts.sidebar')

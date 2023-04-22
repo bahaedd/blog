@@ -2758,9 +2758,6 @@ select {
 .pr-10 {
   padding-right: 2.5rem;
 }
-.pt-3 {
-  padding-top: 0.75rem;
-}
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -2775,6 +2772,9 @@ select {
 }
 .pl-10 {
   padding-left: 2.5rem;
+}
+.pt-3 {
+  padding-top: 0.75rem;
 }
 .pl-0 {
   padding-left: 0px;
@@ -2890,6 +2890,9 @@ select {
 }
 .capitalize {
   text-transform: capitalize;
+}
+.italic {
+  font-style: italic;
 }
 .leading-5 {
   line-height: 1.25rem;
@@ -3018,10 +3021,6 @@ select {
 .text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
-}
-.text-blue-500 {
-  --tw-text-opacity: 1;
-  color: rgb(63 131 248 / var(--tw-text-opacity));
 }
 .text-red-400 {
   --tw-text-opacity: 1;
