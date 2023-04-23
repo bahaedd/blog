@@ -16,9 +16,9 @@
         <!--Post Content-->
         
         <blockquote class="p-4 my-4 border-l-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
-    <p class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">In Laravel's Eloquent ORM, Query Scopes are a powerful feature that allows you to define reusable query constraints for your models. Query Scopes can be used to filter models based on specific criteria in multiple places throughout your application.</p>
+    <p class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">Laravel Eloquent is a powerful and easy-to-use Object-Relational Mapping (ORM) system built into the Laravel PHP framework. With Eloquent, developers can define database tables as classes and interact with them using object-oriented syntax. This makes it easy to work with data and create database-driven applications without having to write complex SQL queries. In this article, we'll explore the features of Eloquent and how it can simplify database interactions for Laravel developers.</p>
 </blockquote>
-        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">In this tutorial, we will learn how to create Query Scopes in Laravel and use them to filter a sample Post model based on content length.</p>
+        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">Eloquent is designed to work with multiple database systems, including MySQL, PostgreSQL, and SQL Server. This flexibility makes it a popular choice for web developers who need to work with a variety of databases.</p>
         <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">To get started, let's create a new Laravel project and a simple "Post" model:</p>
         
         <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-semibold subpixel-antialiased bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
