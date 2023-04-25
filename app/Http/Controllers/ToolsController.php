@@ -1315,10 +1315,9 @@ class ToolsController extends Controller
           "ip_address" => ""
         ];
 
-        foreach ($email_batch as $email) {
-                $email->email_address = "jfjhfjjfj";
-                $email->ip_address = "1.1.1.1";
-        }
+       
+
+        
 
         $response = Http::get('https://hadithapi.com/api/sahih-bukhari/chapters?apiKey=$2y$10$zn69snVUym17Mu1drpLvO7o54vuZIiLtLPYTFwWYd361SdQPy2F6');     
         $data = json_decode($response->body(), true);
