@@ -1,111 +1,291 @@
-@extends('/blog/main')
-@section('content')
-<div class="container mx-auto flex flex-wrap py-3 mt-12 dark:bg-gray-800">
-    <div class="w-full md:w-2/3 flex flex-col px-4 m-b-3 md:px-6 text-xl text-white-800 leading-normal " style="font-family:Georgia,serif;">
-        <!-- Article Image -->
-        <a href="#" class="hover:opacity-75" title="logo">
-            <img src="{{Voyager::image( setting('site.logo'))}}">
-        </a>
-        <!--Title-->
-        <div class="font-sans">
-            <h1 class="font-bold font-sans break-normal text-green-400 pt-6 pb-2 text-3xl md:text-4xl">Post Template</h1>
-            <p class="text-sm pb-3 text-gray-500 dark:text-gray-400">
-                By <a href="#" class="font-semibold text-gray-400 hover:text-gray-200">bahaeddine</a>, Published on date
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tailwind Starter Template - Ghostwind CSS : Tailwind Toolbox</title>
+    <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <!--Replace with your tailwind.css once created-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-200 font-sans leading-normal tracking-normal">
+    <!--Header-->
+    <div class="w-full m-0 p-0 bg-cover bg-bottom" style="background-image:url({{URL('/images/1.webp')}}); height: 60vh; max-height:460px;">
+        <div class="container max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
+            <!--Title-->
+            <p class="text-white font-extrabold text-3xl md:text-5xl">
+                👻 Ghostwind CSS
             </p>
+            <p class="text-xl md:text-2xl text-gray-500">Welcome to my Blog</p>
         </div>
-        <!--Post Content-->
-        <blockquote class="p-4 my-4 border-l-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800">
-            <p class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">A One to One Relationship is a type of database relationship where each record in one table is related to only one record in another table.</p>
-        </blockquote>
-        <p class="pt-6 font-light text-grey-20 dark:text-white text-base">In Laravel, you can define a One to One Relationship between two models by using Eloquent ORM.</p>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Let's create a One to One Relationship in Laravel:</p>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">First, create a migration for the parent table. This table will have a primary key and other columns that store information about the record. For example, if you are creating a One to One Relationship between a User and a Profile, you could create a migration for the User table like this:</p>
-
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-light bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm"><span class="text-white ml-2 tracking-widest">php artisan make:migration create_users_table --create=users</span></div>
-        </div>
-
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Next, create a migration for the child table. This table will have a foreign key that references the primary key of the parent table. For example, if you are creating a One to One Relationship between a User and a Profile, you could create a migration for the Profile table like this:</p>
-
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-light bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm"><span class="text-white ml-2 tracking-widest">php artisan make:migration create_profiles_table --create=profiles</span></div>
-        </div>
-        
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">After creating the migrations, you will need to define the Eloquent models for the two tables. To create a One to One Relationship, you will need to add a method to each model that defines the relationship. for the <code class="font-bold">User</code> Model:</p>
-
-        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700 pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
-            <code class="php p-12" style="font-family:monospace;">
-                <blockquote><ol><li><font color="orange">class</font>&nbsp;User&nbsp;<font color="orange">extends</font>&nbsp;Model</li><li><font color="#009900">&#123;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">public</font>&nbsp;<font color="orange">function</font>&nbsp;profile<font color="#009900">&#40;</font><font color="#009900">&#41;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#123;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#b1b100">return</font>&nbsp;<font color="red">$this</font><font color="#339933">-&gt;</font><font color="white">hasOne</font><font color="#009900">&#40;</font>Profile<font color="#339933">::</font><font color="orange">class</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#125;</font></li><li><font color="#009900">&#125;</font></li></ol></blockquote>
-            </code>
-        </div>
-
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">This defines a One to One Relationship between the User and Profile models. The <code class="font-bold">hasOne</code> method is used to define the relationship. The first argument is the name of the related model (in this case, <code class="font-bold">Profile::class</code>), and the second argument is the foreign key column name (which will default to user_id).</p>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Next, you will need to define the relationship in the Profile model :</p>
-        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700 pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
-            <code class="php p-12" style="font-family:monospace;">
-                <blockquote><ol><li><font color="orange">class</font>&nbsp;Profile&nbsp;<font color="orange">extends</font>&nbsp;Model</li><li><font color="#009900">&#123;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="orange">public</font>&nbsp;<font color="orange">function</font>&nbsp;user<font color="#009900">&#40;</font><font color="#009900">&#41;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#123;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#b1b100">return</font>&nbsp;<font color="red">$this</font><font color="#339933">-&gt;</font><font color="white">belongsTo</font><font color="#009900">&#40;</font>User<font color="#339933">::</font><font color="orange">class</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#009900">&#125;</font></li><li><font color="#009900">&#125;</font></li></ol></blockquote>
-            </code>
-        </div>
-
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">This defines a One to One Relationship between the Profile and User models. The <code class="font-bold">belongsTo</code> method is used to define the relationship.</p>
-
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">After defining the migrations and models, you will need to migrate the database to create the tables:</p>
-
-        <div class="coding inverse-toggle px-6 pt-6 shadow-lg text-blue-700 font-light bg-gray-700  pb-6 rounded-lg leading-normal overflow-hidden mt-12">
-            <div class="mt-1 flex text-sm"><span class="text-white ml-2 tracking-widest">php artisan migrate</span></div>
-        </div>
-        <h4 class="pt-6 font-light leading-relaxed text-blue-700">- Create a record</h4>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Now that you have defined the relationship and created the tables, you can create a record in the parent table and a corresponding record in the child table. For example, to create a new User and a corresponding Profile:</p>
-        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700 pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
-            <code class="php p-12" style="font-family:monospace;">
-                <blockquote><ol><li><font color="red">$user</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="orange">new</font>&nbsp;User<font color="#339933">;</font></li><li><font color="red">$user</font><font color="#339933">-&gt;</font><font color="white">name</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="yellow">'John&nbsp;Doe'</font><font color="#339933">;</font></li><li><font color="red">$user</font><font color="#339933">-&gt;</font><font color="white">email</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="yellow">'johndoe@example.com'</font><font color="#339933">;</font></li><li><font color="red">$user</font><font color="#339933">-&gt;</font><font color="white">save</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li>&nbsp;</li><li><font color="red">$profile</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="orange">new</font>&nbsp;Profile<font color="#339933">;</font></li><li><font color="red">$profile</font><font color="#339933">-&gt;</font><font color="white">user_id</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="red">$user</font><font color="#339933">-&gt;</font><font color="white">id</font><font color="#339933">;</font></li><li><font color="red">$profile</font><font color="#339933">-&gt;</font><font color="white">bio</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="yellow">'Lorem&nbsp;ipsum&nbsp;dolor&nbsp;sit&nbsp;amet.'</font><font color="#339933">;</font></li><li><font color="red">$profile</font><font color="#339933">-&gt;</font><font color="white">save</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li></ol></blockquote>
-            </code>
-        </div>
-
-        <h4 class="pt-6 font-light leading-relaxed text-blue-700">- Retrieve a record</h4>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">To retrieve a record with its related record, you can use the with method to eager load the relationship. For example, to retrieve a User with its associated Profile:</p>
-        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700 pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
-            <code class="php p-12" style="font-family:monospace;">
-                <blockquote><ol><li><font color="red">$user</font>&nbsp;<font color="#339933">=</font>&nbsp;User<font color="#339933">::</font><font color="white">with</font><font color="#009900">&#40;</font><font color="yellow">'profile'</font><font color="#009900">&#41;</font><font color="#339933">-&gt;</font><font color="white">find</font><font color="#009900">&#40;</font><font color="#cc66cc">1</font><font color="#009900">&#41;</font><font color="#339933">;</font></li></ol></blockquote>
-            </code>
-        </div>
-
-        <h4 class="pt-6 font-light leading-relaxed text-blue-700">- Accessing the related model</h4>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">Once you have retrieved a record with its related record, you can access the related record by using the relationship name as a property on the parent model:</p>
-        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700 pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
-            <code class="php p-12" style="font-family:monospace;">
-                <blockquote><ol><li><font color="red">$user</font>&nbsp;<font color="#339933">=</font>&nbsp;User<font color="#339933">::</font><font color="white">with</font><font color="#009900">&#40;</font><font color="yellow">'profile'</font><font color="#009900">&#41;</font><font color="#339933">-&gt;</font><font color="white">find</font><font color="#009900">&#40;</font><font color="#cc66cc">1</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li><font color="red">$profile</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="red">$user</font><font color="#339933">-&gt;</font><font color="white">profile</font><font color="#339933">;</font></li></ol></blockquote>
-            </code>
-        </div>
-
-        <h4 class="pt-6 font-light leading-relaxed text-blue-700">- Updating the related model</h4>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">To update the related model, you can simply update the properties on the related model and then save it. For example, to update the bio of the Profile that is related to a User:</p>
-        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700 pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
-            <code class="php p-12" style="font-family:monospace;">
-                <blockquote><ol><li><font color="red">$user</font>&nbsp;<font color="#339933">=</font>&nbsp;User<font color="#339933">::</font><font color="white">with</font><font color="#009900">&#40;</font><font color="yellow">'profile'</font><font color="#009900">&#41;</font><font color="#339933">-&gt;</font><font color="white">find</font><font color="#009900">&#40;</font><font color="#cc66cc">1</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li><font color="red">$profile</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="red">$user</font><font color="#339933">-&gt;</font><font color="white">profile</font><font color="#339933">;</font></li><li><font color="red">$profile</font><font color="#339933">-&gt;</font><font color="white">bio</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="yellow">'Updated&nbsp;bio'</font><font color="#339933">;</font></li><li><font color="red">$profile</font><font color="#339933">-&gt;</font><font color="white">save</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li></ol></blockquote>
-            </code>
-        </div>
-
-        <h4 class="pt-6 font-light leading-relaxed text-blue-700">- Deleting the related model</h4>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">To delete the related model, you can simply delete it. When you delete the related model, Laravel will automatically remove the foreign key constraint from the parent record. For example, to delete the Profile that is related to a User:</p>
-        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700 pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
-            <code class="php p-12" style="font-family:monospace;">
-                <blockquote><ol><li><font color="red">$user</font>&nbsp;<font color="#339933">=</font>&nbsp;User<font color="#339933">::</font><font color="white">with</font><font color="#009900">&#40;</font><font color="yellow">'profile'</font><font color="#009900">&#41;</font><font color="#339933">-&gt;</font><font color="white">find</font><font color="#009900">&#40;</font><font color="#cc66cc">1</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li><font color="red">$profile</font>&nbsp;<font color="#339933">=</font>&nbsp;<font color="red">$user</font><font color="#339933">-&gt;</font><font color="white">profile</font><font color="#339933">;</font></li><li><font color="red">$profile</font><font color="#339933">-&gt;</font><font color="white">delete</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li></ol></blockquote>
-            </code>
-        </div>
-
-        <h4 class="pt-6 font-light leading-relaxed text-blue-700">- Deleting the parent model</h4>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">To delete the parent model, you can simply delete it. When you delete the parent model, Laravel will automatically delete the related model as well. For example, to delete a User and its associated Profile:</p>
-        <div class="coding inverse-toggle px-4 pt-4 shadow-lg text-red-400 text-sm bg-gray-700 pb-4 pt-4 rounded-lg leading-normal overflow-hidden mt-12 mb-12">
-            <code class="php p-12" style="font-family:monospace;">
-                <blockquote><ol><li><font color="red">$user</font>&nbsp;<font color="#339933">=</font>&nbsp;User<font color="#339933">::</font><font color="white">with</font><font color="#009900">&#40;</font><font color="yellow">'profile'</font><font color="#009900">&#41;</font><font color="#339933">-&gt;</font><font color="white">find</font><font color="#009900">&#40;</font><font color="#cc66cc">1</font><font color="#009900">&#41;</font><font color="#339933">;</font></li><li><font color="red">$user</font><font color="#339933">-&gt;</font><font color="white">delete</font><font color="#009900">&#40;</font><font color="#009900">&#41;</font><font color="#339933">;</font></li></ol></blockquote>
-            </code>
-        </div>
-
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">In this article, we covered the three types of service providers in Laravel: Application Service Providers, Route Service Providers, and Package Service Providers. We also looked at examples of how to register and use each type of service provider.</p>
-        <p class="pt-6 font-light leading-relaxed text-grey-20 dark:text-white text-base">If you're new to Laravel, it may take some time to get used to working with service providers. But once you understand how they work, you'll appreciate how much easier they make it to manage dependencies in your application.</p>
     </div>
-    <!-- sidebar -->
-    @include('/blog/layouts.sidebar')
-</div>
-@endsection
+    <!--Container-->
+    <div class="container px-4 md:px-0 max-w-6xl mx-auto -mt-32">
+        <div class="mx-0 sm:mx-6">
+            <!--Nav-->
+            <nav class="mt-0 w-full">
+                <div class="container mx-auto flex items-center">
+                    <div class="flex w-1/2 pl-4 text-sm">
+                        <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                            <li class="mr-2">
+                                <a class="inline-block py-2 px-2 text-white no-underline hover:underline" href="post.html">POST</a>
+                            </li>
+                            <li class="mr-2">
+                                <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-2" href="#">LINK</a>
+                            </li>
+                            <li class="mr-2">
+                                <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-2" href="#">LINK</a>
+                            </li>
+                            <li class="mr-2">
+                                <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-2" href="post_vue.html">POST_VUE</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex w-1/2 justify-end content-center">
+                        <a class="inline-block text-gray-500 no-underline hover:text-white hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar" data-tippy-content="@twitter_handle" href="https://twitter.com/intent/tweet?url=#">
+                            <svg class="fill-current h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                <path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path>
+                            </svg>
+                        </a>
+                        <a class="inline-block text-gray-500 no-underline hover:text-white hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar" data-tippy-content="#facebook_id" href="https://www.facebook.com/sharer/sharer.php?u=#">
+                            <svg class="fill-current h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                <path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div class="bg-gray-200 w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t">
+                <!--Lead Card-->
+                {{-- <div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
+                    <a href="post.html" class="flex flex-wrap no-underline hover:no-underline">
+                        <div class="w-full md:w-2/3 rounded-t">
+                            <img src="https://source.unsplash.com/collection/494263/800x600" class="h-full w-full shadow">
+                        </div>
+                        <div class="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+                            <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                                <p class="w-full text-gray-600 text-xs md:text-sm pt-6 px-6">GETTING STARTED</p>
+                                <div class="w-full font-bold text-xl text-gray-900 px-6">👋 Welcome fellow Tailwind CSS and Ghost fan</div>
+                                <p class="text-gray-800 font-serif text-base px-6 mb-5">
+                                    This starter template is an attempt to replicate the default Ghost theme "Casper" using Tailwind CSS and vanilla Javascript.
+                                </p>
+                            </div>
+                            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                                <div class="flex items-center justify-between">
+                                    <img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                                    <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div> --}}
+                <!--/Lead Card-->
+                <!--Posts Container-->
+                <div class="flex flex-wrap justify-between pt-12 -mx-6">
+                    <!--1/3 col -->
+                    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+                                <img src="https://source.unsplash.com/collection/225/800x600" class="h-64 w-full rounded-t pb-6">
+                                <p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+                                <div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
+                                <p class="text-gray-800 font-serif text-base px-6 mb-5">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+                                </p>
+                            </a>
+                        </div>
+                        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                                <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--1/3 col -->
+                    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+                                <img src="https://source.unsplash.com/collection/3106804/800x600" class="h-64 w-full rounded-t pb-6">
+                                <p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+                                <div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
+                                <p class="text-gray-800 font-serif text-base px-6 mb-5">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ip Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+                                </p>
+                            </a>
+                        </div>
+                        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                                <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--1/3 col -->
+                    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+                                <img src="https://source.unsplash.com/collection/539527/800x600" class="h-64 w-full rounded-t pb-6">
+                                <p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+                                <div class="w-full  font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
+                                <p class="text-gray-800 font-serif text-base px-6 mb-5">
+                                    Lorem ipsum eu nunc commodo posuere et sit amet ligula.
+                                </p>
+                            </a>
+                        </div>
+                        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                                <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--1/2 col -->
+                    <div class="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink">
+                        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+                                <img src="https://source.unsplash.com/collection/3657445/800x600" class="h-full w-full rounded-t pb-6">
+                                <p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+                                <div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
+                                <p class="text-gray-800 font-serif text-base px-6 mb-5">
+                                    Lorem ipsum eu nunc commodo posuere et sit amet ligula.
+                                </p>
+                            </a>
+                        </div>
+                        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                                <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--1/2 col -->
+                    <div class="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink">
+                        <div class="flex-1 flex-row bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+                                <img src="https://source.unsplash.com/collection/764827/800x600" class="h-full w-full rounded-t pb-6">
+                                <p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+                                <div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
+                                <p class="text-gray-800 font-serif text-base px-6 mb-5">
+                                    Lorem ipsum eu nunc commodo posuere et sit amet ligula.
+                                </p>
+                            </a>
+                        </div>
+                        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                                <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--2/3 col -->
+                    <div class="w-full md:w-2/3 p-6 flex flex-col flex-grow flex-shrink">
+                        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+                                <img src="https://source.unsplash.com/collection/325867/800x600" class="h-full w-full rounded-t pb-6">
+                                <p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+                                <div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
+                                <p class="text-gray-800 font-serif text-base px-6 mb-5">
+                                    Lorem ipsum eu nunc commodo posuere et sit amet ligula.
+                                </p>
+                            </a>
+                        </div>
+                        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                                <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--1/3 col -->
+                    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+                            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
+                                <img src="https://source.unsplash.com/collection/1118905/800x600" class="h-full w-full rounded-t pb-6">
+                                <p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
+                                <div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
+                                <p class="text-gray-800 font-serif text-base px-6 mb-5">
+                                    Lorem ipsum eu nunc commodo posuere et sit amet ligula.
+                                </p>
+                            </a>
+                        </div>
+                        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                                <p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Post Content-->
+            </div>
+            <!--Subscribe-->
+            <div class="container font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
+                <h2 class="font-bold break-normal text-2xl md:text-4xl">Subscribe to Ghostwind CSS</h2>
+                <h3 class="font-bold break-normal font-normal text-gray-600 text-base md:text-xl">Get the latest posts delivered right to your inbox</h3>
+                <div class="w-full text-center pt-4">
+                    <form action="#">
+                        <div class="max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center">
+                            <input type="email" placeholder="youremail@example.com" class="flex-1 appearance-none rounded shadow p-3 text-gray-600 mr-2 focus:outline-none">
+                            <button type="submit" class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-green-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-green-400">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /Subscribe-->
+            <!--Author-->
+            <div class="flex w-full items-center font-sans p-8 md:p-24">
+                <img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+                <div class="flex-1">
+                    <p class="text-base font-bold text-base md:text-xl leading-none">Ghostwind CSS</p>
+                    <p class="text-gray-600 text-xs md:text-base">Tailwind CSS version of Ghost's Casper theme by <a class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500" href="https://www.tailwindtoolbox.com">TailwindToolbox.com</a></p>
+                </div>
+                <div class="justify-end">
+                    <button class="bg-transparent border border-gray-500 hover:border-green-500 text-xs text-gray-500 hover:text-green-500 font-bold py-2 px-4 rounded-full">Read More</button>
+                </div>
+            </div>
+            <!--/Author-->
+        </div>
+    </div>
+    <footer class="bg-gray-900">
+        <div class="container max-w-6xl mx-auto flex items-center px-2 py-8">
+            <div class="w-full mx-auto flex flex-wrap items-center">
+                <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
+                    <a class="text-gray-900 no-underline hover:text-gray-900 hover:no-underline" href="#">
+                        👻 <span class="text-base text-gray-200">Ghostwind CSS</span>
+                    </a>
+                </div>
+                <div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
+                    <ul class="list-reset flex justify-center flex-1 md:flex-none items-center">
+                        <li>
+                            <a class="inline-block py-2 px-3 text-white no-underline" href="#">Active</a>
+                        </li>
+                        <li>
+                            <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3" href="#">link</a>
+                        </li>
+                        <li>
+                            <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3" href="#">link</a>
+                        </li>
+                        <li>
+                            <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3" href="#">link</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
+    <script>
+    //Init tooltips
+    tippy('.avatar')
+
+    </script>
+</body>
+
+</html>
