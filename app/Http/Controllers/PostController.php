@@ -31,7 +31,6 @@ class PostController extends Controller
         $latest_posts = Post::latest()->get();
         $laravel_posts = Post::where('category_id', '=', 1)->get();
         $s_post = Post::latest()->take(1)->get();
-        $recent_posts = Post::latest()->get();
         seo()
         ->title('AlienDev | Web Development tutorials')
         ->rawTag('<meta name="keywords" content="AlienDev, Alien Dev, Laravel, Laravel Tutorial For Beginners, TailwindCSS Tutorial For Beginners, web development" />')
@@ -45,7 +44,7 @@ class PostController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-        return view("blog.home", compact("latest_posts", "recent_posts", "s_post", "laravel_posts"));
+        return view("blog.home", compact("latest_posts", "s_post", "laravel_posts"));
         }
 
     public function postTemplate() {
@@ -57,7 +56,7 @@ class PostController extends Controller
         $title = '{{ $title }}';
         $content = '{{ $content }}';
 
-        return view("blog.post-template", compact("latest_posts", "recent_posts", "s_post", "laravel_posts", "title", "content"));
+        return view("blog.post-template", compact("latest_posts", "s_post", "laravel_posts", "title", "content"));
     }
 
     public function show($slug) {
@@ -65,8 +64,6 @@ class PostController extends Controller
             return Post::where('slug', '=', $slug)->firstOrFail();
         });
 
-        //$post = Post::where('slug', '=', $slug)->firstOrFail();
-        $recent_posts = Post::latest()->get();
         seo()
         ->favicon()
         ->url(url()->current())
@@ -78,6 +75,6 @@ class PostController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-	    return view('blog.post', compact('post', 'recent_posts'));
+	    return view('blog.post', compact('post'));
     }
 }
