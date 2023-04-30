@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Category;
+use App\Models\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('categories', Category::orderBy('name')->get());
+        View::share('tags', Tag::all());
     }
 }
