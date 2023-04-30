@@ -31,7 +31,6 @@ class PostController extends Controller
         $latest_posts = Post::latest()->get();
         $laravel_posts = Post::where('category_id', '=', 1)->get();
         $s_post = Post::latest()->take(1)->get();
-        $categories = Category::all();
         $tags = Tag::all();
         $recent_posts = Post::latest()->get();
         seo()
@@ -47,7 +46,7 @@ class PostController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-        return view("blog.home", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags"));
+        return view("blog.home", compact("latest_posts", "recent_posts", "s_post", "laravel_posts", "tags"));
         }
 
     public function postTemplate() {
@@ -55,13 +54,12 @@ class PostController extends Controller
         $latest_posts = Post::latest()->get();
         $laravel_posts = Post::where('category_id', '=', 1)->get();
         $s_post = Post::latest()->take(1)->get();
-        $categories = Category::all();
         $tags = Tag::all();
         $recent_posts = Post::latest()->get();
         $title = '{{ $title }}';
         $content = '{{ $content }}';
 
-        return view("blog.post-template", compact("latest_posts", "recent_posts", "s_post", "categories", "laravel_posts", "tags", "title", "content"));
+        return view("blog.post-template", compact("latest_posts", "recent_posts", "s_post", "laravel_posts", "tags", "title", "content"));
     }
 
     public function show($slug) {
@@ -72,7 +70,6 @@ class PostController extends Controller
         //$post = Post::where('slug', '=', $slug)->firstOrFail();
         $recent_posts = Post::latest()->get();
         $tags = Tag::all();
-        $categories = Category::all();
         seo()
         ->favicon()
         ->url(url()->current())
@@ -84,6 +81,6 @@ class PostController extends Controller
         ->twitterDescription('AlienDev here you can improve your programming skills')
         ->twitterImage(URL('/images/alien.png'));
 
-	    return view('blog.post', compact('post', 'recent_posts', 'categories', 'tags'));
+	    return view('blog.post', compact('post', 'recent_posts', 'tags'));
     }
 }
