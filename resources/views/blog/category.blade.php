@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 @endforeach
-                {{ $posts->links('pagination::semantic-ui') }} 
             </div>
+            {{ $posts->links() }} 
         </div>
 @endsection
