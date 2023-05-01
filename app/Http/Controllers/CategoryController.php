@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
         
         $m_category = Category::where('slug', $slug)->first();
-        $posts = Post::latest()->where('category_id', $m_category->id)->simplePaginate(2);
+        $posts = Post::latest()->where('category_id', $m_category->id)->paginate(2);
         $categories = Category::all();
         return view("blog.category", compact("posts", "m_category", "categories"));
     }

@@ -25,6 +25,6 @@
                 </div>
                 @endforeach
             </div>
-            {{ $posts->links() }} 
+            {{ $posts->links('pagination::tailwind') }} 
         </div>
 @endsection
