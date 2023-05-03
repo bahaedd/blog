@@ -21,19 +21,17 @@ class SitemapController extends Controller
     public function index(Request $r)
     {      
         $posts = Post::orderBy('id','desc')->where('status', 'PUBLISHED')->get();
-        $categories = Category::all();
         $tags = Tag::all();
         $tools = Tool::all();
 
-        return response()->view('blog.sitemap', compact('posts', 'categories', 'tags', 'tools'))
+        return response()->view('blog.sitemap', compact('posts', 'tags', 'tools'))
           ->header('Content-Type', 'text/xml');
 
     }
 
     public function about()
     {
-        $categories = Category::all();
-        return view('blog.about', compact('categories'));
+        return view('blog.about');
 
     }
 }

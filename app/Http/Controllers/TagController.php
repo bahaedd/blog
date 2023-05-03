@@ -15,8 +15,7 @@ class TagController extends Controller
         $tag = Tag::where('slug', $slug)->first();
         $p = DB::table('post_tag')->where('id', $tag->id)->first();
         $posts = Post::where('id', $p->post_id)->get();
-        $categories = Category::all();
 
-        return view("blog.tag", compact("tag", "posts", "categories"));
+        return view("blog.tag", compact("tag", "posts");
     }
 }
