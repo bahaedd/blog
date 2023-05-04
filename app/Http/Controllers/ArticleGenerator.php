@@ -28,8 +28,7 @@ class ArticleGenerator extends Controller
         ]);
 
         $content = trim($result['choices'][0]['text']);
-        $categories = Category::all();
 
-        return view('blog.tools.writebot', compact('title', 'content', 'categories'));
+        return view('blog.tools.writebot', compact('title', 'content'));
     }
 }
