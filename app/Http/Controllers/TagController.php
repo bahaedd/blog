@@ -13,8 +13,7 @@ class TagController extends Controller
     public function index($slug) {
 
         $tag = Tag::where('slug', $slug)->first();
-        $p = DB::table('post_tag')->where('id', $tag->id)->first();
-        $posts = Post::where('id', $p->post_id)->get();
+        $posts = $tag->posts()->latest()->paginate(8);
 
         return view("blog.tag", compact("tag", "posts");
     }

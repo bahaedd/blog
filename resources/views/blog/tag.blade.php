@@ -26,5 +26,8 @@
                 </div>
                 @endforeach
             </div>
+            <div class="p-3 mt-6">
+                {{ $posts->links('pagination::simple-tailwind') }}
+            </div>
         </div>
 @endsection
