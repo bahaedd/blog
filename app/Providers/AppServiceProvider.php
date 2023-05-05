@@ -29,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('categories', Category::orderBy('name')->get());
         View::share('tags', Tag::all());
+        View::share('recent_posts', Post::latest()->get());
     }
 }
