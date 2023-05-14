@@ -31,7 +31,15 @@ class SitemapController extends Controller
 
     public function about()
     {
-        return view('blog.about');
+        $name = "Bahaeddine";
+        $profession = "Full Stack Web Developer";
+
+        $data = [
+          "preferredStack"=> "LAMP Stack, TALL Stack",
+          "hasUsed"=> "Laravel, Livewire, TailwindCSS, VueJS, AlpineJS"
+        ];
+
+        return view('about');
 
     }
 }
