@@ -7,6 +7,7 @@ use App\Http\Controllers\tagController;
 use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ToolsController;
+use App\Http\Controllers\converterController;
 use App\Http\Controllers\ArticleGenerator;
 use App\Models\Category;
 
@@ -169,3 +170,8 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/login/github/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGithubCallback']);
 
     Route::get('/home', [PostController::class, 'index']);
+
+
+
+    //         ######################### Converter ################################
+    Route::get('/projects/converter',[converterController::class, 'index'])->name('converter');
