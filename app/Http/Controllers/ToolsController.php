@@ -45,7 +45,8 @@ class ToolsController extends Controller
         ->twitterImage(URL('/images/alien.png'));
 
         $tools = Tool::where('pack', 'MailerPack')->get();
-        return view("blog.tools.index", compact("tools"));
+        $p_tools = Tool::where('pack', 'PersonalPack')->get();
+        return view("blog.tools.index", compact("tools", "p_tools"));
     }
 
     //         ######################### MailerPack ################################ 

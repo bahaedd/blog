@@ -14,22 +14,39 @@
 <div class="container px-4 md:px-0 max-w-12xl mx-auto -mt-32 dark:bg-gray-800 rounded-lg">
     <div class="mx-0 sm:mx-6">
         <div class="text-white rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400 w-full text-xl md:text-2xl leading-normal rounded-t">
-            <!--Posts Container-->
+            <!--Tools Container-->
+            <div class="flex flex-wrap justify-between p-6 -mx-6">
+                <h6 class="my-4 text-xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700">Free Email Marketing Tools</h6>
+                <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-4">
+                    @foreach ($tools as $tool)
+                    <a href="{{ route($tool->url) }}">
+                        <div class="group rounded px-8 py-12 shadow bg-green-500">
+                            <div class="mx-auto h-8 w-8 text-center">
+                                {!! $tool->icon !!}
+                            </div>
+                            <div class="text-center">
+                                <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">{{ $tool->name }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
             <div class="flex flex-wrap justify-between p-6 -mx-6">
                 <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-4">
-            @foreach ($tools as $tool)
-                <a href="{{ route($tool->url) }}">
-                      <div class="group rounded px-8 py-12 shadow bg-green-500">
-                        <div class="mx-auto h-8 w-8 text-center">
-                          {!! $tool->icon !!}
+                    @foreach ($p_tools as $tool)
+                    <a href="{{ route($tool->url) }}">
+                        <div class="group rounded px-8 py-12 shadow bg-green-500">
+                            <div class="mx-auto h-8 w-8 text-center">
+                                {!! $tool->icon !!}
+                            </div>
+                            <div class="text-center">
+                                <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">{{ $tool->name }}</h3>
+                            </div>
                         </div>
-                        <div class="text-center">
-                          <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">{{ $tool->name }}</h3>
-                        </div>
-                      </div>
-                </a>
-            @endforeach
-            </div>
+                    </a>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
