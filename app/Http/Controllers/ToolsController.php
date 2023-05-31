@@ -29,6 +29,25 @@ use Carbon\Carbon;
 class ToolsController extends Controller
 {
 
+    public function tools() {
+
+        seo()
+        ->title('AlienDev | Tools-MailerPack')
+        ->rawTag('<meta name="keywords" content="AlienDev, mailer pack tools, email marketing, IP extractor, domain checker, DNS lookup, email campaigns, subscriber inbox." />')
+        ->description('Explore our Mailer Pack Tools - a suite of essential email marketing tools, including an IP extractor, domain checker, and DNS lookup. With these tools at your fingertips, you can easily gather crucial data to improve your email campaigns and ensure they land in your subscribers\' inboxes.')
+        ->url(url()->current())
+        ->image(URL('/images/alien.png'))
+        ->locale('en_US')
+        ->twitterCreator('Bahaedd97952415')
+        ->twitterSite('Bahaedd97952415')
+        ->twitterTitle('AlienDev | Tools-MailerPack')
+        ->twitterDescription('Explore our Mailer Pack Tools - a suite of essential email marketing tools, including an IP extractor, domain checker, and DNS lookup. With these tools at your fingertips, you can easily gather crucial data to improve your email campaigns and ensure they land in your subscribers\' inboxes.')
+        ->twitterImage(URL('/images/alien.png'));
+
+        $tools = Tool::where('pack', 'MailerPack')->get();
+        return view("blog.tools.index", compact("tools"));
+    }
+
     //         ######################### MailerPack ################################ 
 
     //MailerPack
