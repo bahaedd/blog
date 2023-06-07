@@ -46,7 +46,8 @@ class ToolsController extends Controller
 
         $tools = Tool::where('pack', 'MailerPack')->get();
         $p_tools = Tool::where('pack', 'PersonalPack')->get();
-        return view("blog.tools.index", compact("tools", "p_tools"));
+        $m_tools = Tool::where('pack', 'MuslimPack')->get();
+        return view("blog.tools.index", compact("tools", "p_tools" , "m_tools"));
     }
 
     //         ######################### MailerPack ################################ 
