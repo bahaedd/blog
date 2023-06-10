@@ -7,7 +7,20 @@
 
         
         <div class="px-16 py-16 md:py-20">
-            <h2 class="my-4 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700 mb-24 mt-12">Coming soon</h2>
+            <h2 class="my-4 text-4xl text-center font-semibold text-green-700 rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-green-700 mb-24 mt-12">Image Converter</h2>
+
+            <div class="grid grid-cols-1 gap-6 pt-10 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-3">
+                <a href="">
+                      <div class="group rounded px-8 py-12 shadow bg-green-500">
+                        <div class="mx-auto h-8 w-8 text-center">
+                          icon
+                        </div>
+                        <div class="text-center">
+                          <h3 class="pt-2 text-lg font-semibold text-primary group-hover:text-yellow lg:text-xl">PNG to JPG</h3>
+                        </div>
+                      </div>
+                </a>
+            </div>
             
         </div>
 
