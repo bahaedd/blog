@@ -179,3 +179,4 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     //         ######################### Converter ################################
     
     Route::get('/projects/converter',[converterController::class, 'index'])->name('converter');
+    Route::get('/projects/converter/image-converter',[converterController::class, 'imageConverter'])->name('image-converter');
