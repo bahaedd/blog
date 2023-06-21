@@ -44,7 +44,7 @@ class ToolsController extends Controller
         ->twitterDescription('Explore our Mailer Pack Tools - a suite of essential email marketing tools, including an IP extractor, domain checker, and DNS lookup. With these tools at your fingertips, you can easily gather crucial data to improve your email campaigns and ensure they land in your subscribers\' inboxes.')
         ->twitterImage(URL('/images/alien.png'));
 
-        $tools = Tool::where('pack', 'MailerPack')->get();
+        $tools = Tool::all();
         $p_tools = Tool::where('pack', 'PersonalPack')->get();
         $m_tools = Tool::where('pack', 'MuslimPack')->get();
         return view("blog.tools.index", compact("tools", "p_tools" , "m_tools"));

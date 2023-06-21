@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/default.min.css">
     <style>
         body {
-            font-family: 'Heebo', sans-serif;
+            font-family: system-ui;
         }
     </style>
     <style>
