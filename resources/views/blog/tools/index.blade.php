@@ -16,7 +16,7 @@
         <div class="text-white rounded md:bg-transparent md:text-green-700 md:p-0 dark:text-gray-400 w-full text-xl md:text-2xl leading-normal rounded-t">
             <!--Tools Container-->
             <div class="flex flex-wrap justify-between p-6 -mx-6">
-                <div class="grid grid-cols-1 gap-6 pt-3 sm:grid-cols-2 md:gap-10 md:pt-12 lg:grid-cols-4">
+                <div class="grid grid-cols-1 gap-6 pt-3 sm:grid-cols-2 md:gap-10 md:pt-3 pl-6 lg:grid-cols-4">
                     @foreach ($tools as $tool)
                     <a href="{{ route($tool->url) }}">
                         <div class="group rounded px-8 py-12 shadow bg-gray-900">

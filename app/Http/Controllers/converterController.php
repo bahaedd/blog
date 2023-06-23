@@ -31,4 +31,11 @@ class converterController extends Controller
         $hidden = 'hidden';
         return view("blog.toolsv2.image-converter", compact('hidden'));
     }
+
+
+    public function ConvertImage() {
+
+        $hidden = 'hidden';
+        return view("blog.toolsv2.image-converter", compact('hidden'));
+    }
 }
