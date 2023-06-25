@@ -29,6 +29,7 @@ Route::group(['middleware'=>'HtmlMinifier'], function(){
     Route::get('/', [PostController::class, 'index'])->name('home');
     Route::get('blog/post/{slug}', [PostController::class, 'show']);
     Route::get('blog/category/{slug}', [CategoryController::class, 'index'])->name('category');
+    Route::get('blog/tutorials', [CategoryController::class, 'show'])->name('categories');
     Route::get('blog/tag/{slug}', [TagController::class, 'index']);
     //portfolio
     Route::get('/about',[SitemapController::class, 'about'])->name('about');

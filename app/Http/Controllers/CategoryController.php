@@ -28,4 +28,9 @@ class CategoryController extends Controller
 
         return view("blog.category", compact("posts", "m_category"));
     }
+
+    public function show() {
+ 
+        return view("blog.tutorials");
+    }
 }
